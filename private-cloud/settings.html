@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Sanjai Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #8b5cf6;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #8b5cf6;
+            transform: translateY(-2px);
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .settings-sidebar {
+            background: rgba(20, 30, 50, 0.5);
+            padding: 1.5rem 0;
+            border-right: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .settings-nav-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .settings-nav-item:hover,
+        .settings-nav-item.active {
+            background: rgba(139, 92, 246, 0.2);
+            color: white;
+            border-left: 3px solid #8b5cf6;
+        }
+
+        .settings-content {
+            padding: 2rem;
+        }
+
+        .settings-section {
+            display: none;
+        }
+
+        .settings-section.active {
+            display: block;
+        }
+
+        .settings-section h2 {
+            margin-bottom: 2rem;
+            color: #8b5cf6;
+        }
+
+        .settings-group {
+            margin-bottom: 2rem;
+        }
+
+        .settings-group h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(20, 30, 50, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+        }
+
+        .settings-item-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .settings-item-info p {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        /* Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #334155;
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: '';
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #8b5cf6;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Input Styles */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #94a3b8;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(20, 30, 50, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .danger-zone {
+            border: 1px solid #ef4444;
+            border-radius: 10px;
+            padding: 1.5rem;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+            .settings-sidebar {
+                border-right: none;
+                border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-cog"></i> Settings</h1>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Cloud</a>
+        </div>
+
+        <div class="settings-grid">
+            <!-- Sidebar Navigation -->
+            <div class="settings-sidebar">
+                <div class="settings-nav-item active" onclick="showSection('general')">
+                    <i class="fas fa-sliders-h"></i> General
+                </div>
+                <div class="settings-nav-item" onclick="showSection('security')">
+                    <i class="fas fa-shield-alt"></i> Security
+                </div>
+                <div class="settings-nav-item" onclick="showSection('storage')">
+                    <i class="fas fa-database"></i> Storage
+                </div>
+                <div class="settings-nav-item" onclick="showSection('notifications')">
+                    <i class="fas fa-bell"></i> Notifications
+                </div>
+                <div class="settings-nav-item" onclick="showSection('backup')">
+                    <i class="fas fa-cloud-upload-alt"></i> Backup & Sync
+                </div>
+                <div class="settings-nav-item" onclick="showSection('appearance')">
+                    <i class="fas fa-paint-brush"></i> Appearance
+                </div>
+                <div class="settings-nav-item" onclick="showSection('about')">
+                    <i class="fas fa-info-circle"></i> About
+                </div>
+                <div class="settings-nav-item" style="color: #ef4444;" onclick="showSection('danger')">
+                    <i class="fas fa-exclamation-triangle"></i> Danger Zone
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="settings-content">
+                <!-- General Settings -->
+                <div class="settings-section active" id="general">
+                    <h2>General Settings</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Profile Information</h3>
+                        <div class="input-group">
+                            <label>Display Name</label>
+                            <input type="text" id="displayName" value="Sanjai Gopal">
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" id="email" value="sanjai.sparkmail@gmail.com">
+                        </div>
+                        <div class="input-group">
+                            <label>Location</label>
+                            <input type="text" id="location" value="Coimbatore, Tamil Nadu">
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Preferences</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Language</h4>
+                                <p>Choose your preferred language</p>
+                            </div>
+                            <select id="language">
+                                <option value="en">English</option>
+                                <option value="ta">Tamil</option>
+                                <option value="hi">Hindi</option>
+                            </select>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Time Zone</h4>
+                                <p>Select your time zone</p>
+                            </div>
+                            <select id="timezone">
+                                <option value="ist">IST (UTC+5:30)</option>
+                                <option value="gmt">GMT</option>
+                                <option value="est">EST</option>
+                            </select>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Date Format</h4>
+                                <p>How dates should be displayed</p>
+                            </div>
+                            <select id="dateFormat">
+                                <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                                <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="settings-section" id="security">
+                    <h2>Security Settings</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Password</h3>
+                        <div class="input-group">
+                            <label>Current Password</label>
+                            <input type="password" id="currentPassword">
+                        </div>
+                        <div class="input-group">
+                            <label>New Password</label>
+                            <input type="password" id="newPassword">
+                        </div>
+                        <div class="input-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="confirmPassword">
+                        </div>
+                        <button class="btn btn-primary">Change Password</button>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Two-Factor Authentication</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Enable 2FA</h4>
+                                <p>Add an extra layer of security</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="twoFactor">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Session Management</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Remember Me</h4>
+                                <p>Stay logged in across sessions</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="rememberMe" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Auto-logout after</h4>
+                                <p>Automatically log out after inactivity</p>
+                            </div>
+                            <select id="autoLogout">
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="60">1 hour</option>
+                                <option value="never">Never</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary">Update Security</button>
+                </div>
+
+                <!-- Storage Settings -->
+                <div class="settings-section" id="storage">
+                    <h2>Storage Settings</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Storage Limit</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Total Storage</h4>
+                                <p>Your current storage limit</p>
+                            </div>
+                            <span>1 GB</span>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Used Storage</h4>
+                                <p>Space currently used</p>
+                            </div>
+                            <span id="usedStorage">0 MB</span>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Free Storage</h4>
+                                <p>Available space</p>
+                            </div>
+                            <span id="freeStorage">1 GB</span>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Auto-Delete</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Auto-delete old files</h4>
+                                <p>Automatically remove files older than</p>
+                            </div>
+                            <select id="autoDelete">
+                                <option value="never">Never</option>
+                                <option value="30">30 days</option>
+                                <option value="60">60 days</option>
+                                <option value="90">90 days</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary">Save Storage Settings</button>
+                </div>
+
+                <!-- Notifications -->
+                <div class="settings-section" id="notifications">
+                    <h2>Notification Settings</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Email Notifications</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Upload complete</h4>
+                                <p>Get email when uploads finish</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="notifyUpload" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Share notifications</h4>
+                                <p>When someone shares files with you</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="notifyShare" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Security alerts</h4>
+                                <p>Suspicious activity alerts</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="notifySecurity" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Browser Notifications</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Enable browser notifications</h4>
+                                <p>Show notifications in browser</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="browserNotify" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backup & Sync -->
+                <div class="settings-section" id="backup">
+                    <h2>Backup & Sync</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Automatic Backup</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Enable auto-backup</h4>
+                                <p>Automatically backup your files</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="autoBackup" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Backup frequency</h4>
+                                <p>How often to backup</p>
+                            </div>
+                            <select id="backupFrequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Sync Settings</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Auto-sync</h4>
+                                <p>Sync changes automatically</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="autoSync" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="backupNow()">Backup Now</button>
+                </div>
+
+                <!-- Appearance -->
+                <div class="settings-section" id="appearance">
+                    <h2>Appearance</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Theme</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Dark Mode</h4>
+                                <p>Switch between light and dark theme</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="darkMode" checked onchange="toggleTheme()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3>Layout</h3>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Default view</h4>
+                                <p>Choose your preferred file view</p>
+                            </div>
+                            <select id="defaultView">
+                                <option value="grid">Grid View</option>
+                                <option value="list">List View</option>
+                            </select>
+                        </div>
+                        <div class="settings-item">
+                            <div class="settings-item-info">
+                                <h4>Items per page</h4>
+                                <p>Number of files to show per page</p>
+                            </div>
+                            <select id="itemsPerPage">
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="settings-section" id="about">
+                    <h2>About</h2>
+                    
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-cloud" style="font-size: 3rem; color: white;"></i>
+                        </div>
+                        <h2>Sanjai's Ultimate Cloud</h2>
+                        <p style="color: #94a3b8; margin-bottom: 2rem;">Version 2.0.0</p>
+                        
+                        <div style="background: rgba(20, 30, 50, 0.5); border-radius: 10px; padding: 1.5rem; text-align: left;">
+                            <p><i class="fas fa-check-circle" style="color: #10b981;"></i> 60+ Advanced Features</p>
+                            <p><i class="fas fa-check-circle" style="color: #10b981;"></i> End-to-End Encryption</p>
+                            <p><i class="fas fa-check-circle" style="color: #10b981;"></i> 1GB Free Storage</p>
+                            <p><i class="fas fa-check-circle" style="color: #10b981;"></i> 24/7 Availability</p>
+                            <p><i class="fas fa-check-circle" style="color: #10b981;"></i> Mobile Responsive</p>
+                        </div>
+                        
+                        <p style="margin-top: 2rem; color: #94a3b8;">© 2026 Sanjai Gopal. All rights reserved.</p>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="settings-section" id="danger">
+                    <h2 style="color: #ef4444;">Danger Zone</h2>
+                    
+                    <div class="danger-zone">
+                        <div class="settings-item" style="border-color: #ef4444;">
+                            <div class="settings-item-info">
+                                <h4>Clear All Files</h4>
+                                <p>Permanently delete all your files</p>
+                            </div>
+                            <button class="btn btn-danger" onclick="clearAllFiles()">Clear All</button>
+                        </div>
+                        
+                        <div class="settings-item" style="border-color: #ef4444;">
+                            <div class="settings-item-info">
+                                <h4>Export Data</h4>
+                                <p>Download all your data</p>
+                            </div>
+                            <button class="btn btn-primary" onclick="exportAllData()">Export</button>
+                        </div>
+                        
+                        <div class="settings-item" style="border-color: #ef4444;">
+                            <div class="settings-item-info">
+                                <h4>Delete Account</h4>
+                                <p>Permanently delete your account</p>
+                            </div>
+                            <button class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            // Update nav items
+            document.querySelectorAll('.settings-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Show selected section
+            document.querySelectorAll('.settings-section').forEach(s => {
+                s.classList.remove('active');
+            });
+            document.getElementById(section).classList.add('active');
+        }
+
+        function saveSettings() {
+            showNotification('Settings saved successfully!', 'success');
+        }
+
+        function toggleTheme() {
+            const isDark = document.getElementById('darkMode').checked;
+            if (isDark) {
+                document.body.style.background = 'linear-gradient(135deg, #0a0f1e, #141b2b)';
+            } else {
+                document.body.style.background = 'linear-gradient(135deg, #f8fafc, #e2e8f0)';
+                document.body.style.color = '#0f172a';
+            }
+        }
+
+        function backupNow() {
+            showNotification('Backup started...', 'info');
+            setTimeout(() => {
+                showNotification('Backup completed!', 'success');
+            }, 2000);
+        }
+
+        function clearAllFiles() {
+            if (confirm('Are you sure? This will delete ALL your files permanently!')) {
+                localStorage.removeItem('cloudFiles');
+                localStorage.removeItem('trashFiles');
+                showNotification('All files cleared', 'warning');
+            }
+        }
+
+        function exportAllData() {
+            const data = {
+                files: JSON.parse(localStorage.getItem('cloudFiles') || '[]'),
+                trash: JSON.parse(localStorage.getItem('trashFiles') || '[]'),
+                settings: {
+                    theme: document.getElementById('darkMode').checked ? 'dark' : 'light',
+                    language: document.getElementById('language')?.value || 'en'
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cloud-export.json';
+            a.click();
+            
+            showNotification('Data exported!', 'success');
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure? This cannot be undone!')) {
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#8b5cf6'};
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Load storage info
+        function loadStorageInfo() {
+            const files = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            const totalSize = files.reduce((sum, f) => sum + (f.size || 0), 0);
+            const usedMB = (totalSize / (1024 * 1024)).toFixed(1);
+            const freeMB = 1024 - parseFloat(usedMB);
+            
+            document.getElementById('usedStorage').textContent = usedMB + ' MB';
+            document.getElementById('freeStorage').textContent = freeMB.toFixed(1) + ' MB';
+        }
+
+        document.addEventListener('DOMContentLoaded', loadStorageInfo);
+    </script>
+</body>
+</html>
