@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Steps into AI: What I Learned in 3 Months - Sanjai Gopal</title>
+    
+    <!-- SEO Meta -->
+    <meta name="description" content="A first-year student's journey into Artificial Intelligence - challenges, breakthroughs, and lessons learned during the first 3 months of learning AI.">
+    <meta name="keywords" content="AI journey, machine learning beginner, artificial intelligence learning path, student AI engineer">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/themes/dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Same styles as previous blog posts */
+        .blog-post { padding: 120px 0 60px; }
+        .post-header { text-align: center; max-width: 800px; margin: 0 auto 3rem; }
+        .post-title { font-size: 3rem; margin-bottom: 1rem; line-height: 1.2; }
+        .post-meta { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; color: var(--text-tertiary); }
+        .post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .post-meta i { color: var(--primary-500); }
+        .post-image { width: 100%; max-height: 500px; object-fit: cover; border-radius: var(--radius-2xl); margin-bottom: 3rem; box-shadow: var(--shadow-xl); }
+        .post-content { max-width: 800px; margin: 0 auto; }
+        .post-content h2 { font-size: 2rem; margin: 2.5rem 0 1rem; }
+        .post-content h3 { font-size: 1.5rem; margin: 2rem 0 1rem; }
+        .post-content p { margin-bottom: 1.5rem; line-height: 1.8; }
+        .post-content pre { background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-lg); overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border-light); }
+        .post-content code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        .post-content ul, .post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .post-content li { margin-bottom: 0.5rem; }
+        .post-content blockquote { background: var(--bg-card); border-left: 4px solid var(--primary-500); padding: 1.5rem; margin: 1.5rem 0; border-radius: var(--radius-lg); font-style: italic; }
+        .post-content .tip { background: rgba(139, 92, 246, 0.1); border: 1px solid var(--primary-500); padding: 1.5rem; border-radius: var(--radius-lg); margin: 1.5rem 0; }
+        .post-content .tip i { color: var(--primary-500); margin-right: 0.5rem; }
+        .journey-timeline {
+            position: relative;
+            margin: 3rem 0;
+            padding-left: 2rem;
+        }
+        .journey-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-500), var(--secondary-500));
+        }
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            border: 2px solid var(--bg-primary);
+        }
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--primary-500);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .stat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-500);
+            display: block;
+        }
+        .stat-label {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .post-title { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <span class="logo-text">S</span>
+                    <span class="logo-full">ANJAI</span>
+                    <span class="logo-dot">.</span>
+                </a>
+            </div>
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../projects/index.html" class="nav-link">Projects</a></li>
+                    <li><a href="index.html" class="nav-link active">Blog</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="../private-cloud/index.html" class="cloud-btn"><i class="fas fa-cloud"></i></a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post -->
+    <article class="blog-post">
+        <div class="container">
+            <div class="post-header" data-aos="fade-up">
+                <h1 class="post-title">My First Steps into <span class="gradient-text">AI</span>: What I Learned in 3 Months</h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> February 1, 2026</span>
+                    <span><i class="far fa-clock"></i> 6 min read</span>
+                    <span><i class="far fa-user"></i> Sanjai Gopal</span>
+                    <span><i class="far fa-eye"></i> 2.1k views</span>
+                </div>
+            </div>
+            
+            <img src="../assets/images/blog/ai-journey.jpg" alt="AI Journey" class="post-image" data-aos="fade-up">
+            
+            <div class="post-content" data-aos="fade-up">
+                <p>Three months ago, I knew nothing about Artificial Intelligence. As a first-year AIDS (Artificial Intelligence and Data Science) student at SKCET, Coimbatore, I was excited but also intimidated. Today, I want to share my journey - the struggles, the "aha!" moments, and everything I've learned along the way.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Hours of Learning</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Projects Built</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">ML Algorithms</span>
+                    </div>
+                </div>
+                
+                <h2>Why AI?</h2>
+                <p>When I chose AIDS as my major, I had a vague idea that AI was "the future." But honestly, I didn't really understand what that meant. All I knew was that I loved solving problems and building things with code. AI seemed like the ultimate combination of both.</p>
+                
+                <blockquote>
+                    "AI is not about building machines that think like humans, but about building tools that help humans think better."
+                </blockquote>
+                
+                <h2>The Journey: Month by Month</h2>
+                
+                <div class="journey-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Month 1: The Foundation (December 2025)</div>
+                        <p><strong>What I learned:</strong> Python basics, NumPy, Pandas, and Matplotlib</p>
+                        <p><strong>Biggest challenge:</strong> Understanding vectorized operations in NumPy</p>
+                        <p><strong>Breakthrough moment:</strong> When I visualized my first dataset with Matplotlib and saw patterns emerge from random numbers</p>
+                        <p><strong>Mini-project:</strong> Analyzed college canteen sales data to find peak hours and popular items</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Month 2: Machine Learning Basics (January 2026)</div>
+                        <p><strong>What I learned:</strong> Supervised learning, linear regression, logistic regression, train/test split</p>
+                        <p><strong>Biggest challenge:</strong> Understanding gradient descent - it felt like magic at first</p>
+                        <p><strong>Breakthrough moment:</strong> Implementing linear regression from scratch and seeing it actually work!</p>
+                        <p><strong>Mini-project:</strong> House price prediction using Boston housing dataset (scikit-learn version)</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Month 3: Diving Deeper (February 2026)</div>
+                        <p><strong>What I learned:</strong> Classification algorithms (KNN, Decision Trees), model evaluation, feature engineering</p>
+                        <p><strong>Biggest challenge:</strong> Overfitting and underfitting - finding the sweet spot</p>
+                        <p><strong>Breakthrough moment:</strong> When my KNN classifier achieved 85% accuracy on the Iris dataset</p>
+                        <p><strong>Mini-project:</strong> Iris flower classifier with visualizations</p>
+                    </div>
+                </div>
+                
+                <h2>My First Real AI Project</h2>
+                <p>After three months, I attempted my first "real" project: predicting student exam performance based on study hours, attendance, and previous grades.</p>
+                
+                <pre><code># Simple Student Performance Predictor
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+
+# Sample data (simulated)
+data = {
+    'study_hours': [2, 4, 6, 8, 1, 3, 5, 7, 9, 10],
+    'attendance': [65, 75, 85, 95, 60, 70, 80, 90, 98, 100],
+    'previous_grade': [60, 70, 75, 85, 55, 65, 78, 82, 88, 92],
+    'final_grade': [65, 73, 82, 88, 58, 68, 79, 85, 90, 94]
+}
+
+df = pd.DataFrame(data)
+
+# Features and target
+X = df[['study_hours', 'attendance', 'previous_grade']]
+y = df['final_grade']
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Evaluate
+print(f"R² Score: {r2_score(y_test, y_pred):.2f}")
+print(f"MSE: {mean_squared_error(y_test, y_pred):.2f}")
+
+# Feature importance
+for feature, coef in zip(X.columns, model.coef_):
+    print(f"{feature}: {coef:.2f}")
+
+# Predict for a new student
+new_student = pd.DataFrame({
+    'study_hours': [7.5],
+    'attendance': [88],
+    'previous_grade': [80]
+})
+predicted_grade = model.predict(new_student)
+print(f"Predicted final grade: {predicted_grade[0]:.1f}")</code></pre>
+                
+                <p>The model wasn't perfect, but seeing it predict within 5% accuracy felt amazing. I realized then that AI isn't magic - it's math and data, and I could understand it.</p>
+                
+                <h2>Resources That Helped Me</h2>
+                
+                <h3>📚 Courses (Free!)</h3>
+                <ul>
+                    <li><strong>Andrew Ng's Machine Learning Specialization</strong> - The gold standard, now on Coursera</li>
+                    <li><strong>Fast.ai Practical Deep Learning</strong> - "Top-down" approach that builds confidence</li>
+                    <li><strong>Google's Machine Learning Crash Course</strong> - Great interactive exercises</li>
+                </ul>
+                
+                <h3>📖 Books</h3>
+                <ul>
+                    <li><strong>"Hands-On Machine Learning with Scikit-Learn"</strong> by Aurélien Géron</li>
+                    <li><strong>"Python Machine Learning"</strong> by Sebastian Raschka</li>
+                </ul>
+                
+                <h3>💻 Practice Platforms</h3>
+                <ul>
+                    <li><strong>Kaggle</strong> - Start with beginner competitions like Titanic</li>
+                    <li><strong>HackerRank's AI track</strong> - Good for fundamentals</li>
+                    <li><strong>Analytics Vidhya</strong> - Indian-focused datasets</li>
+                </ul>
+                
+                <h2>Challenges I Faced</h2>
+                
+                <h3>1. Math Overload</h3>
+                <p>I hit a wall when I encountered calculus and linear algebra. My advice? You don't need to master all math before starting. Learn as you go. I still don't fully understand backpropagation, but I can implement a neural network using libraries.</p>
+                
+                <h3>2. Tutorial Hell</h3>
+                <p>I spent weeks watching videos without coding. Breaking free meant forcing myself to build something, even if it was terrible. My first model was awful, but it was mine.</p>
+                
+                <h3>3. Imposter Syndrome</h3>
+                <p>Seeing GitHub repositories of "simple" projects I couldn't understand was discouraging. Then I realized: everyone started somewhere. My 3-month-old self would be amazed at what I can do now.</p>
+                
+                <div class="tip">
+                    <i class="fas fa-heart"></i>
+                    <strong>My Mantra:</strong> "The best time to start was yesterday. The next best time is now." Don't compare your Chapter 1 to someone else's Chapter 20.
+                </div>
+                
+                <h2>What's Next?</h2>
+                <p>For the next 3 months, I'm planning to:</p>
+                <ol>
+                    <li><strong>Deep Learning:</strong> Start with neural networks using TensorFlow</li>
+                    <li><strong>Computer Vision:</strong> Build an image classifier for handwritten digits</li>
+                    <li><strong>NLP:</strong> Create a simple sentiment analyzer</li>
+                    <li><strong>MLOps:</strong> Learn to deploy models (this will help with my portfolio!)</li>
+                    <li><strong>Competition:</strong> Enter my first Kaggle competition</li>
+                </ol>
+                
+                <h2>Advice for Fellow Beginners</h2>
+                
+                <ol>
+                    <li><strong>Code Every Day:</strong> Even 30 minutes. Consistency beats cramming.</li>
+                    <li><strong>Build Projects:</strong> Start absurdly small (predicting if a number is even). Then scale up.</li>
+                    <li><strong>Join Communities:</strong> Reddit's r/learnmachinelearning, Discord servers, local meetups.</li>
+                    <li><strong>Teach Others:</strong> Writing this blog post helped solidify my own understanding.</li>
+                    <li><strong>Be Patient:</strong> AI is complex. It's okay to not understand everything immediately.</li>
+                </ol>
+                
+                <h2>My Learning Schedule</h2>
+                
+                <table style="width:100%; border-collapse: collapse; margin: 2rem 0;">
+                    <tr style="background: var(--bg-tertiary);">
+                        <th style="padding: 1rem; text-align: left;">Day</th>
+                        <th style="padding: 1rem; text-align: left;">Activity</th>
+                        <th style="padding: 1rem; text-align: left;">Time</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 1rem;">Monday</td>
+                        <td style="padding: 1rem;">Theory (videos/books)</td>
+                        <td style="padding: 1rem;">1 hour</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 1rem;">Tuesday</td>
+                        <td style="padding: 1rem;">Coding practice</td>
+                        <td style="padding: 1rem;">1 hour</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 1rem;">Wednesday</td>
+                        <td style="padding: 1rem;">Project work</td>
+                        <td style="padding: 1rem;">1.5 hours</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 1rem;">Thursday</td>
+                        <td style="padding: 1rem;">Theory + note-taking</td>
+                        <td style="padding: 1rem;">1 hour</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 1rem;">Friday</td>
+                        <td style="padding: 1rem;">Coding challenges</td>
+                        <td style="padding: 1rem;">1 hour</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem;">Weekend</td>
+                        <td style="padding: 1rem;">Deep work on projects</td>
+                        <td style="padding: 1rem;">2-3 hours</td>
+                    </tr>
+                </table>
+                
+                <h2>Final Thoughts</h2>
+                <p>Three months ago, I couldn't explain what a neural network was. Today, I can build one (with help from libraries). Six months from now, who knows? The field of AI moves fast, and that's what makes it exciting.</p>
+                
+                <p>To every other first-year student feeling overwhelmed: you belong here. AI needs fresh perspectives, not just 10-year veterans. Your journey is just beginning, and it's going to be amazing.</p>
+                
+                <div class="tip">
+                    <i class="fas fa-rocket"></i>
+                    <strong>Let's connect!</strong> If you're also starting your AI journey, reach out on <a href="https://linkedin.com/in/sanjai2306" style="color: var(--primary-500);">LinkedIn</a>. We can learn together!
+                </div>
+                
+                <p>Keep coding, stay curious, and remember: every expert was once a beginner.</p>
+            </div>
+            
+            <!-- Tags Section -->
+            <div class="tags-section">
+                <h3>Tags</h3>
+                <div class="tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Beginner Journey</span>
+                    <span class="tag">Student Life</span>
+                    <span class="tag">Learning</span>
+                </div>
+            </div>
+            
+            <!-- Share Buttons -->
+            <div class="share-section">
+                <a href="#" class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href))"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="share-btn" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href))"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href))"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!')"><i class="fas fa-link"></i></a>
+            </div>
+            
+            <!-- Author Section -->
+            <div class="author-section">
+                <div class="author-avatar">S</div>
+                <div class="author-info">
+                    <h3>Sanjai Gopal</h3>
+                    <p>1st year AIDS student at SKCET, Coimbatore. Passionate about AI, machine learning, and sharing my learning journey with others.</p>
+                    <div class="author-social">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h3>Related Posts</h3>
+                <div class="related-grid">
+                    <div class="related-card">
+                        <div class="related-image"><img src="../assets/images/blog/python-basics.jpg" alt="Python"></div>
+                        <div class="related-content">
+                            <h4>Getting Started with Python</h4>
+                            <p>Essential guide for beginners</p>
+                            <a href="post1.html">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="related-card">
+                        <div class="related-image"><img src="../assets/images/blog/mlops-intro.jpg" alt="MLOps"></div>
+                        <div class="related-content">
+                            <h4>Introduction to MLOps</h4>
+                            <p>Deploying ML models</p>
+                            <a href="#">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Sanjai Gopal</h3>
+                    <p>Documenting my journey into AI and sharing what I learn along the way.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../projects/index.html">Projects</a></li>
+                        <li><a href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>
