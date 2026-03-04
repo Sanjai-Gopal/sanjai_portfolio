@@ -1,0 +1,7 @@
+# Deny access to all files
+Deny from all
+
+# But allow access to specific files if needed
+<FilesMatch "\.(log|json)$">
+    Deny from all
+</FilesMatch>
