@@ -466,4 +466,338 @@ function renderFiles() {
                     ${file.encrypted ? '<i class="fas fa-lock" style="font-size: 1rem; margin-left: 0.5rem; color: #f59e0b;"></i>' : ''}
                 </div>
                 <div class="file-info">
-                    <h4 title="${file.name}">${truncateFileName(file.name)}
+                    <h4 title="${file.name}">${truncateFileName(file.name)}</h4>
+                    <div class="file-meta">
+                        <span><i class="fas fa-weight-hanging"></i> ${size}</span>
+                        <span><i class="far fa-calendar"></i> ${uploadDate}</span>
+                    </div>
+                </div>
+                <div class="file-actions">
+                    <button class="file-action view-btn" onclick="viewFile('${file.id}')" title="View">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="file-action download-btn" onclick="downloadFile('${file.id}')" title="Download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="file-action share-btn" onclick="shareFile('${file.id}')" title="Share">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="file-action delete-btn" onclick="deleteFile('${file.id}')" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function getFileIcon(fileType) {
+    if (fileType.includes('pdf')) return 'fa-file-pdf';
+    if (fileType.includes('image')) return 'fa-file-image';
+    if (fileType.includes('video')) return 'fa-file-video';
+    if (fileType.includes('audio')) return 'fa-file-audio';
+    if (fileType.includes('zip') || fileType.includes('rar')) return 'fa-file-archive';
+    if (fileType.includes('word') || fileType.includes('document')) return 'fa-file-word';
+    if (fileType.includes('excel') || fileType.includes('sheet')) return 'fa-file-excel';
+    if (fileType.includes('powerpoint') || fileType.includes('presentation')) return 'fa-file-powerpoint';
+    return 'fa-file';
+}
+
+function truncateFileName(name, maxLength = 30) {
+    if (name.length <= maxLength) return name;
+    const ext = name.split('.').pop();
+    const nameWithoutExt = name.substring(0, name.lastIndexOf('.'));
+    return nameWithoutExt.substring(0, maxLength - 3 - ext.length) + '...' + ext;
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function generateFileId() {
+    return 'file_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+function extractTags(filename) {
+    const tags = [];
+    const commonTags = ['certificate', 'project', 'assignment', 'report', 'thesis', 'paper'];
+    
+    commonTags.forEach(tag => {
+        if (filename.toLowerCase().includes(tag)) {
+            tags.push(tag);
+        }
+    });
+    
+    return tags;
+}
+
+// ==================== FILE OPERATIONS ====================
+async function viewFile(fileId) {
+    const file = files.find(f => f.id === fileId);
+    if (!file) {
+        showNotification('File not found', 'error');
+        return;
+    }
+
+    const modal = document.getElementById('previewModal');
+    const title = document.getElementById('previewTitle');
+    const body = document.getElementById('previewBody');
+
+    title.textContent = file.name;
+
+    // Decrypt if encrypted
+    let fileData = file.data;
+    if (file.encrypted) {
+        fileData = decryptData(file.data);
+        if (!fileData) {
+            showNotification('Failed to decrypt file', 'error');
+            return;
+        }
+    }
+
+    if (file.type.includes('image')) {
+        body.innerHTML = `<img src="${fileData}" alt="${file.name}" style="max-width: 100%; max-height: 70vh;">`;
+    } else if (file.type.includes('pdf')) {
+        body.innerHTML = `<iframe src="${fileData}" style="width: 100%; height: 70vh;" frameborder="0"></iframe>`;
+    } else {
+        body.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <i class="fas fa-file" style="font-size: 5rem; color: var(--primary-500); margin-bottom: 1rem;"></i>
+                <p>Preview not available for this file type</p>
+                <button class="auth-btn" onclick="downloadFile('${file.id}')">
+                    <i class="fas fa-download"></i> Download
+                </button>
+            </div>
+        `;
+    }
+
+    modal.classList.add('active');
+}
+
+async function downloadFile(fileId) {
+    const file = files.find(f => f.id === fileId);
+    if (!file) {
+        showNotification('File not found', 'error');
+        return;
+    }
+
+    try {
+        // Decrypt if encrypted
+        let fileData = file.data;
+        if (file.encrypted) {
+            fileData = decryptData(file.data);
+            if (!fileData) {
+                showNotification('Failed to decrypt file', 'error');
+                return;
+            }
+        }
+
+        const link = document.createElement('a');
+        link.href = fileData;
+        link.download = file.name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showNotification(`Downloading ${file.name}`, 'success');
+    } catch (error) {
+        console.error('Download error:', error);
+        showNotification('Failed to download file', 'error');
+    }
+}
+
+async function shareFile(fileId) {
+    const file = files.find(f => f.id === fileId);
+    if (!file) return;
+
+    // Generate share link
+    const shareLink = `${window.location.origin}/share/${file.id}`;
+    
+    // Copy to clipboard
+    try {
+        await navigator.clipboard.writeText(shareLink);
+        showNotification('Share link copied to clipboard!', 'success');
+    } catch (error) {
+        console.error('Failed to copy:', error);
+        showNotification('Failed to copy share link', 'error');
+    }
+}
+
+function closeModal() {
+    document.getElementById('previewModal').classList.remove('active');
+}
+
+// ==================== STORAGE MANAGEMENT ====================
+function calculateStorage() {
+    totalStorage = files.reduce((sum, file) => sum + file.size, 0);
+    updateStorageInfo();
+}
+
+function updateStorageInfo() {
+    const usedMB = (totalStorage / (1024 * 1024)).toFixed(1);
+    const limitMB = CONFIG.STORAGE_LIMIT / (1024 * 1024);
+    const percentage = (totalStorage / CONFIG.STORAGE_LIMIT) * 100;
+    
+    document.getElementById('storageUsed').style.width = percentage + '%';
+    document.getElementById('storageText').textContent = `${usedMB} MB / ${limitMB} MB`;
+}
+
+// ==================== FOLDER MANAGEMENT ====================
+function createFolder() {
+    const folderName = prompt('Enter folder name:');
+    if (!folderName) return;
+
+    // Create virtual folder
+    showNotification(`Folder "${folderName}" created`, 'success');
+}
+
+// ==================== SHARE FEATURES ====================
+function shareFiles() {
+    if (files.length === 0) {
+        showNotification('No files to share', 'warning');
+        return;
+    }
+
+    // Create share package
+    const shareData = {
+        files: files.map(f => ({
+            name: f.name,
+            type: f.type,
+            size: f.size,
+            shareId: generateFileId()
+        })),
+        expiry: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 days
+    };
+
+    const shareLink = `${window.location.origin}/shared/${btoa(JSON.stringify(shareData))}`;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(shareLink);
+    showNotification('Share link copied to clipboard! (Valid for 7 days)', 'success');
+}
+
+// ==================== ACTIVITY LOG ====================
+function viewActivity() {
+    const activities = files.map(f => ({
+        action: 'upload',
+        file: f.name,
+        date: new Date(f.uploadDate).toLocaleString()
+    }));
+
+    // Show activity modal
+    const modal = document.getElementById('previewModal');
+    const title = document.getElementById('previewTitle');
+    const body = document.getElementById('previewBody');
+
+    title.textContent = 'Recent Activity';
+    body.innerHTML = `
+        <div style="max-height: 400px; overflow-y: auto;">
+            ${activities.map(a => `
+                <div style="padding: 1rem; border-bottom: 1px solid var(--border-light);">
+                    <i class="fas fa-cloud-upload-alt" style="color: var(--primary-500); margin-right: 1rem;"></i>
+                    <span>${a.file}</span>
+                    <small style="color: var(--text-tertiary); float: right;">${a.date}</small>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    modal.classList.add('active');
+}
+
+// ==================== UPLOAD PROGRESS ====================
+function showUploadProgress(totalFiles) {
+    let progressDiv = document.querySelector('.upload-progress');
+    if (!progressDiv) {
+        progressDiv = document.createElement('div');
+        progressDiv.className = 'upload-progress';
+        progressDiv.innerHTML = `
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <p>Uploading <span id="uploadCount">0</span>/${totalFiles} files...</p>
+        `;
+        document.querySelector('.files-section').prepend(progressDiv);
+    }
+    
+    progressDiv.style.display = 'block';
+}
+
+function hideUploadProgress() {
+    const progressDiv = document.querySelector('.upload-progress');
+    if (progressDiv) {
+        progressDiv.remove();
+    }
+}
+
+// ==================== NOTIFICATIONS ====================
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+    
+    setTimeout(() => notification.classList.add('show'), 100);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// ==================== HINT FUNCTION ====================
+function showHint() {
+    showNotification('Hint: The passcode is "Sanjai@2026"', 'info');
+}
+
+// ==================== SEARCH FUNCTIONALITY ====================
+function searchFiles(query) {
+    if (!query) {
+        renderFiles();
+        return;
+    }
+
+    const searchResults = files.filter(file => 
+        file.name.toLowerCase().includes(query.toLowerCase()) ||
+        file.tags?.some(tag => tag.includes(query.toLowerCase()))
+    );
+
+    const filesGrid = document.getElementById('filesGrid');
+    if (searchResults.length === 0) {
+        filesGrid.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <h3>No results found</h3>
+                <p>No files match your search "${query}"</p>
+            </div>
+        `;
+    } else {
+        files = searchResults;
+        renderFiles();
+    }
+}
+
+// ==================== EXPORT FUNCTIONS ====================
+window.authenticate = authenticate;
+window.logout = logout;
+window.triggerUpload = triggerUpload;
+window.handleFileSelect = handleFileSelect;
+window.viewFile = viewFile;
+window.downloadFile = downloadFile;
+window.deleteFile = deleteFile;
+window.shareFile = shareFile;
+window.closeModal = closeModal;
+window.createFolder = createFolder;
+window.shareFiles = shareFiles;
+window.viewActivity = viewActivity;
+window.showHint = showHint;
+window.searchFiles = searchFiles;
