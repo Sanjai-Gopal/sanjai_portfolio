@@ -33,3 +33,180 @@
       "title": "bis-smart-compliance",
       "slug": "bis-smart-compliance",
       "category": "python",
+      "image": "/assets/images/projects/compliance.jpg",
+      "thumbnail": "/assets/images/projects/thumbnails/compliance-thumb.jpg",
+      "description": "Smart compliance system built with Python for automated monitoring and reporting",
+      "longDescription": "A Python-based compliance monitoring system that automates the checking of regulatory requirements. Includes report generation, data validation, and audit logging capabilities. The system can monitor multiple compliance standards simultaneously and provides real-time alerts for violations.",
+      "technologies": ["Python", "Automation", "Data Validation", "Logging", "SQLite", "ReportLab"],
+      "features": [
+        "Automated compliance checks for multiple standards",
+        "PDF and Excel report generation",
+        "Real-time violation alerts via email",
+        "Audit trail logging with timestamps",
+        "Configurable compliance rules",
+        "Dashboard with compliance score",
+        "Historical trend analysis",
+        "Multi-user support with roles"
+      ],
+      "github": "https://github.com/Sanjai-Gopal/bis-smart-compliance",
+      "demo": null,
+      "date": "2026-01-20",
+      "featured": true,
+      "status": "in-progress",
+      "complexity": "advanced",
+      "tags": ["python", "compliance", "automation", "monitoring"]
+    },
+    {
+      "id": 3,
+      "title": "Railway Reservation System",
+      "slug": "railway-reservation-cpp",
+      "category": "cpp",
+      "image": "/assets/images/projects/railway.jpg",
+      "thumbnail": "/assets/images/projects/thumbnails/railway-thumb.jpg",
+      "description": "Console-based railway ticket reservation system with seat management",
+      "longDescription": "A comprehensive railway reservation system built in C++ that handles ticket booking, cancellation, seat availability tracking, and PNR status management. The system supports multiple train types, classes, and fare calculations with dynamic pricing.",
+      "technologies": ["C++", "OOP", "Data Structures", "File Handling", "Algorithms"],
+      "features": [
+        "Ticket booking with seat selection (AC/Sleeper/General)",
+        "Online cancellation with refund calculation",
+        "Real-time seat availability across trains",
+        "PNR status tracking with SMS simulation",
+        "Train schedule management with delays",
+        "Dynamic fare calculation based on demand",
+        "Waitlist management with auto-confirmation",
+        "Admin panel for train/route management"
+      ],
+      "github": "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
+      "demo": null,
+      "date": "2025-11-10",
+      "featured": true,
+      "status": "completed",
+      "complexity": "intermediate",
+      "tags": ["c++", "railway", "reservation", "data-structures"]
+    },
+    {
+      "id": 4,
+      "title": "Advanced Portfolio Website",
+      "slug": "portfolio-website",
+      "category": "web",
+      "image": "/assets/images/projects/portfolio.jpg",
+      "thumbnail": "/assets/images/projects/thumbnails/portfolio-thumb.jpg",
+      "description": "Futuristic portfolio with 3D elements, AI chatbot, and private cloud storage",
+      "longDescription": "A cutting-edge portfolio website featuring 3D backgrounds, AI-powered chatbot, voice navigation, and a secure private cloud for certificate storage. Built with modern web technologies including Three.js for 3D graphics, IndexedDB for client-side storage, and PWA capabilities for offline access.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "Three.js", "IndexedDB", "PWA", "Web Speech API"],
+      "features": [
+        "3D interactive background with particle system",
+        "AI chatbot trained on personal data",
+        "Voice navigation with 20+ commands",
+        "Private cloud with file encryption",
+        "PWA support for offline access",
+        "Dark/light theme with smooth transitions",
+        "Live GitHub stats integration",
+        "Blog system with markdown support",
+        "Contact form with spam protection",
+        "Certificate viewer with zoom"
+      ],
+      "github": "https://github.com/Sanjai-Gopal/sanjai_portfolio",
+      "demo": "https://sanjai-gopal.github.io/sanjai_portfolio/",
+      "date": "2026-03-04",
+      "featured": true,
+      "status": "completed",
+      "complexity": "advanced",
+      "tags": ["web", "threejs", "pwa", "portfolio", "ai"]
+    },
+    {
+      "id": 5,
+      "title": "Machine Learning Basics",
+      "slug": "ml-basics",
+      "category": "ai",
+      "image": "/assets/images/projects/ml-basics.jpg",
+      "thumbnail": "/assets/images/projects/thumbnails/ml-basics-thumb.jpg",
+      "description": "Collection of ML algorithms implemented from scratch for learning purposes",
+      "longDescription": "A learning project implementing fundamental machine learning algorithms from scratch using Python and NumPy. Includes linear regression, logistic regression, k-nearest neighbors, and neural networks. Each algorithm comes with detailed documentation and visualization of results.",
+      "technologies": ["Python", "NumPy", "Pandas", "Matplotlib", "Scikit-learn", "Jupyter"],
+      "features": [
+        "Linear regression from scratch (gradient descent)",
+        "Logistic regression for binary classification",
+        "KNN classifier with multiple distance metrics",
+        "Neural network implementation with backpropagation",
+        "Model evaluation metrics (accuracy, precision, recall)",
+        "Data preprocessing pipeline",
+        "Visualization of decision boundaries",
+        "Comparison with Scikit-learn implementations"
+      ],
+      "github": "https://github.com/Sanjai-Gopal/ml-basics",
+      "demo": null,
+      "date": "2026-02-15",
+      "featured": false,
+      "status": "completed",
+      "complexity": "intermediate",
+      "tags": ["python", "machine-learning", "algorithms", "education"]
+    },
+    {
+      "id": 6,
+      "title": "Smart Attendance System",
+      "slug": "smart-attendance",
+      "category": "ai",
+      "image": "/assets/images/projects/attendance.jpg",
+      "thumbnail": "/assets/images/projects/thumbnails/attendance-thumb.jpg",
+      "description": "Face recognition based attendance system using OpenCV and Python",
+      "longDescription": "An automated attendance system that uses facial recognition to mark student attendance. The system captures faces, trains a recognition model, and marks attendance in real-time with timestamp and location data.",
+      "technologies": ["Python", "OpenCV", "Face Recognition", "SQLite", "Tkinter"],
+      "features": [
+        "Real-time face detection and recognition",
+        "Student database management",
+        "Attendance marking with timestamp",
+        "Excel report generation",
+        "GUI for easy interaction",
+        "Multiple face support",
+        "Low light enhancement",
+        "Export to various formats"
+      ],
+      "github": "https://github.com/Sanjai-Gopal/smart-attendance",
+      "demo": null,
+      "date": "2026-01-05",
+      "featured": false,
+      "status": "in-progress",
+      "complexity": "advanced",
+      "tags": ["python", "opencv", "face-recognition", "attendance"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "cpp",
+      "name": "C++",
+      "icon": "fa-code",
+      "color": "#8b5cf6"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "icon": "fa-python",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "web",
+      "name": "Web Development",
+      "icon": "fa-globe",
+      "color": "#06b6d4"
+    },
+    {
+      "id": "ai",
+      "name": "AI/ML",
+      "icon": "fa-brain",
+      "color": "#f59e0b"
+    }
+  ],
+  "stats": {
+    "totalProjects": 6,
+    "completedProjects": 4,
+    "inProgressProjects": 2,
+    "totalStars": 12,
+    "totalForks": 8,
+    "languages": {
+      "C++": 2,
+      "Python": 3,
+      "JavaScript": 1
+    }
+  }
+}
