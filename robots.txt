@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /private-cloud/
+Disallow: /api/
+
+Sitemap: https://sanjai-gopal.github.io/sanjai_portfolio/sitemap.xml
