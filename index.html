@@ -46,6 +46,82 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-style">
+    
+    <style>
+        /* Certificate Grid Styles */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .certificate-card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            aspect-ratio: 1.4/1;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .certificate-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .certificate-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .certificate-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .certificate-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .certificate-card:hover .certificate-overlay {
+            opacity: 1;
+        }
+        
+        .certificate-overlay span {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .view-cert-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            text-decoration: none;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            width: fit-content;
+            transition: transform 0.3s ease;
+        }
+        
+        .view-cert-btn:hover {
+            transform: translateX(5px);
+        }
+    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -300,11 +376,9 @@
                         </div>
                         
                         <div class="about-cta">
-       <!-- Replace the existing resume download button with this -->
-<a href="assets/docs/Sanjai_Resume_2026.pdf" download class="btn btn-primary">
-    <i class="fas fa-download"></i>
-    <span>Download Resume</span>
-</a>
+                            <a href="assets/docs/Sanjai_Resume_2026.pdf" download class="btn btn-primary">
+                                <i class="fas fa-download"></i>
+                                <span>Download Resume</span>
                             </a>
                             <a href="#contact" class="btn btn-outline">
                                 <i class="fas fa-paper-plane"></i>
@@ -315,7 +389,6 @@
                 </div>
             </div>
         </section>
-        
 
         <!-- Skills Section -->
         <section id="skills" class="skills">
@@ -759,28 +832,38 @@
                     </div>
                 </div>
                 
+                <!-- Certificates Grid - FIXED: Removed duplicate Swiper slider -->
                 <div class="certificates-section" data-aos="fade-up">
                     <h3>My Certificates</h3>
-                    <div class="certificates-slider swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="certificate-card">
-                                    <img src="assets/images/achievements/certificates/python-cert.jpg" alt="Python Certificate">
-                                    <div class="certificate-overlay">
-                                        <a href="#" class="view-cert" data-cert="python">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="certificate-card">
-                                    <img src="assets/images/achievements/certificates/git-cert.jpg" alt="Git Certificate">
-                                    <div class="certificate-overlay">
-                                        <a href="#" class="view-cert" data-cert="git">View</a>
-                                    </div>
-                                </div>
+                    <div class="certificates-grid">
+                        <div class="certificate-card">
+                            <img src="assets/images/achievements/certificates/python-cert.jpg" alt="Python Certificate">
+                            <div class="certificate-overlay">
+                                <span>Python for Beginners</span>
+                                <a href="#" onclick="viewCertificate('python'); return false;" class="view-cert-btn">View</a>
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
+                        <div class="certificate-card">
+                            <img src="assets/images/achievements/certificates/git-cert.jpg" alt="Git Certificate">
+                            <div class="certificate-overlay">
+                                <span>Git & GitHub Workshop</span>
+                                <a href="#" onclick="viewCertificate('git'); return false;" class="view-cert-btn">View</a>
+                            </div>
+                        </div>
+                        <div class="certificate-card">
+                            <img src="assets/images/achievements/certificates/aws-cert.jpg" alt="AWS Certificate">
+                            <div class="certificate-overlay">
+                                <span>AWS Cloud Practitioner</span>
+                                <a href="#" onclick="viewCertificate('aws'); return false;" class="view-cert-btn">View</a>
+                            </div>
+                        </div>
+                        <div class="certificate-card">
+                            <img src="assets/images/achievements/certificates/ml-cert.jpg" alt="ML Certificate">
+                            <div class="certificate-overlay">
+                                <span>Machine Learning Basics</span>
+                                <a href="#" onclick="viewCertificate('ml'); return false;" class="view-cert-btn">View</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -809,7 +892,7 @@
                             </div>
                             <h3>Getting Started with Python: A Beginner's Guide</h3>
                             <p>Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers.</p>
-                            <a href="blog/python-basics.html" class="blog-read-more">
+                            <a href="blog/post1.html" class="blog-read-more">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -828,7 +911,7 @@
                             </div>
                             <h3>Git & GitHub: Essential Commands Every Developer Should Know</h3>
                             <p>A comprehensive guide to version control for beginners, with practical workflows and tips.</p>
-                            <a href="blog/git-guide.html" class="blog-read-more">
+                            <a href="blog/post2.html" class="blog-read-more">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -847,7 +930,7 @@
                             </div>
                             <h3>My First Steps into AI: What I Learned in 3 Months</h3>
                             <p>Sharing my journey as a first-year student diving into the world of Artificial Intelligence.</p>
-                            <a href="blog/ai-journey.html" class="blog-read-more">
+                            <a href="blog/post3.html" class="blog-read-more">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1046,6 +1129,33 @@
     <script src="js/chatbot.js"></script>
     <script src="js/voice-nav.js"></script>
     <script src="js/github-stats.js"></script>
+    
+    <script>
+        // Certificate viewer function
+        function viewCertificate(cert) {
+            const certs = {
+                python: 'assets/images/achievements/certificates/python-cert.jpg',
+                git: 'assets/images/achievements/certificates/git-cert.jpg',
+                aws: 'assets/images/achievements/certificates/aws-cert.jpg',
+                ml: 'assets/images/achievements/certificates/ml-cert.jpg'
+            };
+            
+            if (certs[cert]) {
+                window.open(certs[cert], '_blank');
+            } else {
+                alert('Certificate image not found');
+            }
+            return false;
+        }
+        
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+        });
+    </script>
 </body>
 </html>
-
