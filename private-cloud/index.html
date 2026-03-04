@@ -11,43 +11,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    
     <style>
-        /* Private Cloud Specific Styles */
-        .private-cloud {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .private-cloud::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .cloud-container {
             width: 100%;
             max-width: 1200px;
             padding: 2rem;
-            position: relative;
-            z-index: 2;
         }
 
         /* Auth Section */
@@ -57,41 +41,63 @@
         }
 
         .auth-card {
-            background: var(--bg-card);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-medium);
-            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 2rem;
             padding: 3rem 2rem;
             text-align: center;
-            box-shadow: var(--shadow-xl);
-            animation: slideInUp 0.5s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
 
         .auth-icon {
             width: 100px;
             height: 100px;
             margin: 0 auto 2rem;
-            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
             color: white;
-            box-shadow: var(--glow-primary);
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .auth-title {
             font-size: 2rem;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .auth-subtitle {
-            color: var(--text-tertiary);
+            color: #94a3b8;
             margin-bottom: 2rem;
         }
 
@@ -103,18 +109,18 @@
         .auth-input {
             width: 100%;
             padding: 1rem 1rem 1rem 3rem;
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-light);
-            border-radius: var(--radius-full);
-            color: var(--text-primary);
+            background: rgba(51, 65, 85, 0.5);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            border-radius: 2rem;
+            color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
 
         .auth-input:focus {
             outline: none;
-            border-color: var(--primary-500);
-            box-shadow: var(--glow-primary);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         .auth-input-icon {
@@ -122,40 +128,45 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-tertiary);
+            color: #94a3b8;
         }
 
         .auth-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             border: none;
-            border-radius: var(--radius-full);
+            border-radius: 2rem;
             color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: var(--glow-primary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
-        .auth-btn:hover {
+        .auth-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .auth-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
         .auth-footer {
             margin-top: 2rem;
             font-size: 0.875rem;
-            color: var(--text-tertiary);
+            color: #94a3b8;
         }
 
         .auth-footer a {
-            color: var(--primary-500);
+            color: #8b5cf6;
             text-decoration: none;
         }
 
         /* Dashboard Section */
-        .cloud-dashboard {
+        .dashboard-section {
             display: none;
         }
 
@@ -164,11 +175,13 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--bg-card);
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .user-info {
@@ -180,65 +193,58 @@
         .user-avatar {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-weight: 600;
             font-size: 1.25rem;
         }
 
-        .user-details h3 {
+        .user-details h2 {
             font-size: 1.25rem;
             margin-bottom: 0.25rem;
         }
 
         .user-details p {
+            color: #94a3b8;
             font-size: 0.875rem;
-            color: var(--text-tertiary);
         }
 
         .storage-info {
             display: flex;
             align-items: center;
             gap: 2rem;
+            flex-wrap: wrap;
         }
 
-        .storage-bar {
+        .storage-bar-container {
             width: 200px;
             height: 8px;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 4px;
             overflow: hidden;
         }
 
-        .storage-used {
+        .storage-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
-            width: 30%;
-            border-radius: var(--radius-full);
-            position: relative;
-            animation: storageGlow 2s infinite;
-        }
-
-        @keyframes storageGlow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
         .storage-text {
+            color: #94a3b8;
             font-size: 0.875rem;
-            color: var(--text-secondary);
         }
 
         .logout-btn {
             padding: 0.75rem 1.5rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-full);
-            color: var(--text-primary);
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            border-radius: 2rem;
+            color: #ef4444;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -249,10 +255,8 @@
         .logout-btn:hover {
             background: #ef4444;
             color: white;
-            border-color: #ef4444;
         }
 
-        /* Quick Actions */
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -261,10 +265,10 @@
         }
 
         .action-card {
-            background: var(--bg-card);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 1.5rem;
             padding: 1.5rem;
             text-align: center;
             cursor: pointer;
@@ -273,15 +277,15 @@
 
         .action-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-500);
-            box-shadow: var(--glow-primary);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
         .action-icon {
             width: 60px;
             height: 60px;
             margin: 0 auto 1rem;
-            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -290,22 +294,11 @@
             color: white;
         }
 
-        .action-title {
-            font-size: 1.125rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .action-desc {
-            font-size: 0.875rem;
-            color: var(--text-tertiary);
-        }
-
-        /* Files Grid */
         .files-section {
-            background: var(--bg-card);
+            background: rgba(30, 41, 59, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 1.5rem;
             padding: 2rem;
         }
 
@@ -314,69 +307,68 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .upload-btn {
             padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             border: none;
-            border-radius: var(--radius-full);
+            border-radius: 2rem;
             color: white;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: all 0.3s ease;
         }
 
         .upload-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--glow-primary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         .files-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1.5rem;
         }
 
         .file-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 1rem;
             padding: 1.5rem;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .file-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary-500);
-            box-shadow: var(--glow-primary);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
         }
 
         .file-icon {
-            font-size: 3rem;
-            color: var(--primary-500);
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            color: #8b5cf6;
             text-align: center;
+            margin-bottom: 1rem;
         }
 
-        .file-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+        .file-name {
+            font-size: 0.9rem;
+            text-align: center;
             word-break: break-word;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .file-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
-            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            color: #94a3b8;
             margin-bottom: 1rem;
         }
 
@@ -389,19 +381,19 @@
             flex: 1;
             padding: 0.5rem;
             border: none;
-            border-radius: var(--radius-sm);
+            border-radius: 0.5rem;
             cursor: pointer;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
-            font-size: 0.875rem;
         }
 
         .view-btn {
-            background: var(--primary-500);
+            background: #8b5cf6;
             color: white;
         }
 
         .download-btn {
-            background: var(--secondary-500);
+            background: #3b82f6;
             color: white;
         }
 
@@ -415,39 +407,6 @@
             filter: brightness(1.1);
         }
 
-        /* Upload Area */
-        .upload-area {
-            border: 2px dashed var(--primary-500);
-            border-radius: var(--radius-xl);
-            padding: 3rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .upload-area:hover,
-        .upload-area.dragover {
-            background: rgba(139, 92, 246, 0.1);
-            transform: scale(1.02);
-        }
-
-        .upload-area i {
-            font-size: 4rem;
-            color: var(--primary-500);
-            margin-bottom: 1rem;
-        }
-
-        .upload-area h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-area p {
-            color: var(--text-tertiary);
-        }
-
-        /* Empty State */
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
@@ -455,132 +414,99 @@
 
         .empty-state i {
             font-size: 5rem;
-            color: var(--text-tertiary);
+            color: #334155;
             margin-bottom: 1rem;
-            opacity: 0.5;
         }
 
         .empty-state h3 {
-            font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
         .empty-state p {
-            color: var(--text-tertiary);
+            color: #94a3b8;
+            margin-bottom: 2rem;
         }
 
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .upload-progress {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 1rem;
+        }
+
+        .progress-bar-container {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90vh;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-medium);
-            border-radius: var(--radius-2xl);
+            height: 4px;
+            background: #334155;
+            border-radius: 2px;
             overflow: hidden;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
+            margin-bottom: 0.5rem;
         }
 
-        .modal.active .modal-content {
-            transform: scale(1);
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            width: 0%;
+            transition: width 0.3s ease;
         }
 
-        .modal-header {
-            padding: 1rem 2rem;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-light);
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .notification {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid;
+            animation: slideIn 0.3s ease;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 0.75rem;
         }
 
-        .modal-header h3 {
-            font-size: 1.25rem;
-            margin: 0;
+        .notification.success { border-left-color: #10b981; }
+        .notification.error { border-left-color: #ef4444; }
+        .notification.warning { border-left-color: #f59e0b; }
+        .notification.info { border-left-color: #8b5cf6; }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
 
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: var(--primary-500);
-        }
-
-        .modal-body {
-            padding: 2rem;
-            max-height: calc(90vh - 80px);
-            overflow: auto;
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--border-light);
-            border-top-color: var(--primary-500);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .dashboard-header {
                 flex-direction: column;
-                gap: 1rem;
                 text-align: center;
             }
-
+            
             .user-info {
                 flex-direction: column;
             }
-
+            
             .storage-info {
                 flex-direction: column;
                 gap: 1rem;
             }
-
-            .storage-bar {
+            
+            .storage-bar-container {
                 width: 100%;
             }
-
-            .quick-actions {
-                grid-template-columns: 1fr;
-            }
-
+            
             .files-grid {
                 grid-template-columns: 1fr;
             }
@@ -588,134 +514,474 @@
     </style>
 </head>
 <body>
-    <div class="private-cloud">
-        <div class="cloud-container">
-            <!-- Auth Section -->
-            <div class="auth-section" id="authSection">
-                <div class="auth-card">
-                    <div class="auth-icon">
-                        <i class="fas fa-cloud"></i>
+    <div class="cloud-container">
+        <!-- Auth Section -->
+        <div class="auth-section" id="authSection">
+            <div class="auth-card">
+                <div class="auth-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h1 class="auth-title">Private Cloud</h1>
+                <p class="auth-subtitle">Secure access to your certificates and files</p>
+                
+                <div class="auth-input-group">
+                    <i class="fas fa-lock auth-input-icon"></i>
+                    <input type="password" class="auth-input" id="passcode" placeholder="Enter passcode" autofocus>
+                </div>
+                
+                <button class="auth-btn" onclick="authenticate()">
+                    <i class="fas fa-arrow-right"></i> Access Cloud
+                </button>
+                
+                <div class="auth-footer">
+                    <p>Default: <strong>1234</strong> • <a href="#" onclick="showHint()">Change it later</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div class="dashboard-section" id="dashboardSection">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    <div class="user-avatar">S</div>
+                    <div class="user-details">
+                        <h2>Sanjai Gopal</h2>
+                        <p><i class="fas fa-map-marker-alt"></i> Coimbatore, TN</p>
                     </div>
-                    <h1 class="auth-title">Private Cloud</h1>
-                    <p class="auth-subtitle">Secure access to your certificates and files</p>
-                    
-                    <div class="auth-input-group">
-                        <i class="fas fa-lock auth-input-icon"></i>
-                        <input type="password" class="auth-input" id="passcode" placeholder="Enter passcode" autofocus>
+                </div>
+                
+                <div class="storage-info">
+                    <div class="storage-bar-container">
+                        <div class="storage-bar-fill" id="storageBar"></div>
                     </div>
-                    
-                    <button class="auth-btn" onclick="authenticate()">
-                        <i class="fas fa-arrow-right"></i> Access Cloud
-                    </button>
-                    
-                    <div class="auth-footer">
-                        <p>Default: 1234 • <a href="#" onclick="showHint()">Forgot?</a></p>
-                    </div>
+                    <span class="storage-text" id="storageText">0 MB / 100 MB</span>
+                </div>
+                
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="action-card" onclick="triggerUpload()">
+                    <div class="action-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <h3>Upload Files</h3>
+                    <p>Upload certificates or images</p>
+                </div>
+                
+                <div class="action-card" onclick="window.location.href='viewer.html'">
+                    <div class="action-icon"><i class="fas fa-cube"></i></div>
+                    <h3>3D Viewer</h3>
+                    <p>View files in 3D mode</p>
+                </div>
+                
+                <div class="action-card" onclick="shareFiles()">
+                    <div class="action-icon"><i class="fas fa-share-alt"></i></div>
+                    <h3>Share Files</h3>
+                    <p>Generate share links</p>
+                </div>
+                
+                <div class="action-card" onclick="refreshFiles()">
+                    <div class="action-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Refresh</h3>
+                    <p>Reload file list</p>
                 </div>
             </div>
 
-            <!-- Dashboard Section -->
-            <div class="cloud-dashboard" id="dashboard">
-                <!-- Header -->
-                <div class="dashboard-header">
-                    <div class="user-info">
-                        <div class="user-avatar">S</div>
-                        <div class="user-details">
-                            <h3>Sanjai Gopal</h3>
-                            <p><i class="fas fa-map-marker-alt"></i> Coimbatore, TN</p>
-                        </div>
-                    </div>
-                    
-                    <div class="storage-info">
-                        <div class="storage-bar">
-                            <div class="storage-used" style="width: 45%" id="storageUsed"></div>
-                        </div>
-                        <span class="storage-text" id="storageText">45 MB / 100 MB</span>
-                    </div>
-                    
-                    <button class="logout-btn" onclick="logout()">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+            <!-- Hidden file input -->
+            <input type="file" id="fileInput" multiple style="display: none;" accept=".pdf,.jpg,.jpeg,.png,.gif">
+
+            <!-- Files Section -->
+            <div class="files-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-folder-open" style="color: #8b5cf6;"></i> My Files</h2>
+                    <button class="upload-btn" onclick="triggerUpload()">
+                        <i class="fas fa-plus"></i> Upload New
                     </button>
                 </div>
 
-                <!-- Quick Actions -->
-                <div class="quick-actions">
-                    <div class="action-card" onclick="triggerUpload()">
-                        <div class="action-icon">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                        </div>
-                        <h3 class="action-title">Upload Files</h3>
-                        <p class="action-desc">Upload certificates, images, or PDFs</p>
+                <!-- Upload Progress (hidden by default) -->
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progressFill"></div>
                     </div>
-                    
-                    <div class="action-card" onclick="createFolder()">
-                        <div class="action-icon">
-                            <i class="fas fa-folder-plus"></i>
-                        </div>
-                        <h3 class="action-title">New Folder</h3>
-                        <p class="action-desc">Organize your files in folders</p>
-                    </div>
-                    
-                    <div class="action-card" onclick="shareFiles()">
-                        <div class="action-icon">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <h3 class="action-title">Share Files</h3>
-                        <p class="action-desc">Generate secure share links</p>
-                    </div>
-                    
-                    <div class="action-card" onclick="viewActivity()">
-                        <div class="action-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="action-title">Activity Log</h3>
-                        <p class="action-desc">View recent file activity</p>
-                    </div>
+                    <p id="progressText">Uploading 0/0 files...</p>
                 </div>
 
-                <!-- Hidden file input -->
-                <input type="file" id="fileInput" multiple style="display: none;" onchange="handleFileSelect(event)">
-
-                <!-- Files Section -->
-                <div class="files-section">
-                    <div class="section-header">
-                        <h2><i class="fas fa-folder-open"></i> My Files</h2>
+                <!-- Files Grid -->
+                <div class="files-grid" id="filesGrid">
+                    <div class="empty-state">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>No files yet</h3>
+                        <p>Upload your certificates and files to get started</p>
                         <button class="upload-btn" onclick="triggerUpload()">
-                            <i class="fas fa-cloud-upload-alt"></i> Upload
+                            <i class="fas fa-plus"></i> Upload Now
                         </button>
                     </div>
-
-                    <!-- Upload Area (hidden by default) -->
-                    <div class="upload-area" id="uploadArea" style="display: none;">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h3>Drag & Drop Files Here</h3>
-                        <p>Supported formats: PDF, JPG, PNG, GIF (Max 10MB)</p>
-                    </div>
-
-                    <!-- Files Grid -->
-                    <div class="files-grid" id="filesGrid">
-                        <!-- Files will be loaded here dynamically -->
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- File Preview Modal -->
-    <div class="modal" id="previewModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="previewTitle">File Preview</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="previewBody">
-                <!-- Preview content will be loaded here -->
-            </div>
-        </div>
-    </div>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
 
-    <!-- Scripts -->
-    <script src="../js/utils.js"></script>
-    <script src="js/private-cloud.js"></script>
+    <script>
+        // Configuration
+        const PASSCODE = '1234'; // Change this to your secure passcode
+        const STORAGE_LIMIT = 100 * 1024 * 1024; // 100MB
+        
+        // Global variables
+        let files = [];
+        let totalStorage = 0;
+        let currentUser = {
+            name: 'Sanjai Gopal',
+            email: 'sanjai.sparkmail@gmail.com'
+        };
+
+        // Check for existing session
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = localStorage.getItem('cloudSession');
+            if (session) {
+                try {
+                    const sessionData = JSON.parse(session);
+                    if (sessionData.expiry > Date.now()) {
+                        currentUser = sessionData.user;
+                        showDashboard();
+                        loadFiles();
+                    } else {
+                        localStorage.removeItem('cloudSession');
+                    }
+                } catch (e) {
+                    localStorage.removeItem('cloudSession');
+                }
+            }
+
+            // Enter key for passcode
+            document.getElementById('passcode')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') authenticate();
+            });
+        });
+
+        // Authenticate function
+        function authenticate() {
+            const passcode = document.getElementById('passcode').value;
+            
+            if (!passcode) {
+                showNotification('Please enter passcode', 'warning');
+                return;
+            }
+
+            const authBtn = document.querySelector('.auth-btn');
+            const originalText = authBtn.innerHTML;
+            authBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            authBtn.disabled = true;
+
+            setTimeout(() => {
+                if (passcode === PASSCODE) {
+                    const session = {
+                        user: currentUser,
+                        expiry: Date.now() + (24 * 60 * 60 * 1000)
+                    };
+                    localStorage.setItem('cloudSession', JSON.stringify(session));
+                    
+                    showDashboard();
+                    loadFiles();
+                    showNotification('Access granted! Welcome to your private cloud.', 'success');
+                } else {
+                    document.querySelector('.auth-card').style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        document.querySelector('.auth-card').style.animation = '';
+                    }, 500);
+                    
+                    showNotification('Invalid passcode. Please try again.', 'error');
+                    document.getElementById('passcode').value = '';
+                }
+
+                authBtn.innerHTML = originalText;
+                authBtn.disabled = false;
+            }, 1000);
+        }
+
+        function showDashboard() {
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'block';
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('cloudSession');
+                document.getElementById('authSection').style.display = 'block';
+                document.getElementById('dashboardSection').style.display = 'none';
+                document.getElementById('passcode').value = '';
+                files = [];
+                totalStorage = 0;
+                updateStorageDisplay();
+                showNotification('Logged out successfully', 'info');
+            }
+        }
+
+        function triggerUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const selectedFiles = Array.from(e.target.files);
+            handleFiles(selectedFiles);
+        });
+
+        async function handleFiles(fileList) {
+            const validFiles = fileList.filter(file => {
+                if (file.size > 10 * 1024 * 1024) {
+                    showNotification(`${file.name} exceeds 10MB limit`, 'warning');
+                    return false;
+                }
+                
+                const validTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    showNotification(`${file.name} is not a supported file type`, 'warning');
+                    return false;
+                }
+                
+                return true;
+            });
+
+            if (validFiles.length === 0) {
+                showNotification('No valid files to upload', 'warning');
+                return;
+            }
+
+            const totalAfterUpload = totalStorage + validFiles.reduce((sum, f) => sum + f.size, 0);
+            if (totalAfterUpload > STORAGE_LIMIT) {
+                showNotification('Storage limit exceeded', 'error');
+                return;
+            }
+
+            showUploadProgress(validFiles.length);
+
+            for (let i = 0; i < validFiles.length; i++) {
+                await processFile(validFiles[i], i + 1, validFiles.length);
+            }
+
+            hideUploadProgress();
+            showNotification(`Successfully uploaded ${validFiles.length} file(s)`, 'success');
+            document.getElementById('fileInput').value = '';
+        }
+
+        async function processFile(file, current, total) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const fileData = {
+                        id: generateId(),
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result,
+                        uploadDate: new Date().toLocaleDateString()
+                    };
+                    
+                    files.push(fileData);
+                    totalStorage += file.size;
+                    
+                    updateProgress(current, total);
+                    saveToLocalStorage();
+                    displayFiles();
+                    updateStorageDisplay();
+                    
+                    resolve();
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function generateId() {
+            return Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('cloudFiles', JSON.stringify(files));
+        }
+
+        function loadFiles() {
+            const saved = localStorage.getItem('cloudFiles');
+            if (saved) {
+                files = JSON.parse(saved);
+                totalStorage = files.reduce((sum, f) => sum + f.size, 0);
+                displayFiles();
+                updateStorageDisplay();
+            }
+        }
+
+        function displayFiles() {
+            const grid = document.getElementById('filesGrid');
+            
+            if (files.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>No files yet</h3>
+                        <p>Upload your certificates and files to get started</p>
+                        <button class="upload-btn" onclick="triggerUpload()">
+                            <i class="fas fa-plus"></i> Upload Now
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const sortedFiles = [...files].sort((a, b) => 
+                new Date(b.uploadDate) - new Date(a.uploadDate)
+            );
+
+            grid.innerHTML = sortedFiles.map(file => {
+                const icon = file.type.includes('pdf') ? 'fa-file-pdf' : 'fa-file-image';
+                const size = formatFileSize(file.size);
+                
+                return `
+                    <div class="file-card" data-id="${file.id}">
+                        <div class="file-icon"><i class="fas ${icon}"></i></div>
+                        <h4 class="file-name">${truncateName(file.name)}</h4>
+                        <div class="file-meta">
+                            <span>${size}</span>
+                            <span>${file.uploadDate}</span>
+                        </div>
+                        <div class="file-actions">
+                            <button class="file-action view-btn" onclick="viewFile('${file.id}')"><i class="fas fa-eye"></i></button>
+                            <button class="file-action download-btn" onclick="downloadFile('${file.id}')"><i class="fas fa-download"></i></button>
+                            <button class="file-action delete-btn" onclick="deleteFile('${file.id}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function truncateName(name, max = 20) {
+            if (name.length <= max) return name;
+            return name.substr(0, max - 3) + '...';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function updateStorageDisplay() {
+            const used = (totalStorage / (1024 * 1024)).toFixed(1);
+            const percent = (totalStorage / STORAGE_LIMIT) * 100;
+            
+            document.getElementById('storageBar').style.width = percent + '%';
+            document.getElementById('storageText').textContent = `${used} MB / 100 MB`;
+        }
+
+        function viewFile(id) {
+            const file = files.find(f => f.id === id);
+            if (!file) return;
+            
+            if (file.type.includes('pdf')) {
+                const win = window.open('', '_blank');
+                win.document.write(`
+                    <html><head><title>${file.name}</title>
+                    <style>body{margin:0;height:100vh;} embed{width:100%;height:100%;}</style>
+                    </head><body><embed src="${file.data}" type="application/pdf"></body></html>
+                `);
+            } else {
+                const win = window.open('', '_blank');
+                win.document.write(`
+                    <html><head><title>${file.name}</title>
+                    <style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#1a1a1a;}</style>
+                    </head><body><img src="${file.data}" style="max-width:100%;max-height:100vh;"></body></html>
+                `);
+            }
+        }
+
+        function downloadFile(id) {
+            const file = files.find(f => f.id === id);
+            if (!file) return;
+            
+            const link = document.createElement('a');
+            link.href = file.data;
+            link.download = file.name;
+            link.click();
+            showNotification(`Downloading ${file.name}`, 'success');
+        }
+
+        function deleteFile(id) {
+            if (!confirm('Delete this file?')) return;
+            
+            const file = files.find(f => f.id === id);
+            if (file) {
+                totalStorage -= file.size;
+                files = files.filter(f => f.id !== id);
+                saveToLocalStorage();
+                displayFiles();
+                updateStorageDisplay();
+                showNotification('File deleted', 'success');
+            }
+        }
+
+        function refreshFiles() {
+            loadFiles();
+            showNotification('Files refreshed', 'info');
+        }
+
+        function shareFiles() {
+            if (files.length === 0) {
+                showNotification('No files to share', 'warning');
+                return;
+            }
+            
+            const shareData = files.map(f => f.name).join('\n');
+            navigator.clipboard.writeText(shareData);
+            showNotification('File list copied to clipboard', 'success');
+        }
+
+        function showUploadProgress(total) {
+            document.getElementById('uploadProgress').style.display = 'block';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('progressText').textContent = `Uploading 0/${total} files...`;
+        }
+
+        function updateProgress(current, total) {
+            const percent = (current / total) * 100;
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('progressText').textContent = `Uploading ${current}/${total} files...`;
+        }
+
+        function hideUploadProgress() {
+            setTimeout(() => {
+                document.getElementById('uploadProgress').style.display = 'none';
+            }, 1000);
+        }
+
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            let icon = 'fa-info-circle';
+            if (type === 'success') icon = 'fa-check-circle';
+            if (type === 'error') icon = 'fa-exclamation-circle';
+            if (type === 'warning') icon = 'fa-exclamation-triangle';
+            
+            notification.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        function showHint() {
+            showNotification('Default passcode: 1234. Change it in the code!', 'info');
+        }
+    </script>
 </body>
 </html>
