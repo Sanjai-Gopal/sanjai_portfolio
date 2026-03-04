@@ -3,233 +3,1045 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal - Future-Ready Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- AOS Library for scroll animations -->
+    <title>Sanjai Gopal - AI Engineer & MLOps Specialist</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sanjai Gopal - Aspiring AI Engineer, MLOps Enthusiast, Python & C++ Developer from Coimbatore. Building intelligent systems and shaping the future of AI.">
+    <meta name="keywords" content="Sanjai Gopal, AI Engineer, MLOps, Python Developer, C++, Machine Learning, Coimbatore, SKCET">
+    <meta name="author" content="Sanjai Gopal">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Sanjai Gopal - AI Engineer & MLOps Specialist">
+    <meta property="og:description" content="Aspiring AI Engineer building intelligent systems and shaping the future of technology.">
+    <meta property="og:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
+    <meta property="og:url" content="https://sanjai-gopal.github.io/sanjai_portfolio/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sanjai Gopal - AI Engineer & MLOps Specialist">
+    <meta name="twitter:description" content="Aspiring AI Engineer building intelligent systems and shaping the future of technology.">
+    <meta name="twitter:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8B5CF6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper for Carousels -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes/dark.css" id="theme-style">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-spinner"></div>
+            <div class="preloader-text">
+                <span class="preloader-name">SANJAI</span>
+                <span class="preloader-title">AI ENGINEER</span>
+            </div>
+            <div class="preloader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <a href="#home">Sanjai<span>Gopal</span></a>
+                <a href="#home" class="logo-link">
+                    <span class="logo-text">S</span>
+                    <span class="logo-full">ANJAI</span>
+                    <span class="logo-dot">.</span>
+                </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#social">Connect</a></li>
-                <li><a href="private-cloud.html" class="private-cloud-btn">
-                    <i class="fas fa-cloud"></i> Private Cloud
-                </a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#blog" class="nav-link">Blog</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <button class="voice-toggle" id="voiceToggle">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                
+                <a href="private-cloud/" class="cloud-btn">
+                    <i class="fas fa-cloud"></i>
+                    <span>Cloud</span>
+                </a>
+                
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Futuristic Design -->
-    <section id="home" class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <div class="hero-text">
-                <h1 class="glitch-text" data-text="Hello, I'm Sanjai Gopal">Hello, I'm Sanjai Gopal</h1>
-                <p class="typing-text">I'm a <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
-                <p class="hero-description">Blockchain developer and full stack engineer passionate about building decentralized solutions that shape the future of technology</p>
-                <div class="hero-buttons">
-                    <a href="#achievements" class="btn primary-btn">View Achievements</a>
-                    <a href="#about" class="btn secondary-btn">Learn More</a>
-                </div>
+    <!-- Voice Command Modal -->
+    <div class="voice-modal" id="voiceModal">
+        <div class="voice-modal-content">
+            <div class="voice-visualizer">
+                <span></span><span></span><span></span><span></span><span></span>
             </div>
-            <div class="hero-image" data-aos="fade-left">
-                <div class="floating-shape"></div>
-                <img src="assets/images/profile.jpg" alt="Sanjai Gopal" class="profile-img">
+            <p class="voice-status">Listening...</p>
+            <p class="voice-command" id="voiceCommand">"Go to projects"</p>
+            <div class="voice-commands-list">
+                <h4>Try saying:</h4>
+                <ul>
+                    <li>"Go to home"</li>
+                    <li>"Show projects"</li>
+                    <li>"View skills"</li>
+                    <li>"Contact me"</li>
+                    <li>"Open cloud"</li>
+                </ul>
             </div>
+            <button class="voice-close" id="voiceClose"><i class="fas fa-times"></i></button>
         </div>
-        <div class="scroll-indicator">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </section>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <h3>Blockchain Developer & Full Stack Engineer</h3>
-                    <p>I'm a passionate blockchain developer with 3 years of experience in creating decentralized applications and smart contracts. My journey in tech started with web development and evolved into blockchain innovation. I believe in building transparent, secure, and efficient solutions that can transform industries.</p>
-                    <div class="skills">
-                        <h4>Skills & Expertise</h4>
-                        <div class="skill-tags">
-                            <span>Solidity</span>
-                            <span>Ethereum</span>
-                            <span>Smart Contracts</span>
-                            <span>Web3.js</span>
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>Python</span>
-                            <span>Blockchain</span>
-                            <span>DeFi</span>
-                            <span>NFTs</span>
+    <!-- 3D Canvas Background -->
+    <div id="canvas-container"></div>
+
+    <!-- Particle Network -->
+    <div id="particles-js"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge" data-aos="fade-down">
+                        <span class="badge-text">AI/ML Engineer</span>
+                        <span class="badge-glow"></span>
+                    </div>
+                    
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        <span class="title-line">Sanjai</span>
+                        <span class="title-line gradient-text">Gopal</span>
+                    </h1>
+                    
+                    <div class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                        <div class="typewriter">
+                            <span class="typed-text"></span>
+                            <span class="cursor typing-cursor">|</span>
                         </div>
                     </div>
-                    <div class="future-vision">
-                        <h4>Vision for Future</h4>
-                        <p>Building a decentralized future where technology empowers individuals. I'm focused on creating blockchain solutions that are accessible, sustainable, and truly beneficial for society.</p>
+                    
+                    <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
+                        1st Year AIDS Student at SKCET | Building intelligent systems and shaping the future of AI from Coimbatore
+                    </p>
+                    
+                    <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="4">0</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="3">0</span>
+                            <span class="stat-label">Languages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="89">0</span>
+                            <span class="stat-label">Contributions</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="1">0</span>
+                            <span class="stat-label">Year</span>
+                        </div>
                     </div>
-                </div>
-                <div class="about-stats" data-aos="fade-left">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="3">0</span>
-                        <span class="stat-label">Years Experience</span>
+                    
+                    <div class="hero-cta" data-aos="fade-up" data-aos-delay="500">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <span>Let's Connect</span>
+                            <i class="fas fa-comment"></i>
+                        </a>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="12">0</span>
-                        <span class="stat-label">Projects Completed</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="8">0</span>
-                        <span class="stat-label">Certifications</span>
+                    
+                    <div class="hero-social" data-aos="fade-up" data-aos-delay="600">
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-icon linkedin">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-icon github">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-icon instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="mailto:sanjai.sparkmail@gmail.com" class="social-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+919363265552" class="social-icon phone">
+                            <i class="fas fa-phone-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            
+            <div class="hero-scroll">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span>Scroll</span>
+            </div>
+        </section>
 
-    <!-- Achievements Section -->
-    <section id="achievements" class="achievements">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Achievements</h2>
-            <div class="achievements-grid">
-                <!-- Achievement 1 -->
-                <div class="achievement-card" data-aos="flip-left">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Blockchain Hackathon Winner</h3>
-                    <p>First place at National Blockchain Innovation Challenge 2025 for developing a decentralized voting system</p>
-                    <span class="achievement-date">2025</span>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-subtitle">Get to know me</span>
+                    <h2 class="section-title">About <span class="gradient-text">Sanjai</span></h2>
+                    <div class="section-divider"></div>
                 </div>
                 
-                <!-- Achievement 2 -->
-                <div class="achievement-card" data-aos="flip-left" data-aos-delay="100">
-                    <div class="achievement-icon">
-                        <i class="fas fa-certificate"></i>
+                <div class="about-content">
+                    <div class="about-image" data-aos="fade-right">
+                        <div class="image-wrapper">
+                            <div class="image-glitch"></div>
+                            <img src="assets/images/profile/sanjai-main.jpg" alt="Sanjai Gopal" class="profile-img">
+                            <div class="image-badge">
+                                <span>Aspiring AI Engineer</span>
+                            </div>
+                        </div>
+                        <div class="experience-badge">
+                            <span class="exp-number">1st</span>
+                            <span class="exp-text">Year<br>Student</span>
+                        </div>
                     </div>
-                    <h3>AWS Certified Developer</h3>
-                    <p>Achieved AWS Certified Developer - Associate certification with expertise in cloud architecture</p>
-                    <span class="achievement-date">2024</span>
+                    
+                    <div class="about-text" data-aos="fade-left">
+                        <h3>Aspiring AI Engineer & MLOps Enthusiast</h3>
+                        
+                        <p class="about-description">
+                            I'm Sanjai, a passionate first-year Artificial Intelligence and Data Science student at 
+                            <span class="highlight">SKCET, Coimbatore</span>. My journey in tech started with Python and C++, 
+                            and I'm now diving deep into the world of Machine Learning, AI, and MLOps.
+                        </p>
+                        
+                        <p class="about-description">
+                            I believe in building intelligent systems that solve real-world problems. From creating billing systems 
+                            in C to exploring compliance solutions with Python, every project teaches me something new about the 
+                            intersection of code and intelligence.
+                        </p>
+                        
+                        <div class="about-info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>Coimbatore, Tamil Nadu</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div>
+                                    <h4>Education</h4>
+                                    <p>SKCET - 1st Year AIDS</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-code"></i>
+                                <div>
+                                    <h4>Languages</h4>
+                                    <p>Python, C++, JavaScript</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <div>
+                                    <h4>Interests</h4>
+                                    <p>AI, MLOps, Blockchain</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-cta">
+                            <a href="assets/docs/Sanjai_Resume_2026.pdf" download class="btn btn-primary">
+                                <i class="fas fa-download"></i>
+                                <span>Download Resume</span>
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Hire Me</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-subtitle">My expertise</span>
+                    <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+                    <div class="section-divider"></div>
                 </div>
                 
-                <!-- Achievement 3 -->
-                <div class="achievement-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="achievement-icon">
-                        <i class="fas fa-code"></i>
+                <div class="skills-content">
+                    <div class="skills-3d" id="skills-canvas"></div>
+                    
+                    <div class="skills-grid">
+                        <!-- Skill Category 1: Languages -->
+                        <div class="skill-category" data-aos="fade-up">
+                            <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                            <div class="skill-items">
+                                <div class="skill-item" data-progress="85">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Python</span>
+                                        <span class="skill-percent">85%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>NumPy</span>
+                                        <span>Pandas</span>
+                                        <span>Matplotlib</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item" data-progress="75">
+                                    <div class="skill-info">
+                                        <span class="skill-name">C++</span>
+                                        <span class="skill-percent">75%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>OOP</span>
+                                        <span>STL</span>
+                                        <span>Algorithms</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item" data-progress="60">
+                                    <div class="skill-info">
+                                        <span class="skill-name">JavaScript</span>
+                                        <span class="skill-percent">60%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>ES6</span>
+                                        <span>React</span>
+                                        <span>Node.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skill Category 2: AI/ML -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                            <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+                            <div class="skill-items">
+                                <div class="skill-item" data-progress="70">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Machine Learning</span>
+                                        <span class="skill-percent">70%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>Scikit-learn</span>
+                                        <span>Regression</span>
+                                        <span>Classification</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item" data-progress="50">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Deep Learning</span>
+                                        <span class="skill-percent">50%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 50%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>Neural Networks</span>
+                                        <span>TensorFlow</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item" data-progress="40">
+                                    <div class="skill-info">
+                                        <span class="skill-name">MLOps</span>
+                                        <span class="skill-percent">40%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 40%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>Docker</span>
+                                        <span>MLflow</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skill Category 3: Tools & Technologies -->
+                        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                            <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                            <div class="skill-items">
+                                <div class="skill-item" data-progress="80">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Git & GitHub</span>
+                                        <span class="skill-percent">80%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 80%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>Version Control</span>
+                                        <span>Collaboration</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item" data-progress="65">
+                                    <div class="skill-info">
+                                        <span class="skill-name">VS Code</span>
+                                        <span class="skill-percent">65%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>Extensions</span>
+                                        <span>Debugging</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="skill-item" data-progress="55">
+                                    <div class="skill-info">
+                                        <span class="skill-name">Linux/Unix</span>
+                                        <span class="skill-percent">55%</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-fill" style="width: 55%"></div>
+                                    </div>
+                                    <div class="skill-tags">
+                                        <span>Command Line</span>
+                                        <span>Bash</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h3>5+ Smart Contracts Deployed</h3>
-                    <p>Successfully deployed multiple smart contracts on Ethereum mainnet with zero security vulnerabilities</p>
-                    <span class="achievement-date">2024</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Stats Section -->
+        <section class="github-stats">
+            <div class="container">
+                <div class="stats-grid" data-aos="fade-up">
+                    <div class="stat-card">
+                        <i class="fab fa-github"></i>
+                        <div class="stat-info">
+                            <span class="stat-value" id="repoCount">4</span>
+                            <span class="stat-label">Repositories</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <i class="fas fa-code-branch"></i>
+                        <div class="stat-info">
+                            <span class="stat-value" id="commitCount">89</span>
+                            <span class="stat-label">Contributions</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-info">
+                            <span class="stat-value" id="starCount">5</span>
+                            <span class="stat-label">Stars</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <span class="stat-value" id="followerCount">3</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Achievement 4 -->
-                <div class="achievement-card" data-aos="flip-left" data-aos-delay="300">
-                    <div class="achievement-icon">
-                        <i class="fas fa-medal"></i>
+                <div class="github-calendar" data-aos="fade-up">
+                    <h3>Contribution Activity</h3>
+                    <div class="calendar-container">
+                        <img src="https://ghchart.rshah.org/Sanjai-Gopal" alt="GitHub Contribution Chart" class="contribution-chart">
                     </div>
-                    <h3>Patent Holder</h3>
-                    <p>Patent pending for innovative blockchain-based verification system for academic credentials</p>
-                    <span class="achievement-date">2023</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Social Connect Section -->
-    <section id="social" class="social">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Let's Connect</h2>
-            <div class="social-links" data-aos="zoom-in">
-                <a href="https://linkedin.com/in/sanjai-gopal" target="_blank" class="social-link linkedin">
-                    <i class="fab fa-linkedin-in"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://wa.me/919876543210" target="_blank" class="social-link whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </a>
-                <a href="https://instagram.com/sanjai_gopal" target="_blank" class="social-link instagram">
-                    <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
-                </a>
-                <a href="https://github.com/sanjai-gopal" target="_blank" class="social-link github">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-                <a href="mailto:sanjai.gopal@example.com" class="social-link email">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                </a>
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-subtitle">My work</span>
+                    <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="projects-filter" data-aos="fade-up">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="python">Python</button>
+                    <button class="filter-btn" data-filter="cpp">C++</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="ai">AI/ML</button>
+                </div>
+                
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Project 1: Feedback and Billing System -->
+                    <div class="project-card" data-category="cpp" data-aos="flip-left">
+                        <div class="project-3d">
+                            <div class="project-front">
+                                <div class="project-image">
+                                    <img src="assets/images/projects/billing-system.jpg" alt="Feedback and Billing System">
+                                    <div class="project-overlay">
+                                        <span class="project-category">C++</span>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>Feedback and Billing System</h3>
+                                    <p>A comprehensive snack shop billing system with tax calculation, star ratings, and file storage</p>
+                                    <div class="project-tech">
+                                        <span>C++</span>
+                                        <span>File I/O</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-back">
+                                <h4>Features</h4>
+                                <ul>
+                                    <li>✓ Automatic bill generation</li>
+                                    <li>✓ Tax calculation</li>
+                                    <li>✓ Customer feedback with ratings</li>
+                                    <li>✓ File-based data persistence</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/Sanjai-Gopal/Feedback-and-Billing-System" target="_blank" class="github-link">
+                                        <i class="fab fa-github"></i> View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2: bis-smart-compliance -->
+                    <div class="project-card" data-category="python" data-aos="flip-left" data-aos-delay="100">
+                        <div class="project-3d">
+                            <div class="project-front">
+                                <div class="project-image">
+                                    <img src="assets/images/projects/compliance.jpg" alt="bis-smart-compliance">
+                                    <div class="project-overlay">
+                                        <span class="project-category">Python</span>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>bis-smart-compliance</h3>
+                                    <p>Smart compliance system built with Python for automated monitoring and reporting</p>
+                                    <div class="project-tech">
+                                        <span>Python</span>
+                                        <span>Automation</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-back">
+                                <h4>Features</h4>
+                                <ul>
+                                    <li>✓ Automated compliance checks</li>
+                                    <li>✓ Report generation</li>
+                                    <li>✓ Data validation</li>
+                                    <li>✓ Audit logging</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/Sanjai-Gopal/bis-smart-compliance" target="_blank" class="github-link">
+                                        <i class="fab fa-github"></i> View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3: Railway Reservation System -->
+                    <div class="project-card" data-category="cpp" data-aos="flip-left" data-aos-delay="200">
+                        <div class="project-3d">
+                            <div class="project-front">
+                                <div class="project-image">
+                                    <img src="assets/images/projects/railway.jpg" alt="Railway Reservation System">
+                                    <div class="project-overlay">
+                                        <span class="project-category">C++</span>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>Railway Reservation System</h3>
+                                    <p>Console-based railway ticket reservation system with seat management</p>
+                                    <div class="project-tech">
+                                        <span>C++</span>
+                                        <span>OOP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-back">
+                                <h4>Features</h4>
+                                <ul>
+                                    <li>✓ Ticket booking/cancellation</li>
+                                    <li>✓ Seat availability check</li>
+                                    <li>✓ PNR status tracking</li>
+                                    <li>✓ Fare calculation</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/Sanjai-Gopal/railway-reservation-cpp" target="_blank" class="github-link">
+                                        <i class="fab fa-github"></i> View Code
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4: Current Portfolio -->
+                    <div class="project-card" data-category="web" data-aos="flip-left" data-aos-delay="300">
+                        <div class="project-3d">
+                            <div class="project-front">
+                                <div class="project-image">
+                                    <img src="assets/images/projects/portfolio.jpg" alt="Portfolio Website">
+                                    <div class="project-overlay">
+                                        <span class="project-category">Web</span>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>Advanced Portfolio</h3>
+                                    <p>Futuristic portfolio with 3D elements, AI chatbot, and private cloud storage</p>
+                                    <div class="project-tech">
+                                        <span>HTML/CSS</span>
+                                        <span>JavaScript</span>
+                                        <span>Three.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-back">
+                                <h4>Features</h4>
+                                <ul>
+                                    <li>✓ 3D interactive background</li>
+                                    <li>✓ AI chatbot assistant</li>
+                                    <li>✓ Voice navigation</li>
+                                    <li>✓ Private cloud storage</li>
+                                </ul>
+                                <div class="project-links">
+                                    <a href="https://github.com/Sanjai-Gopal/sanjai_portfolio" target="_blank" class="github-link">
+                                        <i class="fab fa-github"></i> View Code
+                                    </a>
+                                    <a href="#" class="live-link">
+                                        <i class="fas fa-external-link-alt"></i> Live Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="projects-more" data-aos="fade-up">
+                    <a href="https://github.com/Sanjai-Gopal?tab=repositories" target="_blank" class="btn btn-outline">
+                        <i class="fab fa-github"></i>
+                        <span>View All on GitHub</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact/Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content" data-aos="fade-up">
-                <h3>Stay Updated with My Journey</h3>
-                <p>Subscribe to receive updates about my latest blockchain projects and innovations</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn primary-btn">Subscribe</button>
-                </form>
+        <!-- Achievements Section -->
+        <section id="achievements" class="achievements">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-subtitle">Recognition</span>
+                    <h2 class="section-title">Achievements & <span class="gradient-text">Certifications</span></h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="achievements-grid">
+                    <!-- Achievement 1 -->
+                    <div class="achievement-card" data-aos="zoom-in">
+                        <div class="achievement-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Python for Beginners</h3>
+                        <p>Completed comprehensive Python programming course</p>
+                        <span class="achievement-date">2025</span>
+                        <div class="achievement-badge">Verified</div>
+                    </div>
+                    
+                    <!-- Achievement 2 -->
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>College Coding Competition</h3>
+                        <p>Participated in inter-college coding challenge</p>
+                        <span class="achievement-date">2025</span>
+                        <div class="achievement-badge">Finalist</div>
+                    </div>
+                    
+                    <!-- Achievement 3 -->
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="achievement-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Git & GitHub Workshop</h3>
+                        <p>Hands-on workshop on version control and collaboration</p>
+                        <span class="achievement-date">2025</span>
+                        <div class="achievement-badge">Completed</div>
+                    </div>
+                    
+                    <!-- Achievement 4 -->
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="achievement-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI/ML Fundamentals</h3>
+                        <p>Introduction to Machine Learning concepts and algorithms</p>
+                        <span class="achievement-date">2026</span>
+                        <div class="achievement-badge">In Progress</div>
+                    </div>
+                </div>
+                
+                <div class="certificates-section" data-aos="fade-up">
+                    <h3>My Certificates</h3>
+                    <div class="certificates-slider swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="certificate-card">
+                                    <img src="assets/images/achievements/certificates/python-cert.jpg" alt="Python Certificate">
+                                    <div class="certificate-overlay">
+                                        <a href="#" class="view-cert" data-cert="python">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="certificate-card">
+                                    <img src="assets/images/achievements/certificates/git-cert.jpg" alt="Git Certificate">
+                                    <div class="certificate-overlay">
+                                        <a href="#" class="view-cert" data-cert="git">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="blog">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-subtitle">My thoughts</span>
+                    <h2 class="section-title">Latest from <span class="gradient-text">Blog</span></h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="blog-grid">
+                    <!-- Blog Post 1 -->
+                    <article class="blog-card" data-aos="fade-up">
+                        <div class="blog-image">
+                            <img src="assets/images/blog/python-basics.jpg" alt="Python Basics">
+                            <div class="blog-category">Programming</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Mar 1, 2026</span>
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h3>Getting Started with Python: A Beginner's Guide</h3>
+                            <p>Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers.</p>
+                            <a href="blog/python-basics.html" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Blog Post 2 -->
+                    <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-image">
+                            <img src="assets/images/blog/git-guide.jpg" alt="Git Guide">
+                            <div class="blog-category">DevOps</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Feb 15, 2026</span>
+                                <span><i class="far fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h3>Git & GitHub: Essential Commands Every Developer Should Know</h3>
+                            <p>A comprehensive guide to version control for beginners, with practical workflows and tips.</p>
+                            <a href="blog/git-guide.html" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                    
+                    <!-- Blog Post 3 -->
+                    <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-image">
+                            <img src="assets/images/blog/ai-journey.jpg" alt="AI Journey">
+                            <div class="blog-category">AI/ML</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span><i class="far fa-calendar"></i> Feb 1, 2026</span>
+                                <span><i class="far fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h3>My First Steps into AI: What I Learned in 3 Months</h3>
+                            <p>Sharing my journey as a first-year student diving into the world of Artificial Intelligence.</p>
+                            <a href="blog/ai-journey.html" class="blog-read-more">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="blog-more" data-aos="fade-up">
+                    <a href="blog/" class="btn btn-outline">
+                        <span>View All Posts</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="section-subtitle">Get in touch</span>
+                    <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+                    <div class="section-divider"></div>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right">
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Location</h3>
+                            <p>Coimbatore, Tamil Nadu</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email</h3>
+                            <p>sanjai.sparkmail@gmail.com</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <i class="fas fa-phone-alt"></i>
+                            <h3>Phone</h3>
+                            <p>+91 9363265552</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Available</h3>
+                            <p>Mon-Fri, 9AM-6PM</p>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-btn linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-btn github">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-btn instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container" data-aos="fade-left">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" required>
+                                <label for="name">Your Name</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <label for="message">Your Message</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Sanjai Gopal</h3>
-                    <p>Blockchain Developer & Full Stack Engineer building the future of decentralized technology</p>
+                <div class="footer-brand">
+                    <h2>Sanjai Gopal</h2>
+                    <p>Aspiring AI Engineer building the future with code and intelligence.</p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
+                
                 <div class="footer-links">
-                    <h4>Quick Links</h4>
+                    <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
-                        <li><a href="#achievements">Achievements</a></li>
-                        <li><a href="#social">Connect</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-social">
-                    <h4>Follow Me</h4>
-                    <div class="social-icons">
-                        <a href="https://linkedin.com/in/sanjai-gopal"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com/sanjai_gopal"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/sanjai-gopal"><i class="fab fa-github"></i></a>
-                        <a href="https://instagram.com/sanjai_gopal"><i class="fab fa-instagram"></i></a>
-                    </div>
+                
+                <div class="footer-links">
+                    <h3>Projects</h3>
+                    <ul>
+                        <li><a href="https://github.com/Sanjai-Gopal/Feedback-and-Billing-System" target="_blank">Billing System</a></li>
+                        <li><a href="https://github.com/Sanjai-Gopal/bis-smart-compliance" target="_blank">Smart Compliance</a></li>
+                        <li><a href="https://github.com/Sanjai-Gopal/railway-reservation-cpp" target="_blank">Railway System</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Get notified about my latest projects and blog posts.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- AI Chatbot -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="chatbot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-title">
+                <h3>Sanjai's AI Assistant</h3>
+                <span>Online</span>
+            </div>
+            <button class="chatbot-close" id="chatbotClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                <div class="message-content">
+                    Hi! I'm Sanjai's AI assistant. Ask me anything about his skills, projects, or experience!
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message...">
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <button class="chatbot-toggle" id="chatbotToggle">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
     <script src="js/main.js"></script>
+    <script src="js/three.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/voice-nav.js"></script>
+    <script src="js/github-stats.js"></script>
 </body>
 </html>
