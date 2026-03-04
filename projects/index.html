@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Sanjai Gopal | Portfolio</title>
+    <title>Projects - Sanjai Gopal | AI Engineer Portfolio</title>
     
     <!-- SEO Meta -->
-    <meta name="description" content="Explore Sanjai Gopal's programming projects including C++ applications, Python scripts, and web development work.">
-    <meta name="keywords" content="Sanjai Gopal projects, C++ projects, Python projects, GitHub, portfolio">
+    <meta name="description" content="Explore Sanjai Gopal's programming projects including C++ applications, Python scripts, web development, and AI/ML experiments.">
+    <meta name="keywords" content="Sanjai Gopal projects, C++ projects, Python projects, GitHub, portfolio, AI projects, MLOps">
     
     <!-- Styles -->
     <link rel="stylesheet" href="../css/style.css">
@@ -15,6 +15,259 @@
     <link rel="stylesheet" href="../css/themes/dark.css" id="theme-style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        .projects-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+        }
+        
+        .projects-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .projects-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .github-summary {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .github-stat {
+            text-align: center;
+        }
+        
+        .github-stat .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-500);
+            display: block;
+        }
+        
+        .github-stat .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+        }
+        
+        .github-profile-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .github-profile-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .projects-filter-section {
+            padding: 30px 0;
+        }
+        
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .projects-grid-section {
+            padding: 50px 0 100px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-500);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+        }
+        
+        .project-category {
+            padding: 0.3rem 1rem;
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tag {
+            padding: 0.2rem 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            flex: 1;
+            padding: 0.6rem;
+            text-align: center;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .github-link {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+        
+        .demo-link {
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+        }
+        
+        .github-link:hover,
+        .demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .projects-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+        }
+        
+        .cta-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            text-align: center;
+        }
+        
+        .cta-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-title { font-size: 2.5rem; }
+            .github-summary { flex-direction: column; gap: 1.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -30,10 +283,10 @@
             
             <div class="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
                     <li><a href="../index.html#about" class="nav-link">About</a></li>
                     <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
-                    <li><a href="../index.html#projects" class="nav-link active">Projects</a></li>
+                    <li><a href="index.html" class="nav-link active">Projects</a></li>
                     <li><a href="../blog/index.html" class="nav-link">Blog</a></li>
                     <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -58,23 +311,27 @@
     <!-- Projects Header -->
     <section class="projects-header">
         <div class="container">
-            <div class="projects-header-content" data-aos="fade-up">
+            <div data-aos="fade-up">
                 <h1 class="projects-title">My <span class="gradient-text">Projects</span></h1>
                 <p class="projects-subtitle">A collection of my work in C++, Python, and web development</p>
                 
                 <!-- GitHub Stats Summary -->
                 <div class="github-summary">
                     <div class="github-stat">
-                        <span class="stat-value" id="totalRepos">4</span>
-                        <span class="stat-label">Repositories</span>
+                        <span class="stat-value">6</span>
+                        <span class="stat-label">Total Projects</span>
                     </div>
                     <div class="github-stat">
-                        <span class="stat-value" id="totalCommits">89</span>
+                        <span class="stat-value">4</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="github-stat">
+                        <span class="stat-value">89</span>
                         <span class="stat-label">Contributions</span>
                     </div>
                     <div class="github-stat">
                         <a href="https://github.com/Sanjai-Gopal" target="_blank" class="github-profile-link">
-                            <i class="fab fa-github"></i> View GitHub
+                            <i class="fab fa-github"></i> GitHub
                         </a>
                     </div>
                 </div>
@@ -99,7 +356,152 @@
     <section class="projects-grid-section">
         <div class="container">
             <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be loaded via JavaScript -->
+                <!-- Project 1: Feedback and Billing System -->
+                <div class="project-card" data-category="cpp">
+                    <div class="project-image">
+                        <img src="../assets/images/projects/billing-system.jpg" alt="Feedback and Billing System">
+                        <div class="project-overlay">
+                            <span class="project-category">C++</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Feedback and Billing System</h3>
+                        <p class="project-description">A comprehensive snack shop billing system with tax calculation, star ratings, and file storage for transaction history.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">File I/O</span>
+                            <span class="tech-tag">OOP</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sanjai-Gopal/Feedback-and-Billing-System" target="_blank" class="project-link github-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: bis-smart-compliance -->
+                <div class="project-card" data-category="python">
+                    <div class="project-image">
+                        <img src="../assets/images/projects/compliance.jpg" alt="bis-smart-compliance">
+                        <div class="project-overlay">
+                            <span class="project-category">Python</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">bis-smart-compliance</h3>
+                        <p class="project-description">Smart compliance system built with Python for automated monitoring, reporting, and audit logging of regulatory requirements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">Logging</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sanjai-Gopal/bis-smart-compliance" target="_blank" class="project-link github-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Railway Reservation System -->
+                <div class="project-card" data-category="cpp">
+                    <div class="project-image">
+                        <img src="../assets/images/projects/railway.jpg" alt="Railway Reservation System">
+                        <div class="project-overlay">
+                            <span class="project-category">C++</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Railway Reservation System</h3>
+                        <p class="project-description">Console-based railway ticket reservation system with seat management, PNR tracking, and fare calculation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">OOP</span>
+                            <span class="tech-tag">Data Structures</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sanjai-Gopal/railway-reservation-cpp" target="_blank" class="project-link github-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Advanced Portfolio -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="../assets/images/projects/portfolio.jpg" alt="Advanced Portfolio">
+                        <div class="project-overlay">
+                            <span class="project-category">Web</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Advanced Portfolio Website</h3>
+                        <p class="project-description">Futuristic portfolio with 3D elements, AI chatbot, voice navigation, and private cloud storage for certificates.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5/CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Three.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sanjai-Gopal/sanjai_portfolio" target="_blank" class="project-link github-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://sanjai-gopal.github.io/sanjai_portfolio/" target="_blank" class="project-link demo-link">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: Machine Learning Basics -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="../assets/images/projects/ml-basics.jpg" alt="Machine Learning Basics">
+                        <div class="project-overlay">
+                            <span class="project-category">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Machine Learning Basics</h3>
+                        <p class="project-description">Collection of ML algorithms implemented from scratch including linear regression, logistic regression, and neural networks.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sanjai-Gopal/ml-basics" target="_blank" class="project-link github-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6: Smart Attendance System -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-image">
+                        <img src="../assets/images/projects/attendance.jpg" alt="Smart Attendance System">
+                        <div class="project-overlay">
+                            <span class="project-category">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Attendance System</h3>
+                        <p class="project-description">Face recognition based attendance system using OpenCV and Python with real-time face detection and Excel report generation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Face Recognition</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Sanjai-Gopal/smart-attendance" target="_blank" class="project-link github-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -109,7 +511,7 @@
         <div class="container">
             <div class="cta-card" data-aos="zoom-in">
                 <h2>Have a Project in Mind?</h2>
-                <p>I'm always open to collaboration and new opportunities</p>
+                <p>I'm always open to collaboration and new opportunities. Let's build something amazing together!</p>
                 <a href="../index.html#contact" class="btn btn-primary">Let's Talk</a>
             </div>
         </div>
@@ -126,7 +528,7 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="../index.html#home">Home</a></li>
+                        <li><a href="../index.html">Home</a></li>
                         <li><a href="../index.html#about">About</a></li>
                         <li><a href="../blog/index.html">Blog</a></li>
                         <li><a href="../index.html#contact">Contact</a></li>
@@ -151,11 +553,29 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/theme.js"></script>
-    <script src="../js/projects.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        AOS.init({ duration: 1000, once: true });
+        
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                
+                // Filter projects
+                document.querySelectorAll('.project-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
         });
     </script>
 </body>
