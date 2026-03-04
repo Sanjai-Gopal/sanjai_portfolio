@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub: Essential Commands Every Developer Should Know - Sanjai Gopal</title>
+    
+    <!-- SEO Meta -->
+    <meta name="description" content="Master Git and GitHub with this comprehensive guide covering essential commands, workflows, and best practices for version control.">
+    <meta name="keywords" content="Git tutorial, GitHub guide, version control, git commands, DevOps, collaboration">
+    
+    <!-- Styles (same as post1.html) -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/themes/dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Same styles as post1.html */
+        .blog-post { padding: 120px 0 60px; }
+        .post-header { text-align: center; max-width: 800px; margin: 0 auto 3rem; }
+        .post-title { font-size: 3rem; margin-bottom: 1rem; line-height: 1.2; }
+        .post-meta { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; color: var(--text-tertiary); }
+        .post-meta span { display: flex; align-items: center; gap: 0.5rem; }
+        .post-meta i { color: var(--primary-500); }
+        .post-image { width: 100%; max-height: 500px; object-fit: cover; border-radius: var(--radius-2xl); margin-bottom: 3rem; box-shadow: var(--shadow-xl); }
+        .post-content { max-width: 800px; margin: 0 auto; }
+        .post-content h2 { font-size: 2rem; margin: 2.5rem 0 1rem; }
+        .post-content h3 { font-size: 1.5rem; margin: 2rem 0 1rem; }
+        .post-content p { margin-bottom: 1.5rem; line-height: 1.8; }
+        .post-content pre { background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-lg); overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--border-light); }
+        .post-content code { font-family: 'Fira Code', monospace; font-size: 0.9rem; }
+        .post-content ul, .post-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+        .post-content li { margin-bottom: 0.5rem; }
+        .post-content blockquote { background: var(--bg-card); border-left: 4px solid var(--primary-500); padding: 1.5rem; margin: 1.5rem 0; border-radius: var(--radius-lg); font-style: italic; }
+        .post-content .tip { background: rgba(139, 92, 246, 0.1); border: 1px solid var(--primary-500); padding: 1.5rem; border-radius: var(--radius-lg); margin: 1.5rem 0; }
+        .post-content .tip i { color: var(--primary-500); margin-right: 0.5rem; }
+        .command-table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+        .command-table th { background: var(--bg-tertiary); padding: 1rem; text-align: left; }
+        .command-table td { padding: 1rem; border-bottom: 1px solid var(--border-light); }
+        .command-table tr:hover { background: var(--bg-card); }
+        @media (max-width: 768px) {
+            .post-title { font-size: 2rem; }
+            .post-meta { flex-direction: column; align-items: center; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation (same as post1.html) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <span class="logo-text">S</span>
+                    <span class="logo-full">ANJAI</span>
+                    <span class="logo-dot">.</span>
+                </a>
+            </div>
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../projects/index.html" class="nav-link">Projects</a></li>
+                    <li><a href="index.html" class="nav-link active">Blog</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="../private-cloud/index.html" class="cloud-btn"><i class="fas fa-cloud"></i></a>
+                <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Post -->
+    <article class="blog-post">
+        <div class="container">
+            <div class="post-header" data-aos="fade-up">
+                <h1 class="post-title">Git & <span class="gradient-text">GitHub</span>: Essential Commands Every Developer Should Know</h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> February 15, 2026</span>
+                    <span><i class="far fa-clock"></i> 7 min read</span>
+                    <span><i class="far fa-user"></i> Sanjai Gopal</span>
+                    <span><i class="far fa-eye"></i> 980 views</span>
+                </div>
+            </div>
+            
+            <img src="../assets/images/blog/git-guide.jpg" alt="Git and GitHub" class="post-image" data-aos="fade-up">
+            
+            <div class="post-content" data-aos="fade-up">
+                <p>Version control is non-negotiable in modern software development. Whether you're working solo or in a team, Git saves you from countless headaches. In this guide, I'll share the essential Git commands and GitHub workflows that every developer must know.</p>
+                
+                <h2>What is Version Control?</h2>
+                <p>Version control is like a time machine for your code. It tracks every change, allows you to revert to previous versions, and enables multiple people to work on the same project without conflicts.</p>
+                
+                <div class="tip">
+                    <i class="fas fa-lightbulb"></i>
+                    <strong>Key Concept:</strong> Git is the version control system (runs locally), while GitHub is a cloud platform for hosting Git repositories.
+                </div>
+                
+                <h2>Installing Git</h2>
+                <p>Download Git from <a href="https://git-scm.com" target="_blank">git-scm.com</a>. After installation, verify it works:</p>
+                <pre><code>git --version</code></pre>
+                
+                <h3>First-Time Configuration</h3>
+                <p>Set your identity (this will be attached to your commits):</p>
+                <pre><code>git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Optional: set default editor
+git config --global core.editor "code --wait"  # For VS Code
+
+# View all configurations
+git config --list</code></pre>
+                
+                <h2>Essential Git Commands Cheat Sheet</h2>
+                
+                <h3>Starting a Project</h3>
+                <table class="command-table">
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>git init</code></td><td>Initialize a new Git repository in current folder</td></tr>
+                    <tr><td><code>git clone &lt;url&gt;</code></td><td>Download an existing repository from GitHub</td></tr>
+                </table>
+                
+                <h3>Making Changes</h3>
+                <table class="command-table">
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>git status</code></td><td>See what files have changed</td></tr>
+                    <tr><td><code>git add &lt;file&gt;</code></td><td>Stage a file for commit</td></tr>
+                    <tr><td><code>git add .</code></td><td>Stage all changes</td></tr>
+                    <tr><td><code>git commit -m "message"</code></td><td>Commit staged changes with a message</td></tr>
+                    <tr><td><code>git commit -am "message"</code></td><td>Add and commit in one step (for tracked files)</td></tr>
+                </table>
+                
+                <h3>Branching</h3>
+                <table class="command-table">
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>git branch</code></td><td>List all branches (* indicates current)</td></tr>
+                    <tr><td><code>git branch &lt;name&gt;</code></td><td>Create a new branch</td></tr>
+                    <tr><td><code>git checkout &lt;branch&gt;</code></td><td>Switch to a branch</td></tr>
+                    <tr><td><code>git checkout -b &lt;name&gt;</code></td><td>Create and switch to new branch</td></tr>
+                    <tr><td><code>git merge &lt;branch&gt;</code></td><td>Merge branch into current branch</td></tr>
+                    <tr><td><code>git branch -d &lt;name&gt;</code></td><td>Delete a branch</td></tr>
+                </table>
+                
+                <h3>Inspecting History</h3>
+                <table class="command-table">
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>git log</code></td><td>View commit history</td></tr>
+                    <tr><td><code>git log --oneline</code></td><td>Compact commit history</td></tr>
+                    <tr><td><code>git log --graph</code></td><td>Visualize branch structure</td></tr>
+                    <tr><td><code>git diff</code></td><td>See unstaged changes</td></tr>
+                    <tr><td><code>git diff --staged</code></td><td>See staged changes</td></tr>
+                </table>
+                
+                <h3>Undoing Changes</h3>
+                <table class="command-table">
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>git restore &lt;file&gt;</code></td><td>Discard changes in working directory</td></tr>
+                    <tr><td><code>git restore --staged &lt;file&gt;</code></td><td>Unstage a file</td></tr>
+                    <tr><td><code>git reset HEAD~1</code></td><td>Undo last commit (keep changes)</td></tr>
+                    <tr><td><code>git reset --hard HEAD~1</code></td><td>Undo last commit (discard changes)</td></tr>
+                    <tr><td><code>git revert &lt;commit-hash&gt;</code></td><td>Create new commit that undoes changes</td></tr>
+                </table>
+                
+                <h3>Remote Repositories (GitHub)</h3>
+                <table class="command-table">
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>git remote add origin &lt;url&gt;</code></td><td>Connect local repo to GitHub</td></tr>
+                    <tr><td><code>git remote -v</code></td><td>View remote connections</td></tr>
+                    <tr><td><code>git push origin main</code></td><td>Upload commits to GitHub</td></tr>
+                    <tr><td><code>git pull origin main</code></td><td>Download latest from GitHub</td></tr>
+                    <tr><td><code>git fetch origin</code></td><td>Download but don't merge</td></tr>
+                </table>
+                
+                <h2>Real-World Git Workflow</h2>
+                <p>Here's how I use Git for my portfolio project:</p>
+                
+                <pre><code># 1. Clone the repository
+git clone https://github.com/Sanjai-Gopal/sanjai_portfolio.git
+cd sanjai_portfolio
+
+# 2. Create a branch for new feature
+git checkout -b add-blog-section
+
+# 3. Make changes and commit
+git add .
+git commit -m "Add blog section with initial posts"
+
+# 4. Push branch to GitHub
+git push origin add-blog-section
+
+# 5. Create Pull Request on GitHub
+# (Go to GitHub.com and create PR)
+
+# 6. After review, merge and pull updates
+git checkout main
+git pull origin main
+
+# 7. Delete the branch
+git branch -d add-blog-section</code></pre>
+                
+                <div class="tip">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Common Mistake:</strong> Forgetting to pull before starting new work. Always run <code>git pull</code> first!
+                </div>
+                
+                <h2>Handling Merge Conflicts</h2>
+                <p>Conflicts happen when two people change the same part of a file. Don't panic! Here's how to resolve:</p>
+                
+                <pre><code># After git merge, you'll see:
+# <<<<<<< HEAD
+# Your changes
+# =======
+# Their changes
+# >>>>>>> branch-name
+
+# Edit the file to keep what you want
+# Remove the conflict markers
+# Then:
+
+git add resolved-file.txt
+git commit -m "Resolve merge conflict"</code></pre>
+                
+                <h2>.gitignore - What Not to Commit</h2>
+                <p>Create a <code>.gitignore</code> file to exclude unnecessary files:</p>
+                
+                <pre><code># Dependencies
+node_modules/
+venv/
+__pycache__/
+
+# Environment files
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+*.exe
+
+# Logs
+*.log
+npm-debug.log*</code></pre>
+                
+                <h2>GitHub Features You Should Use</h2>
+                
+                <h3>1. Pull Requests</h3>
+                <p>The heart of collaboration. PRs allow code review before merging. Always:
+                <ul>
+                    <li>Write clear descriptions</li>
+                    <li>Link related issues</li>
+                    <li>Request reviewers</li>
+                    <li>Run CI checks</li>
+                </ul>
+                
+                <h3>2. Issues</h3>
+                <p>Track bugs and features like a pro. Use labels:
+                <ul>
+                    <li>🐛 bug</li>
+                    <li>✨ enhancement</li>
+                    <li>📚 documentation</li>
+                    <li>🎨 design</li>
+                </ul>
+                
+                <h3>3. Actions (CI/CD)</h3>
+                <p>Automate testing and deployment. Example workflow:</p>
+                
+                <pre><code># .github/workflows/test.yml
+name: Tests
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          npm install
+          npm test</code></pre>
+                
+                <h3>4. GitHub Pages</h3>
+                <p>Host websites for free (like this portfolio!). Just push to gh-pages branch.</p>
+                
+                <h2>Git Aliases for Speed</h2>
+                <p>Create shortcuts for common commands:</p>
+                
+                <pre><code>git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+git config --global alias.unstage 'reset HEAD --'
+git config --global alias.last 'log -1 HEAD'
+git config --global alias.graph 'log --graph --oneline --all'
+
+# Now use:
+git co main     # instead of git checkout main
+git st          # instead of git status</code></pre>
+                
+                <h2>My Git Habits</h2>
+                <ol>
+                    <li><strong>Commit Often:</strong> Small, focused commits are easier to understand and revert</li>
+                    <li><strong>Write Good Messages:</strong> "Fix bug" is bad. "Fix login validation for empty email" is good</li>
+                    <li><strong>Branch for Features:</strong> Never commit directly to main</li>
+                    <li><strong>Pull Before Push:</strong> Avoid conflicts by syncing first</li>
+                    <li><strong>Review Your Own PR:</strong> You'll catch mistakes before others do</li>
+                </ol>
+                
+                <div class="tip">
+                    <i class="fas fa-rocket"></i>
+                    <strong>Pro Tip:</strong> Use <code>git stash</code> to temporarily save changes without committing. Great for switching branches quickly!
+                </div>
+                
+                <h2>Learning Resources</h2>
+                <ul>
+                    <li><strong>Official Docs:</strong> git-scm.com/doc</li>
+                    <li><strong>Interactive Tutorial:</strong> learngitbranching.js.org</li>
+                    <li><strong>GitHub Skills:</strong> skills.github.com</li>
+                    <li><strong>Book:</strong> "Pro Git" - Free online</li>
+                </ul>
+                
+                <p>Git might seem overwhelming at first, but with practice, it becomes second nature. Start with basic commands, and gradually explore advanced features. Remember, even experienced developers Google Git commands - it's completely normal!</p>
+            </div>
+            
+            <!-- Tags, Share, Author, Comments, Related sections (same as post1.html) -->
+            <div class="tags-section">
+                <h3>Tags</h3>
+                <div class="tags">
+                    <span class="tag">Git</span>
+                    <span class="tag">GitHub</span>
+                    <span class="tag">Version Control</span>
+                    <span class="tag">DevOps</span>
+                    <span class="tag">Tutorial</span>
+                </div>
+            </div>
+            
+            <div class="share-section">
+                <a href="#" class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + '&url=' + encodeURIComponent(window.location.href))"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="share-btn" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(window.location.href))"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href))"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!')"><i class="fas fa-link"></i></a>
+            </div>
+            
+            <div class="author-section">
+                <div class="author-avatar">S</div>
+                <div class="author-info">
+                    <h3>Sanjai Gopal</h3>
+                    <p>Aspiring AI Engineer at SKCET, passionate about DevOps, version control, and building efficient workflows.</p>
+                    <div class="author-social">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="related-posts">
+                <h3>Related Posts</h3>
+                <div class="related-grid">
+                    <div class="related-card">
+                        <div class="related-image"><img src="../assets/images/blog/python-basics.jpg" alt="Python"></div>
+                        <div class="related-content">
+                            <h4>Getting Started with Python</h4>
+                            <p>Perfect for beginners</p>
+                            <a href="post1.html">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="related-card">
+                        <div class="related-image"><img src="../assets/images/blog/mlops-intro.jpg" alt="MLOps"></div>
+                        <div class="related-content">
+                            <h4>Introduction to MLOps</h4>
+                            <p>CI/CD for machine learning</p>
+                            <a href="#">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Sanjai Gopal</h3>
+                    <p>Sharing knowledge and building the future with AI.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../projects/index.html">Projects</a></li>
+                        <li><a href="index.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>
