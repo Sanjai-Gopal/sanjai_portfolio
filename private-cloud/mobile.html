@@ -654,3 +654,51 @@
             const usedMB = (totalSize / (1024 * 1024)).toFixed(1);
             
             document.getElementById('storageUsed').textContent = `${used
+    document.getElementById('storageUsed').textContent = `${usedMB} MB / 1 GB`;
+            
+            const percent = (totalSize / (1024 * 1024 * 1024)) * 100;
+            document.getElementById('storageBar').style.width = percent + '%';
+        }
+
+        // Load quick access files (starred)
+        function loadQuickAccess() {
+            const allFiles = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            const starredIds = JSON.parse(localStorage.getItem('starredFiles') || '[]');
+            const starred = allFiles.filter(file => starredIds.includes(file.id)).slice(0, 3);
+            
+            const container = document.getElementById('quickAccess');
+            
+            if (starred.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">Star files for quick access</p>';
+                return;
+            }
+            
+            container.innerHTML = starred.map(file => `
+                <div class="file-item">
+                    <div class="file-icon">
+                        <i class="fas ${getFileIcon(file.type)}"></i>
+                    </div>
+                    <div class="file-name">${truncateName(file.name)}</div>
+                    <div class="file-size">${formatSize(file.size)}</div>
+                </div>
+            `).join('');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput')?.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length > 2) {
+                // Implement search
+                console.log('Searching for:', query);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecentFiles();
+            loadQuickAccess();
+            updateStorage();
+        });
+    </script>
+</body>
+</html>
