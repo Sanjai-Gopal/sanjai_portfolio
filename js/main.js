@@ -5,11 +5,11 @@ AOS.init({
     offset: 100
 });
 
-// Typing Animation
+// Typing Animation - UPDATED with your roles
 const typedTextSpan = document.querySelector('.typed-text');
 const cursorSpan = document.querySelector('.cursor');
 
-const textArray = ['Innovator', 'Tech Enthusiast', 'Future Builder', 'Problem Solver'];
+const textArray = ['Blockchain Developer', 'Full Stack Engineer', 'Smart Contract Developer', 'DeFi Enthusiast', 'Innovation Seeker'];
 let textArrayIndex = 0;
 let charIndex = 0;
 
@@ -129,7 +129,7 @@ if (newsletterForm) {
         const email = this.querySelector('input[type="email"]').value;
         
         // Here you would typically send this to your backend
-        alert('Thank you for subscribing! You will receive updates soon.');
+        alert('Thank you for subscribing! You will receive updates about my blockchain projects soon.');
         this.reset();
     });
 }
