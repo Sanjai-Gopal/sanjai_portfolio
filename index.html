@@ -778,96 +778,365 @@
         </section>
 
         <!-- Achievements Section -->
-        <section id="achievements" class="achievements">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <span class="section-subtitle">Recognition</span>
-                    <h2 class="section-title">Achievements & <span class="gradient-text">Certifications</span></h2>
-                    <div class="section-divider"></div>
+    <!-- ========================================
+   ACHIEVEMENTS & CERTIFICATES SECTION
+   ======================================== -->
+<section id="achievements" class="achievements">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">My Credentials</span>
+            <h2 class="section-title">Certifications & <span class="gradient-text">Achievements</span></h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-summary" data-aos="fade-up" style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 3rem; flex-wrap: wrap;">
+            <div class="stat-item">
+                <span class="stat-number">24</span>
+                <span class="stat-label">Certifications</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">8</span>
+                <span class="stat-label">Platforms</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Projects</span>
+            </div>
+        </div>
+
+        <!-- Certificate Categories Tabs -->
+        <div class="cert-tabs" data-aos="fade-up" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <button class="tab-btn active" onclick="filterCerts('all')">All</button>
+            <button class="tab-btn" onclick="filterCerts('coursera')">Coursera</button>
+            <button class="tab-btn" onclick="filterCerts('aws')">AWS</button>
+            <button class="tab-btn" onclick="filterCerts('ibm')">IBM</button>
+            <button class="tab-btn" onclick="filterCerts('govt')">Government</button>
+        </div>
+
+        <!-- Certificates Grid -->
+        <div class="certificates-grid" id="certificatesGrid" data-aos="fade-up">
+            <!-- Will be populated by JavaScript -->
+        </div>
+
+        <!-- Projects Section -->
+        <div style="margin-top: 5rem;">
+            <h2 class="section-title" style="text-align: center;">Featured <span class="gradient-text">Projects</span></h2>
+            <div class="section-divider"></div>
+            
+            <div class="projects-grid" id="projectsGrid" style="margin-top: 3rem;">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Certificate Tabs */
+.tab-btn {
+    padding: 0.75rem 1.5rem;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 30px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+}
+
+/* Certificates Grid */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.cert-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    border-color: #8b5cf6;
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.cert-card:hover::before {
+    transform: translateX(100%);
+}
+
+.cert-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cert-icon.coursera { color: #2a73c4; }
+.cert-icon.aws { color: #ff9900; }
+.cert-icon.ibm { color: #0066cc; }
+.cert-icon.govt { color: #138808; }
+
+.cert-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.cert-issuer {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+.cert-date {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #8b5cf6;
+    margin-bottom: 1rem;
+}
+
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.cert-credential {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.cert-link {
+    padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.cert-link:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}
+</style>
+
+<script>
+// Certificate Data
+const certificates = [
+    // Coursera Canva Series
+    { title: "Canva Essentials Professional Certificate", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "13-course program", link: "https://www.linkedin.com/posts/sanjai2306_canva-essentials-professional-certificate-activity-7431380646150766592-owyp" },
+    { title: "Presentation Design Mastery in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: IIT RHEHUD3Q6O3", link: "#" },
+    { title: "Social Media Content Creation with Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: TREHIUD3Q6O3", link: "#" },
+    { title: "Marketing Material Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: 16R6RHK4P4SX", link: "#" },
+    { title: "Video Content Creation in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: EYOX9VUYDXXY", link: "#" },
+    { title: "Interactive Document Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: SWMCMESQFEZS", link: "#" },
+    { title: "Event Marketing Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: AR9MTQSX823G", link: "#" },
+    { title: "AI-Powered Design with Canva Magic Studio", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: GOTBYSA4NJXO", link: "#" },
+    { title: "Advanced Branding in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: B1VBCR0QEFX3", link: "#" },
+    { title: "Portfolio Development in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "", link: "#" },
+    { title: "Event Video & Social Media Experience Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: PD55QAZYWWDF", link: "#" },
+    { title: "Brand Identity Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: ZBTTR2ULLES3", link: "#" },
+    { title: "Typography and Color Theory in Design with Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: OHKL0GWS4F6X", link: "#" },
+    { title: "Canva Design Fundamentals", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: PN9V9HEN1GUG", link: "https://www.linkedin.com/posts/sanjai2306_coursera-canva-designskills-activity-7430816066945208322-0JNp" },
+    
+    // Other Coursera
+    { title: "Increase Engagement to your Instagram Business Profile", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "coursera", credential: "ID: RQ7GZHHWMCGS5", link: "#" },
+    { title: "Create and Design Digital Products using Canva", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "coursera", credential: "ID: 965Y99EZS54K", link: "#" },
+    { title: "Use Canva to Create Social Media Visuals for Business", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "coursera", credential: "ID: 4E75658BA3AYV", link: "#" },
+    { title: "Programming for Everybody (Getting Started with Python)", issuer: "University of Michigan", date: "Feb 2026", category: "coursera", icon: "coursera", credential: "ID: 1LGPW7GKGFS33", link: "https://www.linkedin.com/posts/sanjai2306_python-from-university-of-michigan-activity-7426087517990375425-Urol" },
+    
+    // IBM
+    { title: "Getting Started with Git and GitHub", issuer: "IBM", date: "Feb 2026", category: "ibm", icon: "ibm", credential: "ID: H210FSD8244X", link: "#" },
+    { title: "Getting Started with Data", issuer: "IBM SkillsBuild", date: "Oct 2025", category: "ibm", icon: "ibm", credential: "", link: "https://www.linkedin.com/posts/sanjai2306_completion-certificate-for-getting-started-activity-7425484748036157440-xryg" },
+    
+    // AWS
+    { title: "AWS Certified Cloud Practitioner (Practice Set)", issuer: "AWS Training & Certification", date: "Oct 2025", category: "aws", icon: "aws", credential: "CLF-C02", link: "https://www.linkedin.com/posts/sanjai2306_awscertified-cloudpractitioner-professionaldevelopment-activity-7384096347936927744-0aUl" },
+    
+    // Saylor Academy
+    { title: "CS205: Building with Artificial Intelligence", issuer: "Saylor Academy", date: "Feb 2026", category: "other", icon: "ai", credential: "Grade: 92.16%", link: "https://www.linkedin.com/posts/sanjai2306_artificialintelligence-machinelearning-ai-activity-7424034109586464768-YVr9" },
+    
+    // byteXL
+    { title: "C Programming", issuer: "byteXL", date: "Nov 2025", category: "other", icon: "code", credential: "Sri Krishna Institutions", link: "https://www.linkedin.com/posts/sanjai2306_cprogramming-programmingfundamentals-bytexl-activity-7430580361270616064-Thi6" },
+    
+    // Government
+    { title: "Viksit Bharat Young Leaders Dialogue (VBYLD) 2026", issuer: "Ministry of Youth Affairs", date: "Sep 2025", category: "govt", icon: "govt", credential: "Online Quiz", link: "https://www.linkedin.com/posts/sanjai2306_honored-to-receive-a-certificate-of-participation-activity-7376454082129088512-FSGz" },
+    { title: "The Viksit Bharat Quiz 2026", issuer: "MYBharat", date: "2025", category: "govt", icon: "govt", credential: "", link: "#" },
+    { title: "MYBharat Budget Quest 2026", issuer: "Ministry of Youth Affairs", date: "Feb 2026", category: "govt", icon: "govt", credential: "", link: "https://www.linkedin.com/posts/sanjai2306_mybharat-budget2026-viksitbharat-activity-7429822012530802688-cngh" },
+    { title: "Know more about DFPD-II Quiz", issuer: "MYBharat", date: "Feb 2026", category: "govt", icon: "govt", credential: "", link: "#" },
+    { title: "Online Essay on Viksit Bharat", issuer: "Ministry of Youth Affairs", date: "Nov 2025", category: "govt", icon: "govt", credential: "", link: "https://www.linkedin.com/posts/sanjai2306_viksitbharat-mybharat-youthleadership-activity-7394660113850093568-3AxY" },
+    { title: "Sardar 150 National Level Essay Competition", issuer: "Ek Bharat", date: "2025", category: "govt", icon: "govt", credential: "", link: "#" },
+    
+    // IIRS/ISRO
+    { title: "Advances in thermal infrared Remote Sensing", issuer: "IIRS/ISRO", date: "Oct 2025", category: "other", icon: "space", credential: "Ecological Studies", link: "https://www.linkedin.com/posts/sanjai2306_remotesensing-ecologicalstudies-iirs-activity-7387002357491900416-NcME" },
+    
+    // Typing
+    { title: "Typing - Beginner Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "keyboard", credential: "20 WPM, 93% accuracy", link: "#" },
+    { title: "Typing - Intermediate Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "keyboard", credential: "26 WPM, 95% accuracy", link: "#" },
+    { title: "Typing - Advanced Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "keyboard", credential: "30 WPM, 96% accuracy", link: "#" }
+];
+
+// Project Data
+const projects = [
+    {
+        name: "RuralCare AI",
+        description: "Multilingual AI-based rural health assistant with symptom checker, voice recording, disease library, and real-time dashboard.",
+        tech: ["Python", "Flask", "AI/ML", "Voice-to-text"],
+        github: "https://github.com/Sanjai-Gopal/ruralcare-ai",
+        demo: "#",
+        image: "assets/images/projects/ruralcare.jpg"
+    },
+    {
+        name: "Feedback & Billing System",
+        description: "Complete snack shop management system with tax calculation, star ratings, and file-based persistence.",
+        tech: ["C++", "File I/O", "OOP"],
+        github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
+        demo: null,
+        image: "assets/images/projects/billing.jpg"
+    },
+    {
+        name: "Smart Compliance System",
+        description: "Python-based automated compliance monitoring with report generation and audit logging.",
+        tech: ["Python", "Automation", "Logging"],
+        github: "https://github.com/Sanjai-Gopal/bis-smart-compliance",
+        demo: null,
+        image: "assets/images/projects/compliance.jpg"
+    },
+    {
+        name: "Railway Reservation System",
+        description: "Console-based ticket booking with seat management, PNR tracking, and fare calculation.",
+        tech: ["C++", "Data Structures"],
+        github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
+        demo: null,
+        image: "assets/images/projects/railway.jpg"
+    },
+    {
+        name: "Advanced Portfolio 2026",
+        description: "Futuristic portfolio with 3D background, AI chatbot, voice navigation, and private cloud storage.",
+        tech: ["HTML5/CSS3", "JavaScript", "Three.js"],
+        github: "https://github.com/Sanjai-Gopal/sanjai_portfolio",
+        demo: "https://sanjai-gopal.github.io/sanjai_portfolio/",
+        image: "assets/images/projects/portfolio.jpg"
+    },
+    {
+        name: "AI Student Performance Predictor",
+        description: "ML model to predict student grades based on study hours, attendance, and previous performance.",
+        tech: ["Python", "scikit-learn", "Pandas"],
+        github: "https://github.com/Sanjai-Gopal/ml-student-performance",
+        demo: null,
+        image: "assets/images/projects/ml-model.jpg"
+    }
+];
+
+// Display certificates
+function displayCertificates(filter = 'all') {
+    const grid = document.getElementById('certificatesGrid');
+    const filtered = filter === 'all' ? certificates : certificates.filter(c => c.category === filter);
+    
+    grid.innerHTML = filtered.map(cert => `
+        <div class="cert-card">
+            <div class="cert-icon ${cert.icon}">
+                <i class="fas ${getIcon(cert.icon)}"></i>
+            </div>
+            <h3 class="cert-title">${cert.title}</h3>
+            <div class="cert-issuer">${cert.issuer}</div>
+            <div class="cert-date">${cert.date}</div>
+            ${cert.credential ? `<div class="cert-credential">${cert.credential}</div>` : ''}
+            <div class="cert-footer">
+                <span></span>
+                <a href="${cert.link}" target="_blank" class="cert-link">
+                    <i class="fab fa-linkedin"></i> View
+                </a>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Display projects
+function displayProjects() {
+    const grid = document.getElementById('projectsGrid');
+    
+    grid.innerHTML = projects.map(project => `
+        <div class="project-card">
+            <div class="project-image">
+                <img src="${project.image}" alt="${project.name}" onerror="this.src='assets/images/projects/placeholder.jpg'">
+            </div>
+            <div class="project-content">
+                <h3>${project.name}</h3>
+                <p>${project.description}</p>
+                <div class="project-tech">
+                    ${project.tech.map(t => `<span>${t}</span>`).join('')}
                 </div>
-                
-                <div class="achievements-grid">
-                    <!-- Achievement 1 -->
-                    <div class="achievement-card" data-aos="zoom-in">
-                        <div class="achievement-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3>Python for Beginners</h3>
-                        <p>Completed comprehensive Python programming course</p>
-                        <span class="achievement-date">2025</span>
-                        <div class="achievement-badge">Verified</div>
-                    </div>
-                    
-                    <!-- Achievement 2 -->
-                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="achievement-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h3>College Coding Competition</h3>
-                        <p>Participated in inter-college coding challenge</p>
-                        <span class="achievement-date">2025</span>
-                        <div class="achievement-badge">Finalist</div>
-                    </div>
-                    
-                    <!-- Achievement 3 -->
-                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="achievement-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3>Git & GitHub Workshop</h3>
-                        <p>Hands-on workshop on version control and collaboration</p>
-                        <span class="achievement-date">2025</span>
-                        <div class="achievement-badge">Completed</div>
-                    </div>
-                    
-                    <!-- Achievement 4 -->
-                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="achievement-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3>AI/ML Fundamentals</h3>
-                        <p>Introduction to Machine Learning concepts and algorithms</p>
-                        <span class="achievement-date">2026</span>
-                        <div class="achievement-badge">In Progress</div>
-                    </div>
-                </div>
-                
-                <!-- Certificates Grid - FIXED: Removed duplicate Swiper slider -->
-                <div class="certificates-section" data-aos="fade-up">
-                    <h3>My Certificates</h3>
-                    <div class="certificates-grid">
-                        <div class="certificate-card">
-                            <img src="assets/images/achievements/certificates/python-cert.jpg" alt="Python Certificate">
-                            <div class="certificate-overlay">
-                                <span>Python for Beginners</span>
-                                <a href="#" onclick="viewCertificate('python'); return false;" class="view-cert-btn">View</a>
-                            </div>
-                        </div>
-                        <div class="certificate-card">
-                            <img src="assets/images/achievements/certificates/git-cert.jpg" alt="Git Certificate">
-                            <div class="certificate-overlay">
-                                <span>Git & GitHub Workshop</span>
-                                <a href="#" onclick="viewCertificate('git'); return false;" class="view-cert-btn">View</a>
-                            </div>
-                        </div>
-                        <div class="certificate-card">
-                            <img src="assets/images/achievements/certificates/aws-cert.jpg" alt="AWS Certificate">
-                            <div class="certificate-overlay">
-                                <span>AWS Cloud Practitioner</span>
-                                <a href="#" onclick="viewCertificate('aws'); return false;" class="view-cert-btn">View</a>
-                            </div>
-                        </div>
-                        <div class="certificate-card">
-                            <img src="assets/images/achievements/certificates/ml-cert.jpg" alt="ML Certificate">
-                            <div class="certificate-overlay">
-                                <span>Machine Learning Basics</span>
-                                <a href="#" onclick="viewCertificate('ml'); return false;" class="view-cert-btn">View</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="project-links">
+                    <a href="${project.github}" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    ${project.demo ? `<a href="${project.demo}" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
                 </div>
             </div>
-        </section>
+        </div>
+    `).join('');
+}
+
+// Helper function for icons
+function getIcon(category) {
+    const icons = {
+        coursera: 'fa-graduation-cap',
+        aws: 'fa-cloud',
+        ibm: 'fa-database',
+        govt: 'fa-indian-rupee-sign',
+        ai: 'fa-robot',
+        code: 'fa-code',
+        space: 'fa-satellite',
+        keyboard: 'fa-keyboard'
+    };
+    return icons[category] || 'fa-certificate';
+}
+
+// Filter function
+function filterCerts(filter) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    displayCertificates(filter);
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    displayCertificates('all');
+    displayProjects();
+});
+</script>
 
         <!-- Blog Section -->
         <section id="blog" class="blog">
@@ -1159,3 +1428,4 @@
     </script>
 </body>
 </html>
+
