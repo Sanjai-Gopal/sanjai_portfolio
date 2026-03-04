@@ -1,0 +1,184 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Getting Started with Python: A Beginner's Guide",
+      "slug": "python-basics",
+      "excerpt": "Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers.",
+      "content": "python-basics.md",
+      "author": {
+        "name": "Sanjai Gopal",
+        "avatar": "/assets/images/profile/sanjai-avatar.png",
+        "bio": "Aspiring AI Engineer at SKCET"
+      },
+      "date": "2026-03-01",
+      "category": "Programming",
+      "tags": ["Python", "Beginners", "Tutorial"],
+      "image": "/assets/images/blog/python-basics.jpg",
+      "thumbnail": "/assets/images/blog/thumbnails/python-basics-thumb.jpg",
+      "readTime": 5,
+      "featured": true,
+      "views": 1250,
+      "likes": 89,
+      "comments": 24,
+      "related": [2, 5]
+    },
+    {
+      "id": 2,
+      "title": "Git & GitHub: Essential Commands Every Developer Should Know",
+      "slug": "git-guide",
+      "excerpt": "A comprehensive guide to version control for beginners, with practical workflows and tips.",
+      "content": "git-guide.md",
+      "author": {
+        "name": "Sanjai Gopal",
+        "avatar": "/assets/images/profile/sanjai-avatar.png",
+        "bio": "Aspiring AI Engineer at SKCET"
+      },
+      "date": "2026-02-15",
+      "category": "DevOps",
+      "tags": ["Git", "GitHub", "Version Control"],
+      "image": "/assets/images/blog/git-guide.jpg",
+      "thumbnail": "/assets/images/blog/thumbnails/git-guide-thumb.jpg",
+      "readTime": 7,
+      "featured": true,
+      "views": 980,
+      "likes": 67,
+      "comments": 18,
+      "related": [1, 4]
+    },
+    {
+      "id": 3,
+      "title": "My First Steps into AI: What I Learned in 3 Months",
+      "slug": "ai-journey",
+      "excerpt": "Sharing my journey as a first-year student diving into the world of Artificial Intelligence.",
+      "content": "ai-journey.md",
+      "author": {
+        "name": "Sanjai Gopal",
+        "avatar": "/assets/images/profile/sanjai-avatar.png",
+        "bio": "Aspiring AI Engineer at SKCET"
+      },
+      "date": "2026-02-01",
+      "category": "AI/ML",
+      "tags": ["AI", "Machine Learning", "Journey"],
+      "image": "/assets/images/blog/ai-journey.jpg",
+      "thumbnail": "/assets/images/blog/thumbnails/ai-journey-thumb.jpg",
+      "readTime": 6,
+      "featured": true,
+      "views": 2100,
+      "likes": 156,
+      "comments": 42,
+      "related": [1, 6]
+    },
+    {
+      "id": 4,
+      "title": "Understanding Neural Networks: A Visual Guide",
+      "slug": "neural-networks",
+      "excerpt": "Demystifying neural networks with visual explanations and simple analogies.",
+      "content": "neural-networks.md",
+      "author": {
+        "name": "Sanjai Gopal",
+        "avatar": "/assets/images/profile/sanjai-avatar.png",
+        "bio": "Aspiring AI Engineer at SKCET"
+      },
+      "date": "2026-01-20",
+      "category": "AI/ML",
+      "tags": ["Neural Networks", "Deep Learning", "Tutorial"],
+      "image": "/assets/images/blog/neural-networks.jpg",
+      "thumbnail": "/assets/images/blog/thumbnails/neural-networks-thumb.jpg",
+      "readTime": 8,
+      "featured": false,
+      "views": 850,
+      "likes": 45,
+      "comments": 12,
+      "related": [3, 6]
+    },
+    {
+      "id": 5,
+      "title": "Building Your First C++ Project",
+      "slug": "cpp-project",
+      "excerpt": "Step-by-step guide to creating a practical C++ application from scratch.",
+      "content": "cpp-project.md",
+      "author": {
+        "name": "Sanjai Gopal",
+        "avatar": "/assets/images/profile/sanjai-avatar.png",
+        "bio": "Aspiring AI Engineer at SKCET"
+      },
+      "date": "2026-01-05",
+      "category": "Programming",
+      "tags": ["C++", "Project", "Tutorial"],
+      "image": "/assets/images/blog/cpp-project.jpg",
+      "thumbnail": "/assets/images/blog/thumbnails/cpp-project-thumb.jpg",
+      "readTime": 6,
+      "featured": false,
+      "views": 620,
+      "likes": 34,
+      "comments": 8,
+      "related": [1, 2]
+    },
+    {
+      "id": 6,
+      "title": "Introduction to MLOps: Bridging ML and Operations",
+      "slug": "mlops-intro",
+      "excerpt": "Understanding the basics of MLOps and why it matters for production ML systems.",
+      "content": "mlops-intro.md",
+      "author": {
+        "name": "Sanjai Gopal",
+        "avatar": "/assets/images/profile/sanjai-avatar.png",
+        "bio": "Aspiring AI Engineer at SKCET"
+      },
+      "date": "2025-12-10",
+      "category": "MLOps",
+      "tags": ["MLOps", "DevOps", "Machine Learning"],
+      "image": "/assets/images/blog/mlops-intro.jpg",
+      "thumbnail": "/assets/images/blog/thumbnails/mlops-intro-thumb.jpg",
+      "readTime": 7,
+      "featured": true,
+      "views": 1500,
+      "likes": 98,
+      "comments": 31,
+      "related": [3, 4]
+    }
+  ],
+  "categories": [
+    {
+      "name": "Programming",
+      "slug": "programming",
+      "count": 2,
+      "icon": "fa-code"
+    },
+    {
+      "name": "AI/ML",
+      "slug": "ai-ml",
+      "count": 2,
+      "icon": "fa-brain"
+    },
+    {
+      "name": "MLOps",
+      "slug": "mlops",
+      "count": 1,
+      "icon": "fa-cogs"
+    },
+    {
+      "name": "DevOps",
+      "slug": "devops",
+      "count": 1,
+      "icon": "fa-cloud"
+    }
+  ],
+  "authors": {
+    "sanjai-gopal": {
+      "name": "Sanjai Gopal",
+      "avatar": "/assets/images/profile/sanjai-avatar.png",
+      "bio": "Aspiring AI Engineer at SKCET. Passionate about building intelligent systems and sharing knowledge.",
+      "github": "https://github.com/Sanjai-Gopal",
+      "linkedin": "https://linkedin.com/in/sanjai2306",
+      "twitter": "https://twitter.com/sanjai_gopal"
+    }
+  },
+  "metadata": {
+    "totalPosts": 6,
+    "totalViews": 7300,
+    "totalComments": 135,
+    "lastUpdated": "2026-03-04"
+  }
+}
