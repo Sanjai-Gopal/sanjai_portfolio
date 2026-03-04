@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Mode - Sanjai Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .offline-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 30px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .offline-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            padding: 1rem;
+            background: rgba(20, 30, 50, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+        }
+
+        .feature i {
+            font-size: 1.5rem;
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature span {
+            display: block;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .cached-files {
+            background: rgba(20, 30, 50, 0.5);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .cached-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cached-title {
+            font-weight: 600;
+            color: #8b5cf6;
+        }
+
+        .cached-count {
+            background: #8b5cf6;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .cached-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .cached-item:last-child {
+            border-bottom: none;
+        }
+
+        .cached-item i {
+            color: #8b5cf6;
+        }
+
+        .cached-item span {
+            flex: 1;
+            text-align: left;
+        }
+
+        .cached-item small {
+            color: #94a3b8;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #8b5cf6;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .retry-message {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            border-radius: 12px;
+            color: #ef4444;
+            display: none;
+        }
+
+        .retry-message.show {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .offline-card { padding: 2rem; }
+            .offline-features { grid-template-columns: 1fr; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-card">
+        <div class="offline-icon">
+            <i class="fas fa-wifi"></i>
+        </div>
+        
+        <h1>You're Offline</h1>
+        <p>Don't worry! You can still access your cached files and continue working.</p>
+        
+        <div class="offline-features">
+            <div class="feature">
+                <i class="fas fa-eye"></i>
+                <span>View Cached Files</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-download"></i>
+                <span>Download Later</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-sync"></i>
+                <span>Auto-sync when online</span>
+            </div>
+            <div class="feature">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure Offline Access</span>
+            </div>
+        </div>
+
+        <div class="cached-files">
+            <div class="cached-header">
+                <span class="cached-title"><i class="fas fa-database"></i> Cached Files</span>
+                <span class="cached-count" id="cachedCount">0</span>
+            </div>
+            <div id="cachedList"></div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Try Again
+            </a>
+            <button class="btn btn-secondary" onclick="retryConnection()">
+                <i class="fas fa-sync-alt"></i> Retry
+            </button>
+        </div>
+
+        <div class="retry-message" id="retryMessage">
+            <i class="fas fa-exclamation-circle"></i>
+            Still offline. Checking connection...
+        </div>
+    </div>
+
+    <script>
+        function loadCachedFiles() {
+            const files = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            const cachedList = document.getElementById('cachedList');
+            const cachedCount = document.getElementById('cachedCount');
+            
+            cachedCount.textContent = files.length;
+            
+            if (files.length === 0) {
+                cachedList.innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 1rem;">No cached files</p>';
+                return;
+            }
+            
+            // Show last 5 files
+            const recentFiles = files.slice(-5);
+            cachedList.innerHTML = recentFiles.map(file => `
+                <div class="cached-item">
+                    <i class="fas ${getFileIcon(file.type)}"></i>
+                    <span>${truncateName(file.name)}</span>
+                    <small>${formatSize(file.size)}</small>
+                </div>
+            `).join('');
+            
+            if (files.length > 5) {
+                const more = document.createElement('div');
+                more.className = 'cached-item';
+                more.innerHTML = `<i class="fas fa-ellipsis-h"></i><span>and ${files.length - 5} more files</span>`;
+                cachedList.appendChild(more);
+            }
+        }
+
+        function getFileIcon(type) {
+            if (type?.includes('pdf')) return 'fa-file-pdf';
+            if (type?.includes('image')) return 'fa-file-image';
+            return 'fa-file';
+        }
+
+        function truncateName(name, max = 20) {
+            if (name.length <= max) return name;
+            return name.substr(0, max - 3) + '...';
+        }
+
+        function formatSize(bytes) {
+            if (!bytes) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function retryConnection() {
+            const message = document.getElementById('retryMessage');
+            message.classList.add('show');
+            
+            // Check if online
+            if (navigator.onLine) {
+                message.style.background = 'rgba(16, 185, 129, 0.1)';
+                message.style.borderColor = '#10b981';
+                message.style.color = '#10b981';
+                message.innerHTML = '<i class="fas fa-check-circle"></i> Back online! Redirecting...';
+                
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } else {
+                message.style.background = 'rgba(239, 68, 68, 0.1)';
+                message.style.borderColor = '#ef4444';
+                message.style.color = '#ef4444';
+                message.innerHTML = '<i class="fas fa-exclamation-circle"></i> Still offline. Check your connection.';
+            }
+        }
+
+        // Listen for online/offline events
+        window.addEventListener('online', function() {
+            retryConnection();
+        });
+
+        window.addEventListener('offline', function() {
+            document.querySelector('.offline-icon i').className = 'fas fa-wifi-slash';
+        });
+
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', loadCachedFiles);
+    </script>
+</body>
+</html>
