@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Cloud - Your Name</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">Your<span>Name</span></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#achievements">Achievements</a></li>
+                <li><a href="index.html#social">Connect</a></li>
+                <li><a href="private-cloud.html" class="private-cloud-btn active">
+                    <i class="fas fa-cloud"></i> Private Cloud
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="private-cloud">
+        <div class="container">
+            <h1 class="section-title">My Private Cloud</h1>
+            <p class="cloud-subtitle">Secure storage for certificates and personal files</p>
+            
+            <!-- Authentication Section -->
+            <div class="auth-section" id="authSection">
+                <div class="auth-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure Access</h3>
+                    <p>Enter your passcode to access private files</p>
+                    <input type="password" id="passcode" placeholder="Enter passcode" class="auth-input">
+                    <button onclick="authenticate()" class="btn primary-btn">Access Cloud</button>
+                    <p class="auth-hint">Default passcode: 1234 (change in settings)</p>
+                </div>
+            </div>
+
+            <!-- Cloud Storage Section (Hidden by default) -->
+            <div class="cloud-storage" id="cloudStorage" style="display: none;">
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <h2>Upload Certificates</h2>
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop files here or click to browse</p>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+                        <button onclick="document.getElementById('fileInput').click()" class="btn secondary-btn">
+                            Choose Files
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Files Grid -->
+                <div class="files-section">
+                    <h2>My Certificates & Files</h2>
+                    <div class="files-grid" id="filesGrid">
+                        <!-- Files will be displayed here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/private-cloud.js"></script>
+</body>
+</html>
