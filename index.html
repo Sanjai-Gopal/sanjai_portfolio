@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal - AI Engineer & MLOps Specialist</title>
+    <title>Sanjai Gopal - AI Engineer & Innovation Architect</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Sanjai Gopal - Aspiring AI Engineer, MLOps Enthusiast, Python & C++ Developer from Coimbatore. Building intelligent systems and shaping the future of AI.">
-    <meta name="keywords" content="Sanjai Gopal, AI Engineer, MLOps, Python Developer, C++, Machine Learning, Coimbatore, SKCET">
+    <meta name="description" content="Sanjai Gopal - Aspiring AI Engineer, MLOps Enthusiast, Python & C++ Developer from Coimbatore. 30+ certifications, 6 innovative projects.">
+    <meta name="keywords" content="Sanjai Gopal, AI Engineer, MLOps, Python, C++, Machine Learning, Coimbatore, SKCET, Certification">
     <meta name="author" content="Sanjai Gopal">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Sanjai Gopal - AI Engineer & MLOps Specialist">
-    <meta property="og:description" content="Aspiring AI Engineer building intelligent systems and shaping the future of technology.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Sanjai Gopal - AI Engineer & Innovation Architect">
+    <meta property="og:description" content="30+ certifications • 6 projects • AI/ML Specialist">
     <meta property="og:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
     <meta property="og:url" content="https://sanjai-gopal.github.io/sanjai_portfolio/">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sanjai Gopal - AI Engineer & MLOps Specialist">
-    <meta name="twitter:description" content="Aspiring AI Engineer building intelligent systems and shaping the future of technology.">
-    <meta name="twitter:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
     
     <!-- PWA Support -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#8B5CF6">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,10 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- AOS Library -->
+    <!-- Libraries -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Swiper for Carousels -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
     <!-- Main CSS -->
@@ -48,78 +37,438 @@
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-style">
     
     <style>
-        /* Certificate Grid Styles */
-        .certificates-grid {
+        /* ===== ADVANCED CUSTOM STYLES ===== */
+        :root {
+            --primary: #8b5cf6;
+            --primary-glow: 0 0 20px rgba(139, 92, 246, 0.5);
+            --secondary: #3b82f6;
+            --accent: #06b6d4;
+            --bg-deep: #0a0f1e;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        /* Certificate Gallery Styles */
+        .certificate-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
-        
-        .certificate-card {
-            position: relative;
-            border-radius: 1rem;
+
+        .cert-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            aspect-ratio: 1.4/1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .certificate-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .certificate-card img {
-            width: 100%;
+            position: relative;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            animation: cardAppear 0.6s ease-out;
         }
-        
-        .certificate-card:hover img {
-            transform: scale(1.1);
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .certificate-overlay {
+
+        .cert-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .cert-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 25px 40px -15px rgba(139, 92, 246, 0.5);
+        }
+
+        .cert-image {
+            height: 160px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .cert-card:hover .cert-image::after {
+            opacity: 1;
+            animation: rotate 10s linear infinite;
+        }
+
+        .cert-image i {
+            font-size: 5rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+            transition: all 0.5s ease;
+        }
+
+        .cert-card:hover .cert-image i {
+            transform: scale(1.1) rotate(360deg);
+            color: #fff;
+        }
+
+        .cert-content {
+            padding: 1.8rem;
+            flex: 1;
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            background: linear-gradient(135deg, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cert-issuer {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cert-issuer i {
+            color: var(--primary);
+        }
+
+        .cert-date {
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .cert-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .cert-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .cert-link:hover {
+            gap: 1rem;
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
-        
-        .certificate-card:hover .certificate-overlay {
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 28px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .project-card:hover::after {
             opacity: 1;
         }
-        
-        .certificate-overlay span {
-            color: white;
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 50px -20px rgba(139, 92, 246, 0.6);
+        }
+
+        .project-image {
+            height: 220px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image i {
+            font-size: 6rem;
+            color: var(--primary);
+            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.6));
+            transition: all 0.6s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .project-card:hover .project-image i {
+            transform: scale(1.2) rotate(5deg);
+            color: #fff;
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-tech span {
+            padding: 0.4rem 1.2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
         }
-        
-        .view-cert-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+
+        .project-tech span:hover {
+            background: var(--primary);
             color: white;
-            text-decoration: none;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            width: fit-content;
-            transition: transform 0.3s ease;
+            transform: scale(1.05);
         }
-        
-        .view-cert-btn:hover {
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-links a:hover {
+            color: white;
+            background: var(--primary);
             transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Filter Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 40px;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.5), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .filter-btn:hover::before,
+        .filter-btn.active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Stats Cards */
+        .stats-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 3rem;
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 30px -10px rgba(139, 92, 246, 0.5);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .certificate-gallery {
+                grid-template-columns: 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-wrapper {
+                gap: 1.5rem;
+            }
+            .stat-card {
+                padding: 1.5rem 2rem;
+                min-width: 150px;
+            }
         }
     </style>
 </head>
@@ -153,238 +502,81 @@
                 </a>
             </div>
             
-            <div class="nav-menu-container">
-                <ul class="nav-menu">
-                    <li><a href="#home" class="nav-link active">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
-                    <li><a href="#blog" class="nav-link">Blog</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#achievements" class="nav-link">Certifications</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
             
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                
-                <button class="voice-toggle" id="voiceToggle">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                
-                <a href="private-cloud/" class="cloud-btn">
-                    <i class="fas fa-cloud"></i>
-                    <span>Cloud</span>
-                </a>
-                
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <a href="private-cloud/" class="cloud-btn"><i class="fas fa-cloud"></i><span>Cloud</span></a>
+                <button class="hamburger"><span></span><span></span><span></span></button>
             </div>
         </div>
     </nav>
 
-    <!-- Voice Command Modal -->
-    <div class="voice-modal" id="voiceModal">
-        <div class="voice-modal-content">
-            <div class="voice-visualizer">
-                <span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <p class="voice-status">Listening...</p>
-            <p class="voice-command" id="voiceCommand">"Go to projects"</p>
-            <div class="voice-commands-list">
-                <h4>Try saying:</h4>
-                <ul>
-                    <li>"Go to home"</li>
-                    <li>"Show projects"</li>
-                    <li>"View skills"</li>
-                    <li>"Contact me"</li>
-                    <li>"Open cloud"</li>
-                </ul>
-            </div>
-            <button class="voice-close" id="voiceClose"><i class="fas fa-times"></i></button>
-        </div>
-    </div>
-
     <!-- 3D Canvas Background -->
     <div id="canvas-container"></div>
-
-    <!-- Particle Network -->
     <div id="particles-js"></div>
 
-    <!-- Main Content -->
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-overlay"></div>
             <div class="container">
-                <div class="hero-content">
-                    <div class="hero-badge" data-aos="fade-down">
-                        <span class="badge-text">AI/ML Engineer</span>
-                        <span class="badge-glow"></span>
+                <div class="hero-content" data-aos="fade-up">
+                    <span class="hero-badge">AI/ML Engineer</span>
+                    <h1 class="hero-title">Sanjai <span class="gradient-text">Gopal</span></h1>
+                    <p class="hero-subtitle">1st Year AIDS @ SKCET | 30+ Certifications | 6 Projects</p>
+                    <p class="hero-description">Building intelligent systems and shaping the future of AI from Coimbatore</p>
+                    
+                    <div class="hero-stats">
+                        <div><span class="stat-number">30+</span><span>Certifications</span></div>
+                        <div><span class="stat-number">6</span><span>Projects</span></div>
+                        <div><span class="stat-number">8</span><span>Platforms</span></div>
                     </div>
                     
-                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-                        <span class="title-line">Sanjai</span>
-                        <span class="title-line gradient-text">Gopal</span>
-                    </h1>
-                    
-                    <div class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
-                        <div class="typewriter">
-                            <span class="typed-text"></span>
-                            <span class="cursor typing-cursor">|</span>
-                        </div>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"></i></a>
+                        <a href="#contact" class="btn btn-outline">Let's Connect <i class="fas fa-comment"></i></a>
                     </div>
                     
-                    <p class="hero-description" data-aos="fade-up" data-aos-delay="300">
-                        1st Year AIDS Student at SKCET | Building intelligent systems and shaping the future of AI from Coimbatore
-                    </p>
-                    
-                    <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="4">0</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="3">0</span>
-                            <span class="stat-label">Languages</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="89">0</span>
-                            <span class="stat-label">Contributions</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="1">0</span>
-                            <span class="stat-label">Year</span>
-                        </div>
-                    </div>
-                    
-                    <div class="hero-cta" data-aos="fade-up" data-aos-delay="500">
-                        <a href="#projects" class="btn btn-primary">
-                            <span>View My Work</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#contact" class="btn btn-outline">
-                            <span>Let's Connect</span>
-                            <i class="fas fa-comment"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="hero-social" data-aos="fade-up" data-aos-delay="600">
-                        <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-icon linkedin">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-icon github">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-icon instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="mailto:sanjai.sparkmail@gmail.com" class="social-icon email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="tel:+919363265552" class="social-icon phone">
-                            <i class="fas fa-phone-alt"></i>
-                        </a>
+                    <div class="hero-social">
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:sanjai.sparkmail@gmail.com"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
-            
-            <div class="hero-scroll">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
-                </div>
-                <span>Scroll</span>
-            </div>
+            <div class="scroll-indicator">Scroll</div>
         </section>
 
         <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
-                    <span class="section-subtitle">Get to know me</span>
-                    <h2 class="section-title">About <span class="gradient-text">Sanjai</span></h2>
-                    <div class="section-divider"></div>
+                    <h2>About <span class="gradient-text">Me</span></h2>
                 </div>
                 
                 <div class="about-content">
                     <div class="about-image" data-aos="fade-right">
-                        <div class="image-wrapper">
-                            <div class="image-glitch"></div>
-                            <img src="assets/images/profile/sanjai-main.jpg" alt="Sanjai Gopal" class="profile-img">
-                            <div class="image-badge">
-                                <span>Aspiring AI Engineer</span>
-                            </div>
-                        </div>
-                        <div class="experience-badge">
-                            <span class="exp-number">1st</span>
-                            <span class="exp-text">Year<br>Student</span>
-                        </div>
+                        <img src="assets/images/profile/sanjai-main.jpg" alt="Sanjai">
+                        <div class="experience-badge">1st Year</div>
                     </div>
                     
                     <div class="about-text" data-aos="fade-left">
                         <h3>Aspiring AI Engineer & MLOps Enthusiast</h3>
+                        <p>I'm Sanjai, a passionate first-year AI student at SKCET, Coimbatore with 30+ certifications across Coursera, AWS, IBM, and Government platforms.</p>
+                        <p>I believe in building intelligent systems that solve real-world problems, from AI health assistants to compliance monitoring systems.</p>
                         
-                        <p class="about-description">
-                            I'm Sanjai, a passionate first-year Artificial Intelligence and Data Science student at 
-                            <span class="highlight">SKCET, Coimbatore</span>. My journey in tech started with Python and C++, 
-                            and I'm now diving deep into the world of Machine Learning, AI, and MLOps.
-                        </p>
-                        
-                        <p class="about-description">
-                            I believe in building intelligent systems that solve real-world problems. From creating billing systems 
-                            in C to exploring compliance solutions with Python, every project teaches me something new about the 
-                            intersection of code and intelligence.
-                        </p>
-                        
-                        <div class="about-info-grid">
-                            <div class="info-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Location</h4>
-                                    <p>Coimbatore, Tamil Nadu</p>
-                                </div>
-                            </div>
-                            
-                            <div class="info-item">
-                                <i class="fas fa-graduation-cap"></i>
-                                <div>
-                                    <h4>Education</h4>
-                                    <p>SKCET - 1st Year AIDS</p>
-                                </div>
-                            </div>
-                            
-                            <div class="info-item">
-                                <i class="fas fa-code"></i>
-                                <div>
-                                    <h4>Languages</h4>
-                                    <p>Python, C++, JavaScript</p>
-                                </div>
-                            </div>
-                            
-                            <div class="info-item">
-                                <i class="fas fa-heart"></i>
-                                <div>
-                                    <h4>Interests</h4>
-                                    <p>AI, MLOps, Blockchain</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="about-cta">
-                            <a href="assets/docs/Sanjai_Resume_2026.pdf" download class="btn btn-primary">
-                                <i class="fas fa-download"></i>
-                                <span>Download Resume</span>
-                            </a>
-                            <a href="#contact" class="btn btn-outline">
-                                <i class="fas fa-paper-plane"></i>
-                                <span>Hire Me</span>
-                            </a>
-                        </div>
+                        <a href="assets/docs/Sanjai_Resume_2026.pdf" download class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
                     </div>
                 </div>
             </div>
@@ -394,924 +586,126 @@
         <section id="skills" class="skills">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
-                    <span class="section-subtitle">My expertise</span>
-                    <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
-                    <div class="section-divider"></div>
+                    <h2>Technical <span class="gradient-text">Skills</span></h2>
                 </div>
                 
-                <div class="skills-content">
-                    <div class="skills-3d" id="skills-canvas"></div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Languages</h3>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>Python</span><div class="progress"><div style="width:85%"></div></div></div>
+                            <div class="skill-item"><span>C++</span><div class="progress"><div style="width:75%"></div></div></div>
+                            <div class="skill-item"><span>JavaScript</span><div class="progress"><div style="width:60%"></div></div></div>
+                        </div>
+                    </div>
                     
-                    <div class="skills-grid">
-                        <!-- Skill Category 1: Languages -->
-                        <div class="skill-category" data-aos="fade-up">
-                            <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                            <div class="skill-items">
-                                <div class="skill-item" data-progress="85">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Python</span>
-                                        <span class="skill-percent">85%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 85%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>NumPy</span>
-                                        <span>Pandas</span>
-                                        <span>Matplotlib</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="skill-item" data-progress="75">
-                                    <div class="skill-info">
-                                        <span class="skill-name">C++</span>
-                                        <span class="skill-percent">75%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 75%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>OOP</span>
-                                        <span>STL</span>
-                                        <span>Algorithms</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="skill-item" data-progress="60">
-                                    <div class="skill-info">
-                                        <span class="skill-name">JavaScript</span>
-                                        <span class="skill-percent">60%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 60%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>ES6</span>
-                                        <span>React</span>
-                                        <span>Node.js</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill Category 2: AI/ML -->
-                        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-                            <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
-                            <div class="skill-items">
-                                <div class="skill-item" data-progress="70">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Machine Learning</span>
-                                        <span class="skill-percent">70%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 70%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>Scikit-learn</span>
-                                        <span>Regression</span>
-                                        <span>Classification</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="skill-item" data-progress="50">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Deep Learning</span>
-                                        <span class="skill-percent">50%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 50%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>Neural Networks</span>
-                                        <span>TensorFlow</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="skill-item" data-progress="40">
-                                    <div class="skill-info">
-                                        <span class="skill-name">MLOps</span>
-                                        <span class="skill-percent">40%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 40%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>Docker</span>
-                                        <span>MLflow</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Skill Category 3: Tools & Technologies -->
-                        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                            <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
-                            <div class="skill-items">
-                                <div class="skill-item" data-progress="80">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Git & GitHub</span>
-                                        <span class="skill-percent">80%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 80%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>Version Control</span>
-                                        <span>Collaboration</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="skill-item" data-progress="65">
-                                    <div class="skill-info">
-                                        <span class="skill-name">VS Code</span>
-                                        <span class="skill-percent">65%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 65%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>Extensions</span>
-                                        <span>Debugging</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="skill-item" data-progress="55">
-                                    <div class="skill-info">
-                                        <span class="skill-name">Linux/Unix</span>
-                                        <span class="skill-percent">55%</span>
-                                    </div>
-                                    <div class="skill-progress">
-                                        <div class="progress-fill" style="width: 55%"></div>
-                                    </div>
-                                    <div class="skill-tags">
-                                        <span>Command Line</span>
-                                        <span>Bash</span>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="skill-category">
+                        <h3><i class="fas fa-brain"></i> AI/ML</h3>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>Machine Learning</span><div class="progress"><div style="width:70%"></div></div></div>
+                            <div class="skill-item"><span>Deep Learning</span><div class="progress"><div style="width:50%"></div></div></div>
+                            <div class="skill-item"><span>MLOps</span><div class="progress"><div style="width:40%"></div></div></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- GitHub Stats Section -->
+        <!-- GitHub Stats -->
         <section class="github-stats">
             <div class="container">
-                <div class="stats-grid" data-aos="fade-up">
-                    <div class="stat-card">
-                        <i class="fab fa-github"></i>
-                        <div class="stat-info">
-                            <span class="stat-value" id="repoCount">4</span>
-                            <span class="stat-label">Repositories</span>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <i class="fas fa-code-branch"></i>
-                        <div class="stat-info">
-                            <span class="stat-value" id="commitCount">89</span>
-                            <span class="stat-label">Contributions</span>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <i class="fas fa-star"></i>
-                        <div class="stat-info">
-                            <span class="stat-value" id="starCount">5</span>
-                            <span class="stat-label">Stars</span>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <i class="fas fa-users"></i>
-                        <div class="stat-info">
-                            <span class="stat-value" id="followerCount">3</span>
-                            <span class="stat-label">Followers</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="github-calendar" data-aos="fade-up">
-                    <h3>Contribution Activity</h3>
-                    <div class="calendar-container">
-                        <img src="https://ghchart.rshah.org/Sanjai-Gopal" alt="GitHub Contribution Chart" class="contribution-chart">
-                    </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fab fa-github"></i><span class="stat-value">4</span><span>Repos</span></div>
+                    <div class="stat-card"><i class="fas fa-code-branch"></i><span class="stat-value">89</span><span>Contributions</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- ===== PROJECTS SECTION ===== -->
         <section id="projects" class="projects">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
-                    <span class="section-subtitle">My work</span>
-                    <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-                    <div class="section-divider"></div>
+                    <h2>Featured <span class="gradient-text">Projects</span></h2>
                 </div>
-                
-                <div class="projects-filter" data-aos="fade-up">
+
+                <div class="filter-container" id="projectFilters">
                     <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ai">AI/ML</button>
                     <button class="filter-btn" data-filter="python">Python</button>
                     <button class="filter-btn" data-filter="cpp">C++</button>
                     <button class="filter-btn" data-filter="web">Web</button>
-                    <button class="filter-btn" data-filter="ai">AI/ML</button>
                 </div>
+
+                <div class="projects-grid" id="projectsGrid"></div>
                 
-                <div class="projects-grid" id="projectsGrid">
-                    <!-- Project 1: Feedback and Billing System -->
-                    <div class="project-card" data-category="cpp" data-aos="flip-left">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/billing-system.jpg" alt="Feedback and Billing System">
-                                    <div class="project-overlay">
-                                        <span class="project-category">C++</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Feedback and Billing System</h3>
-                                    <p>A comprehensive snack shop billing system with tax calculation, star ratings, and file storage</p>
-                                    <div class="project-tech">
-                                        <span>C++</span>
-                                        <span>File I/O</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Automatic bill generation</li>
-                                    <li>✓ Tax calculation</li>
-                                    <li>✓ Customer feedback with ratings</li>
-                                    <li>✓ File-based data persistence</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/Feedback-and-Billing-System" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> View Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2: bis-smart-compliance -->
-                    <div class="project-card" data-category="python" data-aos="flip-left" data-aos-delay="100">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/compliance.jpg" alt="bis-smart-compliance">
-                                    <div class="project-overlay">
-                                        <span class="project-category">Python</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>bis-smart-compliance</h3>
-                                    <p>Smart compliance system built with Python for automated monitoring and reporting</p>
-                                    <div class="project-tech">
-                                        <span>Python</span>
-                                        <span>Automation</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Automated compliance checks</li>
-                                    <li>✓ Report generation</li>
-                                    <li>✓ Data validation</li>
-                                    <li>✓ Audit logging</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/bis-smart-compliance" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> View Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3: Railway Reservation System -->
-                    <div class="project-card" data-category="cpp" data-aos="flip-left" data-aos-delay="200">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/railway.jpg" alt="Railway Reservation System">
-                                    <div class="project-overlay">
-                                        <span class="project-category">C++</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Railway Reservation System</h3>
-                                    <p>Console-based railway ticket reservation system with seat management</p>
-                                    <div class="project-tech">
-                                        <span>C++</span>
-                                        <span>OOP</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Ticket booking/cancellation</li>
-                                    <li>✓ Seat availability check</li>
-                                    <li>✓ PNR status tracking</li>
-                                    <li>✓ Fare calculation</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/railway-reservation-cpp" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> View Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4: Current Portfolio -->
-                    <div class="project-card" data-category="web" data-aos="flip-left" data-aos-delay="300">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/portfolio.jpg" alt="Portfolio Website">
-                                    <div class="project-overlay">
-                                        <span class="project-category">Web</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Advanced Portfolio</h3>
-                                    <p>Futuristic portfolio with 3D elements, AI chatbot, and private cloud storage</p>
-                                    <div class="project-tech">
-                                        <span>HTML/CSS</span>
-                                        <span>JavaScript</span>
-                                        <span>Three.js</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ 3D interactive background</li>
-                                    <li>✓ AI chatbot assistant</li>
-                                    <li>✓ Voice navigation</li>
-                                    <li>✓ Private cloud storage</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/sanjai_portfolio" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> View Code
-                                    </a>
-                                    <a href="#" class="live-link">
-                                        <i class="fas fa-external-link-alt"></i> Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projects-more" data-aos="fade-up">
-                    <a href="https://github.com/Sanjai-Gopal?tab=repositories" target="_blank" class="btn btn-outline">
-                        <i class="fab fa-github"></i>
-                        <span>View All on GitHub</span>
+                <div class="text-center" style="margin-top: 4rem;">
+                    <a href="https://github.com/Sanjai-Gopal" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> View All on GitHub
                     </a>
                 </div>
             </div>
         </section>
 
-     
-    <!-- ========================================
-   ACHIEVEMENTS & CERTIFICATES SECTION
-   ======================================== -->
-<!-- ========================================
-   ACHIEVEMENTS & CERTIFICATES SECTION - PROFESSIONAL GALLERY
-   ======================================== -->
-<!-- ========================================
-   ACHIEVEMENTS & CERTIFICATES SECTION - FIXED
-   ======================================== -->
-<section id="achievements" class="achievements">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-subtitle">My Credentials</span>
-            <h2 class="section-title">Certifications & <span class="gradient-text">Achievements</span></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <!-- Stats Counter - FIXED with actual numbers -->
-        <div class="stats-container" style="display: flex; justify-content: center; gap: 3rem; margin-bottom: 3rem; flex-wrap: wrap;">
-            <div class="stat-box" style="text-align: center; padding: 1.5rem 2rem; background: rgba(30, 41, 59, 0.5); border-radius: 20px; min-width: 150px;">
-                <span class="stat-number" style="font-size: 2.5rem; font-weight: 700; color: #8b5cf6; display: block;">24</span>
-                <span class="stat-label" style="color: #94a3b8;">Total Certifications</span>
-            </div>
-            <div class="stat-box" style="text-align: center; padding: 1.5rem 2rem; background: rgba(30, 41, 59, 0.5); border-radius: 20px; min-width: 150px;">
-                <span class="stat-number" style="font-size: 2.5rem; font-weight: 700; color: #8b5cf6; display: block;">8</span>
-                <span class="stat-label" style="color: #94a3b8;">Platforms</span>
-            </div>
-            <div class="stat-box" style="text-align: center; padding: 1.5rem 2rem; background: rgba(30, 41, 59, 0.5); border-radius: 20px; min-width: 150px;">
-                <span class="stat-number" style="font-size: 2.5rem; font-weight: 700; color: #8b5cf6; display: block;">6</span>
-                <span class="stat-label" style="color: #94a3b8;">Projects</span>
-            </div>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="filter-tabs" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
-            <button class="filter-btn active" onclick="filterCertificates('all')">All</button>
-            <button class="filter-btn" onclick="filterCertificates('coursera')">Coursera</button>
-            <button class="filter-btn" onclick="filterCertificates('aws')">AWS</button>
-            <button class="filter-btn" onclick="filterCertificates('ibm')">IBM</button>
-            <button class="filter-btn" onclick="filterCertificates('govt')">Government</button>
-            <button class="filter-btn" onclick="filterCertificates('other')">Other</button>
-        </div>
-
-        <!-- Certificate Gallery -->
-        <div class="certificate-gallery" id="certificateGallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-top: 2rem;"></div>
-    </div>
-</section>
-
-<!-- Projects Section - FIXED with correct project names -->
-<section id="projects" class="projects" style="margin-top: 4rem;">
-    <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-subtitle">My Work</span>
-            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-            <div class="section-divider"></div>
-        </div>
-
-        <!-- Projects Filter -->
-        <div class="projects-filter" style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
-            <button class="filter-btn active" onclick="filterProjects('all')">All</button>
-            <button class="filter-btn" onclick="filterProjects('python')">Python</button>
-            <button class="filter-btn" onclick="filterProjects('cpp')">C++</button>
-            <button class="filter-btn" onclick="filterProjects('web')">Web</button>
-            <button class="filter-btn" onclick="filterProjects('ai')">AI/ML</button>
-        </div>
-
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsGallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 2rem;"></div>
-        
-        <!-- View All on GitHub Button -->
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="https://github.com/Sanjai-Gopal?tab=repositories" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 30px; color: white; text-decoration: none;">
-                <i class="fab fa-github"></i> View All on GitHub
-            </a>
-        </div>
-    </div>
-</section>
-
-<style>
-/* Certificate Cards */
-.cert-card {
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.cert-card:hover {
-    transform: translateY(-10px);
-    border-color: #8b5cf6;
-    box-shadow: 0 20px 30px -10px rgba(139, 92, 246, 0.4);
-}
-
-.cert-image {
-    height: 140px;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.cert-image i {
-    font-size: 4rem;
-    color: #8b5cf6;
-    opacity: 0.8;
-}
-
-.cert-content {
-    padding: 1.5rem;
-    flex: 1;
-}
-
-.cert-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.cert-issuer {
-    color: #94a3b8;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.cert-date {
-    display: inline-block;
-    padding: 0.2rem 1rem;
-    background: rgba(139, 92, 246, 0.1);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: #8b5cf6;
-    margin-bottom: 0.5rem;
-}
-
-.cert-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(139, 92, 246, 0.2);
-}
-
-.cert-link {
-    color: #8b5cf6;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-/* Project Cards */
-.project-card {
-    background: rgba(30, 41, 59, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    border-color: #8b5cf6;
-    box-shadow: 0 20px 30px -10px rgba(139, 92, 246, 0.4);
-}
-
-.project-image {
-    height: 180px;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.project-image i {
-    font-size: 5rem;
-    color: #8b5cf6;
-    transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image i {
-    transform: scale(1.1) rotate(5deg);
-}
-
-.project-content {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-content h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-}
-
-.project-content p {
-    color: #94a3b8;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    flex: 1;
-}
-
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.project-tech span {
-    padding: 0.3rem 1rem;
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: #8b5cf6;
-}
-
-.project-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.project-links a {
-    color: #94a3b8;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    transition: color 0.3s ease;
-}
-
-.project-links a:hover {
-    color: #8b5cf6;
-}
-
-/* Filter Buttons */
-.filter-btn {
-    padding: 0.75rem 1.5rem;
-    background: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    border-radius: 30px;
-    color: #94a3b8;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-    color: white;
-    border-color: transparent;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
-}
-</style>
-
-<script>
-// Certificate Data
-const certificates = [
-    // Coursera Canva Series
-    { title: "Canva Essentials Professional Certificate", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "https://www.linkedin.com/posts/sanjai2306_canva-essentials-professional-certificate-activity-7431380646150766592-owyp" },
-    { title: "Presentation Design Mastery in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Social Media Content Creation with Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Marketing Material Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Video Content Creation in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Interactive Document Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Event Marketing Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "AI-Powered Design with Canva Magic Studio", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Advanced Branding in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Portfolio Development in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Event Video & Social Media Experience Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Brand Identity Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Typography and Color Theory in Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Canva Design Fundamentals", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "https://www.linkedin.com/posts/sanjai2306_coursera-canva-designskills-activity-7430816066945208322-0JNp" },
-    
-    // Other Coursera
-    { title: "Increase Engagement to your Instagram Business", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-brands fa-instagram", link: "#" },
-    { title: "Create and Design Digital Products using Canva", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Use Canva to Create Social Media Visuals", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
-    { title: "Programming for Everybody (Python)", issuer: "Univ. of Michigan", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-python", link: "https://www.linkedin.com/posts/sanjai2306_python-from-university-of-michigan-activity-7426087517990375425-Urol" },
-    
-    // IBM
-    { title: "Getting Started with Git and GitHub", issuer: "IBM", date: "Feb 2026", category: "ibm", icon: "fa-brands fa-github", link: "#" },
-    { title: "Getting Started with Data", issuer: "IBM SkillsBuild", date: "Oct 2025", category: "ibm", icon: "fa-solid fa-database", link: "https://www.linkedin.com/posts/sanjai2306_completion-certificate-for-getting-started-activity-7425484748036157440-xryg" },
-    
-    // AWS
-    { title: "AWS Certified Cloud Practitioner (Practice Set)", issuer: "AWS", date: "Oct 2025", category: "aws", icon: "fa-brands fa-aws", link: "https://www.linkedin.com/posts/sanjai2306_awscertified-cloudpractitioner-professionaldevelopment-activity-7384096347936927744-0aUl" },
-    
-    // Saylor Academy
-    { title: "Building with Artificial Intelligence", issuer: "Saylor Academy", date: "Feb 2026", category: "other", icon: "fa-solid fa-robot", link: "https://www.linkedin.com/posts/sanjai2306_artificialintelligence-machinelearning-ai-activity-7424034109586464768-YVr9" },
-    
-    // byteXL
-    { title: "C Programming", issuer: "byteXL", date: "Nov 2025", category: "other", icon: "fa-solid fa-code", link: "https://www.linkedin.com/posts/sanjai2306_cprogramming-programmingfundamentals-bytexl-activity-7430580361270616064-Thi6" },
-    
-    // Government
-    { title: "Viksit Bharat Young Leaders Dialogue", issuer: "Min. of Youth Affairs", date: "Sep 2025", category: "govt", icon: "fa-solid fa-indian-rupee-sign", link: "https://www.linkedin.com/posts/sanjai2306_honored-to-receive-a-certificate-of-participation-activity-7376454082129088512-FSGz" },
-    { title: "MYBharat Budget Quest 2026", issuer: "MYBharat", date: "Feb 2026", category: "govt", icon: "fa-solid fa-chart-line", link: "https://www.linkedin.com/posts/sanjai2306_mybharat-budget2026-viksitbharat-activity-7429822012530802688-cngh" },
-    { title: "Online Essay on Viksit Bharat", issuer: "Min. of Youth Affairs", date: "Nov 2025", category: "govt", icon: "fa-solid fa-pen", link: "https://www.linkedin.com/posts/sanjai2306_viksitbharat-mybharat-youthleadership-activity-7394660113850093568-3AxY" },
-    
-    // IIRS/ISRO
-    { title: "Remote Sensing for Ecological Studies", issuer: "IIRS/ISRO", date: "Oct 2025", category: "other", icon: "fa-solid fa-satellite", link: "https://www.linkedin.com/posts/sanjai2306_remotesensing-ecologicalstudies-iirs-activity-7387002357491900416-NcME" },
-    
-    // Typing
-    { title: "Typing - Beginner Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" },
-    { title: "Typing - Intermediate Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" },
-    { title: "Typing - Advanced Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" }
-];
-
-// Projects Data - FIXED with correct names
-const projects = [
-    {
-        name: "RuralCare AI",
-        description: "Multilingual AI-based rural health assistant with symptom checker, voice recording, disease library, and real-time dashboard.",
-        tech: ["Python", "Flask", "AI/ML", "Voice-to-text"],
-        category: "ai",
-        github: "https://github.com/Sanjai-Gopal/ruralcare-ai",
-        demo: "#",
-        icon: "fa-solid fa-hospital"
-    },
-    {
-        name: "Feedback & Billing System",
-        description: "Complete snack shop management system with tax calculation, star ratings, and file-based persistence.",
-        tech: ["C++", "File I/O", "OOP"],
-        category: "cpp",
-        github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
-        demo: null,
-        icon: "fa-solid fa-calculator"
-    },
-    {
-        name: "bis-smart-compliance",
-        description: "Python-based automated compliance monitoring with report generation and audit logging.",
-        tech: ["Python", "Automation", "Logging"],
-        category: "python",
-        github: "https://github.com/Sanjai-Gopal/bis-smart-compliance",
-        demo: null,
-        icon: "fa-solid fa-shield"
-    },
-    {
-        name: "Railway Reservation System",
-        description: "Console-based ticket booking with seat management, PNR tracking, and fare calculation.",
-        tech: ["C++", "Data Structures"],
-        category: "cpp",
-        github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
-        demo: null,
-        icon: "fa-solid fa-train"
-    },
-    {
-        name: "Advanced Portfolio 2026",
-        description: "Futuristic portfolio with 3D background, AI chatbot, voice navigation, and private cloud storage.",
-        tech: ["HTML5/CSS3", "JavaScript", "Three.js"],
-        category: "web",
-        github: "https://github.com/Sanjai-Gopal/sanjai_portfolio",
-        demo: "https://sanjai-gopal.github.io/sanjai_portfolio/",
-        icon: "fa-solid fa-laptop-code"
-    },
-    {
-        name: "AI Student Performance Predictor",
-        description: "ML model to predict student grades based on study hours, attendance, and previous performance.",
-        tech: ["Python", "scikit-learn", "Pandas"],
-        category: "ai",
-        github: "https://github.com/Sanjai-Gopal/ml-student-performance",
-        demo: null,
-        icon: "fa-solid fa-chart-simple"
-    }
-];
-
-// Display certificates
-function displayCertificates(filter = 'all') {
-    const gallery = document.getElementById('certificateGallery');
-    if (!gallery) return;
-    
-    const filtered = filter === 'all' ? certificates : certificates.filter(c => c.category === filter);
-    
-    gallery.innerHTML = filtered.map(cert => `
-        <div class="cert-card" onclick="window.open('${cert.link}', '_blank')">
-            <div class="cert-image">
-                <i class="fas ${cert.icon}"></i>
-            </div>
-            <div class="cert-content">
-                <h3 class="cert-title">${cert.title}</h3>
-                <div class="cert-issuer">
-                    <i class="fas fa-building"></i> ${cert.issuer}
+        <!-- ===== CERTIFICATIONS SECTION ===== -->
+        <section id="achievements" class="achievements">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <h2>My <span class="gradient-text">Certifications</span></h2>
+                    <p>30+ credentials from global platforms</p>
                 </div>
-                <div class="cert-date">
-                    <i class="far fa-calendar-alt"></i> ${cert.date}
+
+                <div class="stats-wrapper">
+                    <div class="stat-card"><span class="stat-number">30+</span><span class="stat-label">Certifications</span></div>
+                    <div class="stat-card"><span class="stat-number">8</span><span class="stat-label">Platforms</span></div>
+                    <div class="stat-card"><span class="stat-number">6</span><span class="stat-label">Projects</span></div>
                 </div>
-                <div class="cert-footer">
-                    <span class="cert-link">
-                        View <i class="fas fa-arrow-right"></i>
-                    </span>
+
+                <div class="filter-container" id="certFilters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="coursera">Coursera</button>
+                    <button class="filter-btn" data-filter="aws">AWS</button>
+                    <button class="filter-btn" data-filter="ibm">IBM</button>
+                    <button class="filter-btn" data-filter="govt">Government</button>
                 </div>
+
+                <div class="certificate-gallery" id="certificateGrid"></div>
             </div>
-        </div>
-    `).join('');
-}
+        </section>
 
-// Display projects
-function displayProjects(filter = 'all') {
-    const gallery = document.getElementById('projectsGallery');
-    if (!gallery) return;
-    
-    const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
-    
-    gallery.innerHTML = filtered.map(project => `
-        <div class="project-card">
-            <div class="project-image">
-                <i class="fas ${project.icon}"></i>
-            </div>
-            <div class="project-content">
-                <h3>${project.name}</h3>
-                <p>${project.description}</p>
-                <div class="project-tech">
-                    ${project.tech.map(t => `<span>${t}</span>`).join('')}
-                </div>
-                <div class="project-links">
-                    <a href="${project.github}" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    ${project.demo ? `<a href="${project.demo}" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Filter functions
-window.filterCertificates = function(category) {
-    document.querySelectorAll('.filter-tabs .filter-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    displayCertificates(category);
-}
-
-window.filterProjects = function(category) {
-    document.querySelectorAll('.projects-filter .filter-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
-    displayProjects(category);
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    displayCertificates('all');
-    displayProjects('all');
-});
-</script>
         <!-- Blog Section -->
         <section id="blog" class="blog">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
-                    <span class="section-subtitle">My thoughts</span>
-                    <h2 class="section-title">Latest from <span class="gradient-text">Blog</span></h2>
-                    <div class="section-divider"></div>
+                    <h2>Latest <span class="gradient-text">Blog</span></h2>
                 </div>
                 
                 <div class="blog-grid">
-                    <!-- Blog Post 1 -->
-                    <article class="blog-card" data-aos="fade-up">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/python-basics.jpg" alt="Python Basics">
-                            <div class="blog-category">Programming</div>
-                        </div>
+                    <article class="blog-card">
+                        <img src="assets/images/blog/python-basics.jpg" alt="Python">
                         <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> Mar 1, 2026</span>
-                                <span><i class="far fa-clock"></i> 5 min read</span>
-                            </div>
-                            <h3>Getting Started with Python: A Beginner's Guide</h3>
-                            <p>Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers.</p>
-                            <a href="blog/post1.html" class="blog-read-more">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <h3>Getting Started with Python</h3>
+                            <p>A beginner's guide for aspiring AI engineers.</p>
+                            <a href="blog/post1.html" class="read-more">Read More →</a>
                         </div>
                     </article>
                     
-                    <!-- Blog Post 2 -->
-                    <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/git-guide.jpg" alt="Git Guide">
-                            <div class="blog-category">DevOps</div>
-                        </div>
+                    <article class="blog-card">
+                        <img src="assets/images/blog/git-guide.jpg" alt="Git">
                         <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> Feb 15, 2026</span>
-                                <span><i class="far fa-clock"></i> 7 min read</span>
-                            </div>
-                            <h3>Git & GitHub: Essential Commands Every Developer Should Know</h3>
-                            <p>A comprehensive guide to version control for beginners, with practical workflows and tips.</p>
-                            <a href="blog/post2.html" class="blog-read-more">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <h3>Git & GitHub Essentials</h3>
+                            <p>Version control for beginners.</p>
+                            <a href="blog/post2.html" class="read-more">Read More →</a>
                         </div>
                     </article>
                     
-                    <!-- Blog Post 3 -->
-                    <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="blog-image">
-                            <img src="assets/images/blog/ai-journey.jpg" alt="AI Journey">
-                            <div class="blog-category">AI/ML</div>
-                        </div>
+                    <article class="blog-card">
+                        <img src="assets/images/blog/ai-journey.jpg" alt="AI">
                         <div class="blog-content">
-                            <div class="blog-meta">
-                                <span><i class="far fa-calendar"></i> Feb 1, 2026</span>
-                                <span><i class="far fa-clock"></i> 6 min read</span>
-                            </div>
-                            <h3>My First Steps into AI: What I Learned in 3 Months</h3>
-                            <p>Sharing my journey as a first-year student diving into the world of Artificial Intelligence.</p>
-                            <a href="blog/post3.html" class="blog-read-more">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <h3>My AI Journey</h3>
+                            <p>What I learned in 3 months.</p>
+                            <a href="blog/post3.html" class="read-more">Read More →</a>
                         </div>
                     </article>
-                </div>
-                
-                <div class="blog-more" data-aos="fade-up">
-                    <a href="blog/" class="btn btn-outline">
-                        <span>View All Posts</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
         </section>
@@ -1320,78 +714,22 @@ document.addEventListener('DOMContentLoaded', () => {
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-header" data-aos="fade-up">
-                    <span class="section-subtitle">Get in touch</span>
-                    <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
-                    <div class="section-divider"></div>
+                    <h2>Let's <span class="gradient-text">Connect</span></h2>
                 </div>
                 
                 <div class="contact-content">
-                    <div class="contact-info" data-aos="fade-right">
-                        <div class="info-card">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <h3>Location</h3>
-                            <p>Coimbatore, Tamil Nadu</p>
-                        </div>
-                        
-                        <div class="info-card">
-                            <i class="fas fa-envelope"></i>
-                            <h3>Email</h3>
-                            <p>sanjai.sparkmail@gmail.com</p>
-                        </div>
-                        
-                        <div class="info-card">
-                            <i class="fas fa-phone-alt"></i>
-                            <h3>Phone</h3>
-                            <p>+91 9363265552</p>
-                        </div>
-                        
-                        <div class="info-card">
-                            <i class="fas fa-clock"></i>
-                            <h3>Available</h3>
-                            <p>Mon-Fri, 9AM-6PM</p>
-                        </div>
-                        
-                        <div class="social-links">
-                            <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-btn linkedin">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-btn github">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-btn instagram">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
+                    <div class="contact-info">
+                        <div class="info-card"><i class="fas fa-map-marker-alt"></i><h3>Coimbatore</h3></div>
+                        <div class="info-card"><i class="fas fa-envelope"></i><h3>sanjai.sparkmail@gmail.com</h3></div>
+                        <div class="info-card"><i class="fas fa-phone"></i><h3>+91 9363265552</h3></div>
                     </div>
                     
-                    <div class="contact-form-container" data-aos="fade-left">
-                        <form id="contactForm" class="contact-form">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" required>
-                                <label for="name">Your Name</label>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" required>
-                                <label for="email">Your Email</label>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="text" id="subject" name="subject" required>
-                                <label for="subject">Subject</label>
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea id="message" name="message" rows="5" required></textarea>
-                                <label for="message">Your Message</label>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                <span>Send Message</span>
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
+                    <form id="contactForm" class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -1400,135 +738,164 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h2>Sanjai Gopal</h2>
-                    <p>Aspiring AI Engineer building the future with code and intelligence.</p>
-                    <div class="footer-social">
-                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Projects</h3>
-                    <ul>
-                        <li><a href="https://github.com/Sanjai-Gopal/Feedback-and-Billing-System" target="_blank">Billing System</a></li>
-                        <li><a href="https://github.com/Sanjai-Gopal/bis-smart-compliance" target="_blank">Smart Compliance</a></li>
-                        <li><a href="https://github.com/Sanjai-Gopal/railway-reservation-cpp" target="_blank">Railway System</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-newsletter">
-                    <h3>Stay Updated</h3>
-                    <p>Get notified about my latest projects and blog posts.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email">
-                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
-                </div>
-            </div>
+            <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- AI Chatbot -->
-    <div class="chatbot-container" id="chatbotContainer">
+    <!-- Chatbot -->
+    <div class="chatbot-container">
         <div class="chatbot-header">
-            <div class="chatbot-avatar">
-                <i class="fas fa-robot"></i>
-            </div>
-            <div class="chatbot-title">
-                <h3>Sanjai's AI Assistant</h3>
-                <span>Online</span>
-            </div>
-            <button class="chatbot-close" id="chatbotClose">
-                <i class="fas fa-times"></i>
-            </button>
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
         </div>
-        
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="message bot">
-                <div class="message-content">
-                    Hi! I'm Sanjai's AI assistant. Ask me anything about his skills, projects, or experience!
-                </div>
-            </div>
-        </div>
-        
+        <div class="chatbot-messages"></div>
         <div class="chatbot-input">
-            <input type="text" id="chatbotInput" placeholder="Type your message...">
-            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" placeholder="Ask me anything...">
+            <button><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
-    
-    <button class="chatbot-toggle" id="chatbotToggle">
-        <i class="fas fa-comment-dots"></i>
-    </button>
+    <button class="chatbot-toggle"><i class="fas fa-comment-dots"></i></button>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    
-    <script src="js/main.js"></script>
-    <script src="js/three.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/chatbot.js"></script>
-    <script src="js/voice-nav.js"></script>
-    <script src="js/github-stats.js"></script>
     
     <script>
-        // Certificate viewer function
-        function viewCertificate(cert) {
-            const certs = {
-                python: 'assets/images/achievements/certificates/python-cert.jpg',
-                git: 'assets/images/achievements/certificates/git-cert.jpg',
-                aws: 'assets/images/achievements/certificates/aws-cert.jpg',
-                ml: 'assets/images/achievements/certificates/ml-cert.jpg'
-            };
+        // ===== ADVANCED DATA LAYER =====
+        const certificates = [
+            // Coursera (18)
+            { title: "Canva Essentials Professional Certificate", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "https://linkedin.com/posts/sanjai2306_canva-essentials" },
+            { title: "Presentation Design Mastery", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Social Media Content Creation", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Marketing Material Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Video Content Creation", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Interactive Document Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Event Marketing Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "AI-Powered Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Advanced Branding", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Portfolio Development", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Event Video Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Brand Identity Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Typography & Color Theory", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Canva Design Fundamentals", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-canva", link: "https://linkedin.com/posts/sanjai2306_canva-design" },
+            { title: "Instagram Business Growth", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-brands fa-instagram", link: "#" },
+            { title: "Digital Products with Canva", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Social Media Visuals", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-brands fa-canva", link: "#" },
+            { title: "Python for Everybody", issuer: "Univ. of Michigan", date: "Feb 2026", category: "coursera", icon: "fa-brands fa-python", link: "https://linkedin.com/posts/sanjai2306_python" },
             
-            if (certs[cert]) {
-                window.open(certs[cert], '_blank');
-            } else {
-                alert('Certificate image not found');
-            }
-            return false;
+            // IBM (2)
+            { title: "Git & GitHub", issuer: "IBM", date: "Feb 2026", category: "ibm", icon: "fa-brands fa-github", link: "#" },
+            { title: "Getting Started with Data", issuer: "IBM", date: "Oct 2025", category: "ibm", icon: "fa-solid fa-database", link: "https://linkedin.com/posts/sanjai2306_ibm-data" },
+            
+            // AWS (1)
+            { title: "AWS Cloud Practitioner", issuer: "AWS", date: "Oct 2025", category: "aws", icon: "fa-brands fa-aws", link: "https://linkedin.com/posts/sanjai2306_aws" },
+            
+            // Saylor (1)
+            { title: "Building with AI", issuer: "Saylor", date: "Feb 2026", category: "other", icon: "fa-solid fa-robot", link: "https://linkedin.com/posts/sanjai2306_ai" },
+            
+            // byteXL (1)
+            { title: "C Programming", issuer: "byteXL", date: "Nov 2025", category: "other", icon: "fa-solid fa-code", link: "https://linkedin.com/posts/sanjai2306_c" },
+            
+            // Government (4)
+            { title: "Viksit Bharat", issuer: "Govt of India", date: "Sep 2025", category: "govt", icon: "fa-solid fa-indian-rupee-sign", link: "https://linkedin.com/posts/sanjai2306_viksit" },
+            { title: "Budget Quest 2026", issuer: "MYBharat", date: "Feb 2026", category: "govt", icon: "fa-solid fa-chart-line", link: "https://linkedin.com/posts/sanjai2306_budget" },
+            { title: "Viksit Bharat Essay", issuer: "Govt of India", date: "Nov 2025", category: "govt", icon: "fa-solid fa-pen", link: "https://linkedin.com/posts/sanjai2306_essay" },
+            
+            // ISRO (1)
+            { title: "Remote Sensing", issuer: "ISRO", date: "Oct 2025", category: "other", icon: "fa-solid fa-satellite", link: "https://linkedin.com/posts/sanjai2306_isro" },
+            
+            // Typing (3)
+            { title: "Typing - Beginner", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" },
+            { title: "Typing - Intermediate", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" },
+            { title: "Typing - Advanced", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" }
+        ];
+
+        const projects = [
+            { name: "RuralCare AI", desc: "AI health assistant with voice support & real-time dashboard", tech: ["Python", "Flask", "AI/ML"], category: "ai", github: "https://github.com/Sanjai-Gopal/ruralcare-ai", icon: "fa-hospital" },
+            { name: "Feedback & Billing System", desc: "Complete billing system with tax & ratings", tech: ["C++", "OOP"], category: "cpp", github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System", icon: "fa-calculator" },
+            { name: "Smart Compliance", desc: "Automated compliance monitoring", tech: ["Python", "Automation"], category: "python", github: "https://github.com/Sanjai-Gopal/bis-smart-compliance", icon: "fa-shield" },
+            { name: "Railway Reservation", desc: "Ticket booking with PNR tracking", tech: ["C++", "DSA"], category: "cpp", github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp", icon: "fa-train" },
+            { name: "Advanced Portfolio", desc: "3D portfolio with AI chatbot", tech: ["HTML5", "Three.js"], category: "web", github: "https://github.com/Sanjai-Gopal/sanjai_portfolio", demo: "https://sanjai-gopal.github.io/sanjai_portfolio/", icon: "fa-laptop-code" },
+            { name: "Student Performance Predictor", desc: "ML model for grade prediction", tech: ["Python", "scikit-learn"], category: "ai", github: "https://github.com/Sanjai-Gopal/ml-student-performance", icon: "fa-chart-simple" }
+        ];
+
+        // ===== RENDER FUNCTIONS =====
+        function renderCertificates(filter = 'all') {
+            const grid = document.getElementById('certificateGrid');
+            const filtered = filter === 'all' ? certificates : certificates.filter(c => c.category === filter);
+            
+            grid.innerHTML = filtered.map(cert => `
+                <div class="cert-card" onclick="window.open('${cert.link}', '_blank')">
+                    <div class="cert-image"><i class="fas ${cert.icon}"></i></div>
+                    <div class="cert-content">
+                        <h3 class="cert-title">${cert.title}</h3>
+                        <div class="cert-issuer"><i class="fas fa-building"></i> ${cert.issuer}</div>
+                        <div class="cert-date">${cert.date}</div>
+                        <div class="cert-footer"><span class="cert-link">View <i class="fas fa-arrow-right"></i></span></div>
+                    </div>
+                </div>
+            `).join('');
         }
-        
-        // Initialize AOS
+
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projectsGrid');
+            const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map(p => `
+                <div class="project-card">
+                    <div class="project-image"><i class="fas ${p.icon}"></i></div>
+                    <div class="project-content">
+                        <h3>${p.name}</h3>
+                        <p>${p.desc}</p>
+                        <div class="project-tech">${p.tech.map(t => `<span>${t}</span>`).join('')}</div>
+                        <div class="project-links">
+                            <a href="${p.github}" target="_blank"><i class="fab fa-github"></i> Code</a>
+                            ${p.demo ? `<a href="${p.demo}" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== FILTER SYSTEM =====
+        function initFilters() {
+            document.querySelectorAll('#certFilters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#certFilters .filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderCertificates(this.dataset.filter);
+                });
+            });
+
+            document.querySelectorAll('#projectFilters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#projectFilters .filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderProjects(this.dataset.filter);
+                });
+            });
+        }
+
+        // ===== INITIALIZE =====
         document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 1000,
-                once: true,
-                offset: 100
+            AOS.init({ duration: 1000, once: true });
+            
+            renderCertificates('all');
+            renderProjects('all');
+            initFilters();
+
+            // Mobile menu
+            document.querySelector('.hamburger').addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.toggle('active');
+            });
+
+            // Theme toggle
+            document.getElementById('themeToggle').addEventListener('click', function() {
+                document.body.classList.toggle('light-theme');
+                this.innerHTML = document.body.classList.contains('light-theme') ? 
+                    '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
             });
         });
     </script>
 </body>
 </html>
-
-
-
