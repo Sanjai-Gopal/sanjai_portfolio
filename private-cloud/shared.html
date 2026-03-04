@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared With Me - Sanjai Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #8b5cf6;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #8b5cf6;
+            transform: translateY(-2px);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #94a3b8;
+        }
+
+        .tab:hover {
+            background: rgba(139, 92, 246, 0.1);
+            color: white;
+        }
+
+        .tab.active {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .shared-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .shared-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .shared-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .shared-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .shared-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .shared-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .shared-info p {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        .shared-file {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(20, 30, 50, 0.5);
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .shared-file i {
+            font-size: 2rem;
+            color: #8b5cf6;
+        }
+
+        .shared-file-details {
+            flex: 1;
+        }
+
+        .shared-file-details h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .shared-file-details p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .shared-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .download-btn {
+            background: #10b981;
+            color: white;
+        }
+
+        .preview-btn {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .save-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .shared-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .header { flex-direction: column; }
+            .tabs { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-share-alt"></i> Shared With Me</h1>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Cloud</a>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="filterShares('all')">All</div>
+            <div class="tab" onclick="filterShares('recent')">Recent</div>
+            <div class="tab" onclick="filterShares('files')">Files</div>
+            <div class="tab" onclick="filterShares('folders')">Folders</div>
+        </div>
+
+        <div id="sharedContainer"></div>
+    </div>
+
+    <script>
+        let sharedFiles = [];
+
+        function loadSharedFiles() {
+            // Sample shared files data
+            sharedFiles = [
+                {
+                    id: 1,
+                    name: 'Project Report.pdf',
+                    size: 2.5 * 1024 * 1024,
+                    type: 'pdf',
+                    sharedBy: 'Rahul Kumar',
+                    sharedByEmail: 'rahul@example.com',
+                    sharedDate: '2026-03-01',
+                    permission: 'view',
+                    avatar: 'RK'
+                },
+                {
+                    id: 2,
+                    name: 'Team Photo.jpg',
+                    size: 3.2 * 1024 * 1024,
+                    type: 'image',
+                    sharedBy: 'Priya Sharma',
+                    sharedByEmail: 'priya@example.com',
+                    sharedDate: '2026-02-28',
+                    permission: 'edit',
+                    avatar: 'PS'
+                },
+                {
+                    id: 3,
+                    name: 'Presentation.pptx',
+                    size: 5.1 * 1024 * 1024,
+                    type: 'ppt',
+                    sharedBy: 'Amit Patel',
+                    sharedByEmail: 'amit@example.com',
+                    sharedDate: '2026-02-25',
+                    permission: 'view',
+                    avatar: 'AP'
+                }
+            ];
+            
+            displaySharedFiles();
+        }
+
+        function displaySharedFiles() {
+            const container = document.getElementById('sharedContainer');
+            
+            if (sharedFiles.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-share-alt"></i>
+                        <h2>No shared files</h2>
+                        <p>Files shared with you will appear here</p>
+                        <button class="back-btn" onclick="window.location.href='index.html'">
+                            <i class="fas fa-cloud"></i> Go to My Drive
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="shared-grid">
+                    ${sharedFiles.map(file => `
+                        <div class="shared-card">
+                            <div class="shared-header">
+                                <div class="shared-avatar">${file.avatar}</div>
+                                <div class="shared-info">
+                                    <h3>${file.sharedBy}</h3>
+                                    <p>${file.sharedByEmail}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="shared-file">
+                                <i class="fas ${getFileIcon(file.type)}"></i>
+                                <div class="shared-file-details">
+                                    <h4>${file.name}</h4>
+                                    <p>${formatSize(file.size)} • ${file.permission} access</p>
+                                </div>
+                            </div>
+                            
+                            <div class="shared-actions">
+                                <button class="action-btn preview-btn" onclick="previewFile(${file.id})">
+                                    <i class="fas fa-eye"></i> Preview
+                                </button>
+                                <button class="action-btn download-btn" onclick="downloadFile(${file.id})">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                                <button class="action-btn save-btn" onclick="saveToMyDrive(${file.id})">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                            </div>
+                            
+                            <div class="shared-meta">
+                                <span><i class="far fa-calendar"></i> ${formatDate(file.sharedDate)}</span>
+                                <span><i class="fas fa-lock"></i> ${file.permission}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function getFileIcon(type) {
+            const icons = {
+                pdf: 'fa-file-pdf',
+                image: 'fa-file-image',
+                ppt: 'fa-file-powerpoint',
+                doc: 'fa-file-word',
+                default: 'fa-file'
+            };
+            return icons[type] || icons.default;
+        }
+
+        function formatSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        function filterShares(type) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            // Implement filtering logic
+            showNotification(`Filtering by: ${type}`, 'info');
+        }
+
+        function previewFile(id) {
+            const file = sharedFiles.find(f => f.id === id);
+            showNotification(`Previewing: ${file.name}`, 'info');
+        }
+
+        function downloadFile(id) {
+            const file = sharedFiles.find(f => f.id === id);
+            showNotification(`Downloading: ${file.name}`, 'success');
+        }
+
+        function saveToMyDrive(id) {
+            const file = sharedFiles.find(f => f.id === id);
+            showNotification(`Saved to My Drive: ${file.name}`, 'success');
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${type === 'success' ? '#10b981' : type === 'info' ? '#8b5cf6' : '#f59e0b'};
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadSharedFiles);
+    </script>
+</body>
+</html>
