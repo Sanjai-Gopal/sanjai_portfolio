@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Sanjai Gopal | Portfolio</title>
+    
+    <!-- SEO Meta -->
+    <meta name="description" content="Explore Sanjai Gopal's programming projects including C++ applications, Python scripts, and web development work.">
+    <meta name="keywords" content="Sanjai Gopal projects, C++ projects, Python projects, GitHub, portfolio">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/themes/dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <span class="logo-text">S</span>
+                    <span class="logo-full">ANJAI</span>
+                    <span class="logo-dot">.</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../index.html#projects" class="nav-link active">Projects</a></li>
+                    <li><a href="../blog/index.html" class="nav-link">Blog</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="../private-cloud/index.html" class="cloud-btn">
+                    <i class="fas fa-cloud"></i>
+                </a>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <section class="projects-header">
+        <div class="container">
+            <div class="projects-header-content" data-aos="fade-up">
+                <h1 class="projects-title">My <span class="gradient-text">Projects</span></h1>
+                <p class="projects-subtitle">A collection of my work in C++, Python, and web development</p>
+                
+                <!-- GitHub Stats Summary -->
+                <div class="github-summary">
+                    <div class="github-stat">
+                        <span class="stat-value" id="totalRepos">4</span>
+                        <span class="stat-label">Repositories</span>
+                    </div>
+                    <div class="github-stat">
+                        <span class="stat-value" id="totalCommits">89</span>
+                        <span class="stat-label">Contributions</span>
+                    </div>
+                    <div class="github-stat">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank" class="github-profile-link">
+                            <i class="fab fa-github"></i> View GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Filter -->
+    <section class="projects-filter-section">
+        <div class="container">
+            <div class="projects-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="cpp">C++</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="projects-cta">
+        <div class="container">
+            <div class="cta-card" data-aos="zoom-in">
+                <h2>Have a Project in Mind?</h2>
+                <p>I'm always open to collaboration and new opportunities</p>
+                <a href="../index.html#contact" class="btn btn-primary">Let's Talk</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Sanjai Gopal</h3>
+                    <p>Building projects and solving problems with code.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html#home">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../blog/index.html">Blog</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/projects.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
