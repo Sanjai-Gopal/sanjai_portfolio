@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Sanjai Gopal | AI Engineer</title>
+    
+    <!-- SEO Meta -->
+    <meta name="description" content="Read Sanjai Gopal's blog about AI, Machine Learning, Python, C++, and technology insights from a first-year engineering student.">
+    <meta name="keywords" content="AI blog, Machine Learning, Python tutorials, C++ programming, MLOps, Sanjai Gopal">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/themes/dark.css" id="theme-style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="../index.html" class="logo-link">
+                    <span class="logo-text">S</span>
+                    <span class="logo-full">ANJAI</span>
+                    <span class="logo-dot">.</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="../private-cloud/index.html" class="cloud-btn">
+                    <i class="fas fa-cloud"></i>
+                </a>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <div class="blog-header-content" data-aos="fade-up">
+                <h1 class="blog-title">My <span class="gradient-text">Blog</span></h1>
+                <p class="blog-subtitle">Thoughts, tutorials, and insights about AI, programming, and my journey in tech</p>
+                
+                <!-- Search Bar -->
+                <div class="blog-search-container">
+                    <input type="text" class="blog-search" placeholder="Search articles..." id="blogSearch">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <!-- Categories -->
+                <div class="blog-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="Programming">Programming</button>
+                    <button class="category-btn" data-category="AI/ML">AI/ML</button>
+                    <button class="category-btn" data-category="MLOps">MLOps</button>
+                    <button class="category-btn" data-category="DevOps">DevOps</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section">
+        <div class="container">
+            <div class="blog-grid" id="blogGrid">
+                <!-- Posts will be loaded via JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="blog-pagination" id="blogPagination"></div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="blog-newsletter">
+        <div class="container">
+            <div class="newsletter-card" data-aos="zoom-in">
+                <h2>Stay Updated</h2>
+                <p>Get notified when I publish new articles and tutorials</p>
+                <form class="newsletter-form" id="blogNewsletterForm">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Sanjai Gopal</h3>
+                    <p>Aspiring AI Engineer sharing knowledge and building the future.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html#home">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../index.html#projects">Projects</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect</h4>
+                    <div class="social-icons">
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/blog.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
