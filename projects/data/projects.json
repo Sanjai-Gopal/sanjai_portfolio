@@ -1,0 +1,35 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Feedback and Billing System",
+      "slug": "feedback-billing-system",
+      "category": "cpp",
+      "image": "/assets/images/projects/billing-system.jpg",
+      "thumbnail": "/assets/images/projects/thumbnails/billing-system-thumb.jpg",
+      "description": "Comprehensive snack shop billing system with tax calculation, star ratings, and file storage",
+      "longDescription": "A complete C++ application for snack shop management. Features include automatic bill generation, tax calculation (CGST/SGST), customer feedback with star ratings, and persistent file storage for transaction history. The system maintains inventory, generates daily reports, and provides analytics on popular items.",
+      "technologies": ["C++", "File I/O", "OOP", "STL", "Data Structures"],
+      "features": [
+        "Automatic bill generation with unique IDs",
+        "Real-time tax calculation (CGST/SGST)",
+        "Customer feedback system with 5-star ratings",
+        "File-based data persistence with encryption",
+        "Transaction history viewer with filters",
+        "Inventory management with low stock alerts",
+        "Daily, weekly, and monthly sales reports",
+        "Popular items analytics"
+      ],
+      "github": "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
+      "demo": null,
+      "date": "2025-12-15",
+      "featured": true,
+      "status": "completed",
+      "complexity": "intermediate",
+      "tags": ["billing", "c++", "file-handling", "inventory"]
+    },
+    {
+      "id": 2,
+      "title": "bis-smart-compliance",
+      "slug": "bis-smart-compliance",
+      "category": "python",
