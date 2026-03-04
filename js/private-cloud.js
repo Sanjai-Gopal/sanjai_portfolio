@@ -512,3 +512,56 @@ async function deleteFile(fileId) {
 // Show upload progress
 function showUploadProgress(total) {
     let progressDiv = document.querySelector('.upload-progress');
+    if (!progressDiv) {
+        progressDiv = document.createElement('div');
+        progressDiv.className = 'upload-progress';
+        progressDiv.innerHTML = `
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="uploadProgressFill"></div>
+            </div>
+            <p>Uploading <span id="uploadProgressCount">0</span>/${total} files...</p>
+        `;
+        document.querySelector('.files-section').prepend(progressDiv);
+    }
+}
+
+// Hide upload progress
+function hideUploadProgress() {
+    const progressDiv = document.querySelector('.upload-progress');
+    if (progressDiv) {
+        progressDiv.remove();
+    }
+}
+
+// Show notification
+function showNotification(message, type = 'info') {
+    const container = document.querySelector('.notification-container') || (() => {
+        const div = document.createElement('div');
+        div.className = 'notification-container';
+        document.body.appendChild(div);
+        return div;
+    })();
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    container.appendChild(notification);
+    
+    setTimeout(() => notification.classList.add('show'), 10);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Export functions
+window.authenticate = authenticate;
+window.logout = logout;
+window.triggerUpload = triggerUpload;
+window.viewFile = viewFile;
+window.downloadFile = downloadFile;
+window.deleteFile = deleteFile;
