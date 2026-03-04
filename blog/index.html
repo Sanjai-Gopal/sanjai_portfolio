@@ -15,6 +15,253 @@
     <link rel="stylesheet" href="../css/themes/dark.css" id="theme-style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        .blog-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+        }
+        
+        .blog-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .blog-search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+        
+        .blog-search {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border-light);
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .blog-search:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+        
+        .blog-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+            border-color: transparent;
+        }
+        
+        .blog-grid-section {
+            padding: 50px 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .blog-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-500);
+            box-shadow: var(--glow-primary);
+        }
+        
+        .blog-card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-card-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+        }
+        
+        .blog-card-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .blog-card-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .blog-card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-tag {
+            padding: 0.2rem 0.8rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+        
+        .blog-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-500);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .blog-read-more:hover {
+            gap: 1rem;
+        }
+        
+        .blog-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .page-btn:hover,
+        .page-btn.active {
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+            border-color: transparent;
+        }
+        
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .blog-newsletter {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+        }
+        
+        .newsletter-card {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-2xl);
+            text-align: center;
+        }
+        
+        .newsletter-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-card p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary-500);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-title { font-size: 2.5rem; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -30,11 +277,11 @@
             
             <div class="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="../index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
                     <li><a href="../index.html#about" class="nav-link">About</a></li>
                     <li><a href="../index.html#skills" class="nav-link">Skills</a></li>
-                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
-                    <li><a href="../index.html#blog" class="nav-link active">Blog</a></li>
+                    <li><a href="../projects/index.html" class="nav-link">Projects</a></li>
+                    <li><a href="index.html" class="nav-link active">Blog</a></li>
                     <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
@@ -58,7 +305,7 @@
     <!-- Blog Header -->
     <section class="blog-header">
         <div class="container">
-            <div class="blog-header-content" data-aos="fade-up">
+            <div data-aos="fade-up">
                 <h1 class="blog-title">My <span class="gradient-text">Blog</span></h1>
                 <p class="blog-subtitle">Thoughts, tutorials, and insights about AI, programming, and my journey in tech</p>
                 
@@ -84,11 +331,84 @@
     <section class="blog-grid-section">
         <div class="container">
             <div class="blog-grid" id="blogGrid">
-                <!-- Posts will be loaded via JavaScript -->
+                <!-- Python Basics Post -->
+                <div class="blog-card" data-category="Programming">
+                    <div class="blog-card-image">
+                        <img src="../assets/images/blog/python-basics.jpg" alt="Python Basics">
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="far fa-calendar"></i> Mar 1, 2026</span>
+                            <span><i class="far fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3 class="blog-card-title">Getting Started with Python: A Beginner's Guide</h3>
+                        <p class="blog-card-excerpt">Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Python</span>
+                            <span class="blog-tag">Beginners</span>
+                            <span class="blog-tag">Tutorial</span>
+                        </div>
+                        <a href="post1.html" class="blog-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Git Guide Post -->
+                <div class="blog-card" data-category="DevOps">
+                    <div class="blog-card-image">
+                        <img src="../assets/images/blog/git-guide.jpg" alt="Git Guide">
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="far fa-calendar"></i> Feb 15, 2026</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h3 class="blog-card-title">Git & GitHub: Essential Commands Every Developer Should Know</h3>
+                        <p class="blog-card-excerpt">A comprehensive guide to version control for beginners, with practical workflows and tips.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">Git</span>
+                            <span class="blog-tag">GitHub</span>
+                            <span class="blog-tag">DevOps</span>
+                        </div>
+                        <a href="post2.html" class="blog-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- AI Journey Post -->
+                <div class="blog-card" data-category="AI/ML">
+                    <div class="blog-card-image">
+                        <img src="../assets/images/blog/ai-journey.jpg" alt="AI Journey">
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span><i class="far fa-calendar"></i> Feb 1, 2026</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h3 class="blog-card-title">My First Steps into AI: What I Learned in 3 Months</h3>
+                        <p class="blog-card-excerpt">Sharing my journey as a first-year student diving into the world of Artificial Intelligence.</p>
+                        <div class="blog-card-tags">
+                            <span class="blog-tag">AI</span>
+                            <span class="blog-tag">Machine Learning</span>
+                            <span class="blog-tag">Journey</span>
+                        </div>
+                        <a href="post3.html" class="blog-read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
             
             <!-- Pagination -->
-            <div class="blog-pagination" id="blogPagination"></div>
+            <div class="blog-pagination">
+                <button class="page-btn disabled"><i class="fas fa-chevron-left"></i></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </div>
     </section>
 
@@ -98,7 +418,7 @@
             <div class="newsletter-card" data-aos="zoom-in">
                 <h2>Stay Updated</h2>
                 <p>Get notified when I publish new articles and tutorials</p>
-                <form class="newsletter-form" id="blogNewsletterForm">
+                <form class="newsletter-form" id="newsletterForm">
                     <input type="email" placeholder="Your email address" required>
                     <button type="submit" class="btn btn-primary">Subscribe</button>
                 </form>
@@ -117,9 +437,9 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="../index.html#home">Home</a></li>
+                        <li><a href="../index.html">Home</a></li>
                         <li><a href="../index.html#about">About</a></li>
-                        <li><a href="../index.html#projects">Projects</a></li>
+                        <li><a href="../projects/index.html">Projects</a></li>
                         <li><a href="../index.html#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -142,11 +462,45 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/utils.js"></script>
     <script src="../js/theme.js"></script>
-    <script src="../js/blog.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        AOS.init({ duration: 1000, once: true });
+        
+        // Newsletter form
+        document.getElementById('newsletterForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing! You will receive updates soon.');
+            this.reset();
+        });
+        
+        // Category filter
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                document.querySelectorAll('.blog-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        document.getElementById('blogSearch')?.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.blog-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const excerpt = card.querySelector('p').textContent.toLowerCase();
+                if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
