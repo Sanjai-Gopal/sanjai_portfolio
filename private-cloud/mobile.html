@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobile Cloud - Sanjai Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 92, 246, 0.2);
+            border: none;
+            border-radius: 12px;
+            color: #8b5cf6;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:active {
+            background: #8b5cf6;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        .header-title {
+            flex: 1;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            color: #8b5cf6;
+        }
+
+        .search-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 92, 246, 0.2);
+            border: none;
+            border-radius: 12px;
+            color: #8b5cf6;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .search-bar.active {
+            display: block;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #8b5cf6;
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.5);
+            margin: 1rem;
+            border-radius: 20px;
+        }
+
+        .action-item {
+            text-align: center;
+        }
+
+        .action-btn {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 0.5rem;
+            background: rgba(139, 92, 246, 0.2);
+            border: none;
+            border-radius: 30px;
+            color: #8b5cf6;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:active {
+            background: #8b5cf6;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        .action-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        /* Storage Card */
+        .storage-card {
+            background: rgba(30, 41, 59, 0.8);
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .storage-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .storage-title {
+            color: #94a3b8;
+        }
+
+        .storage-value {
+            font-weight: 600;
+            color: #8b5cf6;
+        }
+
+        .storage-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .storage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            width: 45%;
+            border-radius: 4px;
+        }
+
+        .storage-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Files Section */
+        .files-section {
+            margin: 1rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .view-all {
+            color: #8b5cf6;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .file-item {
+            text-align: center;
+        }
+
+        .file-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 0.5rem;
+            background: rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #8b5cf6;
+            transition: all 0.3s ease;
+        }
+
+        .file-item:active .file-icon {
+            background: #8b5cf6;
+            color: white;
+            transform: scale(0.95);
+        }
+
+        .file-name {
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-size {
+            font-size: 0.7rem;
+            color: #94a3b8;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.3);
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: #8b5cf6;
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-item span {
+            font-size: 0.7rem;
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        /* Slide Menu */
+        .slide-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 15, 30, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            transition: left 0.3s ease;
+            padding: 2rem 1rem;
+            border-right: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .slide-menu.active {
+            left: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .menu-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .menu-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .menu-user h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .menu-user p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:active {
+            background: rgba(139, 92, 246, 0.2);
+        }
+
+        .menu-item i {
+            width: 24px;
+            color: #8b5cf6;
+        }
+
+        .menu-item span {
+            flex: 1;
+        }
+
+        .menu-item .badge {
+            background: #8b5cf6;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                max-width: 480px;
+                margin: 0 auto;
+                box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide Menu -->
+    <div class="slide-menu" id="slideMenu">
+        <div class="menu-header">
+            <div class="menu-avatar">S</div>
+            <div class="menu-user">
+                <h4>Sanjai Gopal</h4>
+                <p>sanjai.sparkmail@gmail.com</p>
+            </div>
+        </div>
+        
+        <ul class="menu-items">
+            <li class="menu-item" onclick="navigateTo('index.html')">
+                <i class="fas fa-home"></i>
+                <span>My Drive</span>
+            </li>
+            <li class="menu-item" onclick="navigateTo('recent.html')">
+                <i class="fas fa-clock"></i>
+                <span>Recent</span>
+            </li>
+            <li class="menu-item" onclick="navigateTo('starred.html')">
+                <i class="fas fa-star"></i>
+                <span>Starred</span>
+            </li>
+            <li class="menu-item" onclick="navigateTo('shared.html')">
+                <i class="fas fa-share-alt"></i>
+                <span>Shared</span>
+                <span class="badge">3</span>
+            </li>
+            <li class="menu-item" onclick="navigateTo('trash.html')">
+                <i class="fas fa-trash"></i>
+                <span>Trash</span>
+            </li>
+            <li class="menu-item" style="margin-top: 2rem;" onclick="navigateTo('settings.html')">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </li>
+            <li class="menu-item" onclick="navigateTo('offline.html')">
+                <i class="fas fa-wifi"></i>
+                <span>Offline Mode</span>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+    <!-- Header -->
+    <div class="mobile-header">
+        <div class="header-content">
+            <button class="menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-title">
+                Mobile <span>Cloud</span>
+            </div>
+            <button class="search-btn" onclick="toggleSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <div class="search-bar" id="searchBar">
+            <input type="text" class="search-input" placeholder="Search files..." id="searchInput">
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <div class="action-item">
+            <button class="action-btn" onclick="triggerUpload()">
+                <i class="fas fa-cloud-upload-alt"></i>
+            </button>
+            <div class="action-label">Upload</div>
+        </div>
+        <div class="action-item">
+            <button class="action-btn" onclick="createFolder()">
+                <i class="fas fa-folder-plus"></i>
+            </button>
+            <div class="action-label">Folder</div>
+        </div>
+        <div class="action-item">
+            <button class="action-btn" onclick="takePhoto()">
+                <i class="fas fa-camera"></i>
+            </button>
+            <div class="action-label">Camera</div>
+        </div>
+        <div class="action-item">
+            <button class="action-btn" onclick="scanDocument()">
+                <i class="fas fa-qrcode"></i>
+            </button>
+            <div class="action-label">Scan</div>
+        </div>
+    </div>
+
+    <!-- Storage Card -->
+    <div class="storage-card">
+        <div class="storage-header">
+            <span class="storage-title">Storage Used</span>
+            <span class="storage-value" id="storageUsed">45 MB / 1 GB</span>
+        </div>
+        <div class="storage-bar">
+            <div class="storage-fill" style="width: 45%" id="storageBar"></div>
+        </div>
+        <div class="storage-details">
+            <span>45 MB used</span>
+            <span>979 MB free</span>
+        </div>
+    </div>
+
+    <!-- Recent Files -->
+    <div class="files-section">
+        <div class="section-header">
+            <h3 class="section-title">Recent Files</h3>
+            <a href="recent.html" class="view-all">View All</a>
+        </div>
+        
+        <div class="files-grid" id="recentFiles">
+            <!-- Files will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Quick Access -->
+    <div class="files-section">
+        <div class="section-header">
+            <h3 class="section-title">Quick Access</h3>
+            <a href="#" class="view-all">View All</a>
+        </div>
+        
+        <div class="files-grid" id="quickAccess">
+            <!-- Files will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="recent.html" class="nav-item">
+            <i class="fas fa-clock"></i>
+            <span>Recent</span>
+        </a>
+        <a href="#" class="nav-item" onclick="triggerUpload()">
+            <i class="fas fa-plus-circle"></i>
+            <span>Upload</span>
+        </a>
+        <a href="shared.html" class="nav-item">
+            <i class="fas fa-share-alt"></i>
+            <span>Shared</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </div>
+
+    <!-- Hidden file input -->
+    <input type="file" id="fileInput" multiple style="display: none;">
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('slideMenu').classList.add('active');
+            document.getElementById('menuOverlay').classList.add('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('slideMenu').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+
+        function toggleSearch() {
+            document.getElementById('searchBar').classList.toggle('active');
+            if (document.getElementById('searchBar').classList.contains('active')) {
+                document.getElementById('searchInput').focus();
+            }
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function triggerUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            alert(`Selected ${files.length} file(s) for upload`);
+        });
+
+        function createFolder() {
+            const name = prompt('Enter folder name:');
+            if (name) {
+                alert(`Folder '${name}' created`);
+            }
+        }
+
+        function takePhoto() {
+            alert('Camera feature coming soon!');
+        }
+
+        function scanDocument() {
+            alert('Document scanner coming soon!');
+        }
+
+        // Load recent files
+        function loadRecentFiles() {
+            const allFiles = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            const recent = allFiles.slice(-3).reverse();
+            
+            const container = document.getElementById('recentFiles');
+            
+            if (recent.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">No files yet</p>';
+                return;
+            }
+            
+            container.innerHTML = recent.map(file => `
+                <div class="file-item">
+                    <div class="file-icon">
+                        <i class="fas ${getFileIcon(file.type)}"></i>
+                    </div>
+                    <div class="file-name">${truncateName(file.name)}</div>
+                    <div class="file-size">${formatSize(file.size)}</div>
+                </div>
+            `).join('');
+        }
+
+        function getFileIcon(type) {
+            if (type?.includes('pdf')) return 'fa-file-pdf';
+            if (type?.includes('image')) return 'fa-file-image';
+            return 'fa-file';
+        }
+
+        function truncateName(name, max = 10) {
+            if (name.length <= max) return name;
+            return name.substr(0, max - 3) + '...';
+        }
+
+        function formatSize(bytes) {
+            if (!bytes) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        // Update storage
+        function updateStorage() {
+            const files = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            const totalSize = files.reduce((sum, f) => sum + (f.size || 0), 0);
+            const usedMB = (totalSize / (1024 * 1024)).toFixed(1);
+            
+            document.getElementById('storageUsed').textContent = `${used
+    document.getElementById('storageUsed').textContent = `${usedMB} MB / 1 GB`;
+            
+            const percent = (totalSize / (1024 * 1024 * 1024)) * 100;
+            document.getElementById('storageBar').style.width = percent + '%';
+        }
+
+        // Load quick access files (starred)
+        function loadQuickAccess() {
+            const allFiles = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            const starredIds = JSON.parse(localStorage.getItem('starredFiles') || '[]');
+            const starred = allFiles.filter(file => starredIds.includes(file.id)).slice(0, 3);
+            
+            const container = document.getElementById('quickAccess');
+            
+            if (starred.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #94a3b8;">Star files for quick access</p>';
+                return;
+            }
+            
+            container.innerHTML = starred.map(file => `
+                <div class="file-item">
+                    <div class="file-icon">
+                        <i class="fas ${getFileIcon(file.type)}"></i>
+                    </div>
+                    <div class="file-name">${truncateName(file.name)}</div>
+                    <div class="file-size">${formatSize(file.size)}</div>
+                </div>
+            `).join('');
+        }
+
+        // Search functionality
+        document.getElementById('searchInput')?.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            if (query.length > 2) {
+                // Implement search
+                console.log('Searching for:', query);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecentFiles();
+            loadQuickAccess();
+            updateStorage();
+        });
+    </script>
+</body>
+</html>

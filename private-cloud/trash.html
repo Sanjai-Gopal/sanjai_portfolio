@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trash - Sanjai Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #ef4444;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: #ef4444;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .file-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .file-card:hover {
+            transform: translateY(-5px);
+            border-color: #ef4444;
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2);
+        }
+
+        .file-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #ef4444;
+        }
+
+        .file-name {
+            font-size: 1rem;
+            text-align: center;
+            word-break: break-word;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        .delete-time {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #ef4444;
+            margin-bottom: 1rem;
+            padding: 0.3rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 5px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .file-action {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .restore-btn {
+            background: #10b981;
+            color: white;
+        }
+
+        .delete-permanent-btn {
+            background: #ef4444;
+            color: white;
+        }
+
+        .file-action:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .selection-bar {
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            background: rgba(20, 30, 50, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #8b5cf6;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selection-bar.active {
+            display: flex;
+        }
+
+        .selection-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .selection-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .header { flex-direction: column; }
+            .header-actions { width: 100%; }
+            .btn { flex: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-trash"></i> Recycle Bin</h1>
+            <div class="header-actions">
+                <button class="btn btn-success" onclick="emptyTrash()"><i class="fas fa-trash-alt"></i> Empty Trash</button>
+                <button class="btn btn-primary" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Back to Cloud</button>
+            </div>
+        </div>
+
+        <!-- Selection Bar -->
+        <div class="selection-bar" id="selectionBar">
+            <div class="selection-info">
+                <span id="selectedCount">0 items selected</span>
+            </div>
+            <div class="selection-actions">
+                <button class="btn btn-success" onclick="restoreSelected()"><i class="fas fa-undo"></i> Restore</button>
+                <button class="btn btn-danger" onclick="deleteSelected()"><i class="fas fa-trash"></i> Delete Forever</button>
+                <button class="btn" onclick="clearSelection()"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+
+        <!-- Files Grid -->
+        <div id="filesContainer"></div>
+    </div>
+
+    <script>
+        let trash = [];
+        let selectedFiles = [];
+
+        function loadTrash() {
+            const saved = localStorage.getItem('trashFiles');
+            if (saved) {
+                trash = JSON.parse(saved);
+            }
+            displayFiles();
+        }
+
+        function displayFiles() {
+            const container = document.getElementById('filesContainer');
+            
+            if (trash.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-trash"></i>
+                        <h2>Trash is Empty</h2>
+                        <p>Files moved to trash will appear here</p>
+                        <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                            <i class="fas fa-cloud-upload-alt"></i> Upload Files
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="files-grid">
+                    ${trash.map(file => `
+                        <div class="file-card" data-id="${file.id}">
+                            <div class="file-icon">
+                                <i class="fas ${getFileIcon(file.type)}"></i>
+                            </div>
+                            <h4 class="file-name">${truncateName(file.name)}</h4>
+                            <div class="file-meta">
+                                <span>${formatSize(file.size)}</span>
+                                <span>${new Date(file.uploadDate).toLocaleDateString()}</span>
+                            </div>
+                            <div class="delete-time">
+                                <i class="fas fa-clock"></i> Deleted: ${new Date().toLocaleDateString()}
+                            </div>
+                            <div class="file-actions">
+                                <button class="file-action restore-btn" onclick="restoreFile('${file.id}')">
+                                    <i class="fas fa-undo"></i> Restore
+                                </button>
+                                <button class="file-action delete-permanent-btn" onclick="deleteFilePermanent('${file.id}')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function getFileIcon(type) {
+            if (type?.includes('pdf')) return 'fa-file-pdf';
+            if (type?.includes('image')) return 'fa-file-image';
+            if (type?.includes('word')) return 'fa-file-word';
+            if (type?.includes('excel')) return 'fa-file-excel';
+            return 'fa-file';
+        }
+
+        function truncateName(name, max = 25) {
+            if (name.length <= max) return name;
+            return name.substr(0, max - 3) + '...';
+        }
+
+        function formatSize(bytes) {
+            if (!bytes) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function restoreFile(id) {
+            const file = trash.find(f => f.id === id);
+            if (file) {
+                // Move back to main files
+                const files = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+                files.push(file);
+                localStorage.setItem('cloudFiles', JSON.stringify(files));
+                
+                // Remove from trash
+                trash = trash.filter(f => f.id !== id);
+                localStorage.setItem('trashFiles', JSON.stringify(trash));
+                
+                showNotification('File restored successfully', 'success');
+                displayFiles();
+            }
+        }
+
+        function deleteFilePermanent(id) {
+            if (confirm('Delete this file forever? This cannot be undone.')) {
+                trash = trash.filter(f => f.id !== id);
+                localStorage.setItem('trashFiles', JSON.stringify(trash));
+                showNotification('File permanently deleted', 'warning');
+                displayFiles();
+            }
+        }
+
+        function emptyTrash() {
+            if (confirm('Empty trash forever? This cannot be undone.')) {
+                trash = [];
+                localStorage.setItem('trashFiles', JSON.stringify(trash));
+                showNotification('Trash emptied', 'warning');
+                displayFiles();
+            }
+        }
+
+        function restoreSelected() {
+            selectedFiles.forEach(id => restoreFile(id));
+            selectedFiles = [];
+            updateSelectionBar();
+        }
+
+        function deleteSelected() {
+            if (confirm('Delete selected files forever?')) {
+                selectedFiles.forEach(id => deleteFilePermanent(id));
+                selectedFiles = [];
+                updateSelectionBar();
+            }
+        }
+
+        function clearSelection() {
+            selectedFiles = [];
+            updateSelectionBar();
+            document.querySelectorAll('.file-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function updateSelectionBar() {
+            const bar = document.getElementById('selectionBar');
+            const countSpan = document.getElementById('selectedCount');
+            
+            if (selectedFiles.length > 0) {
+                bar.classList.add('active');
+                countSpan.textContent = `${selectedFiles.length} items selected`;
+            } else {
+                bar.classList.remove('active');
+            }
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#8b5cf6'};
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadTrash);
+    </script>
+</body>
+</html>

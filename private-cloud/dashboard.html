@@ -3,130 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Dashboard - Sanjai Gopal Private Cloud</title>
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Analytics Dashboard - Sanjai Cloud</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        
-        body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #f8fafc;
-            min-height: 100vh;
         }
-        
-        .cloud-dashboard {
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
             padding: 2rem;
+        }
+
+        .dashboard-container {
             max-width: 1400px;
             margin: 0 auto;
         }
-        
+
         /* Header */
-        .dashboard-header {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1rem;
         }
-        
-        .user-welcome h1 {
+
+        .header h1 {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .user-welcome p {
-            color: #94a3b8;
-        }
-        
-        .storage-card {
-            background: rgba(51, 65, 85, 0.5);
-            border-radius: 16px;
-            padding: 1.5rem;
-            min-width: 300px;
-        }
-        
-        .storage-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            color: #cbd5e1;
-        }
-        
-        .storage-bar-container {
-            width: 100%;
-            height: 10px;
-            background: #334155;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-        
-        .storage-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
-            width: 45%;
-            border-radius: 5px;
-            transition: width 0.3s ease;
-        }
-        
-        .storage-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-        
-        .upgrade-btn {
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
             background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            border: none;
-            border-radius: 8px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #8b5cf6;
+            border-radius: 10px;
             color: white;
-            cursor: pointer;
-            font-size: 0.9rem;
+            text-decoration: none;
             transition: all 0.3s ease;
         }
-        
-        .upgrade-btn:hover {
+
+        .back-btn:hover {
+            background: #8b5cf6;
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
         }
-        
-        /* Quick Stats */
-        .quick-stats {
+
+        /* Stats Grid */
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-        
+
         .stat-card {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
             border-radius: 20px;
             padding: 1.5rem;
             display: flex;
             align-items: center;
             gap: 1rem;
+            transition: all 0.3s ease;
         }
-        
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
         .stat-icon {
             width: 60px;
             height: 60px;
@@ -136,497 +93,362 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: white;
         }
-        
+
         .stat-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.3rem;
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
         }
-        
+
         .stat-info p {
             color: #94a3b8;
-            font-size: 0.9rem;
         }
-        
-        /* Quick Actions */
-        .quick-actions {
+
+        /* Charts Grid */
+        .charts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             margin-bottom: 2rem;
         }
-        
-        .action-card {
-            background: rgba(30, 41, 59, 0.8);
+
+        .chart-card {
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
             border-radius: 20px;
             padding: 1.5rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-        
-        .action-card:hover {
-            transform: translateY(-5px);
-            border-color: #8b5cf6;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+
+        .chart-card h2 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            color: #8b5cf6;
         }
-        
-        .action-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
+
+        canvas {
+            max-height: 300px;
         }
-        
-        .action-card h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        .action-card p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        
-        /* Files Section */
-        .files-section {
-            background: rgba(30, 41, 59, 0.8);
+
+        /* Activity Timeline */
+        .timeline-section {
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 24px;
-            padding: 2rem;
-        }
-        
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .section-header h2 {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .upload-btn {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            border: none;
-            border-radius: 30px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .upload-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-        }
-        
-        /* Files Grid */
-        .files-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .file-item {
-            background: rgba(51, 65, 85, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
             padding: 1.5rem;
-            transition: all 0.3s ease;
+            margin-bottom: 2rem;
         }
-        
-        .file-item:hover {
-            transform: translateY(-3px);
-            border-color: #8b5cf6;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
-        }
-        
-        .file-icon {
-            font-size: 3rem;
+
+        .timeline-section h2 {
+            margin-bottom: 1.5rem;
             color: #8b5cf6;
-            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #8b5cf6, #3b82f6);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1rem;
             margin-bottom: 1rem;
+            background: rgba(20, 30, 50, 0.5);
+            border-radius: 10px;
+            margin-left: 1rem;
         }
-        
-        .file-name {
-            font-size: 1rem;
-            text-align: center;
-            word-break: break-word;
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 1.5rem;
+            width: 1rem;
+            height: 1rem;
+            background: #8b5cf6;
+            border-radius: 50%;
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            color: #94a3b8;
             margin-bottom: 0.5rem;
-            font-weight: 600;
         }
-        
-        .file-meta {
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-desc {
+            color: #94a3b8;
+            font-size: 0.875rem;
+        }
+
+        /* Storage Details */
+        .storage-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .storage-item {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
-            color: #94a3b8;
-            margin-bottom: 1rem;
-        }
-        
-        .file-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .file-action {
-            flex: 1;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        
-        .view-btn {
-            background: #8b5cf6;
-            color: white;
-        }
-        
-        .download-btn {
-            background: #3b82f6;
-            color: white;
-        }
-        
-        .delete-btn {
-            background: #ef4444;
-            color: white;
-        }
-        
-        .file-action:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
-        
-        /* Folders */
-        .folders-section {
-            margin-bottom: 2rem;
-        }
-        
-        .folders-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .folder-item {
-            background: rgba(51, 65, 85, 0.5);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 12px;
-            padding: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .folder-item:hover {
-            background: rgba(139, 92, 246, 0.1);
-            border-color: #8b5cf6;
-        }
-        
-        .folder-item i {
-            font-size: 2rem;
-            color: #8b5cf6;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Breadcrumb */
-        .breadcrumb {
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
+        }
+
+        .storage-item .label {
             color: #94a3b8;
         }
-        
-        .breadcrumb a {
+
+        .storage-item .value {
+            font-weight: 600;
             color: #8b5cf6;
-            text-decoration: none;
         }
-        
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 4rem 2rem;
-        }
-        
-        .empty-state i {
-            font-size: 5rem;
-            color: #334155;
-            margin-bottom: 1rem;
-        }
-        
-        .empty-state h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        .empty-state p {
-            color: #94a3b8;
-            margin-bottom: 2rem;
-        }
-        
-        /* Responsive */
+
         @media (max-width: 768px) {
-            .cloud-dashboard { padding: 1rem; }
-            .dashboard-header { flex-direction: column; text-align: center; }
-            .storage-card { width: 100%; }
-            .files-grid { grid-template-columns: 1fr; }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="cloud-dashboard">
-        <!-- Header -->
-        <div class="dashboard-header">
-            <div class="user-welcome">
-                <h1>Welcome back, <span class="gradient-text">Sanjai</span> 👋</h1>
-                <p><i class="fas fa-cloud"></i> Your private cloud storage for certificates and important files</p>
-            </div>
-            
-            <div class="storage-card">
-                <div class="storage-header">
-                    <span><i class="fas fa-database"></i> Storage Used</span>
-                    <span id="storageUsed">45 MB / 100 MB</span>
-                </div>
-                <div class="storage-bar-container">
-                    <div class="storage-bar-fill" style="width: 45%"></div>
-                </div>
-                <div class="storage-info">
-                    <span>Used: 45 MB</span>
-                    <span>Free: 55 MB</span>
-                </div>
-                <button class="upgrade-btn" onclick="alert('Upgrade feature coming soon!')">
-                    <i class="fas fa-crown"></i> Upgrade Storage
-                </button>
-            </div>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1><i class="fas fa-chart-line"></i> Analytics Dashboard</h1>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Cloud</a>
         </div>
 
-        <!-- Quick Stats -->
-        <div class="quick-stats">
+        <!-- Stats Grid -->
+        <div class="stats-grid" id="statsGrid">
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-file-alt"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-file"></i></div>
                 <div class="stat-info">
-                    <h3>24</h3>
+                    <h3 id="totalFiles">0</h3>
                     <p>Total Files</p>
                 </div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-file-pdf"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-file-pdf"></i></div>
                 <div class="stat-info">
-                    <h3>12</h3>
+                    <h3 id="pdfCount">0</h3>
                     <p>PDF Documents</p>
                 </div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-image"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-image"></i></div>
                 <div class="stat-info">
-                    <h3>8</h3>
+                    <h3 id="imageCount">0</h3>
                     <p>Images</p>
                 </div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-folder"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-database"></i></div>
                 <div class="stat-info">
-                    <h3>5</h3>
-                    <p>Folders</p>
+                    <h3 id="totalSize">0 MB</h3>
+                    <p>Storage Used</p>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-            <div class="action-card" onclick="window.location.href='index.html'">
-                <div class="action-icon">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                </div>
-                <h3>Upload Files</h3>
-                <p>Upload new certificates or documents</p>
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h2><i class="fas fa-chart-pie"></i> Storage Distribution</h2>
+                <canvas id="storageChart"></canvas>
             </div>
-            
-            <div class="action-card" onclick="window.location.href='viewer.html'">
-                <div class="action-icon">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <h3>3D Viewer</h3>
-                <p>View files in immersive 3D mode</p>
-            </div>
-            
-            <div class="action-card" onclick="alert('Share feature coming soon!')">
-                <div class="action-icon">
-                    <i class="fas fa-share-alt"></i>
-                </div>
-                <h3>Share Files</h3>
-                <p>Generate secure share links</p>
-            </div>
-            
-            <div class="action-card" onclick="alert('Settings panel coming soon!')">
-                <div class="action-icon">
-                    <i class="fas fa-cog"></i>
-                </div>
-                <h3>Settings</h3>
-                <p>Configure cloud preferences</p>
+            <div class="chart-card">
+                <h2><i class="fas fa-chart-bar"></i> File Types</h2>
+                <canvas id="fileTypeChart"></canvas>
             </div>
         </div>
 
-        <!-- Files Section -->
-        <div class="files-section">
-            <div class="section-header">
-                <h2><i class="fas fa-folder-open" style="color: #8b5cf6;"></i> Recent Files</h2>
-                <button class="upload-btn" onclick="window.location.href='index.html'">
-                    <i class="fas fa-plus"></i> Upload New
-                </button>
+        <!-- Activity Timeline -->
+        <div class="timeline-section">
+            <h2><i class="fas fa-history"></i> Recent Activity</h2>
+            <div class="timeline" id="timeline"></div>
+        </div>
+
+        <!-- Storage Details -->
+        <div class="storage-details">
+            <div class="storage-item">
+                <span class="label"><i class="fas fa-cloud-upload-alt"></i> Used Space</span>
+                <span class="value" id="usedSpace">0 MB</span>
             </div>
-            
-            <!-- Folders -->
-            <div class="folders-section">
-                <h3 style="margin-bottom: 1rem;">Folders</h3>
-                <div class="folders-grid">
-                    <div class="folder-item">
-                        <i class="fas fa-folder"></i>
-                        <h4>Certificates</h4>
-                        <p style="font-size: 0.8rem; color: #94a3b8;">12 items</p>
-                    </div>
-                    <div class="folder-item">
-                        <i class="fas fa-folder"></i>
-                        <h4>Projects</h4>
-                        <p style="font-size: 0.8rem; color: #94a3b8;">8 items</p>
-                    </div>
-                    <div class="folder-item">
-                        <i class="fas fa-folder"></i>
-                        <h4>Resumes</h4>
-                        <p style="font-size: 0.8rem; color: #94a3b8;">3 items</p>
-                    </div>
-                    <div class="folder-item">
-                        <i class="fas fa-folder"></i>
-                        <h4>Academic</h4>
-                        <p style="font-size: 0.8rem; color: #94a3b8;">5 items</p>
-                    </div>
-                </div>
+            <div class="storage-item">
+                <span class="label"><i class="fas fa-cloud"></i> Free Space</span>
+                <span class="value" id="freeSpace">1 GB</span>
             </div>
-            
-            <!-- Breadcrumb -->
-            <div class="breadcrumb">
-                <a href="#">Home</a>
-                <i class="fas fa-chevron-right"></i>
-                <span>All Files</span>
+            <div class="storage-item">
+                <span class="label"><i class="fas fa-percent"></i> Usage</span>
+                <span class="value" id="usagePercent">0%</span>
             </div>
-            
-            <!-- Files Grid -->
-            <div class="files-grid" id="filesGrid">
-                <div class="file-item">
-                    <div class="file-icon">
-                        <i class="fas fa-file-pdf" style="color: #ef4444;"></i>
-                    </div>
-                    <h4 class="file-name">Python_Certificate.pdf</h4>
-                    <div class="file-meta">
-                        <span><i class="fas fa-weight-hanging"></i> 2.3 MB</span>
-                        <span><i class="far fa-calendar"></i> Mar 1, 2026</span>
-                    </div>
-                    <div class="file-actions">
-                        <button class="file-action view-btn" onclick="alert('Viewing file...')"><i class="fas fa-eye"></i> View</button>
-                        <button class="file-action download-btn" onclick="alert('Downloading...')"><i class="fas fa-download"></i> Get</button>
-                    </div>
-                </div>
-                
-                <div class="file-item">
-                    <div class="file-icon">
-                        <i class="fas fa-file-image" style="color: #10b981;"></i>
-                    </div>
-                    <h4 class="file-name">Git_Certificate.jpg</h4>
-                    <div class="file-meta">
-                        <span><i class="fas fa-weight-hanging"></i> 1.1 MB</span>
-                        <span><i class="far fa-calendar"></i> Feb 15, 2026</span>
-                    </div>
-                    <div class="file-actions">
-                        <button class="file-action view-btn" onclick="alert('Viewing file...')"><i class="fas fa-eye"></i> View</button>
-                        <button class="file-action download-btn" onclick="alert('Downloading...')"><i class="fas fa-download"></i> Get</button>
-                    </div>
-                </div>
-                
-                <div class="file-item">
-                    <div class="file-icon">
-                        <i class="fas fa-file-pdf" style="color: #ef4444;"></i>
-                    </div>
-                    <h4 class="file-name">Sanjai_Resume_2026.pdf</h4>
-                    <div class="file-meta">
-                        <span><i class="fas fa-weight-hanging"></i> 0.8 MB</span>
-                        <span><i class="far fa-calendar"></i> Jan 10, 2026</span>
-                    </div>
-                    <div class="file-actions">
-                        <button class="file-action view-btn" onclick="alert('Viewing file...')"><i class="fas fa-eye"></i> View</button>
-                        <button class="file-action download-btn" onclick="alert('Downloading...')"><i class="fas fa-download"></i> Get</button>
-                    </div>
-                </div>
-                
-                <div class="file-item">
-                    <div class="file-icon">
-                        <i class="fas fa-file-code" style="color: #f59e0b;"></i>
-                    </div>
-                    <h4 class="file-name">Project_Report.pdf</h4>
-                    <div class="file-meta">
-                        <span><i class="fas fa-weight-hanging"></i> 3.2 MB</span>
-                        <span><i class="far fa-calendar"></i> Dec 5, 2025</span>
-                    </div>
-                    <div class="file-actions">
-                        <button class="file-action view-btn" onclick="alert('Viewing file...')"><i class="fas fa-eye"></i> View</button>
-                        <button class="file-action download-btn" onclick="alert('Downloading...')"><i class="fas fa-download"></i> Get</button>
-                    </div>
-                </div>
+            <div class="storage-item">
+                <span class="label"><i class="fas fa-calendar"></i> Last Backup</span>
+                <span class="value" id="lastBackup">Never</span>
             </div>
         </div>
     </div>
 
     <script>
-        // Simulate storage update
-        function updateStorage(used, total) {
-            const percentage = (used / total) * 100;
-            document.querySelector('.storage-bar-fill').style.width = percentage + '%';
-            document.getElementById('storageUsed').textContent = used + ' MB / ' + total + ' MB';
+        // Load data from localStorage
+        let files = [];
+        let activities = [];
+
+        function loadData() {
+            const saved = localStorage.getItem('cloudFiles');
+            if (saved) {
+                files = JSON.parse(saved);
+            }
+
+            const savedActivities = localStorage.getItem('cloudActivities');
+            if (savedActivities) {
+                activities = JSON.parse(savedActivities);
+            } else {
+                // Generate sample activities
+                activities = [
+                    {
+                        time: new Date(Date.now() - 3600000).toISOString(),
+                        title: 'File Uploaded',
+                        description: 'project-report.pdf (2.5 MB)'
+                    },
+                    {
+                        time: new Date(Date.now() - 7200000).toISOString(),
+                        title: 'File Shared',
+                        description: 'certificate.jpg shared via link'
+                    },
+                    {
+                        time: new Date(Date.now() - 86400000).toISOString(),
+                        title: 'File Downloaded',
+                        description: 'resume.pdf was downloaded'
+                    },
+                    {
+                        time: new Date(Date.now() - 172800000).toISOString(),
+                        title: 'File Deleted',
+                        description: 'old-document.pdf moved to trash'
+                    }
+                ];
+            }
+
+            updateStats();
+            updateCharts();
+            updateTimeline();
         }
-        
-        // Demo: Simulate file upload
-        function simulateUpload() {
-            const currentUsed = 45;
-            const newUsed = currentUsed + 5;
-            updateStorage(newUsed, 100);
-            alert('File uploaded successfully!');
+
+        function updateStats() {
+            const totalFiles = files.length;
+            const pdfCount = files.filter(f => f.type?.includes('pdf')).length;
+            const imageCount = files.filter(f => f.type?.includes('image')).length;
+            const totalSize = files.reduce((sum, f) => sum + (f.size || 0), 0);
+            const storageLimit = 1024 * 1024 * 1024; // 1GB
+            const freeSpace = storageLimit - totalSize;
+            const usagePercent = (totalSize / storageLimit) * 100;
+
+            document.getElementById('totalFiles').textContent = totalFiles;
+            document.getElementById('pdfCount').textContent = pdfCount;
+            document.getElementById('imageCount').textContent = imageCount;
+            document.getElementById('totalSize').textContent = (totalSize / (1024 * 1024)).toFixed(1) + ' MB';
+            document.getElementById('usedSpace').textContent = (totalSize / (1024 * 1024)).toFixed(1) + ' MB';
+            document.getElementById('freeSpace').textContent = (freeSpace / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+            document.getElementById('usagePercent').textContent = usagePercent.toFixed(1) + '%';
+            document.getElementById('lastBackup').textContent = new Date().toLocaleDateString();
         }
+
+        function updateCharts() {
+            // Storage Chart
+            const totalSize = files.reduce((sum, f) => sum + (f.size || 0), 0);
+            const storageLimit = 1024 * 1024 * 1024;
+            
+            new Chart(document.getElementById('storageChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Used', 'Free'],
+                    datasets: [{
+                        data: [totalSize, storageLimit - totalSize],
+                        backgroundColor: ['#8b5cf6', '#334155'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#fff' }
+                        }
+                    }
+                }
+            });
+
+            // File Type Chart
+            const pdfCount = files.filter(f => f.type?.includes('pdf')).length;
+            const imageCount = files.filter(f => f.type?.includes('image')).length;
+            const otherCount = files.length - pdfCount - imageCount;
+
+            new Chart(document.getElementById('fileTypeChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['PDF', 'Images', 'Other'],
+                    datasets: [{
+                        data: [pdfCount, imageCount, otherCount],
+                        backgroundColor: ['#ef4444', '#10b981', '#3b82f6'],
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.1)' },
+                            ticks: { color: '#fff' }
+                        },
+                        x: {
+                            ticks: { color: '#fff' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateTimeline() {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = activities.sort((a, b) => 
+                new Date(b.time) - new Date(a.time)
+            ).map(activity => `
+                <div class="timeline-item">
+                    <div class="timeline-time">${new Date(activity.time).toLocaleString()}</div>
+                    <div class="timeline-title">${activity.title}</div>
+                    <div class="timeline-desc">${activity.description}</div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
 </html>

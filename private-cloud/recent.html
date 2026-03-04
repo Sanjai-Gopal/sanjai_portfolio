@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Files - Sanjai Cloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #3b82f6;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .time-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .time-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #94a3b8;
+        }
+
+        .time-btn:hover,
+        .time-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .files-list {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .file-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .file-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .file-icon.pdf { color: #ef4444; }
+        .file-icon.image { color: #10b981; }
+        .file-icon.doc { color: #3b82f6; }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .file-path {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .file-time {
+            color: #3b82f6;
+            font-size: 0.9rem;
+            min-width: 150px;
+        }
+
+        .file-size {
+            color: #94a3b8;
+            min-width: 80px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .preview-btn {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .download-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .empty-state i {
+            font-size: 5rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: #94a3b8;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            
+            .file-item {
+                grid-template-columns: auto 1fr auto;
+                gap: 0.5rem;
+            }
+            
+            .file-time,
+            .file-size {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-clock"></i> Recent Files</h1>
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Cloud</a>
+        </div>
+
+        <div class="time-filters">
+            <button class="time-btn active" onclick="filterByTime('today')">Today</button>
+            <button class="time-btn" onclick="filterByTime('yesterday')">Yesterday</button>
+            <button class="time-btn" onclick="filterByTime('week')">This Week</button>
+            <button class="time-btn" onclick="filterByTime('month')">This Month</button>
+            <button class="time-btn" onclick="filterByTime('all')">All Time</button>
+        </div>
+
+        <div class="files-list" id="filesList"></div>
+    </div>
+
+    <script>
+        let recentFiles = [];
+        let currentFilter = 'today';
+
+        function loadRecentFiles() {
+            const allFiles = JSON.parse(localStorage.getItem('cloudFiles') || '[]');
+            
+            // Add timestamps to files if not present
+            recentFiles = allFiles.map(file => ({
+                ...file,
+                lastAccessed: file.lastAccessed || file.uploadDate || new Date().toISOString()
+            }));
+            
+            // Sort by most recent
+            recentFiles.sort((a, b) => new Date(b.lastAccessed) - new Date(a.lastAccessed));
+            
+            filterByTime('today');
+        }
+
+        function filterByTime(filter) {
+            currentFilter = filter;
+            
+            document.querySelectorAll('.time-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const now = new Date();
+            const filtered = recentFiles.filter(file => {
+                const fileDate = new Date(file.lastAccessed);
+                
+                switch(filter) {
+                    case 'today':
+                        return fileDate.toDateString() === now.toDateString();
+                    case 'yesterday':
+                        const yesterday = new Date(now);
+                        yesterday.setDate(yesterday.getDate() - 1);
+                        return fileDate.toDateString() === yesterday.toDateString();
+                    case 'week':
+                        const weekAgo = new Date(now);
+                        weekAgo.setDate(weekAgo.getDate() - 7);
+                        return fileDate >= weekAgo;
+                    case 'month':
+                        const monthAgo = new Date(now);
+                        monthAgo.setMonth(monthAgo.getMonth() - 1);
+                        return fileDate >= monthAgo;
+                    default:
+                        return true;
+                }
+            });
+            
+            displayFiles(filtered);
+        }
+
+        function displayFiles(files) {
+            const container = document.getElementById('filesList');
+            
+            if (files.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-clock"></i>
+                        <h2>No recent files</h2>
+                        <p>Files you access recently will appear here</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = files.map(file => `
+                <div class="file-item" data-id="${file.id}">
+                    <div class="file-icon ${getFileClass(file.type)}">
+                        <i class="fas ${getFileIcon(file.type)}"></i>
+                    </div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-path">/${file.folder || 'My Drive'}</div>
+                    </div>
+                    <div class="file-time">
+                        <i class="far fa-clock"></i> ${timeAgo(file.lastAccessed)}
+                    </div>
+                    <div class="file-size">${formatSize(file.size)}</div>
+                    <div class="file-actions">
+                        <button class="action-btn preview-btn" onclick="previewFile('${file.id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="action-btn download-btn" onclick="downloadFile('${file.id}')">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getFileIcon(type) {
+            if (type?.includes('pdf')) return 'fa-file-pdf';
+            if (type?.includes('image')) return 'fa-file-image';
+            if (type?.includes('word')) return 'fa-file-word';
+            if (type?.includes('excel')) return 'fa-file-excel';
+            return 'fa-file';
+        }
+
+        function getFileClass(type) {
+            if (type?.includes('pdf')) return 'pdf';
+            if (type?.includes('image')) return 'image';
+            if (type?.includes('word')) return 'doc';
+            return '';
+        }
+
+        function formatSize(bytes) {
+            if (!bytes) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function timeAgo(date) {
+            const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+            
+            let interval = Math.floor(seconds / 31536000);
+            if (interval > 1) return interval + ' years ago';
+            
+            interval = Math.floor(seconds / 2592000);
+            if (interval > 1) return interval + ' months ago';
+            
+            interval = Math.floor(seconds / 86400);
+            if (interval > 1) return interval + ' days ago';
+            
+            interval = Math.floor(seconds / 3600);
+            if (interval > 1) return interval + ' hours ago';
+            
+            interval = Math.floor(seconds / 60);
+            if (interval > 1) return interval + ' minutes ago';
+            
+            return 'just now';
+        }
+
+        function previewFile(id) {
+            const file = recentFiles.find(f => f.id === id);
+            showNotification(`Opening: ${file.name}`, 'info');
+            
+            // Update last accessed time
+            file.lastAccessed = new Date().toISOString();
+            localStorage.setItem('cloudFiles', JSON.stringify(recentFiles));
+        }
+
+        function downloadFile(id) {
+            const file = recentFiles.find(f => f.id === id);
+            showNotification(`Downloading: ${file.name}`, 'success');
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadRecentFiles);
+    </script>
+</body>
+</html>
