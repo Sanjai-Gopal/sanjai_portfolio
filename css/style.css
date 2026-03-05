@@ -32,6 +32,7 @@ body {
     font-size: 36px;
     font-weight: bold;
     color: #000;
+    margin: 0;
 }
 
 .logo p {
@@ -53,7 +54,7 @@ body {
 
 /* Hero Section */
 .hero {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .hero h2 {
@@ -103,10 +104,10 @@ body {
 
 /* Skills Section */
 .skills {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
-.skills h3, .projects h3 {
+.skills h3 {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -118,10 +119,9 @@ body {
 }
 
 .skills-list li {
-    padding: 8px 0;
+    padding: 5px 0;
     font-size: 18px;
     color: #333;
-    border-bottom: 1px solid #eee;
 }
 
 .skills-list li:before {
@@ -133,24 +133,28 @@ body {
 
 /* Projects Section */
 .projects {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
-.project-item {
-    margin-bottom: 25px;
-}
-
-.project-item h4 {
-    font-size: 20px;
+.projects h3 {
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     color: #000;
 }
 
-.project-item p {
+.projects h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 5px 0;
+    color: #000;
+}
+
+.projects p {
     color: #666;
     font-size: 16px;
-    margin-left: 20px;
+    margin-left: 0;
+    margin-bottom: 15px;
 }
 
 /* Footer */
@@ -200,9 +204,5 @@ body {
     
     .search-section {
         flex-direction: column;
-    }
-    
-    .project-item p {
-        margin-left: 10px;
     }
 }
