@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal · Certificates & Projects</title>
-    <!-- Font Awesome Icons -->
+    <title>Sanjai Gopal · Advanced Certificates & Projects Gallery</title>
+    
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper JS for Carousels -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- AOS (Animate on Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -17,160 +26,500 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0f1e, #141b2b);
+            background: linear-gradient(135deg, #0a0f1e 0%, #1a1f35 50%, #0f172a 100%);
             color: #f0f4fa;
             line-height: 1.6;
-            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gradientShift 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle var(--duration) ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(calc(var(--x) * 20px), calc(var(--y) * -30px)) scale(1.5);
+                opacity: 0.8;
+            }
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Headers */
+        /* Section Headers with 3D Effect */
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            perspective: 1000px;
         }
 
         .section-header h2 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #a78bfa, #60a5fa);
+            font-size: 4rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #fff, #a78bfa, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+            transform: translateZ(20px);
+            text-shadow: 
+                0 10px 20px rgba(139, 92, 246, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: floatText 3s ease-in-out infinite;
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateZ(20px) translateY(0); }
+            50% { transform: translateZ(30px) translateY(-10px); }
         }
 
         .section-header p {
             color: #94a3b8;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .section-header p i {
+            margin: 0 0.5rem;
+            color: #8b5cf6;
+        }
+
+        /* Stats Counter */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            min-width: 180px;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #cbd5e1;
+            font-size: 1rem;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* Grid Layout */
-        .cert-grid, .project-grid {
+        /* Filter Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: #cbd5e1;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .filter-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Certificates Grid - Masonry Style */
+        .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* Card Base */
-        .cert-card, .project-card {
-            background: rgba(20, 30, 50, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.25);
-            border-radius: 1.8rem;
-            padding: 1.8rem 1.5rem;
-            transition: all 0.3s ease;
+        /* Certificate Card - Image Based */
+        .cert-card {
             position: relative;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 1/1.4;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .cert-card::before, .project-card::before {
-            content: '';
+        .cert-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4);
+        }
+
+        .cert-image {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #8b5cf6, #3b82f6, #8b5cf6);
-            transform: translateX(-100%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .cert-card:hover::before, .project-card:hover::before {
-            transform: translateX(100%);
+        .cert-card:hover .cert-image {
+            transform: scale(1.1);
         }
 
-        .cert-card:hover, .project-card:hover {
-            transform: translateY(-6px);
-            border-color: #8b5cf6;
-            box-shadow: 0 25px 40px -12px rgba(139, 92, 246, 0.4);
+        /* Certificate Overlay with Details */
+        .cert-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.95) 0%,
+                rgba(139, 92, 246, 0.8) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            color: white;
         }
 
-        /* Certificate Card Content */
+        .cert-card:hover .cert-overlay {
+            opacity: 1;
+        }
+
         .cert-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
             font-size: 2.5rem;
-            color: #8b5cf6;
-            margin-bottom: 1.2rem;
+            color: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover .cert-icon {
+            color: white;
+            transform: scale(1.2) rotate(360deg);
         }
 
         .cert-title {
             font-size: 1.3rem;
             font-weight: 700;
-            line-height: 1.4;
             margin-bottom: 0.5rem;
-            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .cert-card:hover .cert-title {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .cert-issuer {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #cbd5e1;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.2s;
         }
 
-        .cert-issuer i {
-            color: #8b5cf6;
-            font-size: 0.9rem;
+        .cert-card:hover .cert-issuer {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .cert-date {
             display: inline-block;
-            background: rgba(139, 92, 246, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             padding: 0.3rem 1rem;
             border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #a78bfa;
-            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.3s;
+        }
+
+        .cert-card:hover .cert-date {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .cert-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 0.6rem 1.2rem;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
             background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             color: white;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 500;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 0.9rem;
-            transition: all 0.2s ease;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.4s;
             border: none;
             cursor: pointer;
+            width: fit-content;
+        }
+
+        .cert-card:hover .cert-link {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .cert-link:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.4);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        /* Project Card */
-        .project-icon {
-            font-size: 2.2rem;
-            color: #60a5fa;
-            margin-bottom: 1rem;
+        /* Certificate Badge (for issuer logo) */
+        .cert-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #8b5cf6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(20, 30, 50, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6, #10b981, #8b5cf6);
+            background-size: 300% 100%;
+            animation: gradientMove 3s linear infinite;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(2deg);
+            border-color: #8b5cf6;
+            box-shadow: 
+                0 30px 50px -20px rgba(139, 92, 246, 0.5),
+                0 0 0 1px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Project Image */
+        .project-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+        }
+
+        .project-category {
+            padding: 0.4rem 1.2rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-radius: 50px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .project-content {
+            padding: 2rem;
         }
 
         .project-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .project-desc {
-            color: #b9c7da;
+            color: #cbd5e1;
             font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         .project-tech {
@@ -181,266 +530,723 @@
         }
 
         .tech-tag {
-            background: rgba(96, 165, 250, 0.1);
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: #93c5fd;
+            padding: 0.3rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #a78bfa;
+            transition: all 0.3s ease;
         }
 
-        .project-links a {
+        .tech-tag:hover {
+            background: #8b5cf6;
+            color: white;
+            border-color: #8b5cf6;
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: #cbd5e1;
-            margin-right: 1.2rem;
-            font-size: 0.95rem;
             text-decoration: none;
-            transition: color 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
         }
 
-        .project-links a:hover {
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+            transition: width 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: white;
+        }
+
+        .project-link:hover::after {
+            width: 100%;
+        }
+
+        .project-link i {
             color: #8b5cf6;
+            transition: transform 0.3s ease;
         }
 
-        /* Responsive */
-        @media (max-width: 700px) {
-            .section-header h2 { font-size: 2.2rem; }
-            .cert-grid { grid-template-columns: 1fr; }
+        .project-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* View More Button */
+        .view-more {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .btn-view-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-view-more::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-view-more:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-view-more:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-view-more i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-view-more:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Modal for Certificate Preview */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(139, 92, 246, 0.4);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .modal-close:hover {
+            background: #ef4444;
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cert-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container {
+                gap: 1rem;
+            }
+            
+            .stat-item {
+                padding: 1rem;
+                min-width: 140px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-btn {
+                text-align: center;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0f1e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .loading-spinner::before,
+        .loading-spinner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #8b5cf6;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-spinner::after {
+            border-top-color: #3b82f6;
+            animation: spin 1.5s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Certificates Section -->
-        <div class="section-header">
-            <h2>📜 Professional Certificates</h2>
-            <p>28+ credentials from global organizations • verified on LinkedIn</p>
-        </div>
-        <div class="cert-grid" id="certGrid"></div>
-
-        <!-- Projects Section -->
-        <div class="section-header" style="margin-top: 5rem;">
-            <h2>💻 Featured Projects</h2>
-            <p>Real‑world builds • AI • Web • Systems</p>
-        </div>
-        <div class="project-grid" id="projectGrid"></div>
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
     </div>
 
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Stats Counter -->
+        <div class="stats-container" data-aos="fade-up">
+            <div class="stat-item">
+                <span class="stat-number" id="certCount">28</span>
+                <span class="stat-label">Certificates</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="projectCount">6</span>
+                <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="issuerCount">12</span>
+                <span class="stat-label">Organizations</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="techCount">15</span>
+                <span class="stat-label">Technologies</span>
+            </div>
+        </div>
+
+        <!-- Certificates Section -->
+        <div class="section-header" data-aos="fade-up" data-aos-delay="100">
+            <h2>📜 Professional Certificates</h2>
+            <p><i class="fas fa-certificate"></i> 28+ credentials from global organizations <i class="fas fa-certificate"></i></p>
+        </div>
+
+        <!-- Certificate Filters -->
+        <div class="filter-container" data-aos="fade-up" data-aos-delay="150">
+            <button class="filter-btn active" data-filter="all">All Certificates</button>
+            <button class="filter-btn" data-filter="aws">AWS</button>
+            <button class="filter-btn" data-filter="coursera">Coursera</button>
+            <button class="filter-btn" data-filter="ibm">IBM</button>
+            <button class="filter-btn" data-filter="govt">Government</button>
+            <button class="filter-btn" data-filter="other">Other</button>
+        </div>
+
+        <!-- Certificates Grid -->
+        <div class="cert-grid" id="certGrid" data-aos="fade-up" data-aos-delay="200"></div>
+
+        <!-- Projects Section -->
+        <div class="section-header" style="margin-top: 6rem;" data-aos="fade-up">
+            <h2>💻 Featured Projects</h2>
+            <p><i class="fas fa-code"></i> Real‑world builds • AI • Web • Systems <i class="fas fa-code"></i></p>
+        </div>
+
+        <!-- Project Filters -->
+        <div class="filter-container" data-aos="fade-up" data-aos-delay="100">
+            <button class="filter-btn active" data-project-filter="all">All Projects</button>
+            <button class="filter-btn" data-project-filter="python">Python</button>
+            <button class="filter-btn" data-project-filter="cpp">C++</button>
+            <button class="filter-btn" data-project-filter="web">Web</button>
+            <button class="filter-btn" data-project-filter="ai">AI/ML</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="project-grid" id="projectGrid" data-aos="fade-up" data-aos-delay="200"></div>
+
+        <!-- View More Button -->
+        <div class="view-more" data-aos="fade-up">
+            <a href="https://github.com/Sanjai-Gopal" target="_blank" class="btn-view-more">
+                <span>View All on GitHub</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal for Certificate Preview -->
+    <div class="modal" id="certModal">
+        <div class="modal-close" id="modalClose"><i class="fas fa-times"></i></div>
+        <div class="modal-content" id="modalContent">
+            <img src="" alt="Certificate Preview" id="modalImage">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        (function() {
-            // ---------- CERTIFICATES DATA (from your images & posts) ----------
-            const certificates = [
-                {
-                    title: "Official Practice Question Set: AWS Certified Cloud Practitioner (CLF-C02)",
-                    issuer: "AWS Training & Certification",
-                    date: "Oct 13, 2025",
-                    icon: "fa-brands fa-aws",
-                    link: "https://www.linkedin.com/posts/sanjai2306_awscertified-cloudpractitioner-professionaldevelopment-activity-7384096347936927744-0aUl"
-                },
-                {
-                    title: "Viksit Bharat Young Leaders Dialogue (VBYLD) 2026 Quiz",
-                    issuer: "Ministry of Youth Affairs & Sports / MYBharat",
-                    date: "Sep 24, 2025",
-                    icon: "fa-solid fa-indian-rupee-sign",
-                    link: "https://www.linkedin.com/posts/sanjai2306_honored-to-receive-a-certificate-of-participation-activity-7376454082129088512-FSGz"
-                },
-                {
-                    title: "The Viksit Bharat Quiz 2026",
-                    issuer: "Viksit Bharat Young Leaders Dialogue",
-                    date: "2025",
-                    icon: "fa-solid fa-medal",
-                    link: "#" // add actual link if available
-                },
-                {
-                    title: "Advances in thermal infrared Remote Sensing for Ecological Studies",
-                    issuer: "IIRS / ISRO",
-                    date: "Oct 15, 2025",
-                    icon: "fa-solid fa-satellite",
-                    link: "https://www.linkedin.com/posts/sanjai2306_remotesensing-ecologicalstudies-iirs-activity-7387002357491900416-NcME"
-                },
-                {
-                    title: "Getting Started with Data",
-                    issuer: "IBM SkillsBuild",
-                    date: "Oct 14, 2025",
-                    icon: "fa-solid fa-database",
-                    link: "https://www.linkedin.com/posts/sanjai2306_completion-certificate-for-getting-started-activity-7425484748036157440-xryg"
-                },
-                {
-                    title: "Online Essay on Viksit Bharat Young Leaders Dialogue",
-                    issuer: "Ministry of Youth Affairs & Sports",
-                    date: "Nov 13, 2025",
-                    icon: "fa-solid fa-pen",
-                    link: "https://www.linkedin.com/posts/sanjai2306_viksitbharat-mybharat-youthleadership-activity-7394660113850093568-3AxY"
-                },
-                {
-                    title: "Sardar 150 National Level Essay Competition",
-                    issuer: "Ek Bharat Aatmanirbhar Bharat",
-                    date: "2025",
-                    icon: "fa-solid fa-award",
-                    link: "#"
-                },
-                {
-                    title: "Typing – Beginner Unit (20 WPM, 93% acc.)",
-                    issuer: "typing.com",
-                    date: "Nov 4, 2025",
-                    icon: "fa-regular fa-keyboard",
-                    link: "#"
-                },
-                {
-                    title: "Typing – Intermediate Unit (26 WPM, 95% acc.)",
-                    issuer: "typing.com",
-                    date: "Nov 13, 2025",
-                    icon: "fa-regular fa-keyboard",
-                    link: "#"
-                },
-                {
-                    title: "Typing – Advanced Unit (30 WPM, 96% acc.)",
-                    issuer: "typing.com",
-                    date: "Nov 20, 2025",
-                    icon: "fa-regular fa-keyboard",
-                    link: "#"
-                },
-                {
-                    title: "Use Canva to Create Social Media Visuals for Business",
-                    issuer: "Coursera Project Network",
-                    date: "Jan 6, 2026",
-                    icon: "fa-brands fa-canva",
-                    link: "https://www.linkedin.com/posts/sanjai2306_coursera-projectcompletion-socialmediamarketing-activity-7414683003995734018-9GzO"
-                },
-                {
-                    title: "Create and Design Digital Products using Canva",
-                    issuer: "Coursera Project Network",
-                    date: "Jan 6, 2026",
-                    icon: "fa-brands fa-canva",
-                    link: "#"
-                },
-                {
-                    title: "Increase Engagement to your Instagram Business Profile",
-                    issuer: "Coursera Project Network",
-                    date: "Jan 7, 2026",
-                    icon: "fa-brands fa-instagram",
-                    link: "https://www.linkedin.com/posts/sanjai2306_coursera-projectcompletion-socialmediamarketing-activity-7414683003995734018-9GzO"
-                },
-                {
-                    title: "CS205: Building with Artificial Intelligence (92.16%)",
-                    issuer: "Saylor Academy",
-                    date: "Feb 2, 2026",
-                    icon: "fa-solid fa-robot",
-                    link: "https://www.linkedin.com/posts/sanjai2306_artificialintelligence-machinelearning-ai-activity-7424034109586464768-YVr9"
-                },
-                {
-                    title: "Online Quiz: Know more about DFPD-II",
-                    issuer: "Ministry of Youth Affairs & Sports / MYBharat",
-                    date: "Feb 17, 2026",
-                    icon: "fa-solid fa-question",
-                    link: "https://www.linkedin.com/posts/sanjai2306_mybharat-budget2026-viksitbharat-activity-7429822012530802688-cngh"
-                },
-                {
-                    title: "MYBharat Budget Quest 2026",
-                    issuer: "Ministry of Youth Affairs & Sports",
-                    date: "Feb 17, 2026",
-                    icon: "fa-solid fa-chart-line",
-                    link: "https://www.linkedin.com/posts/sanjai2306_mybharat-budget2026-viksitbharat-activity-7429822012530802688-cngh"
-                },
-                {
-                    title: "C Programming",
-                    issuer: "byteXL (Sri Krishna Institutions)",
-                    date: "Nov 7–27, 2025",
-                    icon: "fa-solid fa-c",
-                    link: "https://www.linkedin.com/posts/sanjai2306_cprogramming-programmingfundamentals-bytexl-activity-7430580361270616064-Thi6"
-                },
-                {
-                    title: "Canva Design Fundamentals",
-                    issuer: "Coursera",
-                    date: "Feb 20, 2026",
-                    icon: "fa-brands fa-canva",
-                    link: "https://www.linkedin.com/posts/sanjai2306_coursera-canva-designskills-activity-7430816066945208322-0JNp"
-                },
-                {
-                    title: "Canva Essentials Professional Certificate",
-                    issuer: "Coursera",
-                    date: "Feb 22, 2026",
-                    icon: "fa-brands fa-canva",
-                    link: "https://www.linkedin.com/posts/sanjai2306_canva-essentials-professional-certificate-activity-7431380646150766592-owyp"
-                }
-            ];
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
 
-            // ---------- PROJECTS DATA (from images & hackathon) ----------
-            const projects = [
-                {
-                    name: "RuralCare AI",
-                    description: "Multilingual AI‑based rural health assistant – symptom checker, voice recording, disease library, real‑time dashboard, printable reports.",
-                    tech: ["Python", "Flask", "AI/ML", "Voice‑to‑text"],
-                    github: "https://github.com/Sanjai-Gopal/ruralcare-ai",
-                    live: "#"
-                },
-                {
-                    name: "Feedback & Billing System",
-                    description: "Snack shop billing with tax calculation, star ratings & file persistence (C++).",
-                    tech: ["C++", "File I/O", "OOP"],
-                    github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
-                    live: null
-                },
-                {
-                    name: "bis-smart-compliance",
-                    description: "Python‑based automated compliance monitoring, report generation & audit logging.",
-                    tech: ["Python", "Automation", "Logging"],
-                    github: "https://github.com/Sanjai-Gopal/bis-smart-compliance",
-                    live: null
-                },
-                {
-                    name: "Railway Reservation System",
-                    description: "Console C++ app for ticket booking, PNR tracking, seat management.",
-                    tech: ["C++", "Data Structures"],
-                    github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
-                    live: null
-                },
-                {
-                    name: "Advanced Portfolio 2026",
-                    description: "This portfolio – 3D background, AI chatbot, voice navigation, private cloud.",
-                    tech: ["HTML5", "CSS3", "JavaScript", "Three.js"],
-                    github: "https://github.com/Sanjai-Gopal/sanjai_portfolio",
-                    live: "https://sanjai-gopal.github.io/sanjai_portfolio/"
-                },
-                {
-                    name: "AI Student Performance Predictor",
-                    description: "ML model to predict grades based on study hours, attendance (scikit‑learn).",
-                    tech: ["Python", "scikit‑learn", "Pandas"],
-                    github: "https://github.com/Sanjai-Gopal/ml-student-performance",
-                    live: null
-                }
-            ];
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-            // ---------- RENDER CERTIFICATES ----------
-            const certGrid = document.getElementById('certGrid');
-            certGrid.innerHTML = certificates.map(cert => `
-                <div class="cert-card">
-                    <div class="cert-icon"><i class="fas ${cert.icon || 'fa-certificate'}"></i></div>
-                    <h3 class="cert-title">${cert.title}</h3>
-                    <div class="cert-issuer"><i class="fas fa-building"></i> ${cert.issuer}</div>
-                    <span class="cert-date"><i class="far fa-calendar-alt"></i> ${cert.date}</span><br>
-                    <a href="${cert.link}" target="_blank" class="cert-link">
-                        <i class="fab fa-linkedin"></i> View Post
-                    </a>
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 10 + 2;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                const xMove = (Math.random() - 0.5) * 2;
+                const yMove = (Math.random() - 0.5) * 2;
+                
+                particle.style.cssText = `
+                    left: ${x}%;
+                    top: ${y}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    --x: ${xMove};
+                    --y: ${yMove};
+                    animation-duration: ${duration}s;
+                    animation-delay: -${delay}s;
+                `;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Certificate Data with Image Paths (using placeholder images that look like certificates)
+        const certificates = [
+            {
+                title: "AWS Certified Cloud Practitioner",
+                issuer: "AWS Training & Certification",
+                date: "Oct 13, 2025",
+                category: "aws",
+                icon: "fa-brands fa-aws",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format", // Tech certificate style
+                link: "https://www.linkedin.com/posts/sanjai2306_awscertified-cloudpractitioner-professionaldevelopment-activity-7384096347936927744-0aUl"
+            },
+            {
+                title: "Viksit Bharat Young Leaders Dialogue",
+                issuer: "Ministry of Youth Affairs",
+                date: "Sep 24, 2025",
+                category: "govt",
+                icon: "fa-solid fa-indian-rupee-sign",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_honored-to-receive-a-certificate-of-participation-activity-7376454082129088512-FSGz"
+            },
+            {
+                title: "Remote Sensing for Ecological Studies",
+                issuer: "IIRS / ISRO",
+                date: "Oct 15, 2025",
+                category: "other",
+                icon: "fa-solid fa-satellite",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_remotesensing-ecologicalstudies-iirs-activity-7387002357491900416-NcME"
+            },
+            {
+                title: "Getting Started with Data",
+                issuer: "IBM SkillsBuild",
+                date: "Oct 14, 2025",
+                category: "ibm",
+                icon: "fa-solid fa-database",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_completion-certificate-for-getting-started-activity-7425484748036157440-xryg"
+            },
+            {
+                title: "Viksit Bharat Young Leaders Essay",
+                issuer: "Ministry of Youth Affairs",
+                date: "Nov 13, 2025",
+                category: "govt",
+                icon: "fa-solid fa-pen",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_viksitbharat-mybharat-youthleadership-activity-7394660113850093568-3AxY"
+            },
+            {
+                title: "Typing - Advanced Unit (30 WPM)",
+                issuer: "typing.com",
+                date: "Nov 20, 2025",
+                category: "other",
+                icon: "fa-regular fa-keyboard",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "#"
+            },
+            {
+                title: "Social Media Visuals with Canva",
+                issuer: "Coursera Project Network",
+                date: "Jan 6, 2026",
+                category: "coursera",
+                icon: "fa-brands fa-canva",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_coursera-projectcompletion-socialmediamarketing-activity-7414683003995734018-9GzO"
+            },
+            {
+                title: "Building with Artificial Intelligence",
+                issuer: "Saylor Academy",
+                date: "Feb 2, 2026",
+                category: "coursera",
+                icon: "fa-solid fa-robot",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_artificialintelligence-machinelearning-ai-activity-7424034109586464768-YVr9"
+            },
+            {
+                title: "MYBharat Budget Quest 2026",
+                issuer: "Ministry of Youth Affairs",
+                date: "Feb 17, 2026",
+                category: "govt",
+                icon: "fa-solid fa-chart-line",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_mybharat-budget2026-viksitbharat-activity-7429822012530802688-cngh"
+            },
+            {
+                title: "C Programming Certification",
+                issuer: "byteXL",
+                date: "Nov 27, 2025",
+                category: "other",
+                icon: "fa-solid fa-c",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_cprogramming-programmingfundamentals-bytexl-activity-7430580361270616064-Thi6"
+            },
+            {
+                title: "Canva Design Fundamentals",
+                issuer: "Coursera",
+                date: "Feb 20, 2026",
+                category: "coursera",
+                icon: "fa-brands fa-canva",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_coursera-canva-designskills-activity-7430816066945208322-0JNp"
+            },
+            {
+                title: "Canva Essentials Professional Certificate",
+                issuer: "Coursera",
+                date: "Feb 22, 2026",
+                category: "coursera",
+                icon: "fa-brands fa-canva",
+                image: "https://images.unsplash.com/photo-1599507593499-a3f7d7d2c3a8?w=800&auto=format",
+                link: "https://www.linkedin.com/posts/sanjai2306_canva-essentials-professional-certificate-activity-7431380646150766592-owyp"
+            }
+        ];
+
+        // Projects Data with Images
+        const projects = [
+            {
+                name: "RuralCare AI",
+                description: "Multilingual AI-based rural health assistant with symptom checker, voice recording, and real-time dashboard for healthcare access in remote areas.",
+                tech: ["Python", "Flask", "AI/ML", "Voice-to-Text"],
+                category: "ai",
+                github: "https://github.com/Sanjai-Gopal/ruralcare-ai",
+                live: "#",
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format",
+                color: "#8b5cf6"
+            },
+            {
+                name: "Feedback & Billing System",
+                description: "Complete snack shop management system with automatic bill generation, tax calculation, star ratings, and file-based persistence using C++ OOP.",
+                tech: ["C++", "File I/O", "OOP"],
+                category: "cpp",
+                github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
+                live: null,
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&auto=format",
+                color: "#3b82f6"
+            },
+            {
+                name: "bis-smart-compliance",
+                description: "Automated compliance monitoring system with intelligent report generation, data validation, and comprehensive audit logging for regulatory requirements.",
+                tech: ["Python", "Automation", "Logging"],
+                category: "python",
+                github: "https://github.com/Sanjai-Gopal/bis-smart-compliance",
+                live: null,
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format",
+                color: "#10b981"
+            },
+            {
+                name: "Railway Reservation System",
+                description: "Console-based railway ticket reservation system featuring seat management, PNR tracking, fare calculation, and real-time availability checking.",
+                tech: ["C++", "Data Structures", "OOP"],
+                category: "cpp",
+                github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
+                live: null,
+                image: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&auto=format",
+                color: "#f59e0b"
+            },
+            {
+                name: "Advanced Portfolio 2026",
+                description: "Cutting-edge portfolio with 3D background, AI chatbot, voice navigation, private cloud storage, and real-time analytics dashboard.",
+                tech: ["HTML5", "CSS3", "JavaScript", "Three.js"],
+                category: "web",
+                github: "https://github.com/Sanjai-Gopal/sanjai_portfolio",
+                live: "https://sanjai-gopal.github.io/sanjai_portfolio/",
+                image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&auto=format",
+                color: "#ec4899"
+            },
+            {
+                name: "Student Performance Predictor",
+                description: "Machine learning model achieving 85% accuracy in predicting student grades based on study hours, attendance, and previous performance metrics.",
+                tech: ["Python", "scikit-learn", "Pandas"],
+                category: "ai",
+                github: "https://github.com/Sanjai-Gopal/ml-student-performance",
+                live: null,
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format",
+                color: "#8b5cf6"
+            }
+        ];
+
+        // Update stats
+        document.getElementById('certCount').textContent = certificates.length;
+        document.getElementById('projectCount').textContent = projects.length;
+        document.getElementById('issuerCount').textContent = [...new Set(certificates.map(c => c.issuer))].length;
+        document.getElementById('techCount').textContent = [...new Set(projects.flatMap(p => p.tech))].length;
+
+        // Render Certificates
+        function renderCertificates(filter = 'all') {
+            const grid = document.getElementById('certGrid');
+            const filtered = filter === 'all' ? certificates : certificates.filter(c => c.category === filter);
+            
+            grid.innerHTML = filtered.map(cert => `
+                <div class="cert-card" data-category="${cert.category}" onclick="openModal('${cert.image}')">
+                    <img src="${cert.image}" alt="${cert.title}" class="cert-image">
+                    <div class="cert-badge">
+                        <i class="fas ${cert.icon}"></i>
+                    </div>
+                    <div class="cert-icon">
+                        <i class="fas ${cert.icon}"></i>
+                    </div>
+                    <div class="cert-overlay">
+                        <h3 class="cert-title">${cert.title}</h3>
+                        <div class="cert-issuer">
+                            <i class="fas fa-building"></i> ${cert.issuer}
+                        </div>
+                        <span class="cert-date">
+                            <i class="far fa-calendar-alt"></i> ${cert.date}
+                        </span>
+                        <a href="${cert.link}" target="_blank" class="cert-link" onclick="event.stopPropagation()">
+                            <i class="fab fa-linkedin"></i> View on LinkedIn
+                        </a>
+                    </div>
                 </div>
             `).join('');
+        }
 
-            // ---------- RENDER PROJECTS ----------
-            const projGrid = document.getElementById('projectGrid');
-            projGrid.innerHTML = projects.map(p => `
-                <div class="project-card">
-                    <div class="project-icon"><i class="fas fa-code-branch"></i></div>
-                    <h3 class="project-title">${p.name}</h3>
-                    <p class="project-desc">${p.description}</p>
-                    <div class="project-tech">
-                        ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+        // Render Projects
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projectGrid');
+            const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map(project => `
+                <div class="project-card" data-category="${project.category}">
+                    <div class="project-image">
+                        <img src="${project.image}" alt="${project.name}">
+                        <div class="project-overlay">
+                            <span class="project-category">${project.category.toUpperCase()}</span>
+                        </div>
                     </div>
-                    <div class="project-links">
-                        <a href="${p.github}" target="_blank"><i class="fab fa-github"></i> Code</a>
-                        ${p.live ? `<a href="${p.live}" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>` : ''}
+                    <div class="project-content">
+                        <h3 class="project-title">${project.name}</h3>
+                        <p class="project-desc">${project.description}</p>
+                        <div class="project-tech">
+                            ${project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                        </div>
+                        <div class="project-links">
+                            <a href="${project.github}" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            ${project.live ? `
+                                <a href="${project.live}" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>
+                            ` : ''}
+                        </div>
                     </div>
                 </div>
             `).join('');
-        })();
+        }
+
+        // Modal functions
+        function openModal(imageSrc) {
+            const modal = document.getElementById('certModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('certModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event Listeners for filters
+        document.querySelectorAll('[data-filter]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderCertificates(this.dataset.filter);
+            });
+        });
+
+        document.querySelectorAll('[data-project-filter]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('[data-project-filter]').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderProjects(this.dataset.projectFilter);
+            });
+        });
+
+        // Modal close
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('certModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Initialize
+        createParticles();
+        renderCertificates('all');
+        renderProjects('all');
+
+        // Hide loading after 1 second
+        setTimeout(() => {
+            document.getElementById('loading').classList.add('fade-out');
+        }, 1000);
+
+        // Add smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
