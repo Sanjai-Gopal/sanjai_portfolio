@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,201 +46,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-style">
-    
-    <style>
-        /* Certificate Grid Additional Styles */
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .certificate-card {
-            position: relative;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
-            aspect-ratio: 1.4/1;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-        
-        .certificate-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #8b5cf6, #3b82f6, #06b6d4);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-            z-index: 3;
-        }
-        
-        .certificate-card:hover::before {
-            transform: translateX(100%);
-        }
-        
-        .certificate-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            border-color: #8b5cf6;
-            box-shadow: 0 30px 40px -15px rgba(139, 92, 246, 0.5);
-        }
-        
-        .certificate-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-        
-        .certificate-card:hover img {
-            transform: scale(1.15);
-        }
-        
-        .certificate-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(139, 92, 246, 0.3));
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem 1.5rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 2;
-        }
-        
-        .certificate-card:hover .certificate-overlay {
-            opacity: 1;
-        }
-        
-        .certificate-overlay span {
-            color: white;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            transform: translateY(20px);
-            transition: transform 0.4s ease 0.1s;
-        }
-        
-        .certificate-overlay p {
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            transform: translateY(20px);
-            transition: transform 0.4s ease 0.2s;
-        }
-        
-        .certificate-card:hover .certificate-overlay span,
-        .certificate-card:hover .certificate-overlay p {
-            transform: translateY(0);
-        }
-        
-        .view-cert-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            color: white;
-            text-decoration: none;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            width: fit-content;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .certificate-card:hover .view-cert-btn {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .view-cert-btn:hover {
-            transform: translateX(5px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
-        }
-        
-        .stats-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .stat-block {
-            text-align: center;
-            padding: 2rem 2.5rem;
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 2rem;
-            min-width: 180px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stat-block::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent 70%);
-            animation: rotate 15s linear infinite;
-        }
-        
-        .stat-block .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            line-height: 1.2;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .stat-block .stat-label {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            font-weight: 500;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        @media (max-width: 768px) {
-            .certificates-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-wrapper {
-                gap: 1.5rem;
-            }
-            .stat-block {
-                padding: 1.5rem 2rem;
-                min-width: 140px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -278,7 +83,7 @@
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#achievements" class="nav-link">Certifications</a></li>
                     <li><a href="#blog" class="nav-link">Blog</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -434,7 +239,7 @@
                     <div class="about-image" data-aos="fade-right">
                         <div class="image-wrapper">
                             <div class="image-glitch"></div>
-                            <img src="assets/images/profile/sanjai-main.jpg" alt="Sanjai Gopal" class="profile-img">
+                            <img src="assets/images/profile/sanjai-main.jpg" alt="Sanjai Gopal" class="profile-img" onerror="this.src='assets/images/profile/placeholder.jpg'">
                             <div class="image-badge">
                                 <span>Aspiring AI Engineer</span>
                             </div>
@@ -517,14 +322,12 @@
                 </div>
                 
                 <div class="skills-content">
-                    <div class="skills-3d" id="skills-canvas"></div>
-                    
                     <div class="skills-grid">
                         <!-- Skill Category 1: Languages -->
                         <div class="skill-category" data-aos="fade-up">
                             <h3><i class="fas fa-code"></i> Programming Languages</h3>
                             <div class="skill-items">
-                                <div class="skill-item" data-progress="85">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">Python</span>
                                         <span class="skill-percent">85%</span>
@@ -539,7 +342,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="skill-item" data-progress="75">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">C++</span>
                                         <span class="skill-percent">75%</span>
@@ -554,7 +357,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="skill-item" data-progress="60">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">JavaScript</span>
                                         <span class="skill-percent">60%</span>
@@ -575,7 +378,7 @@
                         <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
                             <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
                             <div class="skill-items">
-                                <div class="skill-item" data-progress="70">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">Machine Learning</span>
                                         <span class="skill-percent">70%</span>
@@ -590,7 +393,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="skill-item" data-progress="50">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">Deep Learning</span>
                                         <span class="skill-percent">50%</span>
@@ -604,7 +407,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="skill-item" data-progress="40">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">MLOps</span>
                                         <span class="skill-percent">40%</span>
@@ -624,7 +427,7 @@
                         <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
                             <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
                             <div class="skill-items">
-                                <div class="skill-item" data-progress="80">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">Git & GitHub</span>
                                         <span class="skill-percent">80%</span>
@@ -638,7 +441,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="skill-item" data-progress="65">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">VS Code</span>
                                         <span class="skill-percent">65%</span>
@@ -652,7 +455,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="skill-item" data-progress="55">
+                                <div class="skill-item">
                                     <div class="skill-info">
                                         <span class="skill-name">Linux/Unix</span>
                                         <span class="skill-percent">55%</span>
@@ -735,233 +538,7 @@
                     <button class="filter-btn" data-filter="ai">AI/ML</button>
                 </div>
                 
-                <div class="projects-grid" id="projectsGrid">
-                    <!-- Project 1: RuralCare AI -->
-                    <div class="project-card" data-category="ai" data-aos="flip-left">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/ruralcare.jpg" alt="RuralCare AI">
-                                    <div class="project-overlay">
-                                        <span class="project-category">AI/ML</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>RuralCare AI</h3>
-                                    <p>Multilingual AI-based rural health assistant with symptom checker, voice recording, and real-time dashboard</p>
-                                    <div class="project-tech">
-                                        <span>Python</span>
-                                        <span>Flask</span>
-                                        <span>AI/ML</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ AI Symptom Checker (50+ conditions)</li>
-                                    <li>✓ Voice Recording feature</li>
-                                    <li>✓ Disease Library with 6 conditions</li>
-                                    <li>✓ Real-time dashboard</li>
-                                    <li>✓ Printable medical reports</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/ruralcare-ai" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2: Feedback and Billing System -->
-                    <div class="project-card" data-category="cpp" data-aos="flip-left" data-aos-delay="100">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/billing.jpg" alt="Billing System">
-                                    <div class="project-overlay">
-                                        <span class="project-category">C++</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Feedback & Billing System</h3>
-                                    <p>Complete snack shop management system with tax calculation, star ratings, and file-based persistence</p>
-                                    <div class="project-tech">
-                                        <span>C++</span>
-                                        <span>File I/O</span>
-                                        <span>OOP</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Automatic bill generation</li>
-                                    <li>✓ Tax calculation (CGST/SGST)</li>
-                                    <li>✓ Customer feedback with ratings</li>
-                                    <li>✓ File-based data persistence</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/Feedback-and-Billing-System" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3: bis-smart-compliance -->
-                    <div class="project-card" data-category="python" data-aos="flip-left" data-aos-delay="200">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/compliance.jpg" alt="Compliance System">
-                                    <div class="project-overlay">
-                                        <span class="project-category">Python</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>bis-smart-compliance</h3>
-                                    <p>Automated compliance monitoring system with report generation and audit logging</p>
-                                    <div class="project-tech">
-                                        <span>Python</span>
-                                        <span>Automation</span>
-                                        <span>Logging</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Automated compliance checks</li>
-                                    <li>✓ Report generation</li>
-                                    <li>✓ Data validation</li>
-                                    <li>✓ Audit logging</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/bis-smart-compliance" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 4: Railway Reservation System -->
-                    <div class="project-card" data-category="cpp" data-aos="flip-left" data-aos-delay="300">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/railway.jpg" alt="Railway System">
-                                    <div class="project-overlay">
-                                        <span class="project-category">C++</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Railway Reservation System</h3>
-                                    <p>Console-based railway ticket reservation system with seat management and PNR tracking</p>
-                                    <div class="project-tech">
-                                        <span>C++</span>
-                                        <span>OOP</span>
-                                        <span>Data Structures</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Ticket booking/cancellation</li>
-                                    <li>✓ Seat availability check</li>
-                                    <li>✓ PNR status tracking</li>
-                                    <li>✓ Fare calculation</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/railway-reservation-cpp" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 5: Advanced Portfolio -->
-                    <div class="project-card" data-category="web" data-aos="flip-left" data-aos-delay="400">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/portfolio.jpg" alt="Portfolio">
-                                    <div class="project-overlay">
-                                        <span class="project-category">Web</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Advanced Portfolio 2026</h3>
-                                    <p>Futuristic portfolio with 3D background, AI chatbot, voice navigation, and private cloud storage</p>
-                                    <div class="project-tech">
-                                        <span>HTML5/CSS3</span>
-                                        <span>JavaScript</span>
-                                        <span>Three.js</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ 3D interactive background</li>
-                                    <li>✓ AI chatbot assistant</li>
-                                    <li>✓ Voice navigation</li>
-                                    <li>✓ Private cloud storage</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/sanjai_portfolio" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> Code
-                                    </a>
-                                    <a href="#" class="live-link">
-                                        <i class="fas fa-external-link-alt"></i> Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 6: AI Student Performance Predictor -->
-                    <div class="project-card" data-category="ai" data-aos="flip-left" data-aos-delay="500">
-                        <div class="project-3d">
-                            <div class="project-front">
-                                <div class="project-image">
-                                    <img src="assets/images/projects/ml-model.jpg" alt="ML Model">
-                                    <div class="project-overlay">
-                                        <span class="project-category">AI/ML</span>
-                                    </div>
-                                </div>
-                                <div class="project-info">
-                                    <h3>Student Performance Predictor</h3>
-                                    <p>ML model to predict student grades based on study hours, attendance, and previous performance</p>
-                                    <div class="project-tech">
-                                        <span>Python</span>
-                                        <span>scikit-learn</span>
-                                        <span>Pandas</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <h4>Features</h4>
-                                <ul>
-                                    <li>✓ Grade prediction with 85% accuracy</li>
-                                    <li>✓ Feature importance analysis</li>
-                                    <li>✓ Data visualization</li>
-                                    <li>✓ Model evaluation metrics</li>
-                                </ul>
-                                <div class="project-links">
-                                    <a href="https://github.com/Sanjai-Gopal/ml-student-performance" target="_blank" class="github-link">
-                                        <i class="fab fa-github"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="projects-grid" id="projectsGrid"></div>
                 
                 <div class="projects-more" data-aos="fade-up">
                     <a href="https://github.com/Sanjai-Gopal?tab=repositories" target="_blank" class="btn btn-outline">
@@ -1029,7 +606,7 @@
                     <!-- Blog Post 1 -->
                     <article class="blog-card" data-aos="fade-up">
                         <div class="blog-image">
-                            <img src="assets/images/blog/python-basics.jpg" alt="Python Basics">
+                            <img src="assets/images/blog/python-basics.jpg" alt="Python Basics" onerror="this.src='assets/images/blog/placeholder.jpg'">
                             <div class="blog-category">Programming</div>
                         </div>
                         <div class="blog-content">
@@ -1048,7 +625,7 @@
                     <!-- Blog Post 2 -->
                     <article class="blog-card" data-aos="fade-up" data-aos-delay="100">
                         <div class="blog-image">
-                            <img src="assets/images/blog/git-guide.jpg" alt="Git Guide">
+                            <img src="assets/images/blog/git-guide.jpg" alt="Git Guide" onerror="this.src='assets/images/blog/placeholder.jpg'">
                             <div class="blog-category">DevOps</div>
                         </div>
                         <div class="blog-content">
@@ -1067,7 +644,7 @@
                     <!-- Blog Post 3 -->
                     <article class="blog-card" data-aos="fade-up" data-aos-delay="200">
                         <div class="blog-image">
-                            <img src="assets/images/blog/ai-journey.jpg" alt="AI Journey">
+                            <img src="assets/images/blog/ai-journey.jpg" alt="AI Journey" onerror="this.src='assets/images/blog/placeholder.jpg'">
                             <div class="blog-category">AI/ML</div>
                         </div>
                         <div class="blog-content">
@@ -1195,6 +772,7 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#projects">Projects</a></li>
+                        <li><a href="#achievements">Certifications</a></li>
                         <li><a href="#blog">Blog</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -1277,7 +855,7 @@
     <script src="js/voice-nav.js"></script>
     <script src="js/github-stats.js"></script>
 
-    <!-- Certificate Data Script -->
+    <!-- Main Initialization Script -->
     <script>
         // Complete Certificate Data - 30+ Certifications
         const certificates = [
@@ -1333,7 +911,66 @@
             { title: "Typing - Advanced Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-solid fa-keyboard", link: "#" }
         ];
 
-        // Display certificates function
+        // Projects Data
+        const projects = [
+            {
+                name: "RuralCare AI",
+                description: "Multilingual AI-based rural health assistant with symptom checker, voice recording, and real-time dashboard.",
+                tech: ["Python", "Flask", "AI/ML"],
+                category: "ai",
+                github: "https://github.com/Sanjai-Gopal/ruralcare-ai",
+                image: "assets/images/projects/ruralcare.jpg",
+                features: ["AI Symptom Checker (50+ conditions)", "Voice Recording", "Disease Library", "Real-time dashboard", "Printable reports"]
+            },
+            {
+                name: "Feedback & Billing System",
+                description: "Complete snack shop management system with tax calculation, star ratings, and file-based persistence.",
+                tech: ["C++", "File I/O", "OOP"],
+                category: "cpp",
+                github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
+                image: "assets/images/projects/billing.jpg",
+                features: ["Automatic bill generation", "Tax calculation", "Customer feedback", "File persistence"]
+            },
+            {
+                name: "bis-smart-compliance",
+                description: "Automated compliance monitoring system with report generation and audit logging.",
+                tech: ["Python", "Automation", "Logging"],
+                category: "python",
+                github: "https://github.com/Sanjai-Gopal/bis-smart-compliance",
+                image: "assets/images/projects/compliance.jpg",
+                features: ["Automated compliance checks", "Report generation", "Data validation", "Audit logging"]
+            },
+            {
+                name: "Railway Reservation System",
+                description: "Console-based railway ticket reservation system with seat management and PNR tracking.",
+                tech: ["C++", "OOP", "Data Structures"],
+                category: "cpp",
+                github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
+                image: "assets/images/projects/railway.jpg",
+                features: ["Ticket booking/cancellation", "Seat availability", "PNR tracking", "Fare calculation"]
+            },
+            {
+                name: "Advanced Portfolio 2026",
+                description: "Futuristic portfolio with 3D background, AI chatbot, voice navigation, and private cloud storage.",
+                tech: ["HTML5/CSS3", "JavaScript", "Three.js"],
+                category: "web",
+                github: "https://github.com/Sanjai-Gopal/sanjai_portfolio",
+                image: "assets/images/projects/portfolio.jpg",
+                demo: "https://sanjai-gopal.github.io/sanjai_portfolio/",
+                features: ["3D background", "AI chatbot", "Voice navigation", "Private cloud"]
+            },
+            {
+                name: "Student Performance Predictor",
+                description: "ML model to predict student grades based on study hours, attendance, and previous performance.",
+                tech: ["Python", "scikit-learn", "Pandas"],
+                category: "ai",
+                github: "https://github.com/Sanjai-Gopal/ml-student-performance",
+                image: "assets/images/projects/ml-model.jpg",
+                features: ["85% accuracy", "Feature importance", "Data visualization", "Model evaluation"]
+            }
+        ];
+
+        // Display certificates
         function displayCertificates(filter = 'all') {
             const grid = document.getElementById('certificatesGrid');
             if (!grid) return;
@@ -1346,18 +983,75 @@
                     <div class="certificate-overlay">
                         <span>${cert.title}</span>
                         <p><i class="fas ${cert.icon}"></i> ${cert.issuer} • ${cert.date}</p>
-                        <span class="view-cert-btn">View Certificate <i class="fas fa-arrow-right"></i></span>
+                        <span class="view-cert-btn">View <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Filter function
+        // Display projects
+        function displayProjects(filter = 'all') {
+            const grid = document.getElementById('projectsGrid');
+            if (!grid) return;
+            
+            const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map(project => `
+                <div class="project-card" data-category="${project.category}">
+                    <div class="project-3d">
+                        <div class="project-front">
+                            <div class="project-image">
+                                <img src="${project.image}" alt="${project.name}" onerror="this.src='assets/images/projects/placeholder.jpg'">
+                                <div class="project-overlay">
+                                    <span class="project-category">${project.category.toUpperCase()}</span>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3>${project.name}</h3>
+                                <p>${project.description}</p>
+                                <div class="project-tech">
+                                    ${project.tech.map(t => `<span>${t}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-back">
+                            <h4>Features</h4>
+                            <ul>
+                                ${project.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
+                            </ul>
+                            <div class="project-links">
+                                <a href="${project.github}" target="_blank" class="github-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                                ${project.demo ? `<a href="${project.demo}" target="_blank" class="live-link">
+                                    <i class="fas fa-external-link-alt"></i> Demo
+                                </a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filter functions
         window.filterCertificates = function(category) {
             document.querySelectorAll('.projects-filter .filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             displayCertificates(category);
         };
+
+        // Project filter
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.projects-filter .filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const filter = this.getAttribute('data-filter');
+                    displayProjects(filter);
+                });
+            });
+        });
 
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
@@ -1368,8 +1062,9 @@
                 offset: 100
             });
             
-            // Display certificates
+            // Display certificates and projects
             displayCertificates('all');
+            displayProjects('all');
             
             // Mobile menu toggle
             const hamburger = document.querySelector('.hamburger');
@@ -1406,7 +1101,7 @@
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth' });
                         // Close mobile menu if open
-                        if (navMenu.classList.contains('active')) {
+                        if (navMenu && navMenu.classList.contains('active')) {
                             navMenu.classList.remove('active');
                             hamburger.classList.remove('active');
                         }
@@ -1449,6 +1144,36 @@
                 
                 type();
             }
+
+            // Counter animation
+            const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                let current = 0;
+                const increment = target / 50;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        stat.textContent = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        stat.textContent = target;
+                    }
+                };
+                
+                // Trigger when element is in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(stat);
+            });
         });
     </script>
 </body>
