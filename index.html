@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal - AI Engineer | Advanced Nature-Inspired Portfolio</title>
+    <title>Sanjai Gopal - AI Engineer | Nature-Inspired Portfolio</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Sanjai Gopal - Aspiring AI Engineer from Coimbatore. 30+ certifications, 6 innovative projects blending technology with nature-inspired design.">
@@ -107,6 +107,11 @@
                             <i class="fas fa-lock"></i> Private
                         </a>
                     </li>
+                    <li class="nav-item cloud-item">
+                        <a href="#" class="nav-link cloud-link" id="cloudLink">
+                            <i class="fas fa-cloud"></i> Cloud
+                        </a>
+                    </li>
                 </ul>
             </div>
             
@@ -204,10 +209,10 @@
                             </div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-icon"><i class="fas fa-cloud"></i></div>
                             <div class="stat-info">
-                                <span class="stat-label">Visitors</span>
-                                <span class="stat-value" id="statVisitors">1,234</span>
+                                <span class="stat-label">Cloud Files</span>
+                                <span class="stat-value" id="statCloud">24</span>
                             </div>
                         </div>
                     </div>
@@ -224,6 +229,9 @@
                         </button>
                         <button class="dashboard-tab" data-tab="blog">
                             <i class="fas fa-blog"></i> Blog
+                        </button>
+                        <button class="dashboard-tab" data-tab="cloud">
+                            <i class="fas fa-cloud"></i> Cloud
                         </button>
                         <button class="dashboard-tab" data-tab="settings">
                             <i class="fas fa-cog"></i> Settings
@@ -330,6 +338,54 @@
                             </div>
                         </div>
                         
+                        <!-- Cloud Tab -->
+                        <div class="dashboard-pane" id="cloud-pane">
+                            <div class="pane-header">
+                                <h5>Cloud Storage Management</h5>
+                                <p>Manage files in your private cloud</p>
+                                <button class="btn btn-primary" id="uploadFileBtn">
+                                    <i class="fas fa-upload"></i> Upload File
+                                </button>
+                            </div>
+                            
+                            <div class="cloud-stats">
+                                <div class="cloud-stat-card">
+                                    <i class="fas fa-database"></i>
+                                    <div class="cloud-stat-info">
+                                        <span class="cloud-stat-label">Total Storage</span>
+                                        <span class="cloud-stat-value" id="totalStorage">2.4 GB</span>
+                                    </div>
+                                </div>
+                                <div class="cloud-stat-card">
+                                    <i class="fas fa-file"></i>
+                                    <div class="cloud-stat-info">
+                                        <span class="cloud-stat-label">Total Files</span>
+                                        <span class="cloud-stat-value" id="totalFiles">24</span>
+                                    </div>
+                                </div>
+                                <div class="cloud-stat-card">
+                                    <i class="fas fa-folder"></i>
+                                    <div class="cloud-stat-info">
+                                        <span class="cloud-stat-label">Folders</span>
+                                        <span class="cloud-stat-value" id="totalFolders">6</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="cloud-actions">
+                                <button class="btn btn-outline" id="createFolderBtn">
+                                    <i class="fas fa-folder-plus"></i> New Folder
+                                </button>
+                                <button class="btn btn-outline" id="refreshCloudBtn">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                            
+                            <div class="cloud-files-list" id="cloudFilesList">
+                                <!-- Dynamic cloud files will be populated here -->
+                            </div>
+                        </div>
+                        
                         <!-- Settings Tab -->
                         <div class="dashboard-pane" id="settings-pane">
                             <div class="pane-header">
@@ -395,6 +451,111 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Storage Modal -->
+    <div class="cloud-modal" id="cloudModal">
+        <div class="cloud-modal-content">
+            <div class="cloud-modal-header">
+                <div class="cloud-logo">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Sanjai's Private Cloud</h3>
+                </div>
+                <button class="cloud-close" id="cloudClose"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="cloud-modal-body">
+                <div class="cloud-password-form" id="cloudPasswordForm">
+                    <div class="cloud-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h4>Enter Cloud Password</h4>
+                    <p>Access your private cloud storage</p>
+                    <div class="password-input-group">
+                        <input type="password" id="cloudPassword" placeholder="Enter password">
+                        <button class="password-toggle" id="cloudPasswordToggle">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-error" id="cloudPasswordError"></div>
+                    <button class="btn btn-primary" id="submitCloudPassword">
+                        <i class="fas fa-cloud"></i> Access Cloud
+                    </button>
+                    <div class="password-hint">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Use same password: Sanjai@2008</span>
+                    </div>
+                </div>
+                
+                <div class="cloud-dashboard" id="cloudDashboard" style="display: none;">
+                    <div class="cloud-header">
+                        <h4><i class="fas fa-cloud"></i> My Cloud Storage</h4>
+                        <button class="cloud-logout-btn" id="cloudLogoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                    
+                    <div class="cloud-storage-info">
+                        <div class="storage-bar-container">
+                            <div class="storage-bar-label">
+                                <span>Storage Used</span>
+                                <span id="storageUsed">2.4 GB / 10 GB</span>
+                            </div>
+                            <div class="storage-bar">
+                                <div class="storage-bar-fill" id="storageBarFill" style="width: 24%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="cloud-toolbar">
+                        <button class="cloud-toolbar-btn" id="cloudUploadBtn">
+                            <i class="fas fa-upload"></i> Upload
+                        </button>
+                        <button class="cloud-toolbar-btn" id="cloudNewFolderBtn">
+                            <i class="fas fa-folder-plus"></i> New Folder
+                        </button>
+                        <button class="cloud-toolbar-btn" id="cloudRefreshBtn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                        <div class="cloud-search">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search files..." id="cloudSearchInput">
+                        </div>
+                    </div>
+                    
+                    <div class="cloud-breadcrumb" id="cloudBreadcrumb">
+                        <span class="breadcrumb-item active" data-path="root">My Cloud</span>
+                    </div>
+                    
+                    <div class="cloud-files-grid" id="cloudFilesGrid">
+                        <!-- Files will be populated here -->
+                    </div>
+                    
+                    <div class="cloud-upload-area" id="cloudUploadArea" style="display: none;">
+                        <div class="upload-area-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Drag & Drop Files Here</h3>
+                            <p>or click to browse</p>
+                            <input type="file" id="cloudFileInput" multiple hidden>
+                            <button class="btn btn-primary" id="browseFilesBtn">Browse Files</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Modal -->
+    <div class="blog-modal" id="blogModal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <h2 id="blogModalTitle">Blog Post</h2>
+                <button class="blog-modal-close" id="blogModalClose"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="blog-modal-body" id="blogModalBody">
+                <!-- Blog content will be loaded here -->
             </div>
         </div>
     </div>
@@ -688,7 +849,7 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
+    <!-- Blog Section - ENHANCED -->
     <section id="blog" class="blog">
         <div class="container">
             <div class="section-header reveal">
@@ -701,15 +862,23 @@
                 </div>
             </div>
             
+            <div class="blog-categories">
+                <button class="blog-cat-btn active" data-blog-cat="all">All Posts</button>
+                <button class="blog-cat-btn" data-blog-cat="ai">AI/ML</button>
+                <button class="blog-cat-btn" data-blog-cat="programming">Programming</button>
+                <button class="blog-cat-btn" data-blog-cat="devops">DevOps</button>
+                <button class="blog-cat-btn" data-blog-cat="career">Career</button>
+            </div>
+            
             <div class="blog-grid" id="blogGrid">
                 <!-- Blog posts will be populated by JavaScript -->
             </div>
             
             <div class="blog-more reveal">
-                <a href="#" class="btn btn-outline btn-3d">
-                    <span>View All Posts</span> 
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+                <button class="btn btn-outline btn-3d" id="loadMoreBlogBtn">
+                    <span>Load More Posts</span> 
+                    <i class="fas fa-arrow-down"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -846,6 +1015,10 @@
                             <span class="stat-value" id="footerBlogs">12</span>
                             <span class="stat-label">Posts</span>
                         </div>
+                        <div class="footer-stat">
+                            <span class="stat-value" id="footerCloud">24</span>
+                            <span class="stat-label">Cloud</span>
+                        </div>
                     </div>
                     
                     <div class="footer-social">
@@ -880,15 +1053,15 @@
                     <h4>Resources</h4>
                     <ul>
                         <li><a href="#" class="private-footer-link" id="privateFooterLink">
-                            <i class="fas fa-lock"></i> Private Cloud
+                            <i class="fas fa-lock"></i> Admin Panel
+                        </a></li>
+                        <li><a href="#" class="cloud-footer-link" id="cloudFooterLink">
+                            <i class="fas fa-cloud"></i> Private Cloud
                         </a></li>
                         <li><a href="#" id="resumeFooterLink">
                             <i class="fas fa-download"></i> Download Resume
                         </a></li>
                         <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                        <li><a href="#" id="sitemapLink">
-                            <i class="fas fa-sitemap"></i> Sitemap
-                        </a></li>
                     </ul>
                 </div>
                 
@@ -905,9 +1078,9 @@
                     
                     <div class="footer-nature">
                         <i class="fas fa-leaf"></i>
+                        <i class="fas fa-cloud"></i>
                         <i class="fas fa-tree"></i>
                         <i class="fas fa-seedling"></i>
-                        <i class="fas fa-cloud"></i>
                     </div>
                 </div>
             </div>
@@ -921,7 +1094,7 @@
                 <div class="footer-badges">
                     <span class="badge">🌿 Eco-friendly Code</span>
                     <span class="badge">⚡ 100% Responsive</span>
-                    <span class="badge">🚀 Performance Optimized</span>
+                    <span class="badge">🚀 Cloud Enabled</span>
                 </div>
             </div>
         </div>
@@ -951,7 +1124,7 @@
                     <i class="fas fa-leaf"></i>
                 </div>
                 <div class="message-content">
-                    Hi! I'm Sanjai's AI assistant. Ask me about his skills, projects, or certifications!
+                    Hi! I'm Sanjai's AI assistant. Ask me about his skills, projects, certifications, blog posts, or cloud storage!
                 </div>
             </div>
         </div>
@@ -966,7 +1139,8 @@
         <div class="chatbot-suggestions">
             <button class="suggestion">What are his skills?</button>
             <button class="suggestion">Show projects</button>
-            <button class="suggestion">Contact info</button>
+            <button class="suggestion">Latest blog posts</button>
+            <button class="suggestion">Access cloud</button>
         </div>
     </div>
     
@@ -991,6 +1165,667 @@
     <!-- Main JavaScript Files -->
     <script src="js/main.js"></script>
     <script src="js/admin.js"></script>
+    <script src="js/cloud.js"></script>
+    <script src="js/blog.js"></script>
     <script src="js/animations.js"></script>
+    
+    <script>
+        // ==================== ENHANCED BLOG FUNCTIONALITY ====================
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Getting Started with Python: A Beginner's Guide to AI",
+                excerpt: "Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers. This comprehensive guide covers everything from basic syntax to advanced concepts.",
+                content: "Full blog post content here...",
+                date: "Mar 1, 2026",
+                category: "programming",
+                readTime: 5,
+                image: "assets/images/blog/python-basics.jpg",
+                author: "Sanjai Gopal",
+                likes: 45,
+                comments: 12,
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Git & GitHub: Essential Commands Every Developer Should Know",
+                excerpt: "A comprehensive guide to version control for beginners, with practical workflows, branching strategies, and collaboration tips.",
+                content: "Full blog post content here...",
+                date: "Feb 15, 2026",
+                category: "devops",
+                readTime: 7,
+                image: "assets/images/blog/git-guide.jpg",
+                author: "Sanjai Gopal",
+                likes: 32,
+                comments: 8,
+                featured: true
+            },
+            {
+                id: 3,
+                title: "My First Steps into AI: What I Learned in 3 Months",
+                excerpt: "Sharing my journey as a first-year student diving into the world of Artificial Intelligence, including challenges, breakthroughs, and key learnings.",
+                content: "Full blog post content here...",
+                date: "Feb 1, 2026",
+                category: "ai",
+                readTime: 6,
+                image: "assets/images/blog/ai-journey.jpg",
+                author: "Sanjai Gopal",
+                likes: 67,
+                comments: 15,
+                featured: true
+            },
+            {
+                id: 4,
+                title: "Understanding Neural Networks: A Visual Guide",
+                excerpt: "Demystifying neural networks with visual explanations, simple analogies, and practical examples for beginners.",
+                content: "Full blog post content here...",
+                date: "Jan 20, 2026",
+                category: "ai",
+                readTime: 8,
+                image: "assets/images/blog/neural-networks.jpg",
+                author: "Sanjai Gopal",
+                likes: 54,
+                comments: 9,
+                featured: false
+            },
+            {
+                id: 5,
+                title: "Building Your First C++ Project: Railway Reservation System",
+                excerpt: "Step-by-step guide to creating a practical C++ application from scratch, covering OOP concepts, file handling, and data structures.",
+                content: "Full blog post content here...",
+                date: "Jan 5, 2026",
+                category: "programming",
+                readTime: 6,
+                image: "assets/images/blog/cpp-project.jpg",
+                author: "Sanjai Gopal",
+                likes: 28,
+                comments: 5,
+                featured: false
+            },
+            {
+                id: 6,
+                title: "Introduction to MLOps: Bridging ML and Operations",
+                excerpt: "Understanding the basics of MLOps, why it matters for production ML systems, and how to get started with popular tools.",
+                content: "Full blog post content here...",
+                date: "Dec 10, 2025",
+                category: "devops",
+                readTime: 7,
+                image: "assets/images/blog/mlops-intro.jpg",
+                author: "Sanjai Gopal",
+                likes: 41,
+                comments: 7,
+                featured: true
+            },
+            {
+                id: 7,
+                title: "How to Ace Technical Interviews: Tips from a First-Year Student",
+                excerpt: "Practical advice on preparing for technical interviews, building problem-solving skills, and showcasing projects effectively.",
+                content: "Full blog post content here...",
+                date: "Nov 25, 2025",
+                category: "career",
+                readTime: 5,
+                image: "assets/images/blog/interview-tips.jpg",
+                author: "Sanjai Gopal",
+                likes: 89,
+                comments: 23,
+                featured: true
+            },
+            {
+                id: 8,
+                title: "Building a Private Cloud Storage System: Technical Deep Dive",
+                excerpt: "Learn how I built a secure private cloud storage system with authentication, file uploads, and folder management.",
+                content: "Full blog post content here...",
+                date: "Nov 10, 2025",
+                category: "programming",
+                readTime: 10,
+                image: "assets/images/blog/cloud-storage.jpg",
+                author: "Sanjai Gopal",
+                likes: 73,
+                comments: 18,
+                featured: true
+            },
+            {
+                id: 9,
+                title: "The Future of Green AI: Sustainable Machine Learning",
+                excerpt: "Exploring how we can make AI more environmentally friendly through efficient algorithms, hardware optimization, and renewable energy.",
+                content: "Full blog post content here...",
+                date: "Oct 28, 2025",
+                category: "ai",
+                readTime: 6,
+                image: "assets/images/blog/green-ai.jpg",
+                author: "Sanjai Gopal",
+                likes: 52,
+                comments: 11,
+                featured: false
+            }
+        ];
+
+        let currentBlogPage = 1;
+        const blogsPerPage = 6;
+        let currentBlogCategory = 'all';
+
+        function renderBlogPosts(category = 'all', page = 1) {
+            const grid = document.getElementById('blogGrid');
+            if (!grid) return;
+            
+            let filtered = category === 'all' ? blogPosts : blogPosts.filter(post => post.category === category);
+            
+            // Pagination
+            const start = (page - 1) * blogsPerPage;
+            const end = start + blogsPerPage;
+            const paginatedPosts = filtered.slice(start, end);
+            
+            if (paginatedPosts.length === 0 && page > 1) {
+                // No more posts
+                document.getElementById('loadMoreBlogBtn').style.display = 'none';
+                return;
+            }
+            
+            grid.innerHTML = paginatedPosts.map(post => `
+                <article class="blog-card" data-aos="fade-up" data-post-id="${post.id}">
+                    <div class="blog-image">
+                        <img src="${post.image}" alt="${post.title}" onerror="this.src='assets/images/blog/placeholder.jpg'">
+                        <span class="blog-category">${post.category.toUpperCase()}</span>
+                        ${post.featured ? '<span class="blog-featured"><i class="fas fa-star"></i> Featured</span>' : ''}
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ${post.date}</span>
+                            <span><i class="far fa-clock"></i> ${post.readTime} min read</span>
+                            <span><i class="far fa-heart"></i> ${post.likes}</span>
+                            <span><i class="far fa-comment"></i> ${post.comments}</span>
+                        </div>
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                        <div class="blog-footer">
+                            <span class="blog-author"><i class="far fa-user"></i> ${post.author}</span>
+                            <button class="blog-read-more" onclick="openBlogPost(${post.id})">
+                                Read More <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+            
+            // Hide load more button if no more posts
+            if (end >= filtered.length) {
+                document.getElementById('loadMoreBlogBtn').style.display = 'none';
+            } else {
+                document.getElementById('loadMoreBlogBtn').style.display = 'inline-flex';
+            }
+        }
+
+        function openBlogPost(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+            
+            const modal = document.getElementById('blogModal');
+            const modalTitle = document.getElementById('blogModalTitle');
+            const modalBody = document.getElementById('blogModalBody');
+            
+            modalTitle.textContent = post.title;
+            modalBody.innerHTML = `
+                <div class="blog-post-full">
+                    <img src="${post.image}" alt="${post.title}" class="blog-post-image">
+                    <div class="blog-post-meta">
+                        <span><i class="far fa-calendar"></i> ${post.date}</span>
+                        <span><i class="far fa-clock"></i> ${post.readTime} min read</span>
+                        <span><i class="far fa-user"></i> ${post.author}</span>
+                        <span><i class="far fa-folder"></i> ${post.category}</span>
+                    </div>
+                    <div class="blog-post-stats">
+                        <span><i class="far fa-heart"></i> ${post.likes} likes</span>
+                        <span><i class="far fa-comment"></i> ${post.comments} comments</span>
+                    </div>
+                    <div class="blog-post-content">
+                        <p>${post.content}</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <h3>Key Takeaways</h3>
+                        <ul>
+                            <li>Important point one about the topic</li>
+                            <li>Second key learning from this post</li>
+                            <li>Third actionable insight</li>
+                        </ul>
+                    </div>
+                    <div class="blog-post-share">
+                        <h4>Share this post</h4>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="share-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-post-comments">
+                        <h4>Comments (${post.comments})</h4>
+                        <div class="comment-form">
+                            <textarea placeholder="Leave a comment..."></textarea>
+                            <button class="btn btn-primary">Post Comment</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ==================== ENHANCED CLOUD FUNCTIONALITY ====================
+        class CloudStorage {
+            constructor() {
+                this.currentPath = 'root';
+                this.files = this.loadFiles();
+                this.init();
+            }
+            
+            init() {
+                this.renderFiles();
+                this.setupEventListeners();
+            }
+            
+            loadFiles() {
+                // Simulated cloud files structure
+                return [
+                    { name: 'Projects', type: 'folder', path: 'root', size: '--', modified: '2026-03-01', items: 6 },
+                    { name: 'Certificates', type: 'folder', path: 'root', size: '--', modified: '2026-03-01', items: 34 },
+                    { name: 'Blog Posts', type: 'folder', path: 'root', size: '--', modified: '2026-03-01', items: 12 },
+                    { name: 'Resume.pdf', type: 'pdf', path: 'root', size: '2.4 MB', modified: '2026-03-01' },
+                    { name: 'Profile-Photo.jpg', type: 'image', path: 'root', size: '1.8 MB', modified: '2026-02-28' },
+                    { name: 'Project-RuralCare.zip', type: 'archive', path: 'root', size: '15.2 MB', modified: '2026-02-25' },
+                    { name: 'Python-Scripts', type: 'folder', path: 'root', size: '--', modified: '2026-02-20', items: 8 },
+                    { name: 'ML-Models', type: 'folder', path: 'root', size: '--', modified: '2026-02-15', items: 4 }
+                ];
+            }
+            
+            renderFiles() {
+                const grid = document.getElementById('cloudFilesGrid');
+                if (!grid) return;
+                
+                const currentFiles = this.files.filter(f => f.path === this.currentPath);
+                
+                grid.innerHTML = currentFiles.map(file => `
+                    <div class="cloud-file-item ${file.type === 'folder' ? 'folder' : 'file'}" data-name="${file.name}" data-type="${file.type}">
+                        <div class="file-icon">
+                            ${file.type === 'folder' ? '<i class="fas fa-folder"></i>' : 
+                              file.type === 'pdf' ? '<i class="fas fa-file-pdf"></i>' :
+                              file.type === 'image' ? '<i class="fas fa-file-image"></i>' :
+                              file.type === 'archive' ? '<i class="fas fa-file-archive"></i>' :
+                              '<i class="fas fa-file"></i>'}
+                        </div>
+                        <div class="file-info">
+                            <span class="file-name">${file.name}</span>
+                            <span class="file-meta">${file.type === 'folder' ? `${file.items} items` : file.size} • ${file.modified}</span>
+                        </div>
+                        <div class="file-actions">
+                            ${file.type === 'folder' ? 
+                                '<button class="file-action" onclick="cloud.openFolder(\'' + file.name + '\')"><i class="fas fa-folder-open"></i></button>' : 
+                                '<button class="file-action" onclick="cloud.downloadFile(\'' + file.name + '\')"><i class="fas fa-download"></i></button>'}
+                            <button class="file-action" onclick="cloud.deleteFile(\'' + file.name + '\')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            openFolder(folderName) {
+                this.currentPath = folderName;
+                this.updateBreadcrumb(folderName);
+                this.renderFiles();
+            }
+            
+            updateBreadcrumb(folderName) {
+                const breadcrumb = document.getElementById('cloudBreadcrumb');
+                breadcrumb.innerHTML = `
+                    <span class="breadcrumb-item" onclick="cloud.openFolder('root')">My Cloud</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="breadcrumb-item active">${folderName}</span>
+                `;
+            }
+            
+            downloadFile(fileName) {
+                this.showToast(`Downloading ${fileName}...`, 'info');
+                setTimeout(() => {
+                    this.showToast(`${fileName} downloaded successfully!`, 'success');
+                }, 1500);
+            }
+            
+            deleteFile(fileName) {
+                if (confirm(`Are you sure you want to delete ${fileName}?`)) {
+                    this.files = this.files.filter(f => f.name !== fileName);
+                    this.renderFiles();
+                    this.showToast(`${fileName} deleted successfully!`, 'success');
+                }
+            }
+            
+            uploadFiles(files) {
+                Array.from(files).forEach(file => {
+                    this.files.push({
+                        name: file.name,
+                        type: file.type.split('/')[0] === 'image' ? 'image' : 'file',
+                        path: this.currentPath,
+                        size: this.formatBytes(file.size),
+                        modified: new Date().toISOString().split('T')[0]
+                    });
+                });
+                this.renderFiles();
+                this.showToast(`${files.length} file(s) uploaded successfully!`, 'success');
+            }
+            
+            formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            showToast(message, type = 'success') {
+                const toast = document.getElementById('toastNotification');
+                const icon = toast.querySelector('.toast-icon i');
+                const messageEl = toast.querySelector('.toast-message');
+                
+                icon.className = type === 'success' ? 'fas fa-check-circle' : 
+                                 type === 'error' ? 'fas fa-exclamation-circle' : 
+                                 'fas fa-info-circle';
+                messageEl.textContent = message;
+                
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        }
+
+        // Initialize Cloud
+        let cloud;
+
+        // ==================== ENHANCED CHATBOT ====================
+        class EnhancedChatbot {
+            constructor() {
+                this.container = document.getElementById('chatbotContainer');
+                this.toggle = document.getElementById('chatbotToggle');
+                this.close = document.getElementById('chatbotClose');
+                this.messages = document.getElementById('chatbotMessages');
+                this.input = document.getElementById('chatbotInput');
+                this.sendBtn = document.getElementById('chatbotSend');
+                this.suggestions = document.querySelectorAll('.suggestion');
+                this.isOpen = false;
+                this.context = [];
+                
+                this.init();
+            }
+            
+            init() {
+                this.toggle.addEventListener('click', () => this.toggleChat());
+                this.close.addEventListener('click', () => this.closeChat());
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+                
+                this.suggestions.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        this.input.value = btn.textContent;
+                        this.sendMessage();
+                    });
+                });
+            }
+            
+            toggleChat() {
+                this.isOpen ? this.closeChat() : this.openChat();
+            }
+            
+            openChat() {
+                this.container.classList.add('active');
+                this.toggle.style.display = 'none';
+                this.isOpen = true;
+            }
+            
+            closeChat() {
+                this.container.classList.remove('active');
+                this.toggle.style.display = 'flex';
+                this.isOpen = false;
+            }
+            
+            addMessage(text, sender) {
+                const msg = document.createElement('div');
+                msg.className = `message ${sender}`;
+                
+                const avatar = sender === 'bot' ? 
+                    '<div class="message-avatar"><i class="fas fa-leaf"></i></div>' : 
+                    '<div class="message-avatar"><i class="fas fa-user"></i></div>';
+                
+                msg.innerHTML = `
+                    ${avatar}
+                    <div class="message-content">${text}</div>
+                `;
+                
+                this.messages.appendChild(msg);
+                this.messages.scrollTop = this.messages.scrollHeight;
+                
+                // Store context
+                this.context.push({ sender, text });
+                if (this.context.length > 10) this.context.shift();
+            }
+            
+            sendMessage() {
+                const text = this.input.value.trim();
+                if (!text) return;
+                
+                this.addMessage(text, 'user');
+                this.input.value = '';
+                
+                setTimeout(() => {
+                    const response = this.getAIResponse(text);
+                    this.addMessage(response, 'bot');
+                }, 500);
+            }
+            
+            getAIResponse(input) {
+                input = input.toLowerCase();
+                
+                // Skills
+                if (input.includes('skill') || input.includes('know')) {
+                    return "Sanjai has expertise in:\n• Python (85%)\n• C++ (75%)\n• JavaScript (60%)\n• Machine Learning (70%)\n• Deep Learning (50%)\n• MLOps (40%)\n• Git/GitHub (80%)\n• VS Code (65%)\n• Linux (55%)";
+                }
+                
+                // Projects
+                else if (input.includes('project')) {
+                    return "Sanjai has built 6 major projects:\n1. RuralCare AI - Health assistant\n2. Feedback & Billing System (C++)\n3. bis-smart-compliance (Python)\n4. Railway Reservation System (C++)\n5. Advanced Portfolio 2026\n6. Student Performance Predictor (ML)\n\nCheck them out in the Projects section!";
+                }
+                
+                // Certificates
+                else if (input.includes('certificate') || input.includes('certification')) {
+                    return "Sanjai has earned 34+ certifications from:\n• Coursera (14 Canva certs)\n• AWS Cloud Practitioner\n• IBM SkillsBuild\n• Government of India (Viksit Bharat, MYBharat)\n• ISRO/IIRS\n• Saylor Academy (AI)\n• byteXL (C Programming)\n• typing.com (3 levels)\n\nAll verified on LinkedIn!";
+                }
+                
+                // Blog
+                else if (input.includes('blog') || input.includes('post')) {
+                    return "Sanjai writes about:\n• Python & AI programming\n• Git & DevOps practices\n• Neural networks explained\n• Career tips for students\n• Green AI & sustainability\n• Building cloud storage\n\nCheck out the Blog section for latest posts!";
+                }
+                
+                // Cloud
+                else if (input.includes('cloud') || input.includes('storage')) {
+                    return "Sanjai's Private Cloud features:\n• Secure file storage\n• Folder organization\n• File upload/download\n• 24 files currently\n• 2.4 GB used / 10 GB total\n• Password protected\n\nClick the Cloud link in navigation to access!";
+                }
+                
+                // Contact
+                else if (input.includes('contact') || input.includes('email') || input.includes('reach')) {
+                    return "You can reach Sanjai at:\n📧 Email: sanjai.sparkmail@gmail.com\n📱 Phone: +91 9363265552\n💼 LinkedIn: linkedin.com/in/sanjai2306\n🐙 GitHub: github.com/Sanjai-Gopal\n📸 Instagram: @hey.sanjai_";
+                }
+                
+                // Education
+                else if (input.includes('education') || input.includes('college') || input.includes('study')) {
+                    return "Sanjai is currently in his 1st year of B.Tech Artificial Intelligence & Data Science at Sri Krishna College of Engineering and Technology (SKCET), Coimbatore (2025-2029).";
+                }
+                
+                // Resume
+                else if (input.includes('resume') || input.includes('cv')) {
+                    return "You can download Sanjai's resume by:\n• Clicking 'Download Resume' in About section\n• Using the footer link\n• Asking me to generate one!\n\nWould you like me to generate a PDF resume?";
+                }
+                
+                // Admin/Private
+                else if (input.includes('admin') || input.includes('private') || input.includes('secret')) {
+                    return "🔐 Private Area Access:\n• Double-click the green dot (top-left) for admin panel\n• Password: Sanjai@2008\n• Manage projects, certificates, blog posts\n• Update profile photo and settings\n• Cloud storage management";
+                }
+                
+                // Greetings
+                else if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
+                    return "Hello! 👋 I'm Sanjai's AI assistant. I can help you learn about his skills, projects, certifications, blog posts, cloud storage, and more. What would you like to know?";
+                }
+                
+                // Default response
+                else {
+                    return "I'm not sure about that. You can ask me about:\n• Skills and technologies\n• Projects and code\n• Certifications\n• Blog posts\n• Cloud storage\n• Contact information\n• Education\n• Admin access\n\nWhat would you like to know?";
+                }
+            }
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all components
+            renderBlogPosts('all', 1);
+            
+            // Cloud modal
+            const cloudModal = document.getElementById('cloudModal');
+            const cloudLink = document.getElementById('cloudLink');
+            const cloudFooterLink = document.getElementById('cloudFooterLink');
+            const cloudClose = document.getElementById('cloudClose');
+            
+            function openCloudModal(e) {
+                e.preventDefault();
+                cloudModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            cloudLink?.addEventListener('click', openCloudModal);
+            cloudFooterLink?.addEventListener('click', openCloudModal);
+            
+            cloudClose?.addEventListener('click', function() {
+                cloudModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cloud password
+            const submitCloudPassword = document.getElementById('submitCloudPassword');
+            const cloudPassword = document.getElementById('cloudPassword');
+            const cloudPasswordError = document.getElementById('cloudPasswordError');
+            const cloudPasswordForm = document.getElementById('cloudPasswordForm');
+            const cloudDashboard = document.getElementById('cloudDashboard');
+            
+            submitCloudPassword?.addEventListener('click', function() {
+                const password = cloudPassword.value;
+                if (password === 'Sanjai@2008') {
+                    cloudPasswordForm.style.display = 'none';
+                    cloudDashboard.style.display = 'block';
+                    cloud = new CloudStorage();
+                } else {
+                    cloudPasswordError.textContent = 'Incorrect password. Hint: Sanjai@2008';
+                }
+            });
+            
+            // Cloud password toggle
+            document.getElementById('cloudPasswordToggle')?.addEventListener('click', function() {
+                const input = document.getElementById('cloudPassword');
+                const icon = this.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            });
+            
+            // Cloud logout
+            document.getElementById('cloudLogoutBtn')?.addEventListener('click', function() {
+                cloudPasswordForm.style.display = 'block';
+                cloudDashboard.style.display = 'none';
+                cloudPassword.value = '';
+            });
+            
+            // Cloud upload
+            document.getElementById('cloudUploadBtn')?.addEventListener('click', function() {
+                document.getElementById('cloudFileInput').click();
+            });
+            
+            document.getElementById('cloudFileInput')?.addEventListener('change', function(e) {
+                if (cloud) {
+                    cloud.uploadFiles(e.target.files);
+                }
+            });
+            
+            // Cloud new folder
+            document.getElementById('cloudNewFolderBtn')?.addEventListener('click', function() {
+                const folderName = prompt('Enter folder name:');
+                if (folderName && cloud) {
+                    cloud.files.push({
+                        name: folderName,
+                        type: 'folder',
+                        path: cloud.currentPath,
+                        size: '--',
+                        modified: new Date().toISOString().split('T')[0],
+                        items: 0
+                    });
+                    cloud.renderFiles();
+                    cloud.showToast(`Folder '${folderName}' created!`, 'success');
+                }
+            });
+            
+            // Cloud refresh
+            document.getElementById('cloudRefreshBtn')?.addEventListener('click', function() {
+                if (cloud) {
+                    cloud.renderFiles();
+                    cloud.showToast('Cloud refreshed!', 'info');
+                }
+            });
+            
+            // Cloud search
+            document.getElementById('cloudSearchInput')?.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                // Implement search functionality
+            });
+            
+            // Blog category filter
+            document.querySelectorAll('.blog-cat-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.blog-cat-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentBlogCategory = this.dataset.blogCat;
+                    currentBlogPage = 1;
+                    renderBlogPosts(currentBlogCategory, currentBlogPage);
+                });
+            });
+            
+            // Load more blog posts
+            document.getElementById('loadMoreBlogBtn')?.addEventListener('click', function() {
+                currentBlogPage++;
+                renderBlogPosts(currentBlogCategory, currentBlogPage);
+            });
+            
+            // Blog modal close
+            document.getElementById('blogModalClose')?.addEventListener('click', function() {
+                document.getElementById('blogModal').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Click outside to close modals
+            window.addEventListener('click', function(e) {
+                const blogModal = document.getElementById('blogModal');
+                const cloudModal = document.getElementById('cloudModal');
+                
+                if (e.target === blogModal) {
+                    blogModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+                
+                if (e.target === cloudModal) {
+                    cloudModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Initialize enhanced chatbot
+            window.chatbot = new EnhancedChatbot();
+        });
+    </script>
 </body>
 </html>
