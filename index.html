@@ -9,123 +9,102 @@
     <meta name="description" content="Sanjai Gopal - Aspiring AI Engineer from Coimbatore. 30+ certifications, 6 innovative projects blending technology with nature-inspired design.">
     <meta name="keywords" content="Sanjai Gopal, AI Engineer, Nature Portfolio, Sustainable Tech, Green AI, Coimbatore">
     <meta name="author" content="Sanjai Gopal">
-    <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Social Media Meta Tags -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Sanjai Gopal - AI Engineer | Nature-Inspired Portfolio">
     <meta property="og:description" content="Where technology meets nature. 30+ certifications, 6 innovative projects.">
-    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
     <meta property="og:url" content="https://sanjai-gopal.github.io/sanjai_portfolio/">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <!-- Custom CSS Files -->
+    <!-- IMPORTANT: Only these CSS files exist in your structure -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/theme.css">
+    <!-- REMOVED: theme.css (doesn't exist in your structure) -->
     
     <!-- Three.js for 3D Effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- GSAP for Advanced Animations -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     
     <!-- Other Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <style>
+        /* Emergency fallback for missing images */
+        .blog-image img {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .blog-image img[src=""] {
+            display: none;
+        }
+        
+        .blog-image img[src=""] + .blog-image::before {
+            content: "📝 Blog Post";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+        }
+    </style>
 </head>
-<body class="dark-theme">
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-content">
-            <div class="preloader-logo">
-                <span class="logo-text">S</span>
-                <span class="logo-leaf">🌿</span>
-            </div>
-            <div class="preloader-progress">
-                <div class="progress-bar" id="preloaderProgress"></div>
-            </div>
-            <div class="preloader-text">Loading Nature's Intelligence...</div>
-        </div>
-    </div>
+<body>
+    <!-- Leaf Particles Background -->
+    <div class="leaf-container" id="leafContainer"></div>
 
-    <!-- 3D Background Canvas -->
-    <div class="canvas-container" id="canvasContainer"></div>
+    <!-- Floating Nature Elements -->
+    <div class="floating-element leaf" style="top: 10%; left: 5%;">🌿</div>
+    <div class="floating-element leaf" style="top: 20%; right: 8%;">🍃</div>
+    <div class="floating-element leaf" style="bottom: 15%; left: 12%;">🌱</div>
+    <div class="floating-element leaf" style="bottom: 30%; right: 15%;">🌳</div>
 
-    <!-- Particle Background -->
-    <div class="particle-container" id="particleContainer"></div>
-
-    <!-- Floating Nature Elements (Dynamic) -->
-    <div class="floating-elements" id="floatingElements"></div>
-
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="customCursor">
-        <div class="cursor-dot"></div>
-        <div class="cursor-outline"></div>
-    </div>
-
-    <!-- Admin Secret Trigger (Hidden) -->
+    <!-- Admin Secret Button -->
     <div class="admin-secret" id="adminSecret" title="Admin Panel (Double-click)"></div>
 
-    <!-- Main Navigation -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
                 <a href="#home" class="logo-link">
-                    <div class="logo-icon">
-                        <span class="logo-text-3d">S</span>
-                        <span class="logo-leaf-3d">🌿</span>
-                    </div>
-                    <div class="logo-text-container">
-                        <span class="logo-line">ANJAI</span>
-                        <span class="logo-line-small">GOPAL</span>
-                    </div>
+                    <span class="logo-text">S</span>
+                    <span class="logo-full">ANJAI</span>
+                    <span class="logo-dot">🌿</span>
                 </a>
             </div>
             
-            <div class="nav-menu-container">
-                <ul class="nav-menu" id="navMenu">
-                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                    <li class="nav-item"><a href="#certificates" class="nav-link">Certificates</a></li>
-                    <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                    <li class="nav-item private-item">
-                        <a href="#" class="nav-link private-link" id="privateLink">
-                            <i class="fas fa-lock"></i> Private
-                        </a>
-                    </li>
-                    <li class="nav-item cloud-item">
-                        <a href="#" class="nav-link cloud-link" id="cloudLink">
-                            <i class="fas fa-cloud"></i> Cloud
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="private-cloud/" class="cloud-link"><i class="fas fa-cloud"></i> Cloud</a></li>
+            </ul>
             
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
-                    <div class="toggle-leaf">🌿</div>
+                    <i class="fas fa-leaf"></i>
                 </button>
-                
-                <button class="search-toggle" id="searchToggle">
-                    <i class="fas fa-search"></i>
-                </button>
-                
                 <button class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -133,623 +112,116 @@
                 </button>
             </div>
         </div>
-        
-        <!-- Search Bar -->
-        <div class="search-bar" id="searchBar">
-            <div class="search-container">
-                <input type="text" placeholder="Search projects, certificates, blog posts..." id="searchInput">
-                <button class="search-close" id="searchClose"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="search-results" id="searchResults"></div>
-        </div>
     </nav>
-
-    <!-- Private Section Modal -->
-    <div class="private-modal" id="privateModal">
-        <div class="private-modal-content">
-            <div class="private-modal-header">
-                <div class="private-logo">
-                    <i class="fas fa-leaf"></i>
-                    <h3>Private Admin Access</h3>
-                </div>
-                <button class="private-close" id="privateClose"><i class="fas fa-times"></i></button>
-            </div>
-            
-            <div class="private-modal-body">
-                <div class="password-form" id="passwordForm">
-                    <div class="password-icon">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <h4>Enter Password</h4>
-                    <p>This area is restricted to authorized personnel only.</p>
-                    <div class="password-input-group">
-                        <input type="password" id="privatePassword" placeholder="Enter password">
-                        <button class="password-toggle" id="passwordToggle">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    <div class="password-error" id="passwordError"></div>
-                    <button class="btn btn-primary" id="submitPassword">
-                        <i class="fas fa-unlock-alt"></i> Access Private Area
-                    </button>
-                    <div class="password-hint">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Hint: Sanjai@2008</span>
-                    </div>
-                </div>
-                
-                <div class="private-dashboard" id="privateDashboard" style="display: none;">
-                    <div class="dashboard-header">
-                        <h4><i class="fas fa-leaf"></i> Admin Dashboard</h4>
-                        <button class="logout-btn" id="logoutBtn">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </div>
-                    
-                    <div class="dashboard-stats">
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Projects</span>
-                                <span class="stat-value" id="statProjects">6</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Certificates</span>
-                                <span class="stat-value" id="statCerts">34</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-blog"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Blog Posts</span>
-                                <span class="stat-value" id="statBlogs">12</span>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fas fa-cloud"></i></div>
-                            <div class="stat-info">
-                                <span class="stat-label">Cloud Files</span>
-                                <span class="stat-value" id="statCloud">24</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="dashboard-tabs">
-                        <button class="dashboard-tab active" data-tab="profile">
-                            <i class="fas fa-user"></i> Profile
-                        </button>
-                        <button class="dashboard-tab" data-tab="projects">
-                            <i class="fas fa-project-diagram"></i> Projects
-                        </button>
-                        <button class="dashboard-tab" data-tab="certificates">
-                            <i class="fas fa-certificate"></i> Certificates
-                        </button>
-                        <button class="dashboard-tab" data-tab="blog">
-                            <i class="fas fa-blog"></i> Blog
-                        </button>
-                        <button class="dashboard-tab" data-tab="cloud">
-                            <i class="fas fa-cloud"></i> Cloud
-                        </button>
-                        <button class="dashboard-tab" data-tab="settings">
-                            <i class="fas fa-cog"></i> Settings
-                        </button>
-                    </div>
-                    
-                    <div class="dashboard-content">
-                        <!-- Profile Tab -->
-                        <div class="dashboard-pane active" id="profile-pane">
-                            <div class="pane-header">
-                                <h5>Profile Management</h5>
-                                <p>Update your personal information and profile picture</p>
-                            </div>
-                            
-                            <div class="profile-edit-container">
-                                <div class="profile-image-upload">
-                                    <div class="current-image">
-                                        <img src="assets/images/profile/current.jpg" alt="Profile" id="adminProfilePreview">
-                                        <div class="image-overlay">
-                                            <i class="fas fa-camera"></i>
-                                        </div>
-                                    </div>
-                                    <input type="file" id="profileImageUpload" accept="image/*" hidden>
-                                    <button class="btn btn-outline" id="changeProfileBtn">
-                                        <i class="fas fa-upload"></i> Change Photo
-                                    </button>
-                                    <p class="upload-hint">Recommended: 500x500px, max 2MB</p>
-                                </div>
-                                
-                                <div class="profile-form">
-                                    <div class="form-group">
-                                        <label>Full Name</label>
-                                        <input type="text" id="adminName" value="Sanjai Gopal">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Title/Role</label>
-                                        <input type="text" id="adminTitle" value="AI Engineer & Nature Enthusiast">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Bio</label>
-                                        <textarea id="adminBio" rows="4">I'm Sanjai, a first-year AI student at SKCET, Coimbatore, where I believe that the best technology mimics nature's elegance. My journey combines cutting-edge AI with sustainable, nature-inspired solutions.</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Location</label>
-                                        <input type="text" id="adminLocation" value="Coimbatore, Tamil Nadu">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" id="adminEmail" value="sanjai.sparkmail@gmail.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input type="text" id="adminPhone" value="+91 9363265552">
-                                    </div>
-                                    <button class="btn btn-primary" id="saveProfileBtn">
-                                        <i class="fas fa-save"></i> Save Changes
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Projects Tab -->
-                        <div class="dashboard-pane" id="projects-pane">
-                            <div class="pane-header">
-                                <h5>Projects Management</h5>
-                                <p>Add, edit, or remove projects</p>
-                                <button class="btn btn-primary" id="addProjectBtn">
-                                    <i class="fas fa-plus"></i> Add New Project
-                                </button>
-                            </div>
-                            
-                            <div class="projects-list" id="adminProjectsList">
-                                <!-- Dynamic project list will be populated here -->
-                            </div>
-                        </div>
-                        
-                        <!-- Certificates Tab -->
-                        <div class="dashboard-pane" id="certificates-pane">
-                            <div class="pane-header">
-                                <h5>Certificates Management</h5>
-                                <p>Manage your certifications</p>
-                                <button class="btn btn-primary" id="addCertificateBtn">
-                                    <i class="fas fa-plus"></i> Add Certificate
-                                </button>
-                            </div>
-                            
-                            <div class="certificates-list" id="adminCertificatesList">
-                                <!-- Dynamic certificate list will be populated here -->
-                            </div>
-                        </div>
-                        
-                        <!-- Blog Tab -->
-                        <div class="dashboard-pane" id="blog-pane">
-                            <div class="pane-header">
-                                <h5>Blog Management</h5>
-                                <p>Create and manage blog posts</p>
-                                <button class="btn btn-primary" id="addBlogBtn">
-                                    <i class="fas fa-plus"></i> New Post
-                                </button>
-                            </div>
-                            
-                            <div class="blog-list" id="adminBlogList">
-                                <!-- Dynamic blog list will be populated here -->
-                            </div>
-                        </div>
-                        
-                        <!-- Cloud Tab -->
-                        <div class="dashboard-pane" id="cloud-pane">
-                            <div class="pane-header">
-                                <h5>Cloud Storage Management</h5>
-                                <p>Manage files in your private cloud</p>
-                                <button class="btn btn-primary" id="uploadFileBtn">
-                                    <i class="fas fa-upload"></i> Upload File
-                                </button>
-                            </div>
-                            
-                            <div class="cloud-stats">
-                                <div class="cloud-stat-card">
-                                    <i class="fas fa-database"></i>
-                                    <div class="cloud-stat-info">
-                                        <span class="cloud-stat-label">Total Storage</span>
-                                        <span class="cloud-stat-value" id="totalStorage">2.4 GB</span>
-                                    </div>
-                                </div>
-                                <div class="cloud-stat-card">
-                                    <i class="fas fa-file"></i>
-                                    <div class="cloud-stat-info">
-                                        <span class="cloud-stat-label">Total Files</span>
-                                        <span class="cloud-stat-value" id="totalFiles">24</span>
-                                    </div>
-                                </div>
-                                <div class="cloud-stat-card">
-                                    <i class="fas fa-folder"></i>
-                                    <div class="cloud-stat-info">
-                                        <span class="cloud-stat-label">Folders</span>
-                                        <span class="cloud-stat-value" id="totalFolders">6</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="cloud-actions">
-                                <button class="btn btn-outline" id="createFolderBtn">
-                                    <i class="fas fa-folder-plus"></i> New Folder
-                                </button>
-                                <button class="btn btn-outline" id="refreshCloudBtn">
-                                    <i class="fas fa-sync-alt"></i> Refresh
-                                </button>
-                            </div>
-                            
-                            <div class="cloud-files-list" id="cloudFilesList">
-                                <!-- Dynamic cloud files will be populated here -->
-                            </div>
-                        </div>
-                        
-                        <!-- Settings Tab -->
-                        <div class="dashboard-pane" id="settings-pane">
-                            <div class="pane-header">
-                                <h5>Site Settings</h5>
-                                <p>Configure your portfolio settings</p>
-                            </div>
-                            
-                            <div class="settings-container">
-                                <div class="settings-section">
-                                    <h6>Theme Settings</h6>
-                                    <div class="setting-item">
-                                        <label>Default Theme</label>
-                                        <select id="defaultTheme">
-                                            <option value="dark">Dark</option>
-                                            <option value="light">Light</option>
-                                            <option value="auto">Auto (System)</option>
-                                        </select>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>Primary Color</label>
-                                        <input type="color" id="primaryColor" value="#8b5cf6">
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>Secondary Color</label>
-                                        <input type="color" id="secondaryColor" value="#3b82f6">
-                                    </div>
-                                </div>
-                                
-                                <div class="settings-section">
-                                    <h6>Password Settings</h6>
-                                    <div class="setting-item">
-                                        <label>Change Private Password</label>
-                                        <input type="password" id="newPassword" placeholder="New password">
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>Confirm Password</label>
-                                        <input type="password" id="confirmPassword" placeholder="Confirm password">
-                                    </div>
-                                    <button class="btn btn-primary" id="changePasswordBtn">
-                                        Update Password
-                                    </button>
-                                </div>
-                                
-                                <div class="settings-section">
-                                    <h6>Data Management</h6>
-                                    <div class="setting-item">
-                                        <button class="btn btn-outline" id="exportDataBtn">
-                                            <i class="fas fa-download"></i> Export All Data
-                                        </button>
-                                    </div>
-                                    <div class="setting-item">
-                                        <button class="btn btn-outline" id="importDataBtn">
-                                            <i class="fas fa-upload"></i> Import Data
-                                        </button>
-                                    </div>
-                                    <div class="setting-item">
-                                        <button class="btn btn-danger" id="resetDataBtn">
-                                            <i class="fas fa-trash"></i> Reset All Data
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cloud Storage Modal -->
-    <div class="cloud-modal" id="cloudModal">
-        <div class="cloud-modal-content">
-            <div class="cloud-modal-header">
-                <div class="cloud-logo">
-                    <i class="fas fa-cloud"></i>
-                    <h3>Sanjai's Private Cloud</h3>
-                </div>
-                <button class="cloud-close" id="cloudClose"><i class="fas fa-times"></i></button>
-            </div>
-            
-            <div class="cloud-modal-body">
-                <div class="cloud-password-form" id="cloudPasswordForm">
-                    <div class="cloud-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <h4>Enter Cloud Password</h4>
-                    <p>Access your private cloud storage</p>
-                    <div class="password-input-group">
-                        <input type="password" id="cloudPassword" placeholder="Enter password">
-                        <button class="password-toggle" id="cloudPasswordToggle">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                    <div class="password-error" id="cloudPasswordError"></div>
-                    <button class="btn btn-primary" id="submitCloudPassword">
-                        <i class="fas fa-cloud"></i> Access Cloud
-                    </button>
-                    <div class="password-hint">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Use same password: Sanjai@2008</span>
-                    </div>
-                </div>
-                
-                <div class="cloud-dashboard" id="cloudDashboard" style="display: none;">
-                    <div class="cloud-header">
-                        <h4><i class="fas fa-cloud"></i> My Cloud Storage</h4>
-                        <button class="cloud-logout-btn" id="cloudLogoutBtn">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </div>
-                    
-                    <div class="cloud-storage-info">
-                        <div class="storage-bar-container">
-                            <div class="storage-bar-label">
-                                <span>Storage Used</span>
-                                <span id="storageUsed">2.4 GB / 10 GB</span>
-                            </div>
-                            <div class="storage-bar">
-                                <div class="storage-bar-fill" id="storageBarFill" style="width: 24%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="cloud-toolbar">
-                        <button class="cloud-toolbar-btn" id="cloudUploadBtn">
-                            <i class="fas fa-upload"></i> Upload
-                        </button>
-                        <button class="cloud-toolbar-btn" id="cloudNewFolderBtn">
-                            <i class="fas fa-folder-plus"></i> New Folder
-                        </button>
-                        <button class="cloud-toolbar-btn" id="cloudRefreshBtn">
-                            <i class="fas fa-sync-alt"></i> Refresh
-                        </button>
-                        <div class="cloud-search">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="Search files..." id="cloudSearchInput">
-                        </div>
-                    </div>
-                    
-                    <div class="cloud-breadcrumb" id="cloudBreadcrumb">
-                        <span class="breadcrumb-item active" data-path="root">My Cloud</span>
-                    </div>
-                    
-                    <div class="cloud-files-grid" id="cloudFilesGrid">
-                        <!-- Files will be populated here -->
-                    </div>
-                    
-                    <div class="cloud-upload-area" id="cloudUploadArea" style="display: none;">
-                        <div class="upload-area-content">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <h3>Drag & Drop Files Here</h3>
-                            <p>or click to browse</p>
-                            <input type="file" id="cloudFileInput" multiple hidden>
-                            <button class="btn btn-primary" id="browseFilesBtn">Browse Files</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Blog Modal -->
-    <div class="blog-modal" id="blogModal">
-        <div class="blog-modal-content">
-            <div class="blog-modal-header">
-                <h2 id="blogModalTitle">Blog Post</h2>
-                <button class="blog-modal-close" id="blogModalClose"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="blog-modal-body" id="blogModalBody">
-                <!-- Blog content will be loaded here -->
-            </div>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-particles" id="heroParticles"></div>
-        
-        <div class="container hero-container">
+        <div class="hero-overlay"></div>
+        <div class="container">
             <div class="hero-content">
-                <div class="hero-badge animate-fade-in">
+                <div class="hero-badge">
                     <span class="badge-text">🌱 Growing with AI</span>
-                    <span class="badge-glow"></span>
                 </div>
                 
-                <div class="hero-title-wrapper">
-                    <h1 class="hero-title animate-slide-up">
-                        <span class="title-line">Sanjai</span>
-                        <span class="title-line gradient-text">Gopal</span>
-                    </h1>
-                    <div class="hero-title-decoration">
-                        <span class="decoration-leaf">🌿</span>
-                        <span class="decoration-line"></span>
-                        <span class="decoration-leaf">🍃</span>
-                    </div>
+                <h1 class="hero-title">
+                    <span class="title-line">Sanjai</span>
+                    <span class="title-line gradient-text">Gopal</span>
+                </h1>
+                
+                <div class="hero-subtitle">
+                    <span class="typed-text"></span><span class="cursor">|</span>
                 </div>
                 
-                <div class="hero-subtitle-wrapper animate-slide-up delay-1">
-                    <div class="hero-subtitle">
-                        <span class="typed-text"></span><span class="cursor">|</span>
-                    </div>
-                    <div class="subtitle-shine"></div>
-                </div>
-                
-                <p class="hero-description animate-slide-up delay-2">
+                <p class="hero-description">
                     1st Year AIDS at SKCET | 30+ Certifications | Building sustainable AI solutions inspired by nature
                 </p>
                 
-                <div class="hero-stats animate-slide-up delay-3">
-                    <div class="stat-item">
-                        <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                        <span class="stat-number" data-target="30">0</span><span class="stat-plus">+</span>
-                        <span class="stat-label">Certifications</span>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-icon"><i class="fas fa-code-branch"></i></div>
-                        <span class="stat-number" data-target="6">0</span>
-                        <span class="stat-label">Projects</span>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-icon"><i class="fas fa-cloud"></i></div>
-                        <span class="stat-number" data-target="8">0</span>
-                        <span class="stat-label">Platforms</span>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-icon"><i class="fab fa-github"></i></div>
-                        <span class="stat-number" data-target="89">0</span>
-                        <span class="stat-label">Contributions</span>
-                    </div>
+                <div class="hero-stats">
+                    <div class="stat-item"><span class="stat-number">30+</span><span>Certifications</span></div>
+                    <div class="stat-item"><span class="stat-number">6</span><span>Projects</span></div>
+                    <div class="stat-item"><span class="stat-number">8</span><span>Platforms</span></div>
+                    <div class="stat-item"><span class="stat-number">89</span><span>Contributions</span></div>
                 </div>
                 
-                <div class="hero-cta animate-slide-up delay-4">
-                    <a href="#projects" class="btn btn-primary btn-3d">
-                        <span>Explore My Work</span>
-                        <i class="fas fa-arrow-right"></i>
-                        <div class="btn-glow"></div>
-                    </a>
-                    <a href="#contact" class="btn btn-outline btn-3d">
-                        <span>Let's Connect</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </a>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-outline">Let's Connect</a>
                 </div>
                 
-                <div class="hero-social animate-fade-in delay-5">
-                    <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-icon linkedin" data-tooltip="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-icon github" data-tooltip="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-icon instagram" data-tooltip="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://wa.me/919363265552" target="_blank" class="social-icon whatsapp" data-tooltip="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="mailto:sanjai.sparkmail@gmail.com" class="social-icon email" data-tooltip="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                <div class="hero-social">
+                    <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-icon github"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919363265552" target="_blank" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:sanjai.sparkmail@gmail.com" class="social-icon email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
         
-        <div class="hero-scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
-            </div>
-            <span class="scroll-text">Scroll</span>
-            <span class="scroll-line"></span>
-        </div>
-        
-        <div class="hero-backdrop">
-            <div class="backdrop-leaf leaf-1">🌿</div>
-            <div class="backdrop-leaf leaf-2">🍃</div>
-            <div class="backdrop-leaf leaf-3">🌱</div>
-            <div class="backdrop-leaf leaf-4">🌳</div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-subtitle">🌿 Rooted in Innovation</span>
                 <h2 class="section-title">About <span class="gradient-text">Sanjai</span></h2>
-                <div class="section-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-icon"><i class="fas fa-leaf"></i></span>
-                    <span class="divider-line"></span>
-                </div>
+                <div class="section-divider"></div>
             </div>
             
             <div class="about-content">
-                <div class="about-image-wrapper reveal-left">
-                    <div class="about-image-frame">
-                        <div class="image-main">
-                            <img src="assets/images/profile/sanjai-main.jpg" alt="Sanjai Gopal" id="aboutProfileImage">
-                            <div class="image-glow"></div>
-                        </div>
-                        
-                        <div class="image-badge">
-                            <div class="badge-content">
-                                <i class="fas fa-leaf"></i>
-                                <span>1st Year</span>
-                            </div>
-                            <div class="badge-ring"></div>
-                        </div>
-                        
-                        <div class="experience-badge">
-                            <div class="exp-number">30+</div>
-                            <div class="exp-text">Certifications</div>
-                        </div>
-                        
-                        <div class="image-shape shape-1"></div>
-                        <div class="image-shape shape-2"></div>
+                <div class="about-image">
+                    <div class="image-frame">
+                        <!-- Use placeholder instead of missing current.jpg -->
+                        <img src="https://via.placeholder.com/500x500/1e293b/8b5cf6?text=Sanjai+Gopal" alt="Sanjai Gopal" id="profileImage">
+                        <div class="image-badge">🌱 1st Year</div>
                     </div>
                 </div>
                 
-                <div class="about-text-wrapper reveal-right">
-                    <h3 class="about-heading gradient-text">Aspiring AI Engineer & Nature Enthusiast</h3>
+                <div class="about-text">
+                    <h3 class="gradient-text">Aspiring AI Engineer & Nature Enthusiast</h3>
                     
-                    <div class="about-text-content">
-                        <p class="about-paragraph">I'm Sanjai, a first-year AI student at SKCET, Coimbatore, where I believe that the best technology mimics nature's elegance. My journey combines cutting-edge AI with sustainable, nature-inspired solutions.</p>
-                        
-                        <p class="about-paragraph">With <strong>30+ certifications</strong> from Coursera, AWS, IBM, and the Government of India, I'm building a foundation that's as deep as the roots of a banyan tree. Every project I create is designed to grow, adapt, and contribute positively to our world.</p>
-                    </div>
+                    <p>I'm Sanjai, a first-year AI student at SKCET, Coimbatore, where I believe that the best technology mimics nature's elegance. My journey combines cutting-edge AI with sustainable, nature-inspired solutions.</p>
+                    
+                    <p>With <strong>30+ certifications</strong> from Coursera, AWS, IBM, and the Government of India, I'm building a foundation that's as deep as the roots of a banyan tree. Every project I create is designed to grow, adapt, and contribute positively to our world.</p>
                     
                     <div class="nature-quote">
-                        <div class="quote-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="quote-content">
-                            <p>"In every walk with nature, one receives far more than he seeks."</p>
-                            <span class="quote-author">— John Muir</span>
-                        </div>
+                        <i class="fas fa-leaf"></i>
+                        <p>"In every walk with nature, one receives far more than he seeks." — John Muir</p>
                     </div>
                     
                     <div class="about-grid">
-                        <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="about-card">
+                            <i class="fas fa-map-marker-alt"></i>
                             <h4>Location</h4>
                             <p>Coimbatore, Tamil Nadu</p>
                         </div>
-                        <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="about-card">
+                            <i class="fas fa-graduation-cap"></i>
                             <h4>Education</h4>
                             <p>SKCET - 1st Year AIDS</p>
                         </div>
-                        <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-code"></i></div>
+                        <div class="about-card">
+                            <i class="fas fa-code"></i>
                             <h4>Languages</h4>
                             <p>Python, C++, JavaScript</p>
                         </div>
-                        <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-heart"></i></div>
+                        <div class="about-card">
+                            <i class="fas fa-heart"></i>
                             <h4>Interests</h4>
                             <p>Green AI, MLOps, Nature</p>
                         </div>
                     </div>
                     
                     <div class="about-cta">
-                        <button class="btn btn-primary btn-3d" id="downloadResumeBtn">
+                        <button id="downloadResumeBtn" class="btn btn-primary">
                             <i class="fas fa-download"></i> Download Resume
-                            <div class="btn-glow"></div>
                         </button>
-                        <a href="#contact" class="btn btn-outline btn-3d">
+                        <a href="#contact" class="btn btn-outline">
                             <i class="fas fa-paper-plane"></i> Hire Me
                         </a>
                     </div>
@@ -761,28 +233,14 @@
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-subtitle">🌳 Growing Capabilities</span>
                 <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
-                <div class="section-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-icon"><i class="fas fa-tree"></i></span>
-                    <span class="divider-line"></span>
-                </div>
+                <div class="section-divider"></div>
             </div>
             
-            <div class="skills-container">
-                <div class="skills-categories">
-                    <button class="category-btn active" data-category="all">All Skills</button>
-                    <button class="category-btn" data-category="languages">Languages</button>
-                    <button class="category-btn" data-category="ai">AI/ML</button>
-                    <button class="category-btn" data-category="tools">Tools</button>
-                    <button class="category-btn" data-category="frameworks">Frameworks</button>
-                </div>
-                
-                <div class="skills-grid" id="skillsGrid">
-                    <!-- Skills will be populated by JavaScript -->
-                </div>
+            <div class="skills-grid" id="skillsGrid">
+                <!-- Skills will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -790,32 +248,25 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-subtitle">🌱 Growing Ideas</span>
                 <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-                <div class="section-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-icon"><i class="fas fa-seedling"></i></span>
-                    <span class="divider-line"></span>
-                </div>
+                <div class="section-divider"></div>
             </div>
             
             <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="python">Python</button>
                 <button class="filter-btn" data-filter="cpp">C++</button>
                 <button class="filter-btn" data-filter="web">Web</button>
                 <button class="filter-btn" data-filter="ai">AI/ML</button>
             </div>
             
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be populated by JavaScript -->
-            </div>
+            <div class="projects-grid" id="projectsGrid"></div>
             
-            <div class="projects-more reveal">
-                <a href="https://github.com/Sanjai-Gopal" target="_blank" class="btn btn-outline btn-3d">
+            <div class="projects-more">
+                <a href="https://github.com/Sanjai-Gopal" target="_blank" class="btn btn-outline">
                     <i class="fab fa-github"></i> View All on GitHub
-                    <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -824,61 +275,39 @@
     <!-- Certificates Section -->
     <section id="certificates" class="certificates">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-subtitle">🌿 30+ Certifications</span>
                 <h2 class="section-title">Professional <span class="gradient-text">Certificates</span></h2>
-                <div class="section-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-icon"><i class="fas fa-certificate"></i></span>
-                    <span class="divider-line"></span>
-                </div>
+                <div class="section-divider"></div>
             </div>
             
             <div class="cert-filters">
-                <button class="filter-btn active" data-cert-filter="all">All</button>
-                <button class="filter-btn" data-cert-filter="coursera">Coursera</button>
-                <button class="filter-btn" data-cert-filter="aws">AWS</button>
-                <button class="filter-btn" data-cert-filter="ibm">IBM</button>
-                <button class="filter-btn" data-cert-filter="govt">Government</button>
-                <button class="filter-btn" data-cert-filter="other">Other</button>
+                <button class="filter-btn active" onclick="filterCertificates('all')">All</button>
+                <button class="filter-btn" onclick="filterCertificates('coursera')">Coursera</button>
+                <button class="filter-btn" onclick="filterCertificates('aws')">AWS</button>
+                <button class="filter-btn" onclick="filterCertificates('ibm')">IBM</button>
+                <button class="filter-btn" onclick="filterCertificates('govt')">Government</button>
             </div>
             
-            <div class="certificates-grid" id="certificatesGrid">
-                <!-- Certificates will be populated by JavaScript -->
-            </div>
+            <div class="certificates-grid" id="certificatesGrid"></div>
         </div>
     </section>
 
-    <!-- Blog Section - ENHANCED -->
+    <!-- Blog Section - FIXED with placeholder images -->
     <section id="blog" class="blog">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-subtitle">🌳 Thoughts & Insights</span>
                 <h2 class="section-title">Latest from <span class="gradient-text">Blog</span></h2>
-                <div class="section-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-icon"><i class="fas fa-blog"></i></span>
-                    <span class="divider-line"></span>
-                </div>
+                <div class="section-divider"></div>
             </div>
             
-            <div class="blog-categories">
-                <button class="blog-cat-btn active" data-blog-cat="all">All Posts</button>
-                <button class="blog-cat-btn" data-blog-cat="ai">AI/ML</button>
-                <button class="blog-cat-btn" data-blog-cat="programming">Programming</button>
-                <button class="blog-cat-btn" data-blog-cat="devops">DevOps</button>
-                <button class="blog-cat-btn" data-blog-cat="career">Career</button>
-            </div>
+            <div class="blog-grid" id="blogGrid"></div>
             
-            <div class="blog-grid" id="blogGrid">
-                <!-- Blog posts will be populated by JavaScript -->
-            </div>
-            
-            <div class="blog-more reveal">
-                <button class="btn btn-outline btn-3d" id="loadMoreBlogBtn">
-                    <span>Load More Posts</span> 
-                    <i class="fas fa-arrow-down"></i>
-                </button>
+            <div class="blog-more">
+                <a href="blog/" class="btn btn-outline">
+                    <span>View All Posts</span> <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -886,92 +315,47 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-subtitle">🌱 Let's Grow Together</span>
                 <h2 class="section-title">Get in <span class="gradient-text">Touch</span></h2>
-                <div class="section-divider">
-                    <span class="divider-line"></span>
-                    <span class="divider-icon"><i class="fas fa-envelope"></i></span>
-                    <span class="divider-line"></span>
-                </div>
+                <div class="section-divider"></div>
             </div>
             
             <div class="contact-container">
-                <div class="contact-info reveal-left">
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
                         <h3>Visit</h3>
-                        <p>Coimbatore, Tamil Nadu<br>India - 641001</p>
-                        <a href="#" class="card-link">Get Directions <i class="fas fa-arrow-right"></i></a>
+                        <p>Coimbatore, Tamil Nadu<br>India</p>
                     </div>
                     
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
                         <p>sanjai.sparkmail@gmail.com</p>
-                        <a href="mailto:sanjai.sparkmail@gmail.com" class="card-link">Send Message <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
+                    <div class="contact-card">
+                        <i class="fas fa-phone-alt"></i>
                         <h3>Call</h3>
                         <p>+91 9363265552</p>
-                        <a href="tel:+919363265552" class="card-link">Call Now <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-clock"></i>
-                        </div>
+                    <div class="contact-card">
+                        <i class="fas fa-clock"></i>
                         <h3>Available</h3>
                         <p>Mon-Fri, 9AM-6PM IST</p>
-                        <span class="status-badge">Online</span>
                     </div>
                 </div>
                 
-                <form class="contact-form reveal-right" id="contactForm">
-                    <div class="form-header">
-                        <h3>Send a Message</h3>
-                        <p>I'll get back to you within 24 hours</p>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
                     </div>
-                    
-                    <div class="form-group">
-                        <input type="text" id="contactName" required>
-                        <label for="contactName">Your Name</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="contactEmail" required>
-                        <label for="contactEmail">Your Email</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" id="contactSubject" required>
-                        <label for="contactSubject">Subject</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="contactMessage" rows="5" required></textarea>
-                        <label for="contactMessage">Your Message</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-3d">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                        <div class="btn-glow"></div>
-                    </button>
-                    
-                    <div class="form-status" id="formStatus"></div>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
         </div>
@@ -979,168 +363,66 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-wave">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
-                <path d="M0,0V15.81C13,21.25,27.93,25.67,44.24,28.45c69.76,11.83,139.75,5.46,209.51-6.56,61.53-10.61,122.42-29.67,184.23-39.06C536.05,9.32,610.46,30.76,684.12,45.28c75.52,14.74,152.11,14.92,228.51,4.45C954.57,43.88,1076.48,18.55,1200,36.41V0Z" fill="url(#gradient)" opacity=".5"></path>
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#8b5cf6"/>
-                        <stop offset="100%" stop-color="#3b82f6"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-        </div>
-        
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span class="logo-big">S</span>
-                        <span class="logo-leaf">🌿</span>
-                    </div>
                     <h3>Sanjai <span class="gradient-text">Gopal</span></h3>
                     <p>Growing sustainable AI solutions, one line of code at a time.</p>
-                    
-                    <div class="footer-stats">
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerProjects">6</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerCerts">34</span>
-                            <span class="stat-label">Certs</span>
-                        </div>
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerBlogs">12</span>
-                            <span class="stat-label">Posts</span>
-                        </div>
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerCloud">24</span>
-                            <span class="stat-label">Cloud</span>
-                        </div>
-                    </div>
-                    
                     <div class="footer-social">
-                        <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/919363265552" target="_blank" class="social-link">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/919363265552" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
-                        <li><a href="#skills"><i class="fas fa-chevron-right"></i> Skills</a></li>
-                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="#certificates"><i class="fas fa-chevron-right"></i> Certificates</a></li>
-                        <li><a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#certificates">Certificates</a></li>
+                        <li><a href="#blog">Blog</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="#" class="private-footer-link" id="privateFooterLink">
-                            <i class="fas fa-lock"></i> Admin Panel
-                        </a></li>
-                        <li><a href="#" class="cloud-footer-link" id="cloudFooterLink">
-                            <i class="fas fa-cloud"></i> Private Cloud
-                        </a></li>
-                        <li><a href="#" id="resumeFooterLink">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="private-cloud/">Private Cloud</a></li>
+                        <li><a href="#" id="resumeFooterLink">Resume</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
-                <div class="footer-newsletter">
-                    <h4>Stay Updated</h4>
-                    <p>Get notified about new projects and blog posts</p>
-                    
-                    <form class="newsletter-form" id="newsletterForm">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                    
-                    <div class="footer-nature">
-                        <i class="fas fa-leaf"></i>
-                        <i class="fas fa-cloud"></i>
-                        <i class="fas fa-tree"></i>
-                        <i class="fas fa-seedling"></i>
-                    </div>
+                <div class="footer-nature">
+                    <i class="fas fa-leaf"></i>
+                    <i class="fas fa-tree"></i>
+                    <i class="fas fa-seedling"></i>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <div class="copyright">
-                    <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
-                    <p class="made-with">Made with <i class="fas fa-heart" style="color: #8b5cf6;"></i> in Coimbatore</p>
-                </div>
-                
-                <div class="footer-badges">
-                    <span class="badge">🌿 Eco-friendly Code</span>
-                    <span class="badge">⚡ 100% Responsive</span>
-                    <span class="badge">🚀 Cloud Enabled</span>
-                </div>
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved. | Designed with 🌿 in Coimbatore</p>
             </div>
         </div>
-        
-        <!-- Back to Top Button -->
-        <button class="back-to-top" id="backToTop">
-            <i class="fas fa-arrow-up"></i>
-            <span class="tooltip">Back to Top</span>
-        </button>
     </footer>
 
     <!-- AI Chatbot -->
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header">
-            <div class="chatbot-logo">
-                <i class="fas fa-leaf"></i>
-                <span>AI Assistant</span>
-            </div>
-            <button class="chatbot-close" id="chatbotClose">
-                <i class="fas fa-times"></i>
-            </button>
+            <i class="fas fa-leaf"></i>
+            <span>Sanjai's AI Assistant</span>
+            <button class="chatbot-close" id="chatbotClose">&times;</button>
         </div>
-        
         <div class="chatbot-messages" id="chatbotMessages">
-            <div class="message bot">
-                <div class="message-avatar">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <div class="message-content">
-                    Hi! I'm Sanjai's AI assistant. Ask me about his skills, projects, certifications, blog posts, or cloud storage!
-                </div>
-            </div>
+            <div class="message bot">Hi! I'm Sanjai's AI assistant. Ask me about his skills, projects, or certifications!</div>
         </div>
-        
-        <div class="chatbot-input-container">
+        <div class="chatbot-input">
             <input type="text" id="chatbotInput" placeholder="Type your message...">
-            <button id="chatbotSend">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-        
-        <div class="chatbot-suggestions">
-            <button class="suggestion">What are his skills?</button>
-            <button class="suggestion">Show projects</button>
-            <button class="suggestion">Latest blog posts</button>
-            <button class="suggestion">Access cloud</button>
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
     
@@ -1148,397 +430,461 @@
         <i class="fas fa-leaf"></i>
     </button>
 
-    <!-- Notification Toast -->
-    <div class="toast-notification" id="toastNotification">
-        <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
-        <div class="toast-message">Operation completed successfully!</div>
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h3><i class="fas fa-leaf"></i> Admin Dashboard</h3>
+            <button class="admin-close" id="adminClose">&times;</button>
+        </div>
+        <div class="admin-body">
+            <div class="admin-tabs">
+                <button class="admin-tab active" data-tab="profile">Profile</button>
+                <button class="admin-tab" data-tab="projects">Projects</button>
+                <button class="admin-tab" data-tab="certificates">Certificates</button>
+                <button class="admin-tab" data-tab="blog">Blog</button>
+            </div>
+            
+            <div class="admin-content">
+                <!-- Profile Tab -->
+                <div class="admin-pane active" id="profile-pane">
+                    <h4>Update Profile Photo</h4>
+                    <input type="file" id="profileUpload" accept="image/*">
+                    <button onclick="updateProfilePhoto()" class="btn-admin">Upload Photo</button>
+                    
+                    <h4>Update Bio</h4>
+                    <textarea id="adminBio" rows="3">I'm Sanjai, a passionate first-year AI student at SKCET...</textarea>
+                    <button onclick="updateBio()" class="btn-admin">Update Bio</button>
+                </div>
+                
+                <!-- Projects Tab -->
+                <div class="admin-pane" id="projects-pane">
+                    <h4>Add New Project</h4>
+                    <input type="text" id="projectName" placeholder="Project Name">
+                    <textarea id="projectDesc" placeholder="Description"></textarea>
+                    <input type="text" id="projectTech" placeholder="Technologies (comma-separated)">
+                    <input type="url" id="projectGithub" placeholder="GitHub URL">
+                    <button onclick="addProject()" class="btn-admin">Add Project</button>
+                </div>
+                
+                <!-- Certificates Tab -->
+                <div class="admin-pane" id="certificates-pane">
+                    <h4>Add Certificate</h4>
+                    <input type="text" id="certTitle" placeholder="Certificate Title">
+                    <input type="text" id="certIssuer" placeholder="Issuer">
+                    <input type="text" id="certDate" placeholder="Date">
+                    <input type="url" id="certLink" placeholder="LinkedIn Post URL">
+                    <input type="file" id="certImage" accept="image/*">
+                    <button onclick="addCertificate()" class="btn-admin">Add Certificate</button>
+                </div>
+                
+                <!-- Blog Tab -->
+                <div class="admin-pane" id="blog-pane">
+                    <h4>Write New Post</h4>
+                    <input type="text" id="blogTitle" placeholder="Post Title">
+                    <textarea id="blogContent" rows="5" placeholder="Content"></textarea>
+                    <input type="text" id="blogTags" placeholder="Tags (comma-separated)">
+                    <button onclick="addBlogPost()" class="btn-admin">Publish Post</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Loading Spinner -->
-    <div class="loading-spinner" id="loadingSpinner">
-        <div class="spinner-leaf"></div>
-        <div class="spinner-leaf"></div>
-        <div class="spinner-leaf"></div>
-        <div class="spinner-text">Loading...</div>
-    </div>
-
-    <!-- Main JavaScript Files -->
+    <!-- IMPORTANT: Only these JS files exist in your structure -->
     <script src="js/main.js"></script>
-    <script src="js/admin.js"></script>
-    <script src="js/cloud.js"></script>
-    <script src="js/blog.js"></script>
-    <script src="js/animations.js"></script>
+    <!-- REMOVED: admin.js, cloud.js, blog.js, animations.js (they don't exist) -->
     
     <script>
-        // ==================== ENHANCED BLOG FUNCTIONALITY ====================
-        const blogPosts = [
+        // ==================== COMPLETE CERTIFICATES DATA ====================
+        const certificates = [
+            // Coursera Canva Series
+            { title: "Canva Essentials Professional Certificate", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Presentation Design Mastery in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Social Media Content Creation with Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Marketing Material Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Video Content Creation in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Interactive Document Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Event Marketing Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "AI-Powered Design with Canva Magic Studio", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Advanced Branding in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Portfolio Development in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Event Video & Social Media Experience Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Brand Identity Design in Canva", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Typography and Color Theory in Design", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Canva Design Fundamentals", issuer: "Coursera", date: "Feb 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            
+            // Other Coursera
+            { title: "Increase Engagement to your Instagram Business", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-instagram", link: "#" },
+            { title: "Create and Design Digital Products using Canva", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Use Canva to Create Social Media Visuals", issuer: "Coursera", date: "Jan 2026", category: "coursera", icon: "fa-canva", link: "#" },
+            { title: "Programming for Everybody (Python)", issuer: "Univ. of Michigan", date: "Feb 2026", category: "coursera", icon: "fa-python", link: "#" },
+            
+            // IBM
+            { title: "Getting Started with Git and GitHub", issuer: "IBM", date: "Feb 2026", category: "ibm", icon: "fa-github", link: "#" },
+            { title: "Getting Started with Data", issuer: "IBM SkillsBuild", date: "Oct 2025", category: "ibm", icon: "fa-database", link: "#" },
+            
+            // AWS
+            { title: "AWS Certified Cloud Practitioner (Practice Set)", issuer: "AWS", date: "Oct 2025", category: "aws", icon: "fa-aws", link: "#" },
+            
+            // Saylor Academy
+            { title: "CS205: Building with Artificial Intelligence", issuer: "Saylor Academy", date: "Feb 2026", category: "other", icon: "fa-robot", link: "#" },
+            
+            // byteXL
+            { title: "C Programming", issuer: "byteXL", date: "Nov 2025", category: "other", icon: "fa-code", link: "#" },
+            
+            // Government
+            { title: "Viksit Bharat Young Leaders Dialogue", issuer: "Min. of Youth Affairs", date: "Sep 2025", category: "govt", icon: "fa-indian-rupee-sign", link: "#" },
+            { title: "MYBharat Budget Quest 2026", issuer: "MYBharat", date: "Feb 2026", category: "govt", icon: "fa-chart-line", link: "#" },
+            { title: "Online Essay on Viksit Bharat", issuer: "Min. of Youth Affairs", date: "Nov 2025", category: "govt", icon: "fa-pen", link: "#" },
+            { title: "Know more about DFPD-II Quiz", issuer: "MYBharat", date: "Feb 2026", category: "govt", icon: "fa-question", link: "#" },
+            { title: "The Viksit Bharat Quiz 2026", issuer: "MYBharat", date: "2025", category: "govt", icon: "fa-medal", link: "#" },
+            { title: "Sardar 150 National Level Essay Competition", issuer: "Ek Bharat", date: "2025", category: "govt", icon: "fa-award", link: "#" },
+            
+            // IIRS/ISRO
+            { title: "Advances in thermal infrared Remote Sensing", issuer: "IIRS/ISRO", date: "Oct 2025", category: "other", icon: "fa-satellite", link: "#" },
+            
+            // Typing
+            { title: "Typing - Beginner Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-keyboard", link: "#" },
+            { title: "Typing - Intermediate Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-keyboard", link: "#" },
+            { title: "Typing - Advanced Unit", issuer: "typing.com", date: "Nov 2025", category: "other", icon: "fa-keyboard", link: "#" }
+        ];
+
+        // Projects Data
+        const projects = [
             {
-                id: 1,
-                title: "Getting Started with Python: A Beginner's Guide to AI",
-                excerpt: "Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers. This comprehensive guide covers everything from basic syntax to advanced concepts.",
-                content: "Full blog post content here...",
-                date: "Mar 1, 2026",
-                category: "programming",
-                readTime: 5,
-                image: "assets/images/blog/python-basics.jpg",
-                author: "Sanjai Gopal",
-                likes: 45,
-                comments: 12,
-                featured: true
-            },
-            {
-                id: 2,
-                title: "Git & GitHub: Essential Commands Every Developer Should Know",
-                excerpt: "A comprehensive guide to version control for beginners, with practical workflows, branching strategies, and collaboration tips.",
-                content: "Full blog post content here...",
-                date: "Feb 15, 2026",
-                category: "devops",
-                readTime: 7,
-                image: "assets/images/blog/git-guide.jpg",
-                author: "Sanjai Gopal",
-                likes: 32,
-                comments: 8,
-                featured: true
-            },
-            {
-                id: 3,
-                title: "My First Steps into AI: What I Learned in 3 Months",
-                excerpt: "Sharing my journey as a first-year student diving into the world of Artificial Intelligence, including challenges, breakthroughs, and key learnings.",
-                content: "Full blog post content here...",
-                date: "Feb 1, 2026",
+                name: "RuralCare AI",
+                description: "Multilingual AI-based rural health assistant with symptom checker, voice recording, and real-time dashboard.",
+                tech: ["Python", "Flask", "AI/ML"],
                 category: "ai",
-                readTime: 6,
-                image: "assets/images/blog/ai-journey.jpg",
-                author: "Sanjai Gopal",
-                likes: 67,
-                comments: 15,
-                featured: true
+                github: "https://github.com/Sanjai-Gopal/ruralcare-ai",
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=RuralCare+AI",
+                features: ["AI Symptom Checker", "Voice Recording", "Disease Library", "Real-time dashboard", "Printable reports"],
+                demo: "#"
             },
             {
-                id: 4,
-                title: "Understanding Neural Networks: A Visual Guide",
-                excerpt: "Demystifying neural networks with visual explanations, simple analogies, and practical examples for beginners.",
-                content: "Full blog post content here...",
-                date: "Jan 20, 2026",
+                name: "Feedback & Billing System",
+                description: "Complete snack shop management system with tax calculation, star ratings, and file-based persistence.",
+                tech: ["C++", "File I/O", "OOP"],
+                category: "cpp",
+                github: "https://github.com/Sanjai-Gopal/Feedback-and-Billing-System",
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Billing+System",
+                features: ["Automatic bill generation", "Tax calculation", "Customer feedback", "File persistence"],
+                demo: null
+            },
+            {
+                name: "bis-smart-compliance",
+                description: "Automated compliance monitoring system with report generation and audit logging.",
+                tech: ["Python", "Automation", "Logging"],
+                category: "python",
+                github: "https://github.com/Sanjai-Gopal/bis-smart-compliance",
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Compliance+System",
+                features: ["Automated compliance checks", "Report generation", "Data validation", "Audit logging"],
+                demo: null
+            },
+            {
+                name: "Railway Reservation System",
+                description: "Console-based railway ticket reservation system with seat management and PNR tracking.",
+                tech: ["C++", "OOP", "Data Structures"],
+                category: "cpp",
+                github: "https://github.com/Sanjai-Gopal/railway-reservation-cpp",
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Railway+Reservation",
+                features: ["Ticket booking", "Seat availability", "PNR tracking", "Fare calculation"],
+                demo: null
+            },
+            {
+                name: "Advanced Portfolio 2026",
+                description: "Futuristic nature-themed portfolio with 3D elements, AI chatbot, and private cloud storage.",
+                tech: ["HTML5/CSS3", "JavaScript", "Three.js"],
+                category: "web",
+                github: "https://github.com/Sanjai-Gopal/sanjai_portfolio",
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Portfolio",
+                demo: "#",
+                features: ["Nature theme", "AI chatbot", "Private cloud", "Admin panel"]
+            },
+            {
+                name: "Student Performance Predictor",
+                description: "ML model to predict student grades based on study hours, attendance, and previous performance.",
+                tech: ["Python", "scikit-learn", "Pandas"],
                 category: "ai",
-                readTime: 8,
-                image: "assets/images/blog/neural-networks.jpg",
-                author: "Sanjai Gopal",
-                likes: 54,
-                comments: 9,
-                featured: false
-            },
-            {
-                id: 5,
-                title: "Building Your First C++ Project: Railway Reservation System",
-                excerpt: "Step-by-step guide to creating a practical C++ application from scratch, covering OOP concepts, file handling, and data structures.",
-                content: "Full blog post content here...",
-                date: "Jan 5, 2026",
-                category: "programming",
-                readTime: 6,
-                image: "assets/images/blog/cpp-project.jpg",
-                author: "Sanjai Gopal",
-                likes: 28,
-                comments: 5,
-                featured: false
-            },
-            {
-                id: 6,
-                title: "Introduction to MLOps: Bridging ML and Operations",
-                excerpt: "Understanding the basics of MLOps, why it matters for production ML systems, and how to get started with popular tools.",
-                content: "Full blog post content here...",
-                date: "Dec 10, 2025",
-                category: "devops",
-                readTime: 7,
-                image: "assets/images/blog/mlops-intro.jpg",
-                author: "Sanjai Gopal",
-                likes: 41,
-                comments: 7,
-                featured: true
-            },
-            {
-                id: 7,
-                title: "How to Ace Technical Interviews: Tips from a First-Year Student",
-                excerpt: "Practical advice on preparing for technical interviews, building problem-solving skills, and showcasing projects effectively.",
-                content: "Full blog post content here...",
-                date: "Nov 25, 2025",
-                category: "career",
-                readTime: 5,
-                image: "assets/images/blog/interview-tips.jpg",
-                author: "Sanjai Gopal",
-                likes: 89,
-                comments: 23,
-                featured: true
-            },
-            {
-                id: 8,
-                title: "Building a Private Cloud Storage System: Technical Deep Dive",
-                excerpt: "Learn how I built a secure private cloud storage system with authentication, file uploads, and folder management.",
-                content: "Full blog post content here...",
-                date: "Nov 10, 2025",
-                category: "programming",
-                readTime: 10,
-                image: "assets/images/blog/cloud-storage.jpg",
-                author: "Sanjai Gopal",
-                likes: 73,
-                comments: 18,
-                featured: true
-            },
-            {
-                id: 9,
-                title: "The Future of Green AI: Sustainable Machine Learning",
-                excerpt: "Exploring how we can make AI more environmentally friendly through efficient algorithms, hardware optimization, and renewable energy.",
-                content: "Full blog post content here...",
-                date: "Oct 28, 2025",
-                category: "ai",
-                readTime: 6,
-                image: "assets/images/blog/green-ai.jpg",
-                author: "Sanjai Gopal",
-                likes: 52,
-                comments: 11,
-                featured: false
+                github: "https://github.com/Sanjai-Gopal/ml-student-performance",
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=ML+Model",
+                features: ["85% accuracy", "Feature importance", "Data visualization", "Model evaluation"],
+                demo: null
             }
         ];
 
-        let currentBlogPage = 1;
-        const blogsPerPage = 6;
-        let currentBlogCategory = 'all';
+        // Blog Posts Data - FIXED with placeholder images
+        const blogPosts = [
+            {
+                title: "Getting Started with Python: A Beginner's Guide",
+                excerpt: "Learn the fundamentals of Python programming with practical examples and tips for aspiring AI engineers.",
+                date: "Mar 1, 2026",
+                category: "Programming",
+                readTime: 5,
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Python+Basics",
+                slug: "post1.html"
+            },
+            {
+                title: "Git & GitHub: Essential Commands Every Developer Should Know",
+                excerpt: "A comprehensive guide to version control for beginners, with practical workflows and tips.",
+                date: "Feb 15, 2026",
+                category: "DevOps",
+                readTime: 7,
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Git+Guide",
+                slug: "post2.html"
+            },
+            {
+                title: "My First Steps into AI: What I Learned in 3 Months",
+                excerpt: "Sharing my journey as a first-year student diving into the world of Artificial Intelligence.",
+                date: "Feb 1, 2026",
+                category: "AI/ML",
+                readTime: 6,
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=AI+Journey",
+                slug: "post3.html"
+            },
+            {
+                title: "Understanding Neural Networks: A Visual Guide",
+                excerpt: "Demystifying neural networks with visual explanations and simple analogies.",
+                date: "Jan 20, 2026",
+                category: "AI/ML",
+                readTime: 8,
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=Neural+Networks",
+                slug: "post4.html"
+            },
+            {
+                title: "Building Your First C++ Project",
+                excerpt: "Step-by-step guide to creating a practical C++ application from scratch.",
+                date: "Jan 5, 2026",
+                category: "Programming",
+                readTime: 6,
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=C+++Project",
+                slug: "post5.html"
+            },
+            {
+                title: "Introduction to MLOps: Bridging ML and Operations",
+                excerpt: "Understanding the basics of MLOps and why it matters for production ML systems.",
+                date: "Dec 10, 2025",
+                category: "MLOps",
+                readTime: 7,
+                image: "https://via.placeholder.com/400x200/0f172a/8b5cf6?text=MLOps",
+                slug: "post6.html"
+            }
+        ];
 
-        function renderBlogPosts(category = 'all', page = 1) {
+        // ==================== RENDER FUNCTIONS ====================
+        function renderCertificates(filter = 'all') {
+            const grid = document.getElementById('certificatesGrid');
+            if (!grid) return;
+            
+            const filtered = filter === 'all' ? certificates : certificates.filter(c => c.category === filter);
+            
+            grid.innerHTML = filtered.map(cert => `
+                <div class="certificate-card" onclick="window.open('${cert.link}', '_blank')">
+                    <img src="https://via.placeholder.com/400x300/1e293b/8b5cf6?text=Certificate" alt="${cert.title}">
+                    <div class="certificate-overlay">
+                        <span>${cert.title}</span>
+                        <p><i class="fab ${cert.icon}"></i> ${cert.issuer} • ${cert.date}</p>
+                        <button class="view-cert-btn" onclick="event.stopPropagation(); window.open('${cert.link}', '_blank')">
+                            <i class="fab fa-linkedin"></i> View
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProjects(filter = 'all') {
+            const grid = document.getElementById('projectsGrid');
+            if (!grid) return;
+            
+            const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+            
+            grid.innerHTML = filtered.map(project => `
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="${project.image}" alt="${project.name}">
+                        <span class="project-category">${project.category.toUpperCase()}</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>${project.name}</h3>
+                        <p>${project.description}</p>
+                        <div class="project-tech">
+                            ${project.tech.map(t => `<span>${t}</span>`).join('')}
+                        </div>
+                        <div class="project-links">
+                            <a href="${project.github}" target="_blank" class="github-link"><i class="fab fa-github"></i> Code</a>
+                            ${project.demo ? `<a href="${project.demo}" target="_blank" class="demo-link"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderBlog() {
             const grid = document.getElementById('blogGrid');
             if (!grid) return;
             
-            let filtered = category === 'all' ? blogPosts : blogPosts.filter(post => post.category === category);
-            
-            // Pagination
-            const start = (page - 1) * blogsPerPage;
-            const end = start + blogsPerPage;
-            const paginatedPosts = filtered.slice(start, end);
-            
-            if (paginatedPosts.length === 0 && page > 1) {
-                // No more posts
-                document.getElementById('loadMoreBlogBtn').style.display = 'none';
-                return;
-            }
-            
-            grid.innerHTML = paginatedPosts.map(post => `
-                <article class="blog-card" data-aos="fade-up" data-post-id="${post.id}">
+            grid.innerHTML = blogPosts.map(post => `
+                <article class="blog-card">
                     <div class="blog-image">
-                        <img src="${post.image}" alt="${post.title}" onerror="this.src='assets/images/blog/placeholder.jpg'">
-                        <span class="blog-category">${post.category.toUpperCase()}</span>
-                        ${post.featured ? '<span class="blog-featured"><i class="fas fa-star"></i> Featured</span>' : ''}
+                        <img src="${post.image}" alt="${post.title}">
+                        <span class="blog-category">${post.category}</span>
                     </div>
                     <div class="blog-content">
                         <div class="blog-meta">
                             <span><i class="far fa-calendar"></i> ${post.date}</span>
                             <span><i class="far fa-clock"></i> ${post.readTime} min read</span>
-                            <span><i class="far fa-heart"></i> ${post.likes}</span>
-                            <span><i class="far fa-comment"></i> ${post.comments}</span>
                         </div>
                         <h3>${post.title}</h3>
                         <p>${post.excerpt}</p>
-                        <div class="blog-footer">
-                            <span class="blog-author"><i class="far fa-user"></i> ${post.author}</span>
-                            <button class="blog-read-more" onclick="openBlogPost(${post.id})">
-                                Read More <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
+                        <a href="blog/${post.slug}" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
             `).join('');
-            
-            // Hide load more button if no more posts
-            if (end >= filtered.length) {
-                document.getElementById('loadMoreBlogBtn').style.display = 'none';
-            } else {
-                document.getElementById('loadMoreBlogBtn').style.display = 'inline-flex';
-            }
         }
 
-        function openBlogPost(postId) {
-            const post = blogPosts.find(p => p.id === postId);
-            if (!post) return;
+        function renderSkills() {
+            const grid = document.getElementById('skillsGrid');
+            if (!grid) return;
             
-            const modal = document.getElementById('blogModal');
-            const modalTitle = document.getElementById('blogModalTitle');
-            const modalBody = document.getElementById('blogModalBody');
+            const skillsData = [
+                { category: "Languages", icon: "fa-code", skills: [
+                    { name: "Python", level: 85, tags: ["NumPy", "Pandas", "Matplotlib"] },
+                    { name: "C++", level: 75, tags: ["OOP", "STL", "Algorithms"] },
+                    { name: "JavaScript", level: 60, tags: ["ES6", "React", "Node.js"] }
+                ]},
+                { category: "AI & ML", icon: "fa-brain", skills: [
+                    { name: "Machine Learning", level: 70, tags: ["Scikit-learn", "Regression", "Classification"] },
+                    { name: "Deep Learning", level: 50, tags: ["Neural Networks", "TensorFlow"] },
+                    { name: "MLOps", level: 40, tags: ["Docker", "MLflow"] }
+                ]},
+                { category: "Tools", icon: "fa-tools", skills: [
+                    { name: "Git & GitHub", level: 80, tags: ["Version Control", "Collaboration"] },
+                    { name: "VS Code", level: 65, tags: ["Extensions", "Debugging"] },
+                    { name: "Linux/Unix", level: 55, tags: ["Command Line", "Bash"] }
+                ]}
+            ];
             
-            modalTitle.textContent = post.title;
-            modalBody.innerHTML = `
-                <div class="blog-post-full">
-                    <img src="${post.image}" alt="${post.title}" class="blog-post-image">
-                    <div class="blog-post-meta">
-                        <span><i class="far fa-calendar"></i> ${post.date}</span>
-                        <span><i class="far fa-clock"></i> ${post.readTime} min read</span>
-                        <span><i class="far fa-user"></i> ${post.author}</span>
-                        <span><i class="far fa-folder"></i> ${post.category}</span>
+            grid.innerHTML = skillsData.map(cat => `
+                <div class="skill-tree">
+                    <div class="skill-header">
+                        <i class="fas ${cat.icon}"></i>
+                        <h3>${cat.category}</h3>
                     </div>
-                    <div class="blog-post-stats">
-                        <span><i class="far fa-heart"></i> ${post.likes} likes</span>
-                        <span><i class="far fa-comment"></i> ${post.comments} comments</span>
-                    </div>
-                    <div class="blog-post-content">
-                        <p>${post.content}</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <h3>Key Takeaways</h3>
-                        <ul>
-                            <li>Important point one about the topic</li>
-                            <li>Second key learning from this post</li>
-                            <li>Third actionable insight</li>
-                        </ul>
-                    </div>
-                    <div class="blog-post-share">
-                        <h4>Share this post</h4>
-                        <div class="share-buttons">
-                            <a href="#" class="share-btn twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="share-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="share-btn facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-post-comments">
-                        <h4>Comments (${post.comments})</h4>
-                        <div class="comment-form">
-                            <textarea placeholder="Leave a comment..."></textarea>
-                            <button class="btn btn-primary">Post Comment</button>
-                        </div>
+                    <div class="skill-branch">
+                        ${cat.skills.map(skill => `
+                            <div class="skill-leaf">
+                                <span class="skill-name">${skill.name}</span>
+                                <div class="skill-progress">
+                                    <div class="progress-fill" style="width: ${skill.level}%"></div>
+                                </div>
+                                <div class="skill-tags">
+                                    ${skill.tags.map(tag => `<span>${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
-            `;
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            `).join('');
         }
 
-        // ==================== ENHANCED CLOUD FUNCTIONALITY ====================
-        class CloudStorage {
-            constructor() {
-                this.currentPath = 'root';
-                this.files = this.loadFiles();
-                this.init();
-            }
+        // ==================== FILTER FUNCTIONS ====================
+        window.filterCertificates = function(category) {
+            document.querySelectorAll('.cert-filters .filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderCertificates(category);
+        };
+
+        // ==================== RESUME GENERATION ====================
+        function generateResume() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
             
-            init() {
-                this.renderFiles();
-                this.setupEventListeners();
-            }
+            doc.setTextColor(139, 92, 246);
+            doc.setFontSize(24);
+            doc.text("Sanjai Gopal", 20, 20);
             
-            loadFiles() {
-                // Simulated cloud files structure
-                return [
-                    { name: 'Projects', type: 'folder', path: 'root', size: '--', modified: '2026-03-01', items: 6 },
-                    { name: 'Certificates', type: 'folder', path: 'root', size: '--', modified: '2026-03-01', items: 34 },
-                    { name: 'Blog Posts', type: 'folder', path: 'root', size: '--', modified: '2026-03-01', items: 12 },
-                    { name: 'Resume.pdf', type: 'pdf', path: 'root', size: '2.4 MB', modified: '2026-03-01' },
-                    { name: 'Profile-Photo.jpg', type: 'image', path: 'root', size: '1.8 MB', modified: '2026-02-28' },
-                    { name: 'Project-RuralCare.zip', type: 'archive', path: 'root', size: '15.2 MB', modified: '2026-02-25' },
-                    { name: 'Python-Scripts', type: 'folder', path: 'root', size: '--', modified: '2026-02-20', items: 8 },
-                    { name: 'ML-Models', type: 'folder', path: 'root', size: '--', modified: '2026-02-15', items: 4 }
-                ];
-            }
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text("Aspiring AI Engineer | MLOps Enthusiast", 20, 30);
+            doc.text("Coimbatore, Tamil Nadu | +91 9363265552 | sanjai.sparkmail@gmail.com", 20, 37);
             
-            renderFiles() {
-                const grid = document.getElementById('cloudFilesGrid');
-                if (!grid) return;
+            doc.setDrawColor(139, 92, 246);
+            doc.line(20, 42, 190, 42);
+            
+            doc.setFontSize(16);
+            doc.setTextColor(139, 92, 246);
+            doc.text("Education", 20, 55);
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text("SKCET - 1st Year Artificial Intelligence & Data Science (2025-2029)", 20, 65);
+            
+            doc.setFontSize(16);
+            doc.setTextColor(139, 92, 246);
+            doc.text("Certifications (30+)", 20, 80);
+            doc.setFontSize(10);
+            doc.setTextColor(0, 0, 0);
+            
+            let y = 90;
+            certificates.slice(0, 15).forEach((cert, i) => {
+                doc.text(`• ${cert.title} - ${cert.issuer} (${cert.date})`, 25, y);
+                y += 6;
+            });
+            
+            doc.save("Sanjai_Gopal_Resume.pdf");
+        }
+
+        // ==================== LEAF BACKGROUND ====================
+        function createLeafBackground() {
+            const container = document.getElementById('leafContainer');
+            for (let i = 0; i < 30; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'falling-leaf';
+                leaf.style.left = Math.random() * 100 + '%';
+                leaf.style.animationDuration = (8 + Math.random() * 10) + 's';
+                leaf.style.animationDelay = Math.random() * 10 + 's';
+                leaf.style.opacity = 0.1 + Math.random() * 0.2;
+                leaf.innerHTML = ['🌿', '🍃', '🌱', '🌳', '🌲'][Math.floor(Math.random() * 5)];
+                container.appendChild(leaf);
+            }
+        }
+
+        // ==================== TYPING ANIMATION ====================
+        function initTyping() {
+            const words = ['AI Engineer', 'MLOps Enthusiast', 'Python Developer', 'C++ Programmer', 'Nature Lover'];
+            const typedText = document.querySelector('.typed-text');
+            if (!typedText) return;
+            
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function type() {
+                const currentWord = words[wordIndex];
                 
-                const currentFiles = this.files.filter(f => f.path === this.currentPath);
+                if (isDeleting) {
+                    typedText.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedText.textContent = currentWord.substring(0, charIndex + 1);
+                    charIndex++;
+                }
                 
-                grid.innerHTML = currentFiles.map(file => `
-                    <div class="cloud-file-item ${file.type === 'folder' ? 'folder' : 'file'}" data-name="${file.name}" data-type="${file.type}">
-                        <div class="file-icon">
-                            ${file.type === 'folder' ? '<i class="fas fa-folder"></i>' : 
-                              file.type === 'pdf' ? '<i class="fas fa-file-pdf"></i>' :
-                              file.type === 'image' ? '<i class="fas fa-file-image"></i>' :
-                              file.type === 'archive' ? '<i class="fas fa-file-archive"></i>' :
-                              '<i class="fas fa-file"></i>'}
-                        </div>
-                        <div class="file-info">
-                            <span class="file-name">${file.name}</span>
-                            <span class="file-meta">${file.type === 'folder' ? `${file.items} items` : file.size} • ${file.modified}</span>
-                        </div>
-                        <div class="file-actions">
-                            ${file.type === 'folder' ? 
-                                '<button class="file-action" onclick="cloud.openFolder(\'' + file.name + '\')"><i class="fas fa-folder-open"></i></button>' : 
-                                '<button class="file-action" onclick="cloud.downloadFile(\'' + file.name + '\')"><i class="fas fa-download"></i></button>'}
-                            <button class="file-action" onclick="cloud.deleteFile(\'' + file.name + '\')"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            openFolder(folderName) {
-                this.currentPath = folderName;
-                this.updateBreadcrumb(folderName);
-                this.renderFiles();
-            }
-            
-            updateBreadcrumb(folderName) {
-                const breadcrumb = document.getElementById('cloudBreadcrumb');
-                breadcrumb.innerHTML = `
-                    <span class="breadcrumb-item" onclick="cloud.openFolder('root')">My Cloud</span>
-                    <i class="fas fa-chevron-right"></i>
-                    <span class="breadcrumb-item active">${folderName}</span>
-                `;
-            }
-            
-            downloadFile(fileName) {
-                this.showToast(`Downloading ${fileName}...`, 'info');
-                setTimeout(() => {
-                    this.showToast(`${fileName} downloaded successfully!`, 'success');
-                }, 1500);
-            }
-            
-            deleteFile(fileName) {
-                if (confirm(`Are you sure you want to delete ${fileName}?`)) {
-                    this.files = this.files.filter(f => f.name !== fileName);
-                    this.renderFiles();
-                    this.showToast(`${fileName} deleted successfully!`, 'success');
+                if (!isDeleting && charIndex === currentWord.length) {
+                    isDeleting = true;
+                    setTimeout(type, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(type, 500);
+                } else {
+                    setTimeout(type, 100);
                 }
             }
             
-            uploadFiles(files) {
-                Array.from(files).forEach(file => {
-                    this.files.push({
-                        name: file.name,
-                        type: file.type.split('/')[0] === 'image' ? 'image' : 'file',
-                        path: this.currentPath,
-                        size: this.formatBytes(file.size),
-                        modified: new Date().toISOString().split('T')[0]
-                    });
-                });
-                this.renderFiles();
-                this.showToast(`${files.length} file(s) uploaded successfully!`, 'success');
-            }
-            
-            formatBytes(bytes) {
-                if (bytes === 0) return '0 Bytes';
-                const k = 1024;
-                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-                const i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-            }
-            
-            showToast(message, type = 'success') {
-                const toast = document.getElementById('toastNotification');
-                const icon = toast.querySelector('.toast-icon i');
-                const messageEl = toast.querySelector('.toast-message');
-                
-                icon.className = type === 'success' ? 'fas fa-check-circle' : 
-                                 type === 'error' ? 'fas fa-exclamation-circle' : 
-                                 'fas fa-info-circle';
-                messageEl.textContent = message;
-                
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 3000);
-            }
+            type();
         }
 
-        // Initialize Cloud
-        let cloud;
-
-        // ==================== ENHANCED CHATBOT ====================
-        class EnhancedChatbot {
+        // ==================== CHATBOT ====================
+        class NatureAIChatbot {
             constructor() {
                 this.container = document.getElementById('chatbotContainer');
                 this.toggle = document.getElementById('chatbotToggle');
@@ -1546,9 +892,7 @@
                 this.messages = document.getElementById('chatbotMessages');
                 this.input = document.getElementById('chatbotInput');
                 this.sendBtn = document.getElementById('chatbotSend');
-                this.suggestions = document.querySelectorAll('.suggestion');
                 this.isOpen = false;
-                this.context = [];
                 
                 this.init();
             }
@@ -1559,13 +903,6 @@
                 this.sendBtn.addEventListener('click', () => this.sendMessage());
                 this.input.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') this.sendMessage();
-                });
-                
-                this.suggestions.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        this.input.value = btn.textContent;
-                        this.sendMessage();
-                    });
                 });
             }
             
@@ -1588,22 +925,9 @@
             addMessage(text, sender) {
                 const msg = document.createElement('div');
                 msg.className = `message ${sender}`;
-                
-                const avatar = sender === 'bot' ? 
-                    '<div class="message-avatar"><i class="fas fa-leaf"></i></div>' : 
-                    '<div class="message-avatar"><i class="fas fa-user"></i></div>';
-                
-                msg.innerHTML = `
-                    ${avatar}
-                    <div class="message-content">${text}</div>
-                `;
-                
+                msg.innerHTML = text;
                 this.messages.appendChild(msg);
                 this.messages.scrollTop = this.messages.scrollHeight;
-                
-                // Store context
-                this.context.push({ sender, text });
-                if (this.context.length > 10) this.context.shift();
             }
             
             sendMessage() {
@@ -1622,209 +946,157 @@
             getAIResponse(input) {
                 input = input.toLowerCase();
                 
-                // Skills
-                if (input.includes('skill') || input.includes('know')) {
-                    return "Sanjai has expertise in:\n• Python (85%)\n• C++ (75%)\n• JavaScript (60%)\n• Machine Learning (70%)\n• Deep Learning (50%)\n• MLOps (40%)\n• Git/GitHub (80%)\n• VS Code (65%)\n• Linux (55%)";
+                if (input.includes('skill')) {
+                    return "Sanjai has expertise in Python (85%), C++ (75%), JavaScript (60%), Machine Learning (70%), Deep Learning (50%), and MLOps (40%).";
                 }
-                
-                // Projects
                 else if (input.includes('project')) {
-                    return "Sanjai has built 6 major projects:\n1. RuralCare AI - Health assistant\n2. Feedback & Billing System (C++)\n3. bis-smart-compliance (Python)\n4. Railway Reservation System (C++)\n5. Advanced Portfolio 2026\n6. Student Performance Predictor (ML)\n\nCheck them out in the Projects section!";
+                    return "Sanjai has built 6 major projects including RuralCare AI, Feedback & Billing System, and this portfolio!";
                 }
-                
-                // Certificates
                 else if (input.includes('certificate') || input.includes('certification')) {
-                    return "Sanjai has earned 34+ certifications from:\n• Coursera (14 Canva certs)\n• AWS Cloud Practitioner\n• IBM SkillsBuild\n• Government of India (Viksit Bharat, MYBharat)\n• ISRO/IIRS\n• Saylor Academy (AI)\n• byteXL (C Programming)\n• typing.com (3 levels)\n\nAll verified on LinkedIn!";
+                    return "Sanjai has earned over 30 certifications from Coursera, AWS, IBM, and the Government of India!";
                 }
-                
-                // Blog
-                else if (input.includes('blog') || input.includes('post')) {
-                    return "Sanjai writes about:\n• Python & AI programming\n• Git & DevOps practices\n• Neural networks explained\n• Career tips for students\n• Green AI & sustainability\n• Building cloud storage\n\nCheck out the Blog section for latest posts!";
+                else if (input.includes('contact') || input.includes('email')) {
+                    return "You can reach Sanjai at sanjai.sparkmail@gmail.com or on LinkedIn.";
                 }
-                
-                // Cloud
-                else if (input.includes('cloud') || input.includes('storage')) {
-                    return "Sanjai's Private Cloud features:\n• Secure file storage\n• Folder organization\n• File upload/download\n• 24 files currently\n• 2.4 GB used / 10 GB total\n• Password protected\n\nClick the Cloud link in navigation to access!";
+                else if (input.includes('education')) {
+                    return "Sanjai is currently in his 1st year of AI & Data Science at SKCET, Coimbatore.";
                 }
-                
-                // Contact
-                else if (input.includes('contact') || input.includes('email') || input.includes('reach')) {
-                    return "You can reach Sanjai at:\n📧 Email: sanjai.sparkmail@gmail.com\n📱 Phone: +91 9363265552\n💼 LinkedIn: linkedin.com/in/sanjai2306\n🐙 GitHub: github.com/Sanjai-Gopal\n📸 Instagram: @hey.sanjai_";
-                }
-                
-                // Education
-                else if (input.includes('education') || input.includes('college') || input.includes('study')) {
-                    return "Sanjai is currently in his 1st year of B.Tech Artificial Intelligence & Data Science at Sri Krishna College of Engineering and Technology (SKCET), Coimbatore (2025-2029).";
-                }
-                
-                // Resume
-                else if (input.includes('resume') || input.includes('cv')) {
-                    return "You can download Sanjai's resume by:\n• Clicking 'Download Resume' in About section\n• Using the footer link\n• Asking me to generate one!\n\nWould you like me to generate a PDF resume?";
-                }
-                
-                // Admin/Private
-                else if (input.includes('admin') || input.includes('private') || input.includes('secret')) {
-                    return "🔐 Private Area Access:\n• Double-click the green dot (top-left) for admin panel\n• Password: Sanjai@2008\n• Manage projects, certificates, blog posts\n• Update profile photo and settings\n• Cloud storage management";
-                }
-                
-                // Greetings
-                else if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
-                    return "Hello! 👋 I'm Sanjai's AI assistant. I can help you learn about his skills, projects, certifications, blog posts, cloud storage, and more. What would you like to know?";
-                }
-                
-                // Default response
                 else {
-                    return "I'm not sure about that. You can ask me about:\n• Skills and technologies\n• Projects and code\n• Certifications\n• Blog posts\n• Cloud storage\n• Contact information\n• Education\n• Admin access\n\nWhat would you like to know?";
+                    return "I'm not sure about that. Ask me about Sanjai's skills, projects, certifications, or education!";
                 }
             }
         }
 
-        // ==================== EVENT LISTENERS ====================
+        // ==================== ADMIN FUNCTIONS ====================
+        window.updateProfilePhoto = function() {
+            alert('Profile photo updated! (Demo)');
+        };
+
+        window.updateBio = function() {
+            alert('Bio updated! (Demo)');
+        };
+
+        window.addProject = function() {
+            alert('Project added! (Demo)');
+        };
+
+        window.addCertificate = function() {
+            alert('Certificate added! (Demo)');
+        };
+
+        window.addBlogPost = function() {
+            alert('Blog post published! (Demo)');
+        };
+
+        // ==================== INITIALIZE EVERYTHING ====================
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize all components
-            renderBlogPosts('all', 1);
+            console.log('Site loaded successfully');
             
-            // Cloud modal
-            const cloudModal = document.getElementById('cloudModal');
-            const cloudLink = document.getElementById('cloudLink');
-            const cloudFooterLink = document.getElementById('cloudFooterLink');
-            const cloudClose = document.getElementById('cloudClose');
+            renderSkills();
+            renderCertificates('all');
+            renderProjects('all');
+            renderBlog();
+            createLeafBackground();
+            initTyping();
             
-            function openCloudModal(e) {
-                e.preventDefault();
-                cloudModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
             
-            cloudLink?.addEventListener('click', openCloudModal);
-            cloudFooterLink?.addEventListener('click', openCloudModal);
-            
-            cloudClose?.addEventListener('click', function() {
-                cloudModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
             });
             
-            // Cloud password
-            const submitCloudPassword = document.getElementById('submitCloudPassword');
-            const cloudPassword = document.getElementById('cloudPassword');
-            const cloudPasswordError = document.getElementById('cloudPasswordError');
-            const cloudPasswordForm = document.getElementById('cloudPasswordForm');
-            const cloudDashboard = document.getElementById('cloudDashboard');
-            
-            submitCloudPassword?.addEventListener('click', function() {
-                const password = cloudPassword.value;
-                if (password === 'Sanjai@2008') {
-                    cloudPasswordForm.style.display = 'none';
-                    cloudDashboard.style.display = 'block';
-                    cloud = new CloudStorage();
-                } else {
-                    cloudPasswordError.textContent = 'Incorrect password. Hint: Sanjai@2008';
-                }
-            });
-            
-            // Cloud password toggle
-            document.getElementById('cloudPasswordToggle')?.addEventListener('click', function() {
-                const input = document.getElementById('cloudPassword');
-                const icon = this.querySelector('i');
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    icon.className = 'fas fa-eye-slash';
-                } else {
-                    input.type = 'password';
-                    icon.className = 'fas fa-eye';
-                }
-            });
-            
-            // Cloud logout
-            document.getElementById('cloudLogoutBtn')?.addEventListener('click', function() {
-                cloudPasswordForm.style.display = 'block';
-                cloudDashboard.style.display = 'none';
-                cloudPassword.value = '';
-            });
-            
-            // Cloud upload
-            document.getElementById('cloudUploadBtn')?.addEventListener('click', function() {
-                document.getElementById('cloudFileInput').click();
-            });
-            
-            document.getElementById('cloudFileInput')?.addEventListener('change', function(e) {
-                if (cloud) {
-                    cloud.uploadFiles(e.target.files);
-                }
-            });
-            
-            // Cloud new folder
-            document.getElementById('cloudNewFolderBtn')?.addEventListener('click', function() {
-                const folderName = prompt('Enter folder name:');
-                if (folderName && cloud) {
-                    cloud.files.push({
-                        name: folderName,
-                        type: 'folder',
-                        path: cloud.currentPath,
-                        size: '--',
-                        modified: new Date().toISOString().split('T')[0],
-                        items: 0
-                    });
-                    cloud.renderFiles();
-                    cloud.showToast(`Folder '${folderName}' created!`, 'success');
-                }
-            });
-            
-            // Cloud refresh
-            document.getElementById('cloudRefreshBtn')?.addEventListener('click', function() {
-                if (cloud) {
-                    cloud.renderFiles();
-                    cloud.showToast('Cloud refreshed!', 'info');
-                }
-            });
-            
-            // Cloud search
-            document.getElementById('cloudSearchInput')?.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                // Implement search functionality
-            });
-            
-            // Blog category filter
-            document.querySelectorAll('.blog-cat-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.blog-cat-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentBlogCategory = this.dataset.blogCat;
-                    currentBlogPage = 1;
-                    renderBlogPosts(currentBlogCategory, currentBlogPage);
+            // Close mobile menu on link click
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
                 });
             });
             
-            // Load more blog posts
-            document.getElementById('loadMoreBlogBtn')?.addEventListener('click', function() {
-                currentBlogPage++;
-                renderBlogPosts(currentBlogCategory, currentBlogPage);
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
             
-            // Blog modal close
-            document.getElementById('blogModalClose')?.addEventListener('click', function() {
-                document.getElementById('blogModal').classList.remove('active');
-                document.body.style.overflow = 'auto';
+            // Project filter
+            document.querySelectorAll('.projects-filter .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.projects-filter .filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    renderProjects(this.dataset.filter);
+                });
             });
             
-            // Click outside to close modals
-            window.addEventListener('click', function(e) {
-                const blogModal = document.getElementById('blogModal');
-                const cloudModal = document.getElementById('cloudModal');
+            // Resume download
+            document.getElementById('downloadResumeBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                generateResume();
+            });
+            
+            document.getElementById('resumeFooterLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                generateResume();
+            });
+            
+            // Chatbot
+            window.chatbot = new NatureAIChatbot();
+            
+            // Contact form
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Message sent! (Demo)');
+                this.reset();
+            });
+            
+            // Admin Panel
+            const adminSecret = document.getElementById('adminSecret');
+            const adminPanel = document.getElementById('adminPanel');
+            const adminClose = document.getElementById('adminClose');
+            
+            adminSecret.addEventListener('dblclick', () => {
+                adminPanel.classList.add('active');
+            });
+            
+            adminClose.addEventListener('click', () => {
+                adminPanel.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.admin-pane').forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById(this.dataset.tab + '-pane').classList.add('active');
+                });
+            });
+            
+            // Active link on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
                 
-                if (e.target === blogModal) {
-                    blogModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
                 
-                if (e.target === cloudModal) {
-                    cloudModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
             });
-            
-            // Initialize enhanced chatbot
-            window.chatbot = new EnhancedChatbot();
         });
     </script>
 </body>
