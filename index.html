@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal - AI Engineer & MLOps Enthusiast</title>
+    <title>Sanjai Gopal · Peaceful Portfolio</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Sanjai Gopal - AI Engineer from Coimbatore. 30+ certifications, 6 innovative projects, and expertise in Python, C++, Machine Learning, and MLOps.">
@@ -12,17 +12,17 @@
     
     <!-- Open Graph -->
     <meta property="og:title" content="Sanjai Gopal - AI Engineer">
-    <meta property="og:description" content="AI Engineering portfolio with 50+ advanced features">
+    <meta property="og:description" content="AI Engineering portfolio with peaceful nature theme">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sanjai-gopal.github.io/portfolio">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%238b5cf6'%3E⚡%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%234caf7a'%3E🌿%3C/text%3E%3C/svg%3E">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -30,1596 +30,39 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <style>
-        /* ========== CSS VARIABLES ========== */
-        :root {
-            --primary: #8b5cf6;
-            --primary-dark: #6d28d9;
-            --primary-light: #a78bfa;
-            --secondary: #3b82f6;
-            --secondary-dark: #1d4ed8;
-            --secondary-light: #60a5fa;
-            --accent: #10b981;
-            --accent-dark: #059669;
-            --accent-light: #34d399;
-            
-            --bg-primary: #0a0c12;
-            --bg-secondary: #14181f;
-            --bg-tertiary: #1a1e26;
-            --bg-card: rgba(30, 41, 59, 0.5);
-            --bg-nav: rgba(10, 12, 18, 0.95);
-            --bg-modal: rgba(10, 12, 18, 0.98);
-            
-            --text-primary: #ffffff;
-            --text-secondary: #e2e8f0;
-            --text-tertiary: #94a3b8;
-            --text-muted: #64748b;
-            
-            --border: rgba(139, 92, 246, 0.2);
-            --border-hover: rgba(139, 92, 246, 0.5);
-            
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
-            --glow: 0 0 30px rgba(139, 92, 246, 0.3);
-            
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --gradient-hover: linear-gradient(135deg, var(--secondary), var(--primary));
-            
-            --radius-sm: 4px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --radius-2xl: 20px;
-            --radius-full: 9999px;
-            
-            --transition: all 0.3s ease;
-            
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            
-            --z-admin: 10000;
-        }
-
-        /* Light Theme */
-        body.light-theme {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #f1f5f9;
-            --bg-tertiary: #e2e8f0;
-            --bg-card: rgba(255, 255, 255, 0.8);
-            --bg-nav: rgba(255, 255, 255, 0.95);
-            --text-primary: #0f172a;
-            --text-secondary: #1e293b;
-            --text-tertiary: #334155;
-            --text-muted: #475569;
-        }
-
-        /* ========== RESET ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* ========== PRELOADER ========== */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        }
-
-        .preloader.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .preloader-content {
-            text-align: center;
-        }
-
-        .preloader-logo {
-            font-size: 4rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .preloader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--bg-tertiary);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 1rem auto;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ========== ADMIN SECRET BUTTON ========== */
-        .admin-secret {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            width: 30px;
-            height: 30px;
-            background: transparent;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 9998;
-            opacity: 0.3;
-            transition: opacity 0.3s;
-        }
-
-        .admin-secret:hover {
-            opacity: 1;
-        }
-
-        /* ========== ADMIN MODAL ========== */
-        .admin-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-modal);
-            backdrop-filter: blur(10px);
-            z-index: var(--z-admin);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .admin-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .admin-content {
-            width: 90%;
-            max-width: 500px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--primary);
-            border-radius: var(--radius-2xl);
-            overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.3s;
-        }
-
-        .admin-modal.active .admin-content {
-            transform: scale(1);
-        }
-
-        .admin-header {
-            padding: 1.5rem;
-            background: var(--gradient);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .admin-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .admin-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .admin-close:hover {
-            transform: rotate(90deg);
-        }
-
-        .admin-body {
-            padding: 2rem;
-        }
-
-        .admin-password-form {
-            text-align: center;
-        }
-
-        .admin-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--bg-tertiary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-
-        .admin-password-form h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .admin-password-form p {
-            color: var(--text-tertiary);
-            margin-bottom: 1.5rem;
-        }
-
-        .admin-password-input {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .admin-password-input input {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-size: 1rem;
-            padding-right: 3rem;
-        }
-
-        .admin-password-input input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .admin-password-toggle {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-tertiary);
-            cursor: pointer;
-        }
-
-        .admin-error {
-            color: #ef4444;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            min-height: 1.5rem;
-        }
-
-        .admin-hint {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-md);
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-        }
-
-        .admin-hint i {
-            color: var(--primary);
-            margin-right: 0.5rem;
-        }
-
-        .admin-dashboard {
-            display: none;
-        }
-
-        .admin-dashboard.active {
-            display: block;
-        }
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .admin-stat-card {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .admin-stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: block;
-        }
-
-        .admin-stat-label {
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-        }
-
-        .admin-tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .admin-tab {
-            padding: 0.5rem 1rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-full);
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .admin-tab:hover,
-        .admin-tab.active {
-            background: var(--gradient);
-            color: white;
-            border-color: transparent;
-        }
-
-        .admin-panel {
-            display: none;
-        }
-
-        .admin-panel.active {
-            display: block;
-        }
-
-        .admin-panel h5 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .admin-form-group {
-            margin-bottom: 1rem;
-        }
-
-        .admin-form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .admin-form-group input,
-        .admin-form-group textarea,
-        .admin-form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-        }
-
-        .admin-form-group input:focus,
-        .admin-form-group textarea:focus,
-        .admin-form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .admin-form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .admin-item {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .admin-item-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .admin-item-info p {
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-        }
-
-        .admin-item-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .admin-btn {
-            padding: 0.3rem 0.8rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .admin-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .admin-btn.delete:hover {
-            background: #ef4444;
-        }
-
-        .admin-logout {
-            width: 100%;
-            padding: 0.8rem;
-            background: #ef4444;
-            border: none;
-            border-radius: var(--radius-md);
-            color: white;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        /* ========== NAVIGATION ========== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--bg-nav);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .logo-highlight {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2rem;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--text-primary);
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .cloud-link {
-            background: var(--gradient);
-            color: white !important;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-full);
-        }
-
-        .cloud-link::after {
-            display: none;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--text-primary);
-            transition: var(--transition);
-        }
-
-        /* ========== HERO SECTION ========== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: 6rem 0;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            gap: 0.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.5rem;
-            border-radius: var(--radius-full);
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .badge-item {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .badge-item:not(:last-child)::after {
-            content: '•';
-            margin-left: 0.5rem;
-            color: var(--primary);
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .gradient-text {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-tertiary);
-            margin-bottom: 1.5rem;
-            min-height: 3rem;
-        }
-
-        .typed-text {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .cursor {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        .hero-description {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 2rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .hero-social {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .social-link {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-        }
-
-        .scroll-down i {
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
-
-        /* ========== SECTION HEADERS ========== */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-subtitle {
-            display: inline-block;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary);
-            background: rgba(139, 92, 246, 0.1);
-            padding: 0.3rem 1.5rem;
-            border-radius: var(--radius-full);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-divider {
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            margin: 1rem auto 0;
-            border-radius: var(--radius-full);
-        }
-
-        /* ========== ABOUT SECTION ========== */
-        .about {
-            background: var(--bg-secondary);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .image-frame {
-            position: relative;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .image-frame img {
-            width: 100%;
-            border-radius: var(--radius-2xl);
-            border: 4px solid var(--primary);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .image-badge {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            background: var(--gradient);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-full);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .about-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .info-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            transition: var(--transition);
-        }
-
-        .info-card:hover {
-            border-color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .info-card i {
-            width: 45px;
-            height: 45px;
-            background: var(--bg-tertiary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .info-card h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .info-card p {
-            font-size: 0.9rem;
-            color: var(--text-tertiary);
-            margin: 0;
-        }
-
-        /* ========== SKILLS SECTION ========== */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .skill-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .skill-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .skill-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .skill-header i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .skill-header h3 {
-            font-size: 1.1rem;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .skill-item {
-            width: 100%;
-        }
-
-        .skill-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .skill-bar {
-            height: 6px;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: var(--gradient);
-            width: 0;
-            transition: width 1s ease;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .skill-tag {
-            padding: 0.2rem 0.8rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-        }
-
-        /* ========== PROJECTS SECTION ========== */
-        .projects {
-            background: var(--bg-secondary);
-        }
-
-        .projects-filter {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-full);
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--gradient);
-            color: white;
-            border-color: transparent;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .project-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .project-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-category {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--gradient);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: var(--radius-full);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            padding: 0.2rem 0.8rem;
-            background: var(--bg-tertiary);
-            border-radius: var(--radius-full);
-            font-size: 0.8rem;
-            color: var(--text-tertiary);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-
-        .project-link:hover {
-            color: var(--primary);
-        }
-
-        .view-all {
-            text-align: center;
-        }
-
-        /* ========== CERTIFICATES SECTION ========== */
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .certificate-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .certificate-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .certificate-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-tertiary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .certificate-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .certificate-issuer {
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .certificate-date {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* ========== BLOG SECTION ========== */
-        .blog {
-            background: var(--bg-secondary);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .blog-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .blog-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .blog-image {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .blog-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .blog-card:hover .blog-image img {
-            transform: scale(1.1);
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-tertiary);
-            font-size: 0.8rem;
-        }
-
-        .blog-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-excerpt {
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .blog-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .blog-link:hover {
-            gap: 0.5rem;
-        }
-
-        /* ========== CTA SECTION ========== */
-        .cta {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-        }
-
-        .cta h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            color: var(--text-tertiary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* ========== CONTACT SECTION ========== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .contact-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            transition: var(--transition);
-        }
-
-        .contact-card:hover {
-            border-color: var(--primary);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--bg-tertiary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .contact-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card p {
-            color: var(--text-tertiary);
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: 2rem;
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .form-group label {
-            position: absolute;
-            left: 1rem;
-            top: 1rem;
-            color: var(--text-tertiary);
-            transition: var(--transition);
-            pointer-events: none;
-        }
-
-        .form-group input:focus ~ label,
-        .form-group textarea:focus ~ label,
-        .form-group input:valid ~ label,
-        .form-group textarea:valid ~ label {
-            top: -0.5rem;
-            left: 0.5rem;
-            font-size: 0.8rem;
-            background: var(--bg-tertiary);
-            padding: 0 0.5rem;
-            color: var(--primary);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* ========== FOOTER ========== */
-        .footer {
-            background: var(--bg-tertiary);
-            padding: 4rem 0 2rem;
-            margin-top: 2rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-brand p {
-            color: var(--text-tertiary);
-            margin-bottom: 1rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            transition: var(--transition);
-        }
-
-        .footer-social a:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .footer-links h4 {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-tertiary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-tertiary);
-        }
-
-        /* ========== BACK TO TOP ========== */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--gradient);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 999;
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 1024px) {
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 250px;
-                height: calc(100vh - 70px);
-                background: var(--bg-nav);
-                flex-direction: column;
-                padding: 2rem;
-                transition: left 0.3s;
-                border-right: 1px solid var(--border);
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .hero-cta {
-                flex-direction: column;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .admin-stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .projects-grid,
-            .blog-grid,
-            .certificates-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
-    <!-- Preloader -->
+    <!-- ========== PEACEFUL NATURE BACKGROUND ========== -->
+    <div class="nature-bg">
+        <div class="floating-leaf leaf-1">🌿</div>
+        <div class="floating-leaf leaf-2">🍃</div>
+        <div class="floating-leaf leaf-3">🌱</div>
+        <div class="floating-leaf leaf-4">🌳</div>
+        <div class="floating-leaf leaf-5">🌸</div>
+        <div class="floating-leaf leaf-6">🍂</div>
+    </div>
+
+    <!-- ========== PRELOADER ========== -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
-            <div class="preloader-logo">S</div>
+            <div class="preloader-logo">🌿</div>
             <div class="preloader-spinner"></div>
-            <div class="loading-text">Loading Portfolio...</div>
+            <div class="preloader-text">Loading peaceful portfolio...</div>
         </div>
     </div>
 
-    <!-- Admin Secret Button -->
-    <div class="admin-secret" id="adminSecret"></div>
+    <!-- ========== ADMIN SECRET BUTTON ========== -->
+    <div class="admin-secret" id="adminSecret" title="Admin Panel (Click to access)"></div>
 
-    <!-- Admin Modal -->
+    <!-- ========== ADMIN MODAL ========== -->
     <div class="admin-modal" id="adminModal">
         <div class="admin-content">
             <div class="admin-header">
-                <h3><i class="fas fa-lock"></i> Admin Dashboard</h3>
+                <h3><i class="fas fa-leaf"></i> Admin Sanctuary</h3>
                 <button class="admin-close" id="adminClose">&times;</button>
             </div>
             
@@ -1627,10 +70,10 @@
                 <!-- Password Form -->
                 <div class="admin-password-form" id="adminPasswordForm">
                     <div class="admin-icon">
-                        <i class="fas fa-key"></i>
+                        <i class="fas fa-lock"></i>
                     </div>
-                    <h4>Secure Access</h4>
-                    <p>Enter your admin password to continue</p>
+                    <h4>Peaceful Access</h4>
+                    <p>Enter your admin password to enter the sanctuary</p>
                     <div class="admin-password-input">
                         <input type="password" id="adminPassword" placeholder="Enter password">
                         <button class="admin-password-toggle" id="adminPasswordToggle">
@@ -1638,10 +81,10 @@
                         </button>
                     </div>
                     <div class="admin-error" id="adminError"></div>
-                    <button class="btn btn-primary" id="adminSubmit" style="width: 100%;">Access Dashboard</button>
+                    <button class="btn btn-primary" id="adminSubmit">Enter Sanctuary</button>
                     <div class="admin-hint">
                         <i class="fas fa-info-circle"></i>
-                        <span>Hint: admin123 (change this in production!)</span>
+                        <span>Hint: admin123 (change this!)</span>
                     </div>
                 </div>
                 
@@ -1672,22 +115,23 @@
                         <button class="admin-tab" data-tab="certificates">Certificates</button>
                         <button class="admin-tab" data-tab="blog">Blog</button>
                         <button class="admin-tab" data-tab="skills">Skills</button>
+                        <button class="admin-tab" data-tab="theme">Theme</button>
                     </div>
                     
                     <!-- Profile Panel -->
                     <div class="admin-panel active" id="profilePanel">
-                        <h5>Edit Profile</h5>
+                        <h5><i class="fas fa-user"></i> Edit Profile</h5>
                         <div class="admin-form-group">
                             <label>Name</label>
                             <input type="text" id="adminName" value="Sanjai Gopal">
                         </div>
                         <div class="admin-form-group">
                             <label>Title</label>
-                            <input type="text" id="adminTitle" value="AI Engineer & MLOps Enthusiast">
+                            <input type="text" id="adminTitle" value="AI Engineer & Nature Enthusiast">
                         </div>
                         <div class="admin-form-group">
                             <label>Bio</label>
-                            <textarea id="adminBio">I'm a first-year Artificial Intelligence and Data Science student at SKCET, Coimbatore. I believe in building technology that's not just intelligent, but also sustainable and accessible to all.</textarea>
+                            <textarea id="adminBio" rows="3">I'm a first-year Artificial Intelligence and Data Science student at SKCET, Coimbatore. I believe in building technology that's not just intelligent, but also sustainable and accessible to all.</textarea>
                         </div>
                         <div class="admin-form-group">
                             <label>Location</label>
@@ -1701,65 +145,95 @@
                             <label>Phone</label>
                             <input type="text" id="adminPhone" value="+91 9363265552">
                         </div>
-                        <button class="btn btn-primary" id="saveProfileBtn" style="width: 100%;">Save Changes</button>
+                        <button class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
                     </div>
                     
                     <!-- Projects Panel -->
                     <div class="admin-panel" id="projectsPanel">
-                        <h5>Manage Projects</h5>
+                        <h5><i class="fas fa-code-branch"></i> Manage Projects</h5>
                         <div class="admin-form-group">
                             <label>Add New Project</label>
                             <input type="text" id="newProjectName" placeholder="Project Name">
                             <textarea id="newProjectDesc" placeholder="Description" style="margin-top: 0.5rem;"></textarea>
                             <input type="text" id="newProjectTech" placeholder="Technologies (comma separated)" style="margin-top: 0.5rem;">
-                            <input type="text" id="newProjectCategory" placeholder="Category (python/cpp/web/ai)" style="margin-top: 0.5rem;">
-                            <button class="btn btn-primary" id="addProjectBtn" style="margin-top: 0.5rem; width: 100%;">Add Project</button>
+                            <select id="newProjectCategory" style="margin-top: 0.5rem;">
+                                <option value="python">Python</option>
+                                <option value="cpp">C++</option>
+                                <option value="web">Web</option>
+                                <option value="ai">AI/ML</option>
+                            </select>
+                            <input type="url" id="newProjectGithub" placeholder="GitHub URL" style="margin-top: 0.5rem;">
+                            <button class="btn btn-primary" id="addProjectBtn" style="margin-top: 0.5rem;">Add Project</button>
                         </div>
-                        <div id="projectsList" style="margin-top: 1rem;"></div>
+                        <div id="projectsList" class="admin-list"></div>
                     </div>
                     
                     <!-- Certificates Panel -->
                     <div class="admin-panel" id="certificatesPanel">
-                        <h5>Manage Certificates</h5>
+                        <h5><i class="fas fa-certificate"></i> Manage Certificates</h5>
                         <div class="admin-form-group">
                             <label>Add New Certificate</label>
                             <input type="text" id="newCertName" placeholder="Certificate Name">
                             <input type="text" id="newCertIssuer" placeholder="Issuer" style="margin-top: 0.5rem;">
                             <input type="text" id="newCertDate" placeholder="Date" style="margin-top: 0.5rem;">
-                            <button class="btn btn-primary" id="addCertBtn" style="margin-top: 0.5rem; width: 100%;">Add Certificate</button>
+                            <button class="btn btn-primary" id="addCertBtn" style="margin-top: 0.5rem;">Add Certificate</button>
                         </div>
-                        <div id="certificatesList" style="margin-top: 1rem;"></div>
+                        <div id="certificatesList" class="admin-list"></div>
                     </div>
                     
                     <!-- Blog Panel -->
                     <div class="admin-panel" id="blogPanel">
-                        <h5>Manage Blog Posts</h5>
+                        <h5><i class="fas fa-blog"></i> Manage Blog Posts</h5>
                         <div class="admin-form-group">
                             <label>Add New Post</label>
                             <input type="text" id="newPostTitle" placeholder="Post Title">
                             <textarea id="newPostExcerpt" placeholder="Excerpt" style="margin-top: 0.5rem;"></textarea>
                             <input type="text" id="newPostCategory" placeholder="Category" style="margin-top: 0.5rem;">
-                            <button class="btn btn-primary" id="addPostBtn" style="margin-top: 0.5rem; width: 100%;">Add Post</button>
+                            <input type="url" id="newPostImage" placeholder="Image URL" style="margin-top: 0.5rem;">
+                            <button class="btn btn-primary" id="addPostBtn" style="margin-top: 0.5rem;">Add Post</button>
                         </div>
-                        <div id="blogList" style="margin-top: 1rem;"></div>
+                        <div id="blogList" class="admin-list"></div>
                     </div>
                     
                     <!-- Skills Panel -->
                     <div class="admin-panel" id="skillsPanel">
-                        <h5>Manage Skills</h5>
+                        <h5><i class="fas fa-brain"></i> Manage Skills</h5>
                         <div class="admin-form-group">
                             <label>Add New Skill</label>
                             <input type="text" id="newSkillName" placeholder="Skill Name">
-                            <input type="number" id="newSkillLevel" placeholder="Level (0-100)" style="margin-top: 0.5rem;">
+                            <input type="number" id="newSkillLevel" placeholder="Level (0-100)" min="0" max="100" style="margin-top: 0.5rem;">
                             <input type="text" id="newSkillTags" placeholder="Tags (comma separated)" style="margin-top: 0.5rem;">
                             <select id="newSkillCategory" style="margin-top: 0.5rem;">
                                 <option value="languages">Languages</option>
                                 <option value="ai">AI/ML</option>
                                 <option value="tools">Tools</option>
                             </select>
-                            <button class="btn btn-primary" id="addSkillBtn" style="margin-top: 0.5rem; width: 100%;">Add Skill</button>
+                            <button class="btn btn-primary" id="addSkillBtn" style="margin-top: 0.5rem;">Add Skill</button>
                         </div>
-                        <div id="skillsList" style="margin-top: 1rem;"></div>
+                        <div id="skillsList" class="admin-list"></div>
+                    </div>
+                    
+                    <!-- Theme Panel -->
+                    <div class="admin-panel" id="themePanel">
+                        <h5><i class="fas fa-palette"></i> Theme Settings</h5>
+                        <div class="admin-form-group">
+                            <label>Primary Color</label>
+                            <input type="color" id="themePrimary" value="#4caf7a">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Secondary Color</label>
+                            <input type="color" id="themeSecondary" value="#3d7a4f">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Background Color</label>
+                            <input type="color" id="themeBg" value="#f5efe6">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Text Color</label>
+                            <input type="color" id="themeText" value="#2c3e2f">
+                        </div>
+                        <button class="btn btn-primary" id="saveThemeBtn">Apply Theme</button>
+                        <button class="btn btn-outline" id="resetThemeBtn" style="margin-top: 0.5rem;">Reset to Default</button>
                     </div>
                     
                     <button class="admin-logout" id="adminLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -1768,11 +242,12 @@
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- ========== NAVIGATION ========== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <span class="logo-highlight">S</span>ANJAI
+                <span class="logo-leaf">🌿</span>
+                <span class="logo-text">Sanjai</span>
             </a>
             
             <ul class="nav-menu" id="navMenu">
@@ -1798,13 +273,13 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ========== HERO SECTION ========== -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content" data-aos="fade-up">
                 <div class="hero-badge">
-                    <span class="badge-item">AI Engineer</span>
-                    <span class="badge-item">MLOps Enthusiast</span>
+                    <span class="badge">AI Engineer</span>
+                    <span class="badge">Nature Enthusiast</span>
                 </div>
                 
                 <h1 class="hero-title">
@@ -1816,7 +291,7 @@
                 </div>
                 
                 <p class="hero-description">
-                    1st Year AI & Data Science at SKCET · 30+ Certifications · Building the future with AI
+                    1st Year AI & Data Science at SKCET · 30+ Certifications · Building peaceful technology
                 </p>
                 
                 <div class="hero-stats">
@@ -1836,49 +311,48 @@
                 
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">View Work</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    <a href="#contact" class="btn btn-outline">Connect</a>
                 </div>
                 
                 <div class="hero-social">
                     <a href="https://github.com/Sanjai-Gopal" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/sanjai2306" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://instagram.com/hey.sanjai_" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:sanjai.sparkmail@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
         
         <div class="scroll-down">
+            <div class="mouse"></div>
             <span>Scroll</span>
-            <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ========== ABOUT SECTION ========== -->
     <section id="about" class="section about">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">About Me</span>
-                <h2 class="section-title">Who is <span class="gradient-text">Sanjai?</span></h2>
+                <span class="section-subtitle">Peaceful Mind</span>
+                <h2 class="section-title">About <span class="gradient-text">Sanjai</span></h2>
                 <div class="section-divider"></div>
             </div>
             
             <div class="about-grid">
                 <div class="about-image" data-aos="fade-right">
                     <div class="image-frame">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='180' fill='%23334155' stroke='%238b5cf6' stroke-width='5'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='80' fill='%238b5cf6' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" alt="Sanjai" id="profileImage">
-                        <div class="image-badge" id="profileBadge">1st Year</div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Ccircle cx='200' cy='200' r='180' fill='%23e2f0d9' stroke='%234caf7a' stroke-width='5'/%3E%3Ctext x='200' y='240' font-family='Arial' font-size='80' fill='%233d7a4f' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" alt="Sanjai" id="profileImage">
+                        <div class="image-badge">🌱 1st Year</div>
                     </div>
                 </div>
                 
                 <div class="about-content" data-aos="fade-left">
-                    <h3 id="aboutTitle">Aspiring AI Engineer & Tech Enthusiast</h3>
+                    <h3 id="aboutTitle">Aspiring AI Engineer & Nature Enthusiast</h3>
                     
                     <p class="about-text" id="aboutBio">I'm a first-year Artificial Intelligence and Data Science student at SKCET, Coimbatore. I believe in building technology that's not just intelligent, but also sustainable and accessible to all.</p>
                     
                     <p class="about-text">With <strong>33+ certifications</strong> from industry leaders like Coursera, AWS, IBM, and the Government of India, I'm constantly expanding my knowledge and applying it to real-world projects.</p>
                     
-                    <div class="info-grid" id="infoGrid">
+                    <div class="info-grid">
                         <div class="info-card">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
@@ -1904,7 +378,7 @@
                             <i class="fas fa-heart"></i>
                             <div>
                                 <h4>Interests</h4>
-                                <p>AI, MLOps, Green Tech</p>
+                                <p>AI, MLOps, Nature</p>
                             </div>
                         </div>
                     </div>
@@ -1913,11 +387,11 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ========== SKILLS SECTION ========== -->
     <section id="skills" class="section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Technical Expertise</span>
+                <span class="section-subtitle">Growing Abilities</span>
                 <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
                 <div class="section-divider"></div>
             </div>
@@ -1926,7 +400,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ========== PROJECTS SECTION ========== -->
     <section id="projects" class="section projects">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -1946,18 +420,26 @@
             <div class="projects-grid" id="projectsGrid"></div>
             
             <div class="view-all">
-                <a href="projects/" class="btn btn-outline">View All Projects <i class="fas fa-arrow-right"></i></a>
+                <a href="https://github.com/Sanjai-Gopal" target="_blank" class="btn btn-outline">View All on GitHub <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
+    <!-- ========== BLOG SECTION ========== -->
     <section id="blog" class="section blog">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
-                <span class="section-subtitle">Articles</span>
+                <span class="section-subtitle">Thoughts</span>
                 <h2 class="section-title">Latest <span class="gradient-text">Blog Posts</span></h2>
                 <div class="section-divider"></div>
+            </div>
+            
+            <div class="blog-categories" data-aos="fade-up">
+                <button class="blog-cat-btn active" data-cat="all">All</button>
+                <button class="blog-cat-btn" data-cat="programming">Programming</button>
+                <button class="blog-cat-btn" data-cat="ai">AI/ML</button>
+                <button class="blog-cat-btn" data-cat="devops">DevOps</button>
+                <button class="blog-cat-btn" data-cat="career">Career</button>
             </div>
             
             <div class="blog-grid" id="blogGrid"></div>
@@ -1968,17 +450,8 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2 data-aos="fade-up">Have a Project in Mind?</h2>
-            <p data-aos="fade-up" data-aos-delay="100">I'm always open to collaboration and new opportunities. Let's build something amazing together!</p>
-            <a href="#contact" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">Let's Talk</a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
+    <!-- ========== CONTACT SECTION ========== -->
+    <section id="contact" class="section contact">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <span class="section-subtitle">Get in Touch</span>
@@ -1986,61 +459,56 @@
                 <div class="section-divider"></div>
             </div>
             
-            <div class="contact-grid" data-aos="fade-up">
+            <div class="contact-container" data-aos="fade-up">
                 <div class="contact-info">
                     <div class="contact-card">
-                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <i class="fas fa-map-marker-alt"></i>
                         <h3>Location</h3>
                         <p id="contactLocation">Coimbatore, India</p>
                     </div>
                     <div class="contact-card">
-                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
                         <p id="contactEmail">sanjai.sparkmail@gmail.com</p>
                     </div>
                     <div class="contact-card">
-                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <i class="fas fa-phone-alt"></i>
                         <h3>Phone</h3>
                         <p id="contactPhone">+91 9363265552</p>
                     </div>
                 </div>
                 
                 <form class="contact-form" id="contactForm">
-                    <h3 style="margin-bottom: 1.5rem;">Send a Message</h3>
-                    
+                    <h3>Send a Message</h3>
                     <div class="form-group">
-                        <input type="text" id="contactName" required>
-                        <label for="contactName">Your Name</label>
+                        <input type="text" id="name" required>
+                        <label for="name">Your Name</label>
                     </div>
-                    
                     <div class="form-group">
-                        <input type="email" id="contactEmail" required>
-                        <label for="contactEmail">Your Email</label>
+                        <input type="email" id="email" required>
+                        <label for="email">Your Email</label>
                     </div>
-                    
                     <div class="form-group">
-                        <input type="text" id="contactSubject" required>
-                        <label for="contactSubject">Subject</label>
+                        <input type="text" id="subject" required>
+                        <label for="subject">Subject</label>
                     </div>
-                    
                     <div class="form-group">
-                        <textarea id="contactMessage" rows="5" required></textarea>
-                        <label for="contactMessage">Message</label>
+                        <textarea id="message" rows="4" required></textarea>
+                        <label for="message">Message</label>
                     </div>
-                    
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <h3 id="footerName">Sanjai Gopal</h3>
-                    <p id="footerBio">Building projects and solving problems with code.</p>
+                    <h3>Sanjai <span class="gradient-text">Gopal</span></h3>
+                    <p>Building peaceful technology for a better tomorrow.</p>
                     <div class="footer-social">
                         <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin-in"></i></a>
@@ -2060,22 +528,22 @@
                 </div>
                 
                 <div class="footer-links">
-                    <h4>Connect</h4>
+                    <h4>Resources</h4>
                     <ul>
+                        <li><a href="private-cloud/">Private Cloud</a></li>
                         <li><a href="https://github.com/Sanjai-Gopal" target="_blank">GitHub</a></li>
                         <li><a href="https://linkedin.com/in/sanjai2306" target="_blank">LinkedIn</a></li>
-                        <li><a href="https://instagram.com/hey.sanjai_" target="_blank">Instagram</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved. 🌿</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top -->
+    <!-- ========== BACK TO TOP ========== -->
     <button class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
@@ -2084,5 +552,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
 </body>
 </html>
