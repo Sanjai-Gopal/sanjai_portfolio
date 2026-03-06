@@ -7,8 +7,9 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     sendResponse(false, 'Unauthorized', null, 401);
 }
 
-$type = $_POST['type'] ?? $_GET['type'] ?? '';
-$id = $_POST['id'] ?? $_GET['id'] ?? '';
+$input = json_decode(file_get_contents('php://input'), true);
+$type = $_POST['type'] ?? $_GET['type'] ?? $input['type'] ?? '';
+$id = $_POST['id'] ?? $_GET['id'] ?? $input['id'] ?? '';
 
 if (!$type || !$id) {
     sendResponse(false, 'Type and ID required', null, 400);
@@ -27,8 +28,8 @@ switch ($type) {
         deleteBlog($id);
         break;
         
-    case 'skill':
-        deleteSkill($id);
+    case 'contact':
+        deleteContact($id);
         break;
         
     default:
@@ -37,60 +38,81 @@ switch ($type) {
 
 function deleteProject($id) {
     $projects = readJSON(PROJECTS_FILE, []);
+    $originalCount = count($projects);
     $projects = array_filter($projects, function($p) use ($id) {
-        return $p['id'] !== $id;
+        return ($p['id'] ?? '') !== $id;
     });
     $projects = array_values($projects);
     
-    if (writeJSON(PROJECTS_FILE, $projects)) {
-        sendResponse(true, 'Project deleted successfully');
+    if (count($projects) < $originalCount) {
+        if (writeJSON(PROJECTS_FILE, $projects)) {
+            logAPI('project_deleted', ['id' => $id]);
+            sendResponse(true, 'Project deleted successfully');
+        } else {
+            sendResponse(false, 'Failed to delete project', null, 500);
+        }
     } else {
-        sendResponse(false, 'Failed to delete project', null, 500);
+        sendResponse(false, 'Project not found', null, 404);
     }
 }
 
 function deleteCertificate($id) {
     $certificates = readJSON(CERTIFICATES_FILE, []);
+    $originalCount = count($certificates);
     $certificates = array_filter($certificates, function($c) use ($id) {
-        return $c['id'] !== $id;
+        return ($c['id'] ?? '') !== $id;
     });
     $certificates = array_values($certificates);
     
-    if (writeJSON(CERTIFICATES_FILE, $certificates)) {
-        sendResponse(true, 'Certificate deleted successfully');
+    if (count($certificates) < $originalCount) {
+        if (writeJSON(CERTIFICATES_FILE, $certificates)) {
+            logAPI('certificate_deleted', ['id' => $id]);
+            sendResponse(true, 'Certificate deleted successfully');
+        } else {
+            sendResponse(false, 'Failed to delete certificate', null, 500);
+        }
     } else {
-        sendResponse(false, 'Failed to delete certificate', null, 500);
+        sendResponse(false, 'Certificate not found', null, 404);
     }
 }
 
 function deleteBlog($id) {
     $blogs = readJSON(BLOG_FILE, []);
+    $originalCount = count($blogs);
     $blogs = array_filter($blogs, function($b) use ($id) {
-        return $b['id'] !== $id;
+        return ($b['id'] ?? '') !== $id;
     });
     $blogs = array_values($blogs);
     
-    if (writeJSON(BLOG_FILE, $blogs)) {
-        sendResponse(true, 'Blog post deleted successfully');
+    if (count($blogs) < $originalCount) {
+        if (writeJSON(BLOG_FILE, $blogs)) {
+            logAPI('blog_deleted', ['id' => $id]);
+            sendResponse(true, 'Blog post deleted successfully');
+        } else {
+            sendResponse(false, 'Failed to delete blog post', null, 500);
+        }
     } else {
-        sendResponse(false, 'Failed to delete blog post', null, 500);
+        sendResponse(false, 'Blog post not found', null, 404);
     }
 }
 
-function deleteSkill($id) {
-    $skills = readJSON(SKILLS_FILE, []);
+function deleteContact($id) {
+    $contacts = readJSON(CONTACTS_FILE, []);
+    $originalCount = count($contacts);
+    $contacts = array_filter($contacts, function($c) use ($id) {
+        return ($c['id'] ?? '') !== $id;
+    });
+    $contacts = array_values($contacts);
     
-    foreach ($skills as &$category) {
-        $category['skills'] = array_filter($category['skills'], function($s) use ($id) {
-            return ($s['id'] ?? '') !== $id;
-        });
-        $category['skills'] = array_values($category['skills']);
-    }
-    
-    if (writeJSON(SKILLS_FILE, $skills)) {
-        sendResponse(true, 'Skill deleted successfully');
+    if (count($contacts) < $originalCount) {
+        if (writeJSON(CONTACTS_FILE, $contacts)) {
+            logAPI('contact_deleted', ['id' => $id]);
+            sendResponse(true, 'Contact deleted successfully');
+        } else {
+            sendResponse(false, 'Failed to delete contact', null, 500);
+        }
     } else {
-        sendResponse(false, 'Failed to delete skill', null, 500);
+        sendResponse(false, 'Contact not found', null, 404);
     }
 }
 ?>
