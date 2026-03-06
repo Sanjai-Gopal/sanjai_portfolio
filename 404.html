@@ -5,28 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found | Sanjai Gopal</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--bg-dark);
+            padding: 2rem;
+        }
+        .error-content {
+            max-width: 600px;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .error-message {
+            color: var(--text-tertiary);
+            margin-bottom: 2rem;
+        }
+        .error-leaf {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        .home-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+    </style>
 </head>
 <body>
     <div class="error-page">
         <div class="error-content">
-            <div class="error-3d">
-                <div class="error-number">4</div>
-                <div class="error-zero">
-                    <div class="zero-inner"></div>
-                </div>
-                <div class="error-number">4</div>
-            </div>
+            <div class="error-leaf">🌿</div>
+            <div class="error-code">404</div>
             <h1 class="error-title">Page Not Found</h1>
             <p class="error-message">The page you're looking for doesn't exist or has been moved.</p>
-            <div class="error-actions">
-                <a href="index.html" class="btn btn-primary">
-                    <i class="fas fa-home"></i> Go Home
-                </a>
-                <a href="javascript:history.back()" class="btn btn-outline">
-                    <i class="fas fa-arrow-left"></i> Go Back
-                </a>
-            </div>
+            <a href="/" class="home-link">Return to Homepage</a>
         </div>
     </div>
 </body>
