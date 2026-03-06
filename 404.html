@@ -3,71 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | Sanjai Gopal</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Page Not Found - Sanjai Gopal</title>
     <style>
-        .error-page {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #4caf7a;
+            --primary-dark: #3d7a4f;
+            --bg: #f5efe6;
+            --text: #2c3e2f;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: var(--bg-primary);
             padding: 2rem;
         }
-        .error-content {
+        
+        .container {
             max-width: 600px;
         }
-        .error-code {
+        
+        .leaf {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
             font-size: 8rem;
             font-weight: 800;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             -webkit-background-clip: text;
-            background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
             margin-bottom: 1rem;
-            font-family: var(--font-display);
         }
-        .error-title {
+        
+        h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: var(--text-primary);
         }
-        .error-message {
-            color: var(--text-tertiary);
+        
+        p {
+            color: #5f735f;
             margin-bottom: 2rem;
         }
-        .error-leaf {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            animation: float 3s ease-in-out infinite;
-        }
-        .home-link {
+        
+        .btn {
             display: inline-block;
             padding: 1rem 2rem;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             text-decoration: none;
-            border-radius: var(--radius-full);
+            border-radius: 40px;
             font-weight: 600;
             transition: all 0.3s;
         }
-        .home-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(76, 175, 122, 0.3);
         }
     </style>
 </head>
 <body>
-    <div class="error-page">
-        <div class="error-content">
-            <div class="error-leaf">🌿</div>
-            <div class="error-code">404</div>
-            <h1 class="error-title">Page Not Found</h1>
-            <p class="error-message">The page you're looking for doesn't exist or has been moved.</p>
-            <a href="/" class="home-link">Return to Homepage</a>
-        </div>
+    <div class="container">
+        <div class="leaf">🌿</div>
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The page you're looking for has wandered off into the forest.</p>
+        <a href="/" class="btn">Return to Homepage</a>
     </div>
 </body>
 </html>
