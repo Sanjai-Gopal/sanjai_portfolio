@@ -71,6 +71,14 @@ switch ($type) {
         ]);
         break;
         
+    case 'contacts':
+        $data = readJSON(CONTACTS_FILE, []);
+        break;
+        
+    case 'subscribers':
+        $data = readJSON(SUBSCRIBERS_FILE, []);
+        break;
+        
     case 'all':
         $data = [
             'profile' => readJSON(PROFILE_FILE, []),
@@ -78,7 +86,9 @@ switch ($type) {
             'certificates' => readJSON(CERTIFICATES_FILE, []),
             'blog' => readJSON(BLOG_FILE, []),
             'skills' => readJSON(SKILLS_FILE, []),
-            'theme' => readJSON(THEME_FILE, [])
+            'theme' => readJSON(THEME_FILE, []),
+            'contacts' => readJSON(CONTACTS_FILE, []),
+            'subscribers' => readJSON(SUBSCRIBERS_FILE, [])
         ];
         break;
         
