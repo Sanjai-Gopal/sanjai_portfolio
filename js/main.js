@@ -1,8 +1,124 @@
 // ========================================
-// MAIN.JS - Complete Portfolio Functionality
+// MAIN.JS - Complete Portfolio with Admin Panel
 // ========================================
 
-// Initialize everything when DOM is loaded
+// ========== GLOBAL VARIABLES ==========
+let projectsData = [
+    {
+        title: 'Feedback and Billing System',
+        description: 'A comprehensive snack shop billing system with tax calculation, star ratings, and file storage for transaction history.',
+        category: 'cpp',
+        tech: ['C++', 'File I/O', 'OOP'],
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EBilling%3C/text%3E%3C/svg%3E',
+        github: 'https://github.com/Sanjai-Gopal/Feedback-and-Billing-System'
+    },
+    {
+        title: 'bis-smart-compliance',
+        description: 'Smart compliance system built with Python for automated monitoring, reporting, and audit logging of regulatory requirements.',
+        category: 'python',
+        tech: ['Python', 'Automation', 'Logging'],
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3ECompliance%3C/text%3E%3C/svg%3E',
+        github: 'https://github.com/Sanjai-Gopal/bis-smart-compliance'
+    },
+    {
+        title: 'Railway Reservation System',
+        description: 'Console-based railway ticket reservation system with seat management, PNR tracking, and fare calculation.',
+        category: 'cpp',
+        tech: ['C++', 'OOP', 'Data Structures'],
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3ERailway%3C/text%3E%3C/svg%3E',
+        github: 'https://github.com/Sanjai-Gopal/railway-reservation-cpp'
+    },
+    {
+        title: 'Advanced Portfolio Website',
+        description: 'Futuristic portfolio with 3D elements, AI chatbot, voice navigation, and private cloud storage for certificates.',
+        category: 'web',
+        tech: ['HTML5/CSS3', 'JavaScript', 'Three.js'],
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EPortfolio%3C/text%3E%3C/svg%3E',
+        github: 'https://github.com/Sanjai-Gopal/sanjai_portfolio',
+        live: 'https://sanjai-gopal.github.io/sanjai_portfolio/'
+    },
+    {
+        title: 'Machine Learning Basics',
+        description: 'Collection of ML algorithms implemented from scratch including linear regression, logistic regression, and neural networks.',
+        category: 'ai',
+        tech: ['Python', 'NumPy', 'Scikit-learn'],
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EML%3C/text%3E%3C/svg%3E',
+        github: 'https://github.com/Sanjai-Gopal/ml-basics'
+    },
+    {
+        title: 'Smart Attendance System',
+        description: 'Face recognition based attendance system using OpenCV and Python with real-time face detection and Excel report generation.',
+        category: 'ai',
+        tech: ['Python', 'OpenCV', 'Face Recognition'],
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EAttendance%3C/text%3E%3C/svg%3E',
+        github: 'https://github.com/Sanjai-Gopal/smart-attendance'
+    }
+];
+
+let certificatesData = [
+    { title: 'AWS Certified Cloud Practitioner', issuer: 'AWS', date: 'Oct 2025' },
+    { title: 'Python for Everybody', issuer: 'Univ. of Michigan', date: 'Feb 2026' },
+    { title: 'Git & GitHub', issuer: 'IBM', date: 'Feb 2026' },
+    { title: 'Building with AI', issuer: 'Saylor Academy', date: 'Feb 2026' },
+    { title: 'Viksit Bharat Young Leaders', issuer: 'Min. of Youth Affairs', date: 'Sep 2025' },
+    { title: 'Canva Design Fundamentals', issuer: 'Coursera', date: 'Feb 2026' }
+];
+
+let blogData = [
+    {
+        title: 'Getting Started with Python',
+        excerpt: 'Learn the fundamentals of Python programming for AI and ML.',
+        date: 'Mar 1, 2026',
+        category: 'Programming',
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EPython%3C/text%3E%3C/svg%3E'
+    },
+    {
+        title: 'Git & GitHub Essentials',
+        excerpt: 'A comprehensive guide to version control for beginners.',
+        date: 'Feb 15, 2026',
+        category: 'DevOps',
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EGit%3C/text%3E%3C/svg%3E'
+    },
+    {
+        title: 'My First Steps into AI',
+        excerpt: 'Sharing my journey as a first-year AI student.',
+        date: 'Feb 1, 2026',
+        category: 'AI/ML',
+        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EAI%3C/text%3E%3C/svg%3E'
+    }
+];
+
+let skillsData = [
+    {
+        icon: 'fa-code',
+        title: 'Programming Languages',
+        skills: [
+            { name: 'Python', level: 90, tags: ['NumPy', 'Pandas', 'Matplotlib'] },
+            { name: 'C++', level: 80, tags: ['OOP', 'STL', 'Algorithms'] },
+            { name: 'JavaScript', level: 75, tags: ['ES6', 'React', 'Node.js'] }
+        ]
+    },
+    {
+        icon: 'fa-brain',
+        title: 'AI & Machine Learning',
+        skills: [
+            { name: 'Machine Learning', level: 85, tags: ['Scikit-learn', 'Regression'] },
+            { name: 'Deep Learning', level: 75, tags: ['TensorFlow', 'Neural Networks'] },
+            { name: 'MLOps', level: 60, tags: ['Docker', 'MLflow'] }
+        ]
+    },
+    {
+        icon: 'fa-tools',
+        title: 'Tools & Technologies',
+        skills: [
+            { name: 'Git & GitHub', level: 90, tags: ['Version Control'] },
+            { name: 'VS Code', level: 85, tags: ['Extensions', 'Debugging'] },
+            { name: 'Linux', level: 75, tags: ['Bash', 'Command Line'] }
+        ]
+    }
+];
+
+// ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Portfolio initialized');
     
@@ -19,9 +135,24 @@ document.addEventListener('DOMContentLoaded', function() {
     initBlog();
     initContactForm();
     initBackToTop();
-    initChatbot();
-    initResumeDownload();
+    initAdminPanel();
+    loadSavedData();
 });
+
+// ========== LOAD SAVED DATA ==========
+function loadSavedData() {
+    const savedProjects = localStorage.getItem('projectsData');
+    if (savedProjects) projectsData = JSON.parse(savedProjects);
+    
+    const savedCerts = localStorage.getItem('certificatesData');
+    if (savedCerts) certificatesData = JSON.parse(savedCerts);
+    
+    const savedBlog = localStorage.getItem('blogData');
+    if (savedBlog) blogData = JSON.parse(savedBlog);
+    
+    const savedSkills = localStorage.getItem('skillsData');
+    if (savedSkills) skillsData = JSON.parse(savedSkills);
+}
 
 // ========== PRELOADER ==========
 function initPreloader() {
@@ -65,7 +196,6 @@ function initTheme() {
     const themeToggle = document.getElementById('themeToggle');
     const icon = themeToggle.querySelector('i');
     
-    // Check for saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
@@ -95,7 +225,6 @@ function initMobileMenu() {
         hamburger.classList.toggle('active');
     });
     
-    // Close menu when clicking a link
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
@@ -151,41 +280,16 @@ function initStats() {
     stats.forEach(stat => observer.observe(stat));
 }
 
-// ========== SKILLS DATA ==========
-const skillsData = [
-    {
-        icon: 'fa-code',
-        title: 'Programming Languages',
-        skills: [
-            { name: 'Python', level: 90, tags: ['NumPy', 'Pandas', 'Matplotlib'] },
-            { name: 'C++', level: 80, tags: ['OOP', 'STL', 'Algorithms'] },
-            { name: 'JavaScript', level: 75, tags: ['ES6', 'React', 'Node.js'] }
-        ]
-    },
-    {
-        icon: 'fa-brain',
-        title: 'AI & Machine Learning',
-        skills: [
-            { name: 'Machine Learning', level: 85, tags: ['Scikit-learn', 'Regression'] },
-            { name: 'Deep Learning', level: 75, tags: ['TensorFlow', 'Neural Networks'] },
-            { name: 'MLOps', level: 60, tags: ['Docker', 'MLflow'] }
-        ]
-    },
-    {
-        icon: 'fa-tools',
-        title: 'Tools & Technologies',
-        skills: [
-            { name: 'Git & GitHub', level: 90, tags: ['Version Control'] },
-            { name: 'VS Code', level: 85, tags: ['Extensions', 'Debugging'] },
-            { name: 'Linux', level: 75, tags: ['Bash', 'Command Line'] }
-        ]
-    }
-];
-
 // ========== RENDER SKILLS ==========
 function initSkills() {
     const grid = document.getElementById('skillsGrid');
     if (!grid) return;
+    
+    renderSkills();
+}
+
+function renderSkills() {
+    const grid = document.getElementById('skillsGrid');
     
     grid.innerHTML = skillsData.map(category => `
         <div class="skill-card" data-aos="fade-up">
@@ -213,59 +317,6 @@ function initSkills() {
     `).join('');
 }
 
-// ========== PROJECTS DATA ==========
-const projectsData = [
-    {
-        title: 'RuralCare AI',
-        description: 'Multilingual AI-based rural health assistant with symptom checker and voice recording.',
-        category: 'ai',
-        tech: ['Python', 'Flask', 'TensorFlow'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3ERuralCare%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/ruralcare-ai'
-    },
-    {
-        title: 'Feedback & Billing System',
-        description: 'Complete snack shop management system with bill generation and tax calculation.',
-        category: 'cpp',
-        tech: ['C++', 'File I/O', 'OOP'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EBilling%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/Feedback-and-Billing-System'
-    },
-    {
-        title: 'Railway Reservation System',
-        description: 'Console-based railway ticket reservation system with PNR tracking.',
-        category: 'cpp',
-        tech: ['C++', 'Data Structures'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3ERailway%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/railway-reservation-cpp'
-    },
-    {
-        title: 'Advanced Portfolio',
-        description: 'Cutting-edge portfolio with 3D background and AI chatbot.',
-        category: 'web',
-        tech: ['HTML5', 'CSS3', 'JavaScript', 'Three.js'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EPortfolio%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/sanjai_portfolio',
-        live: 'https://sanjai-gopal.github.io/sanjai_portfolio/'
-    },
-    {
-        title: 'Student Performance Predictor',
-        description: 'ML model predicting student grades with 85% accuracy.',
-        category: 'ai',
-        tech: ['Python', 'scikit-learn', 'Pandas'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EML%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/ml-student-performance'
-    },
-    {
-        title: 'Green AI Optimizer',
-        description: 'Tool that optimizes ML models for energy efficiency.',
-        category: 'ai',
-        tech: ['Python', 'TensorFlow', 'Docker'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EGreen%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/green-ai'
-    }
-];
-
 // ========== RENDER PROJECTS ==========
 function initProjects() {
     const grid = document.getElementById('projectsGrid');
@@ -273,7 +324,6 @@ function initProjects() {
     
     renderProjects('all');
     
-    // Filter buttons
     document.querySelectorAll('.projects-filter .filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.projects-filter .filter-btn').forEach(b => b.classList.remove('active'));
@@ -287,7 +337,7 @@ function renderProjects(filter) {
     const grid = document.getElementById('projectsGrid');
     const filtered = filter === 'all' ? projectsData : projectsData.filter(p => p.category === filter);
     
-    grid.innerHTML = filtered.slice(0, 3).map(project => `
+    grid.innerHTML = filtered.slice(0, 6).map(project => `
         <div class="project-card" data-aos="fade-up">
             <div class="project-image">
                 <img src="${project.image}" alt="${project.title}">
@@ -308,22 +358,18 @@ function renderProjects(filter) {
     `).join('');
 }
 
-// ========== CERTIFICATES DATA ==========
-const certificatesData = [
-    { title: 'AWS Certified Cloud Practitioner', issuer: 'AWS', date: 'Oct 2025' },
-    { title: 'Python for Everybody', issuer: 'Univ. of Michigan', date: 'Feb 2026' },
-    { title: 'Git & GitHub', issuer: 'IBM', date: 'Feb 2026' },
-    { title: 'Building with AI', issuer: 'Saylor Academy', date: 'Feb 2026' },
-    { title: 'Viksit Bharat Young Leaders', issuer: 'Min. of Youth Affairs', date: 'Sep 2025' },
-    { title: 'Canva Design Fundamentals', issuer: 'Coursera', date: 'Feb 2026' }
-];
-
 // ========== RENDER CERTIFICATES ==========
 function initCertificates() {
     const grid = document.getElementById('certificatesGrid');
     if (!grid) return;
     
-    grid.innerHTML = certificatesData.slice(0, 3).map(cert => `
+    renderCertificates();
+}
+
+function renderCertificates() {
+    const grid = document.getElementById('certificatesGrid');
+    
+    grid.innerHTML = certificatesData.slice(0, 6).map(cert => `
         <div class="certificate-card" data-aos="fade-up">
             <div class="certificate-icon"><i class="fas fa-certificate"></i></div>
             <h3 class="certificate-title">${cert.title}</h3>
@@ -333,37 +379,18 @@ function initCertificates() {
     `).join('');
 }
 
-// ========== BLOG DATA ==========
-const blogData = [
-    {
-        title: 'Getting Started with Python',
-        excerpt: 'Learn the fundamentals of Python programming for AI and ML.',
-        date: 'Mar 1, 2026',
-        category: 'Programming',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EPython%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'Git & GitHub Essentials',
-        excerpt: 'A comprehensive guide to version control for beginners.',
-        date: 'Feb 15, 2026',
-        category: 'DevOps',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EGit%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'My First Steps into AI',
-        excerpt: 'Sharing my journey as a first-year AI student.',
-        date: 'Feb 1, 2026',
-        category: 'AI/ML',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3EAI%3C/text%3E%3C/svg%3E'
-    }
-];
-
 // ========== RENDER BLOG ==========
 function initBlog() {
     const grid = document.getElementById('blogGrid');
     if (!grid) return;
     
-    grid.innerHTML = blogData.map(post => `
+    renderBlog();
+}
+
+function renderBlog() {
+    const grid = document.getElementById('blogGrid');
+    
+    grid.innerHTML = blogData.slice(0, 3).map(post => `
         <div class="blog-card" data-aos="fade-up">
             <div class="blog-image">
                 <img src="${post.image}" alt="${post.title}">
@@ -389,13 +416,6 @@ function initContactForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Get form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Show success message
         alert('Thank you for your message! I will get back to you soon.');
         form.reset();
     });
@@ -421,117 +441,385 @@ function initBackToTop() {
     });
 }
 
-// ========== CHATBOT ==========
-function initChatbot() {
-    const toggle = document.getElementById('chatbotToggle');
-    const chatbot = document.getElementById('chatbot');
-    const close = document.getElementById('chatbotClose');
-    const input = document.getElementById('chatbotInput');
-    const send = document.getElementById('chatbotSend');
-    const messages = document.getElementById('chatbotMessages');
+// ========== ADMIN PANEL ==========
+function initAdminPanel() {
+    const secretBtn = document.getElementById('adminSecret');
+    const modal = document.getElementById('adminModal');
+    const closeBtn = document.getElementById('adminClose');
+    const passwordInput = document.getElementById('adminPassword');
+    const submitBtn = document.getElementById('adminSubmit');
+    const errorDiv = document.getElementById('adminError');
+    const passwordForm = document.getElementById('adminPasswordForm');
+    const dashboard = document.getElementById('adminDashboard');
+    const toggleBtn = document.getElementById('adminPasswordToggle');
+    const logoutBtn = document.getElementById('adminLogout');
     
-    toggle.addEventListener('click', () => {
-        chatbot.classList.toggle('active');
+    // Secret button click
+    secretBtn.addEventListener('click', () => {
+        modal.classList.add('active');
     });
     
-    close.addEventListener('click', () => {
-        chatbot.classList.remove('active');
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        passwordForm.style.display = 'block';
+        dashboard.classList.remove('active');
+        passwordInput.value = '';
+        errorDiv.textContent = '';
     });
     
-    function addMessage(text, sender) {
-        const message = document.createElement('div');
-        message.className = `message ${sender}`;
-        message.innerHTML = `<div class="message-content">${text}</div>`;
-        messages.appendChild(message);
-        messages.scrollTop = messages.scrollHeight;
-    }
+    // Toggle password visibility
+    toggleBtn.addEventListener('click', () => {
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        toggleBtn.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+    });
     
-    function getResponse(input) {
-        input = input.toLowerCase();
+    // Submit password
+    submitBtn.addEventListener('click', () => {
+        const password = passwordInput.value;
         
-        if (input.includes('skill')) {
-            return "Sanjai has expertise in Python, C++, JavaScript, Machine Learning, and MLOps!";
-        } else if (input.includes('project')) {
-            return "He has built 6 projects including RuralCare AI, Feedback System, and this portfolio!";
-        } else if (input.includes('certificate')) {
-            return "He has 33+ certifications from Coursera, AWS, IBM, and Government of India!";
-        } else if (input.includes('contact')) {
-            return "You can reach him at sanjai.sparkmail@gmail.com or through the contact form!";
+        // Change this password in production!
+        if (password === 'admin123') {
+            passwordForm.style.display = 'none';
+            dashboard.classList.add('active');
+            loadAdminData();
+            errorDiv.textContent = '';
         } else {
-            return "I'm not sure. Ask me about skills, projects, certificates, or contact!";
+            errorDiv.textContent = 'Incorrect password. Hint: admin123';
         }
-    }
-    
-    send.addEventListener('click', () => {
-        const text = input.value.trim();
-        if (!text) return;
-        
-        addMessage(text, 'user');
-        input.value = '';
-        
-        setTimeout(() => {
-            addMessage(getResponse(text), 'bot');
-        }, 500);
     });
     
-    input.addEventListener('keypress', (e) => {
+    // Enter key
+    passwordInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            send.click();
+            submitBtn.click();
+        }
+    });
+    
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+        passwordForm.style.display = 'block';
+        dashboard.classList.remove('active');
+        passwordInput.value = '';
+    });
+    
+    // Tab switching
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+            
+            this.classList.add('active');
+            const panelId = this.dataset.tab + 'Panel';
+            document.getElementById(panelId).classList.add('active');
+        });
+    });
+    
+    // Save profile
+    document.getElementById('saveProfileBtn').addEventListener('click', () => {
+        const name = document.getElementById('adminName').value;
+        const title = document.getElementById('adminTitle').value;
+        const bio = document.getElementById('adminBio').value;
+        const location = document.getElementById('adminLocation').value;
+        const email = document.getElementById('adminEmail').value;
+        const phone = document.getElementById('adminPhone').value;
+        
+        document.querySelector('.hero-title').innerHTML = `Sanjai <span class="gradient-text">Gopal</span>`;
+        document.getElementById('aboutTitle').textContent = title;
+        document.getElementById('aboutBio').textContent = bio;
+        document.getElementById('infoLocation').textContent = location;
+        document.getElementById('contactLocation').textContent = location;
+        document.getElementById('contactEmail').textContent = email;
+        document.getElementById('contactPhone').textContent = phone;
+        document.getElementById('footerName').textContent = name;
+        
+        alert('Profile updated!');
+    });
+    
+    // Add project
+    document.getElementById('addProjectBtn').addEventListener('click', () => {
+        const name = document.getElementById('newProjectName').value;
+        const desc = document.getElementById('newProjectDesc').value;
+        const tech = document.getElementById('newProjectTech').value.split(',').map(t => t.trim());
+        const category = document.getElementById('newProjectCategory').value;
+        
+        if (name && desc && tech.length && category) {
+            projectsData.push({
+                title: name,
+                description: desc,
+                category: category,
+                tech: tech,
+                image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3E' + name.substring(0, 10) + '%3C/text%3E%3C/svg%3E',
+                github: 'https://github.com/Sanjai-Gopal/' + name.toLowerCase().replace(/\s+/g, '-')
+            });
+            
+            localStorage.setItem('projectsData', JSON.stringify(projectsData));
+            renderProjects('all');
+            loadAdminData();
+            
+            document.getElementById('newProjectName').value = '';
+            document.getElementById('newProjectDesc').value = '';
+            document.getElementById('newProjectTech').value = '';
+            document.getElementById('newProjectCategory').value = '';
+            
+            alert('Project added!');
+        } else {
+            alert('Please fill all fields');
+        }
+    });
+    
+    // Add certificate
+    document.getElementById('addCertBtn').addEventListener('click', () => {
+        const name = document.getElementById('newCertName').value;
+        const issuer = document.getElementById('newCertIssuer').value;
+        const date = document.getElementById('newCertDate').value;
+        
+        if (name && issuer && date) {
+            certificatesData.push({
+                title: name,
+                issuer: issuer,
+                date: date
+            });
+            
+            localStorage.setItem('certificatesData', JSON.stringify(certificatesData));
+            renderCertificates();
+            loadAdminData();
+            
+            document.getElementById('newCertName').value = '';
+            document.getElementById('newCertIssuer').value = '';
+            document.getElementById('newCertDate').value = '';
+            
+            alert('Certificate added!');
+        } else {
+            alert('Please fill all fields');
+        }
+    });
+    
+    // Add blog post
+    document.getElementById('addPostBtn').addEventListener('click', () => {
+        const title = document.getElementById('newPostTitle').value;
+        const excerpt = document.getElementById('newPostExcerpt').value;
+        const category = document.getElementById('newPostCategory').value;
+        
+        if (title && excerpt && category) {
+            blogData.push({
+                title: title,
+                excerpt: excerpt,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                category: category,
+                image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23334155\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%238b5cf6\' text-anchor=\'middle\'%3E' + title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'
+            });
+            
+            localStorage.setItem('blogData', JSON.stringify(blogData));
+            renderBlog();
+            loadAdminData();
+            
+            document.getElementById('newPostTitle').value = '';
+            document.getElementById('newPostExcerpt').value = '';
+            document.getElementById('newPostCategory').value = '';
+            
+            alert('Blog post added!');
+        } else {
+            alert('Please fill all fields');
+        }
+    });
+    
+    // Add skill
+    document.getElementById('addSkillBtn').addEventListener('click', () => {
+        const name = document.getElementById('newSkillName').value;
+        const level = document.getElementById('newSkillLevel').value;
+        const tags = document.getElementById('newSkillTags').value.split(',').map(t => t.trim());
+        const category = document.getElementById('newSkillCategory').value;
+        
+        if (name && level && tags.length && category) {
+            let categoryIndex = 0;
+            if (category === 'languages') categoryIndex = 0;
+            else if (category === 'ai') categoryIndex = 1;
+            else if (category === 'tools') categoryIndex = 2;
+            
+            skillsData[categoryIndex].skills.push({
+                name: name,
+                level: parseInt(level),
+                tags: tags
+            });
+            
+            localStorage.setItem('skillsData', JSON.stringify(skillsData));
+            renderSkills();
+            loadAdminData();
+            
+            document.getElementById('newSkillName').value = '';
+            document.getElementById('newSkillLevel').value = '';
+            document.getElementById('newSkillTags').value = '';
+            
+            alert('Skill added!');
+        } else {
+            alert('Please fill all fields');
         }
     });
 }
 
-// ========== RESUME DOWNLOAD ==========
-function initResumeDownload() {
-    const downloadBtn = document.getElementById('downloadResume');
-    if (!downloadBtn) return;
+function loadAdminData() {
+    document.getElementById('adminProjectCount').textContent = projectsData.length;
+    document.getElementById('adminCertCount').textContent = certificatesData.length;
+    document.getElementById('adminBlogCount').textContent = blogData.length;
     
-    downloadBtn.addEventListener('click', () => {
-        // Create a simple PDF-like download
-        const resume = `
-Sanjai Gopal
-============
-Aspiring AI Engineer | MLOps Enthusiast
-Coimbatore, Tamil Nadu | +91 9363265552 | sanjai.sparkmail@gmail.com
-
-EDUCATION
----------
-SKCET - 1st Year Artificial Intelligence & Data Science (2025-2029)
-
-CERTIFICATIONS (33+)
--------------------
-• AWS Certified Cloud Practitioner - AWS (Oct 2025)
-• Python for Everybody - Univ. of Michigan (Feb 2026)
-• Git & GitHub - IBM (Feb 2026)
-• Building with AI - Saylor Academy (Feb 2026)
-• Viksit Bharat Young Leaders - Min. of Youth Affairs (Sep 2025)
-• Canva Design Fundamentals - Coursera (Feb 2026)
-• And 27+ more...
-
-SKILLS
-------
-Languages: Python, C++, JavaScript
-AI/ML: Machine Learning, Deep Learning, MLOps
-Tools: Git, VS Code, Docker, Linux
-
-PROJECTS
---------
-• RuralCare AI - Python, Flask, TensorFlow
-• Feedback & Billing System - C++, OOP
-• Railway Reservation System - C++, Data Structures
-• Advanced Portfolio - HTML, CSS, JavaScript
-• Student Performance Predictor - Python, scikit-learn
-• Green AI Optimizer - Python, TensorFlow
-        `;
-        
-        const blob = new Blob([resume], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Sanjai_Gopal_Resume.txt';
-        a.click();
-        URL.revokeObjectURL(url);
-        
-        alert('Resume downloaded!');
+    let totalSkills = 0;
+    skillsData.forEach(cat => totalSkills += cat.skills.length);
+    document.getElementById('adminSkillCount').textContent = totalSkills;
+    
+    // Load projects list
+    const projectsList = document.getElementById('projectsList');
+    projectsList.innerHTML = projectsData.map((project, index) => `
+        <div class="admin-item">
+            <div class="admin-item-info">
+                <h4>${project.title}</h4>
+                <p>${project.category} · ${project.tech.join(', ')}</p>
+            </div>
+            <div class="admin-item-actions">
+                <button class="admin-btn" onclick="editProject(${index})"><i class="fas fa-edit"></i></button>
+                <button class="admin-btn delete" onclick="deleteProject(${index})"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+    `).join('');
+    
+    // Load certificates list
+    const certsList = document.getElementById('certificatesList');
+    certsList.innerHTML = certificatesData.map((cert, index) => `
+        <div class="admin-item">
+            <div class="admin-item-info">
+                <h4>${cert.title}</h4>
+                <p>${cert.issuer} · ${cert.date}</p>
+            </div>
+            <div class="admin-item-actions">
+                <button class="admin-btn" onclick="editCertificate(${index})"><i class="fas fa-edit"></i></button>
+                <button class="admin-btn delete" onclick="deleteCertificate(${index})"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+    `).join('');
+    
+    // Load blog list
+    const blogList = document.getElementById('blogList');
+    blogList.innerHTML = blogData.map((post, index) => `
+        <div class="admin-item">
+            <div class="admin-item-info">
+                <h4>${post.title}</h4>
+                <p>${post.category} · ${post.date}</p>
+            </div>
+            <div class="admin-item-actions">
+                <button class="admin-btn" onclick="editPost(${index})"><i class="fas fa-edit"></i></button>
+                <button class="admin-btn delete" onclick="deletePost(${index})"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+    `).join('');
+    
+    // Load skills list
+    const skillsList = document.getElementById('skillsList');
+    let skillsHtml = '';
+    skillsData.forEach((cat, catIndex) => {
+        cat.skills.forEach((skill, skillIndex) => {
+            skillsHtml += `
+                <div class="admin-item">
+                    <div class="admin-item-info">
+                        <h4>${skill.name}</h4>
+                        <p>${cat.title} · ${skill.level}% · ${skill.tags.join(', ')}</p>
+                    </div>
+                    <div class="admin-item-actions">
+                        <button class="admin-btn" onclick="editSkill(${catIndex}, ${skillIndex})"><i class="fas fa-edit"></i></button>
+                        <button class="admin-btn delete" onclick="deleteSkill(${catIndex}, ${skillIndex})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+        });
     });
+    skillsList.innerHTML = skillsHtml;
 }
+
+// Global admin functions
+window.deleteProject = function(index) {
+    if (confirm('Delete this project?')) {
+        projectsData.splice(index, 1);
+        localStorage.setItem('projectsData', JSON.stringify(projectsData));
+        renderProjects('all');
+        loadAdminData();
+    }
+};
+
+window.deleteCertificate = function(index) {
+    if (confirm('Delete this certificate?')) {
+        certificatesData.splice(index, 1);
+        localStorage.setItem('certificatesData', JSON.stringify(certificatesData));
+        renderCertificates();
+        loadAdminData();
+    }
+};
+
+window.deletePost = function(index) {
+    if (confirm('Delete this blog post?')) {
+        blogData.splice(index, 1);
+        localStorage.setItem('blogData', JSON.stringify(blogData));
+        renderBlog();
+        loadAdminData();
+    }
+};
+
+window.deleteSkill = function(catIndex, skillIndex) {
+    if (confirm('Delete this skill?')) {
+        skillsData[catIndex].skills.splice(skillIndex, 1);
+        localStorage.setItem('skillsData', JSON.stringify(skillsData));
+        renderSkills();
+        loadAdminData();
+    }
+};
+
+window.editProject = function(index) {
+    const project = projectsData[index];
+    document.getElementById('newProjectName').value = project.title;
+    document.getElementById('newProjectDesc').value = project.description;
+    document.getElementById('newProjectTech').value = project.tech.join(', ');
+    document.getElementById('newProjectCategory').value = project.category;
+    
+    if (confirm('Edit this project and click OK to save changes')) {
+        deleteProject(index);
+    }
+};
+
+window.editCertificate = function(index) {
+    const cert = certificatesData[index];
+    document.getElementById('newCertName').value = cert.title;
+    document.getElementById('newCertIssuer').value = cert.issuer;
+    document.getElementById('newCertDate').value = cert.date;
+    
+    if (confirm('Edit this certificate and click OK to save changes')) {
+        deleteCertificate(index);
+    }
+};
+
+window.editPost = function(index) {
+    const post = blogData[index];
+    document.getElementById('newPostTitle').value = post.title;
+    document.getElementById('newPostExcerpt').value = post.excerpt;
+    document.getElementById('newPostCategory').value = post.category;
+    
+    if (confirm('Edit this post and click OK to save changes')) {
+        deletePost(index);
+    }
+};
+
+window.editSkill = function(catIndex, skillIndex) {
+    const skill = skillsData[catIndex].skills[skillIndex];
+    document.getElementById('newSkillName').value = skill.name;
+    document.getElementById('newSkillLevel').value = skill.level;
+    document.getElementById('newSkillTags').value = skill.tags.join(', ');
+    
+    let category = '';
+    if (catIndex === 0) category = 'languages';
+    else if (catIndex === 1) category = 'ai';
+    else if (catIndex === 2) category = 'tools';
+    
+    document.getElementById('newSkillCategory').value = category;
+    
+    if (confirm('Edit this skill and click OK to save changes')) {
+        deleteSkill(catIndex, skillIndex);
+    }
+};
