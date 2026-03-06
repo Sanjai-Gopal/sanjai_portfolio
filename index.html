@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal · Peaceful Portfolio</title>
+    <title>Sanjai Gopal - AI Engineer & Nature Enthusiast</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Sanjai Gopal - AI Engineer from Coimbatore. 30+ certifications, 6 innovative projects, and expertise in Python, C++, Machine Learning, and MLOps.">
@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
-    <!-- ========== PEACEFUL NATURE BACKGROUND ========== -->
+    <!-- ========== NATURE BACKGROUND ========== -->
     <div class="nature-bg">
         <div class="floating-leaf leaf-1">🌿</div>
         <div class="floating-leaf leaf-2">🍃</div>
@@ -55,190 +55,261 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN SECRET BUTTON ========== -->
-    <div class="admin-secret" id="adminSecret" title="Admin Panel (Click to access)"></div>
+    <!-- ========== ADMIN SECRET BUTTON (ONLY VISIBLE TO YOU) ========== -->
+    <div class="admin-secret" id="adminSecret" style="display: none;" title="Admin Panel (Double-click)"></div>
 
-    <!-- ========== ADMIN MODAL ========== -->
-    <div class="admin-modal" id="adminModal">
+    <!-- ========== ADMIN LOGIN MODAL ========== -->
+    <div class="admin-modal" id="adminLoginModal">
         <div class="admin-content">
             <div class="admin-header">
-                <h3><i class="fas fa-leaf"></i> Admin Sanctuary</h3>
-                <button class="admin-close" id="adminClose">&times;</button>
+                <h3><i class="fas fa-leaf"></i> Admin Login</h3>
+                <button class="admin-close" id="adminLoginClose">&times;</button>
             </div>
             
             <div class="admin-body">
-                <!-- Password Form -->
-                <div class="admin-password-form" id="adminPasswordForm">
+                <div class="admin-password-form">
                     <div class="admin-icon">
                         <i class="fas fa-lock"></i>
                     </div>
-                    <h4>Peaceful Access</h4>
-                    <p>Enter your admin password to enter the sanctuary</p>
+                    <h4>Secure Access</h4>
+                    <p>Enter your admin password to continue</p>
                     <div class="admin-password-input">
                         <input type="password" id="adminPassword" placeholder="Enter password">
                         <button class="admin-password-toggle" id="adminPasswordToggle">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
-                    <div class="admin-error" id="adminError"></div>
-                    <button class="btn btn-primary" id="adminSubmit">Enter Sanctuary</button>
-                    <div class="admin-hint">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Hint: admin123 (change this!)</span>
+                    <div class="admin-error" id="adminLoginError"></div>
+                    <div class="admin-loading" id="adminLoginLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Verifying...
+                    </div>
+                    <button class="btn btn-primary" id="adminLoginSubmit">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== ADMIN DASHBOARD MODAL ========== -->
+    <div class="admin-modal" id="adminDashboardModal">
+        <div class="admin-content admin-dashboard-content">
+            <div class="admin-header">
+                <h3><i class="fas fa-leaf"></i> Admin Dashboard</h3>
+                <button class="admin-close" id="adminDashboardClose">&times;</button>
+            </div>
+            
+            <div class="admin-body">
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-value" id="adminProjectCount">0</span>
+                        <span class="admin-stat-label">Projects</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-value" id="adminCertCount">0</span>
+                        <span class="admin-stat-label">Certificates</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-value" id="adminBlogCount">0</span>
+                        <span class="admin-stat-label">Blog Posts</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <span class="admin-stat-value" id="adminSkillCount">0</span>
+                        <span class="admin-stat-label">Skills</span>
                     </div>
                 </div>
                 
-                <!-- Admin Dashboard -->
-                <div class="admin-dashboard" id="adminDashboard">
-                    <div class="admin-stats">
-                        <div class="admin-stat-card">
-                            <span class="admin-stat-value" id="adminProjectCount">6</span>
-                            <span class="admin-stat-label">Projects</span>
-                        </div>
-                        <div class="admin-stat-card">
-                            <span class="admin-stat-value" id="adminCertCount">33</span>
-                            <span class="admin-stat-label">Certificates</span>
-                        </div>
-                        <div class="admin-stat-card">
-                            <span class="admin-stat-value" id="adminBlogCount">10</span>
-                            <span class="admin-stat-label">Blog Posts</span>
-                        </div>
-                        <div class="admin-stat-card">
-                            <span class="admin-stat-value" id="adminSkillCount">12</span>
-                            <span class="admin-stat-label">Skills</span>
-                        </div>
-                    </div>
-                    
-                    <div class="admin-tabs">
-                        <button class="admin-tab active" data-tab="profile">Profile</button>
-                        <button class="admin-tab" data-tab="projects">Projects</button>
-                        <button class="admin-tab" data-tab="certificates">Certificates</button>
-                        <button class="admin-tab" data-tab="blog">Blog</button>
-                        <button class="admin-tab" data-tab="skills">Skills</button>
-                        <button class="admin-tab" data-tab="theme">Theme</button>
-                    </div>
-                    
-                    <!-- Profile Panel -->
-                    <div class="admin-panel active" id="profilePanel">
-                        <h5><i class="fas fa-user"></i> Edit Profile</h5>
-                        <div class="admin-form-group">
-                            <label>Name</label>
-                            <input type="text" id="adminName" value="Sanjai Gopal">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Title</label>
-                            <input type="text" id="adminTitle" value="AI Engineer & Nature Enthusiast">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Bio</label>
-                            <textarea id="adminBio" rows="3">I'm a first-year Artificial Intelligence and Data Science student at SKCET, Coimbatore. I believe in building technology that's not just intelligent, but also sustainable and accessible to all.</textarea>
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Location</label>
-                            <input type="text" id="adminLocation" value="Coimbatore, India">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Email</label>
-                            <input type="email" id="adminEmail" value="sanjai.sparkmail@gmail.com">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Phone</label>
-                            <input type="text" id="adminPhone" value="+91 9363265552">
-                        </div>
-                        <button class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
-                    </div>
-                    
-                    <!-- Projects Panel -->
-                    <div class="admin-panel" id="projectsPanel">
-                        <h5><i class="fas fa-code-branch"></i> Manage Projects</h5>
-                        <div class="admin-form-group">
-                            <label>Add New Project</label>
-                            <input type="text" id="newProjectName" placeholder="Project Name">
-                            <textarea id="newProjectDesc" placeholder="Description" style="margin-top: 0.5rem;"></textarea>
-                            <input type="text" id="newProjectTech" placeholder="Technologies (comma separated)" style="margin-top: 0.5rem;">
-                            <select id="newProjectCategory" style="margin-top: 0.5rem;">
-                                <option value="python">Python</option>
-                                <option value="cpp">C++</option>
-                                <option value="web">Web</option>
-                                <option value="ai">AI/ML</option>
-                            </select>
-                            <input type="url" id="newProjectGithub" placeholder="GitHub URL" style="margin-top: 0.5rem;">
-                            <button class="btn btn-primary" id="addProjectBtn" style="margin-top: 0.5rem;">Add Project</button>
-                        </div>
-                        <div id="projectsList" class="admin-list"></div>
-                    </div>
-                    
-                    <!-- Certificates Panel -->
-                    <div class="admin-panel" id="certificatesPanel">
-                        <h5><i class="fas fa-certificate"></i> Manage Certificates</h5>
-                        <div class="admin-form-group">
-                            <label>Add New Certificate</label>
-                            <input type="text" id="newCertName" placeholder="Certificate Name">
-                            <input type="text" id="newCertIssuer" placeholder="Issuer" style="margin-top: 0.5rem;">
-                            <input type="text" id="newCertDate" placeholder="Date" style="margin-top: 0.5rem;">
-                            <button class="btn btn-primary" id="addCertBtn" style="margin-top: 0.5rem;">Add Certificate</button>
-                        </div>
-                        <div id="certificatesList" class="admin-list"></div>
-                    </div>
-                    
-                    <!-- Blog Panel -->
-                    <div class="admin-panel" id="blogPanel">
-                        <h5><i class="fas fa-blog"></i> Manage Blog Posts</h5>
-                        <div class="admin-form-group">
-                            <label>Add New Post</label>
-                            <input type="text" id="newPostTitle" placeholder="Post Title">
-                            <textarea id="newPostExcerpt" placeholder="Excerpt" style="margin-top: 0.5rem;"></textarea>
-                            <input type="text" id="newPostCategory" placeholder="Category" style="margin-top: 0.5rem;">
-                            <input type="url" id="newPostImage" placeholder="Image URL" style="margin-top: 0.5rem;">
-                            <button class="btn btn-primary" id="addPostBtn" style="margin-top: 0.5rem;">Add Post</button>
-                        </div>
-                        <div id="blogList" class="admin-list"></div>
-                    </div>
-                    
-                    <!-- Skills Panel -->
-                    <div class="admin-panel" id="skillsPanel">
-                        <h5><i class="fas fa-brain"></i> Manage Skills</h5>
-                        <div class="admin-form-group">
-                            <label>Add New Skill</label>
-                            <input type="text" id="newSkillName" placeholder="Skill Name">
-                            <input type="number" id="newSkillLevel" placeholder="Level (0-100)" min="0" max="100" style="margin-top: 0.5rem;">
-                            <input type="text" id="newSkillTags" placeholder="Tags (comma separated)" style="margin-top: 0.5rem;">
-                            <select id="newSkillCategory" style="margin-top: 0.5rem;">
-                                <option value="languages">Languages</option>
-                                <option value="ai">AI/ML</option>
-                                <option value="tools">Tools</option>
-                            </select>
-                            <button class="btn btn-primary" id="addSkillBtn" style="margin-top: 0.5rem;">Add Skill</button>
-                        </div>
-                        <div id="skillsList" class="admin-list"></div>
-                    </div>
-                    
-                    <!-- Theme Panel -->
-                    <div class="admin-panel" id="themePanel">
-                        <h5><i class="fas fa-palette"></i> Theme Settings</h5>
-                        <div class="admin-form-group">
-                            <label>Primary Color</label>
-                            <input type="color" id="themePrimary" value="#4caf7a">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Secondary Color</label>
-                            <input type="color" id="themeSecondary" value="#3d7a4f">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Background Color</label>
-                            <input type="color" id="themeBg" value="#f5efe6">
-                        </div>
-                        <div class="admin-form-group">
-                            <label>Text Color</label>
-                            <input type="color" id="themeText" value="#2c3e2f">
-                        </div>
-                        <button class="btn btn-primary" id="saveThemeBtn">Apply Theme</button>
-                        <button class="btn btn-outline" id="resetThemeBtn" style="margin-top: 0.5rem;">Reset to Default</button>
-                    </div>
-                    
-                    <button class="admin-logout" id="adminLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-tab="profile">Profile</button>
+                    <button class="admin-tab" data-tab="projects">Projects</button>
+                    <button class="admin-tab" data-tab="certificates">Certificates</button>
+                    <button class="admin-tab" data-tab="blog">Blog</button>
+                    <button class="admin-tab" data-tab="skills">Skills</button>
+                    <button class="admin-tab" data-tab="theme">Theme</button>
+                    <button class="admin-tab" data-tab="password">Security</button>
                 </div>
+                
+                <!-- Profile Panel -->
+                <div class="admin-panel active" id="profilePanel">
+                    <h5><i class="fas fa-user"></i> Edit Profile</h5>
+                    <div class="admin-form-group">
+                        <label>Profile Photo</label>
+                        <div class="profile-photo-upload">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23e2f0d9' stroke='%234caf7a' stroke-width='3'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='40' fill='%233d7a4f' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" alt="Profile" id="profilePhotoPreview">
+                            <input type="file" id="profilePhotoUpload" accept="image/*" hidden>
+                            <button class="btn btn-outline btn-sm" id="uploadPhotoBtn"><i class="fas fa-upload"></i> Upload Photo</button>
+                        </div>
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Name</label>
+                        <input type="text" id="adminName" value="Sanjai Gopal">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Title</label>
+                        <input type="text" id="adminTitle" value="AI Engineer & Nature Enthusiast">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Bio</label>
+                        <textarea id="adminBio" rows="3">I'm a first-year Artificial Intelligence and Data Science student at SKCET, Coimbatore. I believe in building technology that's not just intelligent, but also sustainable and accessible to all.</textarea>
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Location</label>
+                        <input type="text" id="adminLocation" value="Coimbatore, India">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Email</label>
+                        <input type="email" id="adminEmail" value="sanjai.sparkmail@gmail.com">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Phone</label>
+                        <input type="text" id="adminPhone" value="+91 9363265552">
+                    </div>
+                    <div class="admin-loading" id="profileLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Saving...
+                    </div>
+                    <button class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+                </div>
+                
+                <!-- Projects Panel -->
+                <div class="admin-panel" id="projectsPanel">
+                    <h5><i class="fas fa-code-branch"></i> Manage Projects</h5>
+                    <div class="admin-form-group">
+                        <label>Add New Project</label>
+                        <input type="text" id="newProjectName" placeholder="Project Name">
+                        <textarea id="newProjectDesc" placeholder="Description" style="margin-top: 0.5rem;"></textarea>
+                        <input type="text" id="newProjectTech" placeholder="Technologies (comma separated)" style="margin-top: 0.5rem;">
+                        <select id="newProjectCategory" style="margin-top: 0.5rem;">
+                            <option value="python">Python</option>
+                            <option value="cpp">C++</option>
+                            <option value="web">Web</option>
+                            <option value="ai">AI/ML</option>
+                        </select>
+                        <input type="url" id="newProjectGithub" placeholder="GitHub URL" style="margin-top: 0.5rem;">
+                        <input type="url" id="newProjectLive" placeholder="Live Demo URL (optional)" style="margin-top: 0.5rem;">
+                        <input type="file" id="newProjectImage" accept="image/*" style="margin-top: 0.5rem;">
+                        <div class="admin-loading" id="projectLoading" style="display: none; margin-top: 0.5rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Adding...
+                        </div>
+                        <button class="btn btn-primary" id="addProjectBtn" style="margin-top: 0.5rem;">Add Project</button>
+                    </div>
+                    <div id="projectsList" class="admin-list"></div>
+                </div>
+                
+                <!-- Certificates Panel -->
+                <div class="admin-panel" id="certificatesPanel">
+                    <h5><i class="fas fa-certificate"></i> Manage Certificates</h5>
+                    <div class="admin-form-group">
+                        <label>Add New Certificate</label>
+                        <input type="text" id="newCertName" placeholder="Certificate Name">
+                        <input type="text" id="newCertIssuer" placeholder="Issuer" style="margin-top: 0.5rem;">
+                        <input type="text" id="newCertDate" placeholder="Date (e.g., Feb 2026)" style="margin-top: 0.5rem;">
+                        <input type="file" id="newCertImage" accept="image/*" style="margin-top: 0.5rem;">
+                        <div class="admin-loading" id="certLoading" style="display: none; margin-top: 0.5rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Adding...
+                        </div>
+                        <button class="btn btn-primary" id="addCertBtn" style="margin-top: 0.5rem;">Add Certificate</button>
+                    </div>
+                    <div id="certificatesList" class="admin-list"></div>
+                </div>
+                
+                <!-- Blog Panel -->
+                <div class="admin-panel" id="blogPanel">
+                    <h5><i class="fas fa-blog"></i> Manage Blog Posts</h5>
+                    <div class="admin-form-group">
+                        <label>Add New Post</label>
+                        <input type="text" id="newPostTitle" placeholder="Post Title">
+                        <textarea id="newPostExcerpt" placeholder="Excerpt" style="margin-top: 0.5rem;"></textarea>
+                        <textarea id="newPostContent" placeholder="Full Content (HTML supported)" style="margin-top: 0.5rem; height: 100px;"></textarea>
+                        <input type="text" id="newPostCategory" placeholder="Category" style="margin-top: 0.5rem;">
+                        <input type="text" id="newPostTags" placeholder="Tags (comma separated)" style="margin-top: 0.5rem;">
+                        <input type="file" id="newPostImage" accept="image/*" style="margin-top: 0.5rem;">
+                        <div class="admin-loading" id="blogLoading" style="display: none; margin-top: 0.5rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Adding...
+                        </div>
+                        <button class="btn btn-primary" id="addPostBtn" style="margin-top: 0.5rem;">Add Post</button>
+                    </div>
+                    <div id="blogList" class="admin-list"></div>
+                </div>
+                
+                <!-- Skills Panel -->
+                <div class="admin-panel" id="skillsPanel">
+                    <h5><i class="fas fa-brain"></i> Manage Skills</h5>
+                    <div class="admin-form-group">
+                        <label>Add New Skill</label>
+                        <input type="text" id="newSkillName" placeholder="Skill Name">
+                        <input type="number" id="newSkillLevel" placeholder="Level (0-100)" min="0" max="100" style="margin-top: 0.5rem;">
+                        <input type="text" id="newSkillTags" placeholder="Tags (comma separated)" style="margin-top: 0.5rem;">
+                        <select id="newSkillCategory" style="margin-top: 0.5rem;">
+                            <option value="languages">Languages</option>
+                            <option value="ai">AI/ML</option>
+                            <option value="tools">Tools</option>
+                        </select>
+                        <div class="admin-loading" id="skillLoading" style="display: none; margin-top: 0.5rem;">
+                            <i class="fas fa-spinner fa-spin"></i> Adding...
+                        </div>
+                        <button class="btn btn-primary" id="addSkillBtn" style="margin-top: 0.5rem;">Add Skill</button>
+                    </div>
+                    <div id="skillsList" class="admin-list"></div>
+                </div>
+                
+                <!-- Theme Panel -->
+                <div class="admin-panel" id="themePanel">
+                    <h5><i class="fas fa-palette"></i> Theme Settings</h5>
+                    <div class="admin-form-group">
+                        <label>Primary Color</label>
+                        <input type="color" id="themePrimary" value="#4caf7a">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Secondary Color</label>
+                        <input type="color" id="themeSecondary" value="#3d7a4f">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Background Color</label>
+                        <input type="color" id="themeBg" value="#f5efe6">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Text Color</label>
+                        <input type="color" id="themeText" value="#2c3e2f">
+                    </div>
+                    <div class="admin-loading" id="themeLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Saving...
+                    </div>
+                    <button class="btn btn-primary" id="saveThemeBtn">Apply Theme</button>
+                    <button class="btn btn-outline" id="resetThemeBtn" style="margin-top: 0.5rem;">Reset to Default</button>
+                </div>
+                
+                <!-- Security Panel -->
+                <div class="admin-panel" id="passwordPanel">
+                    <h5><i class="fas fa-shield-alt"></i> Security Settings</h5>
+                    <div class="admin-form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter current password">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>New Password</label>
+                        <input type="password" id="newPassword" placeholder="Enter new password">
+                    </div>
+                    <div class="admin-form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <div class="admin-loading" id="passwordLoading" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i> Updating...
+                    </div>
+                    <button class="btn btn-primary" id="changePasswordBtn">Change Password</button>
+                </div>
+                
+                <button class="admin-logout" id="adminLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
             </div>
+        </div>
+    </div>
+
+    <!-- ========== BLOG MODAL ========== -->
+    <div class="blog-modal" id="blogModal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <h2 id="blogModalTitle">Blog Post</h2>
+                <button class="blog-modal-close" id="blogModalClose">&times;</button>
+            </div>
+            <div class="blog-modal-body" id="blogModalBody"></div>
         </div>
     </div>
 
@@ -257,7 +328,7 @@
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#blog" class="nav-link">Blog</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="private-cloud/" class="nav-link cloud-link"><i class="fas fa-cloud"></i> Cloud</a></li>
+                <li><a href="#" class="nav-link cloud-link" id="cloudLink"><i class="fas fa-cloud"></i> Cloud</a></li>
             </ul>
             
             <div class="nav-actions">
@@ -445,7 +516,7 @@
             <div class="blog-grid" id="blogGrid"></div>
             
             <div class="view-all">
-                <a href="blog/" class="btn btn-outline">Read All Posts <i class="fas fa-arrow-right"></i></a>
+                <a href="#" class="btn btn-outline" id="viewAllBlogs">Read All Posts <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -530,7 +601,7 @@
                 <div class="footer-links">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="private-cloud/">Private Cloud</a></li>
+                        <li><a href="#" id="cloudFooterLink">Private Cloud</a></li>
                         <li><a href="https://github.com/Sanjai-Gopal" target="_blank">GitHub</a></li>
                         <li><a href="https://linkedin.com/in/sanjai2306" target="_blank">LinkedIn</a></li>
                     </ul>
@@ -548,9 +619,16 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- ========== TOAST NOTIFICATION ========== -->
+    <div class="toast-notification" id="toastNotification">
+        <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
+        <div class="toast-message">Operation completed successfully!</div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/main.js"></script>
     <script src="js/admin.js"></script>
 </body>
