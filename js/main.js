@@ -3,145 +3,21 @@
 // ========================================
 
 // ========== GLOBAL DATA ==========
-let projectsData = [
-    {
-        title: 'Feedback and Billing System',
-        description: 'A comprehensive snack shop billing system with tax calculation, star ratings, and file storage for transaction history.',
-        category: 'cpp',
-        tech: ['C++', 'File I/O', 'OOP'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EBilling%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/Feedback-and-Billing-System'
-    },
-    {
-        title: 'bis-smart-compliance',
-        description: 'Smart compliance system built with Python for automated monitoring, reporting, and audit logging.',
-        category: 'python',
-        tech: ['Python', 'Automation', 'Logging'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3ECompliance%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/bis-smart-compliance'
-    },
-    {
-        title: 'Railway Reservation System',
-        description: 'Console-based railway ticket reservation system with seat management and PNR tracking.',
-        category: 'cpp',
-        tech: ['C++', 'OOP', 'Data Structures'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3ERailway%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/railway-reservation-cpp'
-    },
-    {
-        title: 'Advanced Portfolio Website',
-        description: 'Futuristic portfolio with 3D elements, AI chatbot, and private cloud storage.',
-        category: 'web',
-        tech: ['HTML5/CSS3', 'JavaScript', 'Three.js'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EPortfolio%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/sanjai_portfolio',
-        live: 'https://sanjai-gopal.github.io/sanjai_portfolio/'
-    },
-    {
-        title: 'Machine Learning Basics',
-        description: 'Collection of ML algorithms implemented from scratch.',
-        category: 'ai',
-        tech: ['Python', 'NumPy', 'Scikit-learn'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EML%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/ml-basics'
-    },
-    {
-        title: 'Smart Attendance System',
-        description: 'Face recognition based attendance system using OpenCV.',
-        category: 'ai',
-        tech: ['Python', 'OpenCV', 'Face Recognition'],
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EAttendance%3C/text%3E%3C/svg%3E',
-        github: 'https://github.com/Sanjai-Gopal/smart-attendance'
-    }
-];
-
-let certificatesData = [
-    { title: 'AWS Certified Cloud Practitioner', issuer: 'AWS', date: 'Oct 2025' },
-    { title: 'Python for Everybody', issuer: 'Univ. of Michigan', date: 'Feb 2026' },
-    { title: 'Git & GitHub', issuer: 'IBM', date: 'Feb 2026' },
-    { title: 'Building with AI', issuer: 'Saylor Academy', date: 'Feb 2026' },
-    { title: 'Viksit Bharat Young Leaders', issuer: 'Min. of Youth Affairs', date: 'Sep 2025' },
-    { title: 'Canva Design Fundamentals', issuer: 'Coursera', date: 'Feb 2026' }
-];
-
-let blogData = [
-    {
-        title: 'Getting Started with Python',
-        excerpt: 'Learn the fundamentals of Python programming for AI and ML.',
-        date: 'Mar 1, 2026',
-        category: 'programming',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EPython%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'Git & GitHub Essentials',
-        excerpt: 'A comprehensive guide to version control for beginners.',
-        date: 'Feb 15, 2026',
-        category: 'devops',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EGit%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'My First Steps into AI',
-        excerpt: 'Sharing my journey as a first-year AI student.',
-        date: 'Feb 1, 2026',
-        category: 'ai',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EAI%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'Understanding Neural Networks',
-        excerpt: 'Demystifying neural networks with visual explanations.',
-        date: 'Jan 20, 2026',
-        category: 'ai',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3ENeural%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'Building Your First C++ Project',
-        excerpt: 'Step-by-step guide to creating a C++ application.',
-        date: 'Jan 5, 2026',
-        category: 'programming',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EC%2B%2B%3C/text%3E%3C/svg%3E'
-    },
-    {
-        title: 'Introduction to MLOps',
-        excerpt: 'Understanding MLOps for production ML systems.',
-        date: 'Dec 10, 2025',
-        category: 'devops',
-        image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EMLOps%3C/text%3E%3C/svg%3E'
-    }
-];
-
-let skillsData = [
-    {
-        icon: 'fa-code',
-        title: 'Programming Languages',
-        skills: [
-            { name: 'Python', level: 90, tags: ['NumPy', 'Pandas', 'Matplotlib'] },
-            { name: 'C++', level: 80, tags: ['OOP', 'STL', 'Algorithms'] },
-            { name: 'JavaScript', level: 75, tags: ['ES6', 'React', 'Node.js'] }
-        ]
-    },
-    {
-        icon: 'fa-brain',
-        title: 'AI & Machine Learning',
-        skills: [
-            { name: 'Machine Learning', level: 85, tags: ['Scikit-learn', 'Regression'] },
-            { name: 'Deep Learning', level: 75, tags: ['TensorFlow', 'Neural Networks'] },
-            { name: 'MLOps', level: 60, tags: ['Docker', 'MLflow'] }
-        ]
-    },
-    {
-        icon: 'fa-tools',
-        title: 'Tools & Technologies',
-        skills: [
-            { name: 'Git & GitHub', level: 90, tags: ['Version Control'] },
-            { name: 'VS Code', level: 85, tags: ['Extensions', 'Debugging'] },
-            { name: 'Linux', level: 75, tags: ['Bash', 'Command Line'] }
-        ]
-    }
-];
+let siteData = {
+    profile: null,
+    projects: [],
+    certificates: [],
+    blog: [],
+    skills: [],
+    theme: null
+};
 
 // ========== INITIALIZE ==========
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     console.log('Peaceful Portfolio Initialized');
+    
+    // Load all data from API
+    await loadAllData();
     
     initPreloader();
     initAOS();
@@ -156,22 +32,98 @@ document.addEventListener('DOMContentLoaded', function() {
     initBlog();
     initContactForm();
     initBackToTop();
-    loadSavedData();
+    initAdminSecret();
+    initCloudLink();
 });
 
-// ========== LOAD SAVED DATA ==========
-function loadSavedData() {
-    const savedProjects = localStorage.getItem('projectsData');
-    if (savedProjects) projectsData = JSON.parse(savedProjects);
+// ========== LOAD ALL DATA FROM API ==========
+async function loadAllData() {
+    try {
+        const response = await API.getData('all');
+        if (response.success && response.data) {
+            siteData = response.data;
+            
+            // Apply theme
+            if (siteData.theme) {
+                applyTheme(siteData.theme);
+            }
+            
+            // Update profile
+            if (siteData.profile) {
+                updateProfile(siteData.profile);
+            }
+            
+            console.log('Data loaded successfully');
+        }
+    } catch (error) {
+        console.error('Failed to load data:', error);
+    }
+}
+
+// ========== UPDATE PROFILE ==========
+function updateProfile(profile) {
+    if (profile.title) {
+        document.getElementById('aboutTitle').textContent = profile.title;
+    }
+    if (profile.bio) {
+        document.getElementById('aboutBio').textContent = profile.bio;
+    }
+    if (profile.location) {
+        document.getElementById('infoLocation').textContent = profile.location;
+        document.getElementById('contactLocation').textContent = profile.location;
+    }
+    if (profile.email) {
+        document.getElementById('contactEmail').textContent = profile.email;
+    }
+    if (profile.phone) {
+        document.getElementById('contactPhone').textContent = profile.phone;
+    }
+    if (profile.photo) {
+        document.getElementById('profileImage').src = profile.photo;
+    }
+}
+
+// ========== APPLY THEME ==========
+function applyTheme(theme) {
+    document.documentElement.style.setProperty('--primary', theme.primary || '#4caf7a');
+    document.documentElement.style.setProperty('--secondary', theme.secondary || '#3d7a4f');
+    document.documentElement.style.setProperty('--bg-primary', theme.bg || '#f5efe6');
+    document.documentElement.style.setProperty('--text-primary', theme.text || '#2c3e2f');
+}
+
+// ========== ADMIN SECRET ==========
+function initAdminSecret() {
+    const secretBtn = document.getElementById('adminSecret');
     
-    const savedCerts = localStorage.getItem('certificatesData');
-    if (savedCerts) certificatesData = JSON.parse(savedCerts);
+    // Check if user is admin (via session)
+    API.checkSession().then(response => {
+        if (response.success) {
+            secretBtn.style.display = 'block';
+        }
+    });
     
-    const savedBlog = localStorage.getItem('blogData');
-    if (savedBlog) blogData = JSON.parse(savedBlog);
+    // Double-click to open login
+    secretBtn.addEventListener('dblclick', () => {
+        document.getElementById('adminLoginModal').classList.add('active');
+    });
+}
+
+// ========== CLOUD LINK ==========
+function initCloudLink() {
+    const cloudLink = document.getElementById('cloudLink');
+    const cloudFooterLink = document.getElementById('cloudFooterLink');
     
-    const savedSkills = localStorage.getItem('skillsData');
-    if (savedSkills) skillsData = JSON.parse(savedSkills);
+    cloudLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'private-cloud/';
+    });
+    
+    if (cloudFooterLink) {
+        cloudFooterLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'private-cloud/';
+        });
+    }
 }
 
 // ========== PRELOADER ==========
@@ -303,7 +255,7 @@ function initStats() {
 // ========== RENDER SKILLS ==========
 function initSkills() {
     const grid = document.getElementById('skillsGrid');
-    if (!grid) return;
+    if (!grid || !siteData.skills) return;
     
     renderSkills();
 }
@@ -311,7 +263,7 @@ function initSkills() {
 function renderSkills() {
     const grid = document.getElementById('skillsGrid');
     
-    grid.innerHTML = skillsData.map(category => `
+    grid.innerHTML = siteData.skills.map(category => `
         <div class="skill-card" data-aos="fade-up">
             <div class="skill-header">
                 <i class="fas ${category.icon}"></i>
@@ -340,7 +292,7 @@ function renderSkills() {
 // ========== RENDER PROJECTS ==========
 function initProjects() {
     const grid = document.getElementById('projectsGrid');
-    if (!grid) return;
+    if (!grid || !siteData.projects) return;
     
     renderProjects('all');
     
@@ -355,12 +307,12 @@ function initProjects() {
 
 function renderProjects(filter) {
     const grid = document.getElementById('projectsGrid');
-    const filtered = filter === 'all' ? projectsData : projectsData.filter(p => p.category === filter);
+    const filtered = filter === 'all' ? siteData.projects : siteData.projects.filter(p => p.category === filter);
     
     grid.innerHTML = filtered.slice(0, 6).map(project => `
         <div class="project-card" data-aos="fade-up">
             <div class="project-image">
-                <img src="${project.image}" alt="${project.title}">
+                <img src="${project.image || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + project.title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'}" alt="${project.title}">
                 <span class="project-category">${project.category.toUpperCase()}</span>
             </div>
             <div class="project-content">
@@ -381,7 +333,7 @@ function renderProjects(filter) {
 // ========== RENDER CERTIFICATES ==========
 function initCertificates() {
     const grid = document.getElementById('certificatesGrid');
-    if (!grid) return;
+    if (!grid || !siteData.certificates) return;
     
     renderCertificates();
 }
@@ -389,7 +341,7 @@ function initCertificates() {
 function renderCertificates() {
     const grid = document.getElementById('certificatesGrid');
     
-    grid.innerHTML = certificatesData.slice(0, 6).map(cert => `
+    grid.innerHTML = siteData.certificates.slice(0, 6).map(cert => `
         <div class="certificate-card" data-aos="fade-up">
             <div class="certificate-icon"><i class="fas fa-leaf"></i></div>
             <h3 class="certificate-title">${cert.title}</h3>
@@ -402,7 +354,7 @@ function renderCertificates() {
 // ========== RENDER BLOG ==========
 function initBlog() {
     const grid = document.getElementById('blogGrid');
-    if (!grid) return;
+    if (!grid || !siteData.blog) return;
     
     renderBlog('all');
     
@@ -413,16 +365,22 @@ function initBlog() {
             renderBlog(this.dataset.cat);
         });
     });
+    
+    document.getElementById('viewAllBlogs').addEventListener('click', (e) => {
+        e.preventDefault();
+        renderBlog('all', true);
+    });
 }
 
-function renderBlog(category) {
+function renderBlog(category, showAll = false) {
     const grid = document.getElementById('blogGrid');
-    const filtered = category === 'all' ? blogData : blogData.filter(post => post.category === category);
+    const filtered = category === 'all' ? siteData.blog : siteData.blog.filter(post => post.category === category);
+    const posts = showAll ? filtered : filtered.slice(0, 3);
     
-    grid.innerHTML = filtered.slice(0, 6).map(post => `
-        <div class="blog-card" data-aos="fade-up">
+    grid.innerHTML = posts.map(post => `
+        <div class="blog-card" data-aos="fade-up" data-post-id="${post.id}">
             <div class="blog-image">
-                <img src="${post.image}" alt="${post.title}">
+                <img src="${post.image || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + post.title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'}" alt="${post.title}">
             </div>
             <div class="blog-content">
                 <div class="blog-meta">
@@ -431,10 +389,49 @@ function renderBlog(category) {
                 </div>
                 <h3 class="blog-title">${post.title}</h3>
                 <p class="blog-excerpt">${post.excerpt}</p>
-                <a href="blog/" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                <div class="blog-tags">
+                    ${post.tags ? post.tags.map(tag => `<span class="blog-tag">#${tag}</span>`).join('') : ''}
+                </div>
+                <button class="blog-link read-more-btn" data-post-id="${post.id}">Read More <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
     `).join('');
+    
+    // Add click handlers for read more buttons
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const postId = this.dataset.postId;
+            openBlogPost(postId);
+        });
+    });
+}
+
+// ========== OPEN BLOG POST ==========
+function openBlogPost(postId) {
+    const post = siteData.blog.find(p => p.id === postId);
+    if (!post) return;
+    
+    const modal = document.getElementById('blogModal');
+    const modalTitle = document.getElementById('blogModalTitle');
+    const modalBody = document.getElementById('blogModalBody');
+    
+    modalTitle.textContent = post.title;
+    modalBody.innerHTML = `
+        <div class="blog-post-full">
+            <img src="${post.image || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + post.title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'}" alt="${post.title}" class="blog-post-image">
+            <div class="blog-post-meta">
+                <span><i class="far fa-calendar"></i> ${post.date}</span>
+                <span><i class="far fa-folder"></i> ${post.category}</span>
+                ${post.tags ? `<span><i class="fas fa-tags"></i> ${post.tags.join(', ')}</span>` : ''}
+            </div>
+            <div class="blog-post-content">
+                ${post.content || post.excerpt}
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
 // ========== CONTACT FORM ==========
@@ -445,7 +442,7 @@ function initContactForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        alert('Thank you for your message! I will get back to you soon.');
+        showToast('Thank you for your message! I will get back to you soon.', 'success');
         form.reset();
     });
 }
@@ -469,3 +466,34 @@ function initBackToTop() {
         });
     });
 }
+
+// ========== TOAST NOTIFICATION ==========
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toastNotification');
+    const icon = toast.querySelector('.toast-icon i');
+    const messageEl = toast.querySelector('.toast-message');
+    
+    icon.className = type === 'success' ? 'fas fa-check-circle' : 
+                     type === 'error' ? 'fas fa-exclamation-circle' : 
+                     'fas fa-info-circle';
+    messageEl.textContent = message;
+    
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// ========== BLOG MODAL CLOSE ==========
+document.getElementById('blogModalClose').addEventListener('click', () => {
+    document.getElementById('blogModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === document.getElementById('blogModal')) {
+        document.getElementById('blogModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
