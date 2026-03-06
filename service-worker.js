@@ -1,9 +1,9 @@
 // ========================================
-// FIXED SERVICE WORKER - NO RESPONSE CLONING ERRORS
+// FIXED SERVICE WORKER - NO CLONING ERRORS
 // ========================================
 
-const CACHE_NAME = 'sanjai-portfolio-v1';
-const urlsToCache = [
+const CACHE_NAME = 'sanjai-portfolio-v2';
+const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
     '/css/style.css',
@@ -15,22 +15,29 @@ const urlsToCache = [
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
-// Install event - cache core assets
+// Install event - cache static assets
 self.addEventListener('install', event => {
     console.log('Service Worker installing...');
+    
+    // Skip waiting to activate immediately
+    self.skipWaiting();
+    
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('Cache opened');
-                return cache.addAll(urlsToCache);
+                console.log('Caching app shell...');
+                return cache.addAll(ASSETS_TO_CACHE);
             })
-            .then(() => self.skipWaiting())
+            .catch(error => {
+                console.error('Cache install failed:', error);
+            })
     );
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
     console.log('Service Worker activating...');
+    
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(
@@ -41,50 +48,54 @@ self.addEventListener('activate', event => {
                     }
                 })
             );
-        }).then(() => self.clients.claim())
+        }).then(() => {
+            console.log('Service Worker activated');
+            return self.clients.claim();
+        })
     );
 });
 
-// Fetch event - FIXED: No response.clone() issues
+// Fetch event - network first, cache fallback
 self.addEventListener('fetch', event => {
     // Skip cross-origin requests like placeholder images
     if (event.request.url.includes('via.placeholder.com') || 
-        event.request.url.includes('unsplash.com')) {
+        event.request.url.includes('unsplash.com') ||
+        event.request.url.includes('placeholder')) {
         // Don't cache external images, just fetch normally
-        event.respondWith(fetch(event.request));
         return;
     }
     
-    // For same-origin requests, use cache-first strategy
+    // For same-origin requests, use network-first strategy
     if (event.request.url.startsWith(self.location.origin)) {
         event.respondWith(
-            caches.match(event.request).then(cachedResponse => {
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-                return fetch(event.request).then(response => {
+            fetch(event.request)
+                .then(response => {
                     // Don't cache if not valid
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
+                    if (!response || response.status !== 200) {
                         return response;
                     }
                     
-                    // IMPORTANT: Clone response only once and store
+                    // Clone response for caching
                     const responseToCache = response.clone();
+                    
                     caches.open(CACHE_NAME).then(cache => {
                         cache.put(event.request, responseToCache);
                     });
                     
                     return response;
-                });
-            })
+                })
+                .catch(() => {
+                    // If network fails, try cache
+                    return caches.match(event.request);
+                })
         );
     } else {
-        // For external requests, just fetch normally
+        // For external requests, network only
         event.respondWith(fetch(event.request));
     }
 });
 
-// Handle offline fallback
+// Handle offline fallback for navigation requests
 self.addEventListener('fetch', event => {
     if (event.request.mode === 'navigate') {
         event.respondWith(
@@ -93,4 +104,42 @@ self.addEventListener('fetch', event => {
             })
         );
     }
+});
+
+// Background sync for offline actions
+self.addEventListener('sync', event => {
+    if (event.tag === 'sync-data') {
+        event.waitUntil(syncData());
+    }
+});
+
+async function syncData() {
+    console.log('Syncing data in background...');
+    // Implement data sync logic here
+}
+
+// Push notifications
+self.addEventListener('push', event => {
+    const options = {
+        body: event.data.text(),
+        icon: '/assets/icons/icon-192.png',
+        badge: '/assets/icons/badge.png',
+        vibrate: [200, 100, 200],
+        data: {
+            url: '/'
+        }
+    };
+    
+    event.waitUntil(
+        self.registration.showNotification('Sanjai Portfolio', options)
+    );
+});
+
+// Notification click
+self.addEventListener('notificationclick', event => {
+    event.notification.close();
+    
+    event.waitUntil(
+        clients.openWindow(event.notification.data.url)
+    );
 });
