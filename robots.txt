@@ -1,6 +1,7 @@
+# robots.txt for Sanjai Gopal Portfolio
 User-agent: *
 Allow: /
 Disallow: /private-cloud/
-Disallow: /api/
+Disallow: /admin/
 
 Sitemap: https://sanjai-gopal.github.io/sanjai_portfolio/sitemap.xml
