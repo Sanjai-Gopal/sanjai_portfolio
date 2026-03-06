@@ -1,0 +1,25 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Handle Authorization Header
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Redirect all requests to index.php if file not found
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Protect sensitive files
+<FilesMatch "^(config\.php|.*\.json)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Security headers
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "DENY"
+Header set X-XSS-Protection "1; mode=block"
