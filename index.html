@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN SECRET BUTTON (ONLY VISIBLE TO YOU) ========== -->
+    <!-- ========== ADMIN SECRET BUTTON (HIDDEN BY DEFAULT, ONLY APPEARS AFTER LOGIN) ========== -->
     <div class="admin-secret" id="adminSecret" style="display: none;" title="Admin Panel (Double-click)"></div>
 
     <!-- ========== ADMIN LOGIN MODAL ========== -->
@@ -89,7 +89,7 @@
         </div>
     </div>
 
-    <!-- ========== ADMIN DASHBOARD MODAL ========== -->
+    <!-- ========== ADMIN DASHBOARD MODAL (ONLY ACCESSIBLE AFTER LOGIN) ========== -->
     <div class="admin-modal" id="adminDashboardModal">
         <div class="admin-content admin-dashboard-content">
             <div class="admin-header">
@@ -516,7 +516,7 @@
             <div class="blog-grid" id="blogGrid"></div>
             
             <div class="view-all">
-                <a href="#" class="btn btn-outline" id="viewAllBlogs">Read All Posts <i class="fas fa-arrow-right"></i></a>
+                <button class="btn btn-outline" id="viewAllBlogs">Read All Posts <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
     </section>
@@ -628,8 +628,6 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="js/api.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/admin.js"></script>
 </body>
 </html>
