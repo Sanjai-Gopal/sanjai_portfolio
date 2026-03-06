@@ -14,9 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Database configuration (using JSON files for simplicity)
-define('DATA_DIR', __DIR__ . '/../data/');
-define('UPLOAD_DIR', __DIR__ . '/../uploads/');
+// Define paths - FIXED for GitHub Pages compatibility
+define('BASE_PATH', dirname(__DIR__) . '/');
+define('DATA_DIR', BASE_PATH . 'data/');
+define('UPLOAD_DIR', BASE_PATH . 'uploads/');
 define('PASSWORD_FILE', DATA_DIR . 'password.txt');
 define('PROFILE_FILE', DATA_DIR . 'profile.json');
 define('PROJECTS_FILE', DATA_DIR . 'projects.json');
@@ -24,6 +25,8 @@ define('CERTIFICATES_FILE', DATA_DIR . 'certificates.json');
 define('BLOG_FILE', DATA_DIR . 'blog.json');
 define('SKILLS_FILE', DATA_DIR . 'skills.json');
 define('THEME_FILE', DATA_DIR . 'theme.json');
+define('CONTACTS_FILE', DATA_DIR . 'contacts.json');
+define('SUBSCRIBERS_FILE', DATA_DIR . 'subscribers.json');
 
 // Create data directory if it doesn't exist
 if (!file_exists(DATA_DIR)) {
@@ -43,8 +46,8 @@ if (!file_exists($htaccess)) {
 
 // Create default password if not exists
 if (!file_exists(PASSWORD_FILE)) {
-    // Default password: admin123 (hashed)
-    file_put_contents(PASSWORD_FILE, password_hash('admin123', PASSWORD_DEFAULT));
+    // Default password: Sanjai@2008 (hashed)
+    file_put_contents(PASSWORD_FILE, password_hash('Sanjai@2008', PASSWORD_DEFAULT));
 }
 
 // Helper function to read JSON file
@@ -58,7 +61,7 @@ function readJSON($file, $default = []) {
 
 // Helper function to write JSON file
 function writeJSON($file, $data) {
-    return file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
+    return file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 }
 
 // Helper function to send JSON response
@@ -67,13 +70,17 @@ function sendResponse($success, $message, $data = null, $statusCode = 200) {
     echo json_encode([
         'success' => $success,
         'message' => $message,
-        'data' => $data
+        'data' => $data,
+        'timestamp' => time()
     ]);
     exit();
 }
 
 // Helper function to verify password
 function verifyPassword($password) {
+    if (!file_exists(PASSWORD_FILE)) {
+        return false;
+    }
     $hash = file_get_contents(PASSWORD_FILE);
     return password_verify($password, $hash);
 }
@@ -94,7 +101,9 @@ function handleFileUpload($file, $type = 'image') {
     }
     
     $allowedTypes = [
-        'image/jpeg', 'image/png', 'image/gif', 'image/webp'
+        'image/jpeg', 'image/png', 'image/gif', 'image/webp',
+        'application/pdf', 'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     ];
     
     if (!in_array($file['type'], $allowedTypes)) {
@@ -110,5 +119,38 @@ function handleFileUpload($file, $type = 'image') {
     }
     
     return null;
+}
+
+// Helper function to log API calls (for debugging)
+function logAPI($action, $data = []) {
+    $logFile = DATA_DIR . 'api_log.txt';
+    $logEntry = date('Y-m-d H:i:s') . " | $action | " . json_encode($data) . "\n";
+    file_put_contents($logFile, $logEntry, FILE_APPEND);
+}
+
+// Check if running on localhost
+function isLocalhost() {
+    $whitelist = ['127.0.0.1', '::1'];
+    return in_array($_SERVER['REMOTE_ADDR'], $whitelist);
+}
+
+// Get client IP
+function getClientIP() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if (isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if (isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if (isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
 }
 ?>
