@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjai Gopal - AI Engineer | Ultra-Advanced Portfolio</title>
+    <title>Sanjai Gopal - AI Engineer | Ultra-Advanced Nature-Inspired Portfolio</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Sanjai Gopal - Aspiring AI Engineer from Coimbatore. 50+ features, 30+ certifications, 6 innovative projects blending technology with nature-inspired design.">
-    <meta name="keywords" content="Sanjai Gopal, AI Engineer, Nature Portfolio, Sustainable Tech, Green AI, Coimbatore, MLOps, Deep Learning">
+    <meta name="keywords" content="Sanjai Gopal, AI Engineer, Nature Portfolio, Sustainable Tech, Green AI, Coimbatore, MLOps, Deep Learning, Machine Learning">
     <meta name="author" content="Sanjai Gopal">
     <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
     
-    <!-- Open Graph / Social Media -->
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Sanjai Gopal - AI Engineer | Nature-Inspired Portfolio">
-    <meta property="og:description" content="Where technology meets nature. 30+ certifications, 6 innovative projects.">
-    <meta property="og:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
-    <meta property="og:url" content="https://sanjai-gopal.github.io/sanjai_portfolio/">
+    <meta property="og:description" content="Where technology meets nature. 30+ certifications, 6 innovative projects, 50+ advanced features.">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sanjai-gopal.github.io/sanjai_portfolio/">
+    <meta property="og:site_name" content="Sanjai Gopal Portfolio">
     
-    <!-- Twitter Cards -->
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sanjai Gopal - AI Engineer">
-    <meta name="twitter:description" content="Nature-Inspired AI Portfolio">
-    <meta name="twitter:image" content="https://sanjai-gopal.github.io/sanjai_portfolio/assets/images/profile/sanjai-main.jpg">
+    <meta name="twitter:description" content="Nature-Inspired AI Portfolio with 50+ advanced features">
+    
+    <!-- Favicon - FIXED: Data URI for reliability -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%238b5cf6'%3E🌿%3C/text%3E%3C/svg%3E">
+    <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%238b5cf6'%3E🌿%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='%238b5cf6'%3E🌿%3C/text%3E%3C/svg%3E">
+    
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#8b5cf6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
@@ -47,55 +60,86 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Countable/3.0.0/Countable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
     <style>
-        /* Emergency fallbacks */
-        .blog-image img {
+        /* Emergency fallbacks - ensure images always display */
+        .blog-image img, .project-image img, .certificate-card img, .gallery-item img {
             background: linear-gradient(135deg, #8b5cf6, #3b82f6);
             min-height: 200px;
+            position: relative;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        img[src=""], img:not([src]) {
+            opacity: 0.7;
+            position: relative;
+        }
+        
+        img[src=""]::after, img:not([src])::after {
+            content: "📷 Image";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: white;
             font-size: 1rem;
+            background: rgba(0,0,0,0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
     </style>
 </head>
 <body class="dark-theme">
-    <!-- Preloader with Percentage -->
+    <!-- ==================== PRELOADER WITH PERCENTAGE ==================== -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
             <div class="preloader-logo">
                 <span class="logo-text">S</span>
                 <span class="logo-leaf">🌿</span>
             </div>
-            <div class="preloader-progress">
-                <div class="progress-bar" id="preloaderProgress"></div>
+            <div class="preloader-progress-container">
+                <div class="preloader-progress" id="preloaderProgress"></div>
             </div>
             <div class="preloader-percentage" id="preloaderPercentage">0%</div>
             <div class="preloader-text">Loading Nature's Intelligence...</div>
+            <div class="preloader-subtext">Initializing 50+ advanced features...</div>
         </div>
     </div>
 
-    <!-- 3D Background Canvas -->
+    <!-- ==================== 3D BACKGROUND CANVAS ==================== -->
     <div class="canvas-container" id="canvasContainer"></div>
 
-    <!-- Particle Network Background -->
+    <!-- ==================== PARTICLE NETWORK BACKGROUND ==================== -->
     <div class="particle-container" id="particleContainer"></div>
 
-    <!-- Floating Nature Elements (Dynamic) -->
-    <div class="floating-elements" id="floatingElements"></div>
+    <!-- ==================== FLOATING NATURE ELEMENTS ==================== -->
+    <div class="floating-elements" id="floatingElements">
+        <div class="floating-leaf leaf-1">🌿</div>
+        <div class="floating-leaf leaf-2">🍃</div>
+        <div class="floating-leaf leaf-3">🌱</div>
+        <div class="floating-leaf leaf-4">🌳</div>
+        <div class="floating-leaf leaf-5">🌲</div>
+        <div class="floating-leaf leaf-6">🍂</div>
+        <div class="floating-leaf leaf-7">🌾</div>
+        <div class="floating-leaf leaf-8">🌸</div>
+    </div>
 
-    <!-- Custom Cursor -->
+    <!-- ==================== CUSTOM CURSOR ==================== -->
     <div class="custom-cursor" id="customCursor">
         <div class="cursor-dot"></div>
         <div class="cursor-outline"></div>
     </div>
 
-    <!-- Admin Secret Trigger -->
+    <!-- ==================== ADMIN SECRET TRIGGER ==================== -->
     <div class="admin-secret" id="adminSecret" title="Admin Panel (Double-click)"></div>
 
-    <!-- Navigation -->
+    <!-- ==================== MAIN NAVIGATION ==================== -->
     <nav class="navbar glass-effect" id="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -119,13 +163,13 @@
                     <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
                     <li class="nav-item"><a href="#certificates" class="nav-link">Certificates</a></li>
                     <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                     <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
                     <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
                     <li class="nav-item"><a href="#stats" class="nav-link">Stats</a></li>
                     <li class="nav-item"><a href="#timeline" class="nav-link">Timeline</a></li>
                     <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                     <li class="nav-item"><a href="#podcast" class="nav-link">Podcast</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                     <li class="nav-item private-item">
                         <a href="#" class="nav-link private-link" id="privateLink">
                             <i class="fas fa-lock"></i> Admin
@@ -163,7 +207,7 @@
             </div>
         </div>
         
-        <!-- Search Bar -->
+        <!-- ==================== SEARCH BAR ==================== -->
         <div class="search-bar" id="searchBar">
             <div class="search-container">
                 <i class="fas fa-search search-icon"></i>
@@ -181,7 +225,7 @@
             </div>
         </div>
         
-        <!-- Notifications Panel -->
+        <!-- ==================== NOTIFICATIONS PANEL ==================== -->
         <div class="notifications-panel" id="notificationsPanel">
             <div class="notifications-header">
                 <h4>Notifications</h4>
@@ -191,7 +235,7 @@
                 <div class="notification-item unread">
                     <i class="fas fa-certificate"></i>
                     <div class="notification-content">
-                        <p>New certificate added: AWS Certified</p>
+                        <p>New certificate added: AWS Certified Cloud Practitioner</p>
                         <span>2 min ago</span>
                     </div>
                 </div>
@@ -205,22 +249,32 @@
                 <div class="notification-item unread">
                     <i class="fas fa-star"></i>
                     <div class="notification-content">
-                        <p>Project RuralCare AI got 50+ stars</p>
+                        <p>Project RuralCare AI reached 50+ GitHub stars</p>
                         <span>3 hours ago</span>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <i class="fas fa-download"></i>
+                    <div class="notification-content">
+                        <p>Your resume was downloaded 5 times today</p>
+                        <span>1 day ago</span>
                     </div>
                 </div>
                 <div class="notification-item">
                     <i class="fas fa-user"></i>
                     <div class="notification-content">
-                        <p>Someone downloaded your resume</p>
-                        <span>1 day ago</span>
+                        <p>New profile view from San Francisco</p>
+                        <span>2 days ago</span>
                     </div>
                 </div>
+            </div>
+            <div class="notifications-footer">
+                <button class="view-all">View all notifications</button>
             </div>
         </div>
     </nav>
 
-    <!-- Private Admin Modal -->
+    <!-- ==================== PRIVATE ADMIN MODAL ==================== -->
     <div class="private-modal" id="privateModal">
         <div class="private-modal-content">
             <div class="private-modal-header">
@@ -276,7 +330,7 @@
                             <div class="stat-icon"><i class="fas fa-certificate"></i></div>
                             <div class="stat-info">
                                 <span class="stat-label">Certificates</span>
-                                <span class="stat-value" id="statCerts">34</span>
+                                <span class="stat-value" id="statCerts">36</span>
                                 <span class="stat-trend positive">+5 this month</span>
                             </div>
                         </div>
@@ -331,7 +385,7 @@
                         <button class="dashboard-tab" data-tab="cloud"><i class="fas fa-cloud"></i> Cloud</button>
                         <button class="dashboard-tab" data-tab="seo"><i class="fas fa-chart-line"></i> SEO</button>
                         <button class="dashboard-tab" data-tab="backup"><i class="fas fa-database"></i> Backup</button>
-                        <button class="dashboard-tab" data-tab="analytics"><i class="fas fa-analytics"></i> Analytics</button>
+                        <button class="dashboard-tab" data-tab="analytics"><i class="fas fa-chart-pie"></i> Analytics</button>
                         <button class="dashboard-tab" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
                     </div>
                     
@@ -346,7 +400,8 @@
                             <div class="profile-edit-container">
                                 <div class="profile-image-upload">
                                     <div class="current-image" id="profilePreviewContainer">
-                                        <img src="https://via.placeholder.com/200x200/1e293b/8b5cf6?text=Sanjai" alt="Profile" id="adminProfilePreview">
+                                        <!-- FIXED: Using data URI instead of placeholder.com -->
+                                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%231e293b'/%3E%3Ctext x='100' y='100' font-family='Arial' font-size='30' fill='%238b5cf6' text-anchor='middle' dy='.3em'%3ESanjai%3C/text%3E%3C/svg%3E" alt="Profile" id="adminProfilePreview">
                                         <div class="image-overlay">
                                             <i class="fas fa-camera"></i>
                                             <span>Change Photo</span>
@@ -354,10 +409,10 @@
                                     </div>
                                     <input type="file" id="profileImageUpload" accept="image/*" hidden>
                                     <div class="image-upload-options">
-                                        <button class="btn btn-outline" id="changeProfileBtn">
+                                        <button class="btn btn-outline btn-sm" id="changeProfileBtn">
                                             <i class="fas fa-upload"></i> Upload New
                                         </button>
-                                        <button class="btn btn-outline" id="removeProfileBtn">
+                                        <button class="btn btn-outline btn-sm" id="removeProfileBtn">
                                             <i class="fas fa-trash"></i> Remove
                                         </button>
                                     </div>
@@ -382,14 +437,14 @@
                                             <input type="text" id="adminTitle" value="AI Engineer & Nature Enthusiast">
                                         </div>
                                         <div class="form-group">
-                                            <label>Company/University</label>
+                                            <label>University</label>
                                             <input type="text" id="adminCompany" value="SKCET">
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
                                         <label>Bio</label>
-                                        <textarea id="adminBio" rows="4">I'm Sanjai, a first-year AI student at SKCET, Coimbatore, where I believe that the best technology mimics nature's elegance. My journey combines cutting-edge AI with sustainable, nature-inspired solutions.</textarea>
+                                        <textarea id="adminBio" rows="4">I'm Sanjai, a first-year AI student at SKCET, Coimbatore, where I believe that the best technology mimics nature's elegance. My journey combines cutting-edge AI with sustainable, nature-inspired solutions. I'm passionate about Green AI, MLOps, and building technology that helps both people and the planet.</textarea>
                                         <div class="char-counter"><span id="bioCount">0</span>/500</div>
                                     </div>
                                     
@@ -401,7 +456,7 @@
                                         <div class="form-group">
                                             <label>Timezone</label>
                                             <select id="adminTimezone">
-                                                <option value="IST">IST (UTC+5:30)</option>
+                                                <option value="IST" selected>IST (UTC+5:30)</option>
                                                 <option value="EST">EST (UTC-5:00)</option>
                                                 <option value="PST">PST (UTC-8:00)</option>
                                                 <option value="GMT">GMT (UTC+0:00)</option>
@@ -476,7 +531,7 @@
                             </div>
                             
                             <div class="projects-list" id="adminProjectsList">
-                                <!-- Dynamic project list will be populated -->
+                                <!-- Dynamic project list will be populated by JS -->
                             </div>
                         </div>
                         
@@ -496,7 +551,7 @@
                             </div>
                             
                             <div class="certificates-list" id="adminCertificatesList">
-                                <!-- Dynamic certificate list will be populated -->
+                                <!-- Dynamic certificate list will be populated by JS -->
                             </div>
                         </div>
                         
@@ -532,21 +587,13 @@
                                     <span class="stat-label">Drafts</span>
                                 </div>
                                 <div class="blog-stat">
-                                    <span class="stat-value" id="scheduledPosts">1</span>
-                                    <span class="stat-label">Scheduled</span>
-                                </div>
-                                <div class="blog-stat">
                                     <span class="stat-value" id="totalViews">2,345</span>
                                     <span class="stat-label">Views</span>
-                                </div>
-                                <div class="blog-stat">
-                                    <span class="stat-value" id="totalLikes">456</span>
-                                    <span class="stat-label">Likes</span>
                                 </div>
                             </div>
                             
                             <div class="blog-list" id="adminBlogList">
-                                <!-- Dynamic blog list will be populated -->
+                                <!-- Dynamic blog list will be populated by JS -->
                             </div>
                         </div>
                         
@@ -582,17 +629,10 @@
                                         <span class="cloud-stat-value" id="totalFolders">6</span>
                                     </div>
                                 </div>
-                                <div class="cloud-stat-card">
-                                    <i class="fas fa-image"></i>
-                                    <div class="cloud-stat-info">
-                                        <span class="cloud-stat-label">Images</span>
-                                        <span class="cloud-stat-value" id="totalImages">12</span>
-                                    </div>
-                                </div>
                             </div>
                             
                             <div class="cloud-files-list" id="cloudFilesList">
-                                <!-- Dynamic cloud files will be populated -->
+                                <!-- Dynamic cloud files will be populated by JS -->
                             </div>
                         </div>
                         
@@ -621,20 +661,14 @@
                                 <div class="form-group">
                                     <label>Meta Title</label>
                                     <input type="text" value="Sanjai Gopal - AI Engineer | Nature-Inspired Portfolio">
-                                    <small>50-60 characters recommended</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Meta Description</label>
                                     <textarea rows="3">Sanjai Gopal - Aspiring AI Engineer from Coimbatore. 30+ certifications, 6 innovative projects blending technology with nature-inspired design.</textarea>
-                                    <small>150-160 characters recommended</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Keywords</label>
                                     <input type="text" value="AI Engineer, Nature Portfolio, Sustainable Tech, Green AI, Coimbatore">
-                                </div>
-                                <div class="form-group">
-                                    <label>Canonical URL</label>
-                                    <input type="url" value="https://sanjai-gopal.github.io/sanjai_portfolio/">
                                 </div>
                                 <button class="btn btn-primary">Generate Sitemap</button>
                             </div>
@@ -666,75 +700,19 @@
                                         <label>Secondary Color</label>
                                         <input type="color" id="secondaryColor" value="#3b82f6">
                                     </div>
-                                    <div class="setting-item">
-                                        <label>Accent Color</label>
-                                        <input type="color" id="accentColor" value="#10b981">
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>Background Gradient</label>
-                                        <select>
-                                            <option>Default</option>
-                                            <option>Ocean Breeze</option>
-                                            <option>Sunset</option>
-                                            <option>Forest</option>
-                                            <option>Midnight</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <div class="settings-section">
-                                    <h6>Animations</h6>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Enable Animations</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> 3D Effects</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Particle Background</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Custom Cursor</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>Animation Speed</label>
-                                        <input type="range" min="0.5" max="2" step="0.1" value="1">
-                                    </div>
-                                </div>
-                                
-                                <div class="settings-section">
-                                    <h6>Performance</h6>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Lazy Load Images</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Minify CSS/JS</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Enable Caching</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox"> CDN for Assets</label>
-                                    </div>
                                 </div>
                                 
                                 <div class="settings-section">
                                     <h6>Security</h6>
                                     <div class="setting-item">
                                         <label>Change Admin Password</label>
-                                        <input type="password" placeholder="New password">
+                                        <input type="password" id="newPassword" placeholder="New password">
                                     </div>
                                     <div class="setting-item">
                                         <label>Confirm Password</label>
-                                        <input type="password" placeholder="Confirm password">
+                                        <input type="password" id="confirmPassword" placeholder="Confirm password">
                                     </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Two-Factor Auth</label>
-                                    </div>
-                                    <div class="setting-item">
-                                        <label><input type="checkbox" checked> Login Alerts</label>
-                                    </div>
-                                    <button class="btn btn-primary">Update Password</button>
+                                    <button class="btn btn-primary" id="changePasswordBtn">Update Password</button>
                                 </div>
                                 
                                 <div class="settings-section">
@@ -750,35 +728,9 @@
                                         </button>
                                     </div>
                                     <div class="setting-item">
-                                        <button class="btn btn-outline" id="backupDataBtn">
-                                            <i class="fas fa-database"></i> Create Backup
-                                        </button>
-                                    </div>
-                                    <div class="setting-item">
-                                        <button class="btn btn-outline" id="restoreBackupBtn">
-                                            <i class="fas fa-history"></i> Restore Backup
-                                        </button>
-                                    </div>
-                                    <div class="setting-item">
                                         <button class="btn btn-danger" id="resetDataBtn">
                                             <i class="fas fa-trash"></i> Reset All Data
                                         </button>
-                                    </div>
-                                </div>
-                                
-                                <div class="settings-section">
-                                    <h6>API Settings</h6>
-                                    <div class="setting-item">
-                                        <label>GitHub API Key</label>
-                                        <input type="password" placeholder="Enter GitHub token">
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>LinkedIn API Key</label>
-                                        <input type="password" placeholder="Enter LinkedIn token">
-                                    </div>
-                                    <div class="setting-item">
-                                        <label>Google Analytics ID</label>
-                                        <input type="text" placeholder="UA-XXXXXXXXX-X">
                                     </div>
                                 </div>
                             </div>
@@ -789,7 +741,7 @@
         </div>
     </div>
 
-    <!-- Cloud Storage Modal -->
+    <!-- ==================== CLOUD STORAGE MODAL ==================== -->
     <div class="cloud-modal" id="cloudModal">
         <div class="cloud-modal-content">
             <div class="cloud-modal-header">
@@ -813,7 +765,6 @@
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
-                    <div class="password-strength" id="cloudPasswordStrength"></div>
                     <div class="password-error" id="cloudPasswordError"></div>
                     <button class="btn btn-primary" id="submitCloudPassword">
                         <i class="fas fa-cloud"></i> Access Cloud
@@ -845,11 +796,6 @@
                                 <div class="storage-bar-fill" id="storageBarFill" style="width: 24%"></div>
                             </div>
                         </div>
-                        <div class="storage-details">
-                            <span>Documents: 1.2 GB</span>
-                            <span>Images: 0.8 GB</span>
-                            <span>Other: 0.4 GB</span>
-                        </div>
                     </div>
                     
                     <div class="cloud-toolbar">
@@ -863,15 +809,8 @@
                             <button class="cloud-toolbar-btn" id="cloudRefreshBtn">
                                 <i class="fas fa-sync-alt"></i> Refresh
                             </button>
-                            <button class="cloud-toolbar-btn" id="cloudShareBtn">
-                                <i class="fas fa-share-alt"></i> Share
-                            </button>
                         </div>
                         <div class="toolbar-right">
-                            <div class="cloud-view-options">
-                                <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
-                                <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
-                            </div>
                             <div class="cloud-search">
                                 <i class="fas fa-search"></i>
                                 <input type="text" placeholder="Search files..." id="cloudSearchInput">
@@ -883,16 +822,13 @@
                         <span class="breadcrumb-item active" data-path="root">My Cloud</span>
                     </div>
                     
-                    <div class="cloud-files-container">
-                        <div class="cloud-files-grid" id="cloudFilesGrid"></div>
-                        <div class="cloud-files-list" id="cloudFilesList" style="display: none;"></div>
-                    </div>
+                    <div class="cloud-files-grid" id="cloudFilesGrid"></div>
                     
                     <div class="cloud-upload-area" id="cloudUploadArea" style="display: none;">
                         <div class="upload-area-content">
                             <i class="fas fa-cloud-upload-alt"></i>
                             <h3>Drag & Drop Files Here</h3>
-                            <p>or click to browse (max 100MB per file)</p>
+                            <p>or click to browse</p>
                             <input type="file" id="cloudFileInput" multiple hidden>
                             <button class="btn btn-primary" id="browseFilesBtn">Browse Files</button>
                         </div>
@@ -902,7 +838,7 @@
         </div>
     </div>
 
-    <!-- Blog Modal -->
+    <!-- ==================== BLOG MODAL ==================== -->
     <div class="blog-modal" id="blogModal">
         <div class="blog-modal-content">
             <div class="blog-modal-header">
@@ -919,7 +855,7 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- ==================== HERO SECTION ==================== -->
     <section id="home" class="hero">
         <div class="hero-particles" id="heroParticles"></div>
         
@@ -953,7 +889,7 @@
                 <div class="hero-stats">
                     <div class="stat-item">
                         <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                        <span class="stat-number" data-target="30">0</span><span class="stat-plus">+</span>
+                        <span class="stat-number" data-target="36">0</span><span class="stat-plus">+</span>
                         <span class="stat-label">Certifications</span>
                     </div>
                     <div class="stat-item">
@@ -987,9 +923,6 @@
                         <span>Let's Connect</span>
                         <i class="fas fa-paper-plane"></i>
                     </a>
-                    <button class="btn btn-outline" id="playIntroBtn">
-                        <i class="fas fa-play"></i> Watch Intro
-                    </button>
                 </div>
                 
                 <div class="hero-social">
@@ -1008,17 +941,6 @@
                     <a href="mailto:sanjai.sparkmail@gmail.com" class="social-icon email" data-tooltip="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="#" class="social-icon youtube" data-tooltip="YouTube" id="youtubeLink">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="#" class="social-icon medium" data-tooltip="Medium" id="mediumLink">
-                        <i class="fab fa-medium"></i>
-                    </a>
-                </div>
-                
-                <div class="hero-availability">
-                    <span class="availability-dot"></span>
-                    <span class="availability-text">Available for opportunities</span>
                 </div>
             </div>
         </div>
@@ -1028,20 +950,10 @@
                 <div class="scroll-wheel"></div>
             </div>
             <span class="scroll-text">Scroll</span>
-            <span class="scroll-line"></span>
-        </div>
-        
-        <div class="hero-backdrop">
-            <div class="backdrop-leaf leaf-1">🌿</div>
-            <div class="backdrop-leaf leaf-2">🍃</div>
-            <div class="backdrop-leaf leaf-3">🌱</div>
-            <div class="backdrop-leaf leaf-4">🌳</div>
-            <div class="backdrop-leaf leaf-5">🍂</div>
-            <div class="backdrop-leaf leaf-6">🌲</div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ==================== ABOUT SECTION ==================== -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header reveal">
@@ -1058,7 +970,8 @@
                 <div class="about-image-wrapper reveal-left">
                     <div class="about-image-frame">
                         <div class="image-main">
-                            <img src="https://via.placeholder.com/500x500/1e293b/8b5cf6?text=Sanjai+Gopal" alt="Sanjai Gopal" id="aboutProfileImage">
+                            <!-- FIXED: Using data URI instead of placeholder.com -->
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Crect width='500' height='500' fill='%231e293b'/%3E%3Ctext x='250' y='250' font-family='Arial' font-size='40' fill='%238b5cf6' text-anchor='middle' dy='.3em'%3ESanjai Gopal%3C/text%3E%3C/svg%3E" alt="Sanjai Gopal" id="aboutProfileImage">
                             <div class="image-glow"></div>
                         </div>
                         
@@ -1067,17 +980,12 @@
                                 <i class="fas fa-leaf"></i>
                                 <span>1st Year</span>
                             </div>
-                            <div class="badge-ring"></div>
                         </div>
                         
                         <div class="experience-badge">
                             <div class="exp-number">30+</div>
                             <div class="exp-text">Certifications</div>
                         </div>
-                        
-                        <div class="image-shape shape-1"></div>
-                        <div class="image-shape shape-2"></div>
-                        <div class="image-shape shape-3"></div>
                     </div>
                 </div>
                 
@@ -1088,8 +996,6 @@
                         <p class="about-paragraph">I'm Sanjai, a first-year AI student at SKCET, Coimbatore, where I believe that the best technology mimics nature's elegance. My journey combines cutting-edge AI with sustainable, nature-inspired solutions.</p>
                         
                         <p class="about-paragraph">With <strong>30+ certifications</strong> from Coursera, AWS, IBM, and the Government of India, I'm building a foundation that's as deep as the roots of a banyan tree. Every project I create is designed to grow, adapt, and contribute positively to our world.</p>
-                        
-                        <p class="about-paragraph">My passion lies in <strong>Green AI</strong> - making artificial intelligence more environmentally sustainable through efficient algorithms and renewable energy integration.</p>
                     </div>
                     
                     <div class="nature-quote">
@@ -1100,55 +1006,26 @@
                         </div>
                     </div>
                     
-                    <div class="about-highlights">
-                        <div class="highlight">
-                            <span class="highlight-number">30+</span>
-                            <span class="highlight-text">Certifications</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-number">6</span>
-                            <span class="highlight-text">Projects</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-number">8</span>
-                            <span class="highlight-text">Platforms</span>
-                        </div>
-                        <div class="highlight">
-                            <span class="highlight-number">89</span>
-                            <span class="highlight-text">Contributions</span>
-                        </div>
-                    </div>
-                    
                     <div class="about-grid">
                         <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <i class="fas fa-map-marker-alt"></i>
                             <h4>Location</h4>
-                            <p>Coimbatore, Tamil Nadu</p>
+                            <p>Coimbatore</p>
                         </div>
                         <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <i class="fas fa-graduation-cap"></i>
                             <h4>Education</h4>
-                            <p>SKCET - 1st Year AIDS</p>
+                            <p>SKCET - 1st Year</p>
                         </div>
                         <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-code"></i></div>
+                            <i class="fas fa-code"></i>
                             <h4>Languages</h4>
-                            <p>Python, C++, JavaScript</p>
+                            <p>Python, C++</p>
                         </div>
                         <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-heart"></i></div>
+                            <i class="fas fa-heart"></i>
                             <h4>Interests</h4>
-                            <p>Green AI, MLOps, Nature</p>
-                        </div>
-                        <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-robot"></i></div>
-                            <h4>AI Focus</h4>
-                            <p>Deep Learning, NLP</p>
-                        </div>
-                        <div class="about-card" data-tilt>
-                            <div class="card-icon"><i class="fas fa-cloud"></i></div>
-                            <h4>Cloud</h4>
-                            <p>AWS, Private Cloud</p>
+                            <p>Green AI, Nature</p>
                         </div>
                     </div>
                     
@@ -1159,16 +1036,13 @@
                         <a href="#contact" class="btn btn-outline btn-3d">
                             <i class="fas fa-paper-plane"></i> Hire Me
                         </a>
-                        <button class="btn btn-outline" id="viewCVBtn">
-                            <i class="fas fa-file-pdf"></i> View CV
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- ==================== SKILLS SECTION ==================== -->
     <section id="skills" class="skills">
         <div class="container">
             <div class="section-header reveal">
@@ -1181,22 +1055,11 @@
                 </div>
             </div>
             
-            <div class="skills-container">
-                <div class="skills-categories">
-                    <button class="category-btn active" data-category="all">All Skills</button>
-                    <button class="category-btn" data-category="languages">Languages</button>
-                    <button class="category-btn" data-category="ai">AI/ML</button>
-                    <button class="category-btn" data-category="tools">Tools</button>
-                    <button class="category-btn" data-category="frameworks">Frameworks</button>
-                    <button class="category-btn" data-category="cloud">Cloud</button>
-                </div>
-                
-                <div class="skills-grid" id="skillsGrid"></div>
-            </div>
+            <div class="skills-grid" id="skillsGrid"></div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- ==================== PROJECTS SECTION ==================== -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header reveal">
@@ -1215,22 +1078,13 @@
                 <button class="filter-btn" data-filter="cpp">C++</button>
                 <button class="filter-btn" data-filter="web">Web</button>
                 <button class="filter-btn" data-filter="ai">AI/ML</button>
-                <button class="filter-btn" data-filter="cloud">Cloud</button>
-                <button class="filter-btn" data-filter="mobile">Mobile</button>
             </div>
             
             <div class="projects-grid" id="projectsGrid"></div>
-            
-            <div class="projects-more reveal">
-                <a href="https://github.com/Sanjai-Gopal" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-3d">
-                    <i class="fab fa-github"></i> View All on GitHub
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Certificates Section -->
+    <!-- ==================== CERTIFICATES SECTION ==================== -->
     <section id="certificates" class="certificates">
         <div class="container">
             <div class="section-header reveal">
@@ -1249,30 +1103,13 @@
                 <button class="filter-btn" data-cert-filter="aws">AWS</button>
                 <button class="filter-btn" data-cert-filter="ibm">IBM</button>
                 <button class="filter-btn" data-cert-filter="govt">Government</button>
-                <button class="filter-btn" data-cert-filter="isro">ISRO</button>
-                <button class="filter-btn" data-cert-filter="other">Other</button>
             </div>
             
             <div class="certificates-grid" id="certificatesGrid"></div>
-            
-            <div class="certificates-stats">
-                <div class="cert-stat">
-                    <span class="cert-stat-value">34</span>
-                    <span class="cert-stat-label">Total Certificates</span>
-                </div>
-                <div class="cert-stat">
-                    <span class="cert-stat-value">12</span>
-                    <span class="cert-stat-label">Organizations</span>
-                </div>
-                <div class="cert-stat">
-                    <span class="cert-stat-value">2026</span>
-                    <span class="cert-stat-label">Latest Year</span>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
+    <!-- ==================== BLOG SECTION ==================== -->
     <section id="blog" class="blog">
         <div class="container">
             <div class="section-header reveal">
@@ -1290,23 +1127,13 @@
                 <button class="blog-cat-btn" data-blog-cat="ai">AI/ML</button>
                 <button class="blog-cat-btn" data-blog-cat="programming">Programming</button>
                 <button class="blog-cat-btn" data-blog-cat="devops">DevOps</button>
-                <button class="blog-cat-btn" data-blog-cat="career">Career</button>
-                <button class="blog-cat-btn" data-blog-cat="cloud">Cloud</button>
-                <button class="blog-cat-btn" data-blog-cat="tutorials">Tutorials</button>
             </div>
             
             <div class="blog-grid" id="blogGrid"></div>
-            
-            <div class="blog-more reveal">
-                <button class="btn btn-outline btn-3d" id="loadMoreBlogBtn">
-                    <span>Load More Posts</span> 
-                    <i class="fas fa-arrow-down"></i>
-                </button>
-            </div>
         </div>
     </section>
 
-    <!-- Achievements Section - NEW -->
+    <!-- ==================== ACHIEVEMENTS SECTION ==================== -->
     <section id="achievements" class="achievements">
         <div class="container">
             <div class="section-header reveal">
@@ -1319,11 +1146,11 @@
                 </div>
             </div>
             
-            <div class="achievements-timeline" id="achievementsGrid"></div>
+            <div class="achievements-grid" id="achievementsGrid"></div>
         </div>
     </section>
 
-    <!-- Testimonials Section - NEW -->
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
     <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-header reveal">
@@ -1339,13 +1166,11 @@
             <div class="testimonials-slider swiper" id="testimonialsSlider">
                 <div class="swiper-wrapper" id="testimonialsGrid"></div>
                 <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section - NEW -->
+    <!-- ==================== STATS SECTION ==================== -->
     <section id="stats" class="stats-section">
         <div class="container">
             <div class="stats-grid" id="statsGrid">
@@ -1364,16 +1189,11 @@
                     <span class="stat-number" data-target="350">0</span>
                     <span class="stat-label">Resume Downloads</span>
                 </div>
-                <div class="stat-card-large">
-                    <i class="fas fa-coffee"></i>
-                    <span class="stat-number" data-target="365">0</span>
-                    <span class="stat-label">Cups of Coffee</span>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline Section - NEW -->
+    <!-- ==================== TIMELINE SECTION ==================== -->
     <section id="timeline" class="timeline-section">
         <div class="container">
             <div class="section-header reveal">
@@ -1390,7 +1210,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section - NEW -->
+    <!-- ==================== GALLERY SECTION ==================== -->
     <section id="gallery" class="gallery">
         <div class="container">
             <div class="section-header reveal">
@@ -1407,7 +1227,7 @@
         </div>
     </section>
 
-    <!-- Podcast Section - NEW -->
+    <!-- ==================== PODCAST SECTION ==================== -->
     <section id="podcast" class="podcast">
         <div class="container">
             <div class="section-header reveal">
@@ -1426,7 +1246,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- ==================== CONTACT SECTION ==================== -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header reveal">
@@ -1442,339 +1262,78 @@
             <div class="contact-container">
                 <div class="contact-info reveal-left">
                     <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3>Visit</h3>
-                        <p>Coimbatore, Tamil Nadu<br>India - 641001</p>
-                        <a href="#" class="card-link" id="mapLink">Get Directions <i class="fas fa-arrow-right"></i></a>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>Coimbatore, India</p>
                     </div>
-                    
                     <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <i class="fas fa-envelope"></i>
                         <h3>Email</h3>
                         <p>sanjai.sparkmail@gmail.com</p>
-                        <a href="mailto:sanjai.sparkmail@gmail.com" class="card-link">Send Message <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    
                     <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h3>Call</h3>
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Phone</h3>
                         <p>+91 9363265552</p>
-                        <a href="tel:+919363265552" class="card-link">Call Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>Available</h3>
-                        <p>Mon-Fri, 9AM-6PM IST</p>
-                        <span class="status-badge online">Online</span>
-                    </div>
-                    
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-calendar"></i>
-                        </div>
-                        <h3>Schedule</h3>
-                        <p>Book a meeting</p>
-                        <a href="#" class="card-link" id="calendarLink">Calendar <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    
-                    <div class="contact-card" data-tilt>
-                        <div class="card-icon-wrapper">
-                            <i class="fas fa-file-signature"></i>
-                        </div>
-                        <h3>Resume</h3>
-                        <p>Download PDF</p>
-                        <button class="card-link" id="quickResumeBtn">Download <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
                 
-                <form class="contact-form reveal-right" id="contactForm" method="POST">
-                    <div class="form-header">
-                        <h3>Send a Message</h3>
-                        <p>I'll get back to you within 24 hours</p>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group floating">
-                            <input type="text" id="contactName" required>
-                            <label for="contactName">Your Name</label>
-                            <span class="focus-border"></span>
-                        </div>
-                        
-                        <div class="form-group floating">
-                            <input type="email" id="contactEmail" required>
-                            <label for="contactEmail">Your Email</label>
-                            <span class="focus-border"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group floating">
-                            <input type="tel" id="contactPhone">
-                            <label for="contactPhone">Phone (Optional)</label>
-                            <span class="focus-border"></span>
-                        </div>
-                        
-                        <div class="form-group floating">
-                            <input type="text" id="contactSubject" required>
-                            <label for="contactSubject">Subject</label>
-                            <span class="focus-border"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group floating">
-                        <textarea id="contactMessage" rows="5" required></textarea>
-                        <label for="contactMessage">Your Message</label>
-                        <span class="focus-border"></span>
-                    </div>
-                    
-                    <div class="form-options">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="newsletterOptin">
-                            <span class="checkmark"></span>
-                            Subscribe to newsletter
-                        </label>
-                        
-                        <div class="captcha-container">
-                            <div class="g-recaptcha" data-sitekey="your-site-key"></div>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-3d" id="submitBtn">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                    
-                    <div class="form-status" id="formStatus"></div>
+                <form class="contact-form reveal-right" id="contactForm">
+                    <h3>Send a Message</h3>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
-        <div class="footer-wave">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
-                <path d="M0,0V15.81C13,21.25,27.93,25.67,44.24,28.45c69.76,11.83,139.75,5.46,209.51-6.56,61.53-10.61,122.42-29.67,184.23-39.06C536.05,9.32,610.46,30.76,684.12,45.28c75.52,14.74,152.11,14.92,228.51,4.45C954.57,43.88,1076.48,18.55,1200,36.41V0Z" fill="url(#gradient)" opacity=".5"></path>
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#8b5cf6"/>
-                        <stop offset="100%" stop-color="#3b82f6"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-        </div>
-        
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span class="logo-big">S</span>
-                        <span class="logo-leaf">🌿</span>
-                    </div>
                     <h3>Sanjai <span class="gradient-text">Gopal</span></h3>
                     <p>Growing sustainable AI solutions, one line of code at a time.</p>
-                    
-                    <div class="footer-stats">
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerProjects">6</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerCerts">34</span>
-                            <span class="stat-label">Certs</span>
-                        </div>
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerBlogs">12</span>
-                            <span class="stat-label">Posts</span>
-                        </div>
-                        <div class="footer-stat">
-                            <span class="stat-value" id="footerCloud">24</span>
-                            <span class="stat-label">Cloud</span>
-                        </div>
-                    </div>
-                    
                     <div class="footer-social">
-                        <a href="https://linkedin.com/in/sanjai2306" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/Sanjai-Gopal" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://instagram.com/hey.sanjai_" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/919363265552" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" class="social-link" id="discordLink">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                        <a href="#" class="social-link" id="telegramLink">
-                            <i class="fab fa-telegram"></i>
-                        </a>
+                        <a href="https://linkedin.com/in/sanjai2306" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Sanjai-Gopal" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://instagram.com/hey.sanjai_" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
-                        <li><a href="#skills"><i class="fas fa-chevron-right"></i> Skills</a></li>
-                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
-                        <li><a href="#certificates"><i class="fas fa-chevron-right"></i> Certificates</a></li>
-                        <li><a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
                     </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#" class="private-footer-link" id="privateFooterLink">
-                            <i class="fas fa-lock"></i> Admin Panel
-                        </a></li>
-                        <li><a href="#" class="cloud-footer-link" id="cloudFooterLink">
-                            <i class="fas fa-cloud"></i> Private Cloud
-                        </a></li>
-                        <li><a href="#" id="resumeFooterLink">
-                            <i class="fas fa-download"></i> Download Resume
-                        </a></li>
-                        <li><a href="#" id="sitemapLink">
-                            <i class="fas fa-sitemap"></i> Sitemap
-                        </a></li>
-                        <li><a href="#" id="rssLink">
-                            <i class="fas fa-rss"></i> RSS Feed
-                        </a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-newsletter">
-                    <h4>Stay Updated</h4>
-                    <p>Get notified about new projects and blog posts</p>
-                    
-                    <form class="newsletter-form" id="newsletterForm">
-                        <div class="newsletter-input-group">
-                            <input type="email" placeholder="Your email address" required>
-                            <button type="submit">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                        <label class="checkbox-container">
-                            <input type="checkbox" required>
-                            <span class="checkmark"></span>
-                            I agree to the privacy policy
-                        </label>
-                    </form>
-                    
-                    <div class="footer-nature">
-                        <i class="fas fa-leaf"></i>
-                        <i class="fas fa-cloud"></i>
-                        <i class="fas fa-tree"></i>
-                        <i class="fas fa-seedling"></i>
-                        <i class="fas fa-water"></i>
-                        <i class="fas fa-wind"></i>
-                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <div class="copyright">
-                    <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
-                    <p class="made-with">Made with <i class="fas fa-heart" style="color: #8b5cf6;"></i> in Coimbatore</p>
-                </div>
-                
-                <div class="footer-badges">
-                    <span class="badge">🌿 Eco-friendly Code</span>
-                    <span class="badge">⚡ 100% Responsive</span>
-                    <span class="badge">🚀 PWA Enabled</span>
-                    <span class="badge">🔒 SSL Secure</span>
-                    <span class="badge">📱 Mobile First</span>
-                    <span class="badge">♿ WCAG Accessible</span>
-                </div>
-                
-                <div class="footer-languages">
-                    <button class="lang-btn active">EN</button>
-                    <button class="lang-btn">ES</button>
-                    <button class="lang-btn">FR</button>
-                    <button class="lang-btn">DE</button>
-                    <button class="lang-btn">JA</button>
-                </div>
+                <p>&copy; 2026 Sanjai Gopal. All rights reserved.</p>
             </div>
         </div>
-        
-        <!-- Back to Top Button -->
-        <button class="back-to-top" id="backToTop">
-            <i class="fas fa-arrow-up"></i>
-            <span class="tooltip">Back to Top</span>
-        </button>
     </footer>
 
-    <!-- AI Chatbot -->
+    <!-- ==================== AI CHATBOT ==================== -->
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header">
-            <div class="chatbot-logo">
-                <i class="fas fa-leaf"></i>
-                <span>AI Assistant</span>
-            </div>
-            <div class="chatbot-actions">
-                <button class="chatbot-minimize" id="chatbotMinimize">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button class="chatbot-close" id="chatbotClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
+            <i class="fas fa-leaf"></i>
+            <span>AI Assistant</span>
+            <button class="chatbot-close" id="chatbotClose">&times;</button>
         </div>
-        
         <div class="chatbot-messages" id="chatbotMessages">
-            <div class="message bot">
-                <div class="message-avatar">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <div class="message-content">
-                    Hi! I'm Sanjai's AI assistant. I can help you with:
-                    <ul>
-                        <li>Skills & Technologies</li>
-                        <li>Projects & Code</li>
-                        <li>Certifications</li>
-                        <li>Blog Posts</li>
-                        <li>Cloud Storage</li>
-                        <li>Contact Info</li>
-                    </ul>
-                    What would you like to know?
-                </div>
-            </div>
+            <div class="message bot">Hi! Ask me about Sanjai's skills, projects, or certifications!</div>
         </div>
-        
-        <div class="chatbot-input-container">
+        <div class="chatbot-input">
             <input type="text" id="chatbotInput" placeholder="Type your message...">
-            <button id="chatbotSend">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-        
-        <div class="chatbot-suggestions">
-            <button class="suggestion">What are his skills?</button>
-            <button class="suggestion">Show projects</button>
-            <button class="suggestion">Latest blog</button>
-            <button class="suggestion">Access cloud</button>
-            <button class="suggestion">Contact info</button>
-            <button class="suggestion">Certificates</button>
-        </div>
-        
-        <div class="chatbot-footer">
-            <span>Powered by Green AI</span>
-            <span class="typing-indicator" id="typingIndicator" style="display: none;">Typing...</span>
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
     
@@ -1782,7 +1341,7 @@
         <i class="fas fa-leaf"></i>
     </button>
 
-    <!-- Floating Action Button -->
+    <!-- ==================== FLOATING ACTION BUTTON ==================== -->
     <div class="fab-container">
         <button class="fab-main" id="fabMain">
             <i class="fas fa-plus"></i>
@@ -1791,52 +1350,40 @@
             <button class="fab-item" data-action="chat"><i class="fas fa-comment"></i></button>
             <button class="fab-item" data-action="cloud"><i class="fas fa-cloud"></i></button>
             <button class="fab-item" data-action="resume"><i class="fas fa-file-pdf"></i></button>
-            <button class="fab-item" data-action="share"><i class="fas fa-share-alt"></i></button>
-            <button class="fab-item" data-action="theme"><i class="fas fa-palette"></i></button>
         </div>
     </div>
 
-    <!-- Notification Toast -->
+    <!-- ==================== TOAST NOTIFICATION ==================== -->
     <div class="toast-notification" id="toastNotification">
         <div class="toast-icon"><i class="fas fa-check-circle"></i></div>
         <div class="toast-message">Operation completed successfully!</div>
-        <div class="toast-progress"></div>
     </div>
 
-    <!-- Loading Spinner -->
+    <!-- ==================== LOADING SPINNER ==================== -->
     <div class="loading-spinner" id="loadingSpinner">
         <div class="spinner-leaf"></div>
         <div class="spinner-leaf"></div>
         <div class="spinner-leaf"></div>
-        <div class="spinner-text">Loading...</div>
     </div>
 
-    <!-- Cookie Consent -->
+    <!-- ==================== COOKIE CONSENT ==================== -->
     <div class="cookie-consent" id="cookieConsent">
-        <div class="cookie-content">
-            <i class="fas fa-cookie-bite"></i>
-            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
-        </div>
-        <div class="cookie-actions">
-            <button class="btn btn-primary" id="acceptCookies">Accept</button>
-            <button class="btn btn-outline" id="declineCookies">Decline</button>
-        </div>
+        <p>We use cookies to enhance your experience.</p>
+        <button class="btn btn-primary btn-sm" id="acceptCookies">Accept</button>
     </div>
 
-    <!-- Service Worker Registration -->
+    <!-- ==================== SERVICE WORKER REGISTRATION ==================== -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js').then(registration => {
-                    console.log('ServiceWorker registered');
-                }).catch(err => {
+                navigator.serviceWorker.register('service-worker.js').catch(err => {
                     console.log('ServiceWorker registration failed: ', err);
                 });
             });
         }
     </script>
 
-    <!-- Main JavaScript -->
+    <!-- ==================== MAIN JAVASCRIPT ==================== -->
     <script src="js/main.js"></script>
 </body>
 </html>
