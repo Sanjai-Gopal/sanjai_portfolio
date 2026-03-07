@@ -78,7 +78,7 @@ let siteData = {
         {
             id: '1',
             name: 'RuralCare AI',
-            description: 'Multilingual AI-based rural health assistant with symptom checker and voice recording. Uses NLP to understand symptoms in 10+ Indian languages and provides preliminary diagnoses.',
+            description: 'Multilingual AI-based rural health assistant with symptom checker and voice recording.',
             type: 'NLP',
             framework: 'TensorFlow, Flask',
             metrics: '85% accuracy',
@@ -90,7 +90,7 @@ let siteData = {
         {
             id: '2',
             name: 'Green AI Optimizer',
-            description: 'Tool that optimizes ML models for energy efficiency, reducing carbon footprint by up to 40% while maintaining accuracy.',
+            description: 'Tool that optimizes ML models for energy efficiency.',
             type: 'MLOps',
             framework: 'Python, TensorFlow',
             metrics: '40% energy reduction',
@@ -101,24 +101,13 @@ let siteData = {
         {
             id: '3',
             name: 'Student Performance Predictor',
-            description: 'ML model achieving 85% accuracy in predicting student grades based on study hours, attendance, and previous performance.',
+            description: 'ML model predicting student grades with 85% accuracy.',
             type: 'Machine Learning',
             framework: 'scikit-learn, Pandas',
             metrics: '85% accuracy',
             github: 'https://github.com/Sanjai-Gopal/ml-student-performance',
             image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EPredictor%3C/text%3E%3C/svg%3E',
             features: ['Feature Importance', 'Data Visualization', 'Predictive Analytics']
-        },
-        {
-            id: '4',
-            name: 'Voice-Controlled Home Automation',
-            description: 'Privacy-first smart home system that processes voice commands locally. Supports multiple Indian languages with on-device processing.',
-            type: 'NLP, IoT',
-            framework: 'TensorFlow Lite, Raspberry Pi',
-            metrics: '98% accuracy',
-            github: 'https://github.com/Sanjai-Gopal/voice-home',
-            image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3EVoiceHome%3C/text%3E%3C/svg%3E',
-            features: ['Offline Processing', 'Multi-language', 'Privacy-focused', 'Real-time']
         }
     ],
     certificates: [
@@ -232,7 +221,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('admin') === 'true') {
         isAdminLoggedIn = true;
-        document.getElementById('adminSecret').style.display = 'block';
+        const adminSecret = document.getElementById('adminSecret');
+        if (adminSecret) adminSecret.style.display = 'block';
     }
     
     initPreloader();
@@ -273,6 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ========== PRELOADER ==========
 function initPreloader() {
     const preloader = document.getElementById('preloader');
+    if (!preloader) return;
     
     window.addEventListener('load', function() {
         setTimeout(() => {
@@ -283,15 +274,20 @@ function initPreloader() {
 
 // ========== AOS ==========
 function initAOS() {
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100
-    });
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    }
 }
 
 // ========== TYPED.JS ==========
 function initTyped() {
+    const typedElement = document.querySelector('.typed-text');
+    if (!typedElement || typeof Typed === 'undefined') return;
+    
     new Typed('.typed-text', {
         strings: [
             'AI Engineer',
@@ -310,22 +306,24 @@ function initTyped() {
 // ========== THEME TOGGLE ==========
 function initTheme() {
     const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+    
     const icon = themeToggle.querySelector('i');
     
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
-        icon.className = 'fas fa-sun';
+        if (icon) icon.className = 'fas fa-sun';
     }
     
     themeToggle.addEventListener('click', () => {
         document.body.classList.toggle('light-theme');
         
         if (document.body.classList.contains('light-theme')) {
-            icon.className = 'fas fa-sun';
+            if (icon) icon.className = 'fas fa-sun';
             localStorage.setItem('theme', 'light');
         } else {
-            icon.className = 'fas fa-moon';
+            if (icon) icon.className = 'fas fa-moon';
             localStorage.setItem('theme', 'dark');
         }
     });
@@ -335,6 +333,8 @@ function initTheme() {
 function initMobileMenu() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+    
+    if (!hamburger || !navMenu) return;
     
     hamburger.addEventListener('click', () => {
         navMenu.classList.toggle('active');
@@ -369,6 +369,7 @@ function initSmoothScroll() {
 // ========== STATS COUNTER ==========
 function initStats() {
     const stats = document.querySelectorAll('.stat-number');
+    if (stats.length === 0) return;
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -406,6 +407,7 @@ function initSkills() {
 
 function renderSkills() {
     const grid = document.getElementById('skillsGrid');
+    if (!grid) return;
     
     grid.innerHTML = siteData.skills.map(category => `
         <div class="skill-card" data-aos="fade-up">
@@ -440,9 +442,10 @@ function initProjects() {
     
     renderProjects('all');
     
-    document.querySelectorAll('.projects-filter .filter-btn').forEach(btn => {
+    const filterBtns = document.querySelectorAll('.projects-filter .filter-btn');
+    filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            document.querySelectorAll('.projects-filter .filter-btn').forEach(b => b.classList.remove('active'));
+            filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             renderProjects(this.dataset.filter);
         });
@@ -451,6 +454,8 @@ function initProjects() {
 
 function renderProjects(filter) {
     const grid = document.getElementById('projectsGrid');
+    if (!grid) return;
+    
     const filtered = filter === 'all' ? siteData.projects : siteData.projects.filter(p => p.category === filter);
     
     grid.innerHTML = filtered.slice(0, 6).map(project => `
@@ -480,32 +485,12 @@ function initAIModels() {
     if (!grid) return;
     
     renderAIModels('all');
-    
-    // Create AI filter buttons if they don't exist
-    const filterContainer = document.querySelector('.ai-filter');
-    if (!filterContainer && grid.parentElement) {
-        const filterDiv = document.createElement('div');
-        filterDiv.className = 'ai-filter projects-filter';
-        filterDiv.innerHTML = `
-            <button class="filter-btn active" data-ai-filter="all">All</button>
-            <button class="filter-btn" data-ai-filter="NLP">NLP</button>
-            <button class="filter-btn" data-ai-filter="MLOps">MLOps</button>
-            <button class="filter-btn" data-ai-filter="Machine Learning">ML</button>
-        `;
-        grid.parentElement.insertBefore(filterDiv, grid);
-        
-        filterDiv.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                filterDiv.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                renderAIModels(this.dataset.aiFilter);
-            });
-        });
-    }
 }
 
 function renderAIModels(filter = 'all') {
     const grid = document.getElementById('aiGrid');
+    if (!grid) return;
+    
     const filtered = filter === 'all' ? siteData.aiModels : siteData.aiModels.filter(m => m.type.includes(filter));
     
     grid.innerHTML = filtered.map(model => `
@@ -544,42 +529,46 @@ function renderAIModels(filter = 'all') {
 
 // ========== OPEN AI MODAL ==========
 function openAIModal(modelId) {
-    const modal = document.getElementById('aiModal');
-    if (!modal) {
-        createAIModal();
-    }
-    
     const model = siteData.aiModels.find(m => m.id === modelId);
     if (!model) return;
+    
+    // Create modal if it doesn't exist
+    let modal = document.getElementById('aiModal');
+    if (!modal) {
+        createAIModal();
+        modal = document.getElementById('aiModal');
+    }
     
     const modalTitle = document.getElementById('aiModalTitle');
     const modalBody = document.getElementById('aiModalBody');
     
-    modalTitle.textContent = model.name;
-    modalBody.innerHTML = `
-        <div class="ai-details">
-            <img src="${model.image}" alt="${model.name}" class="ai-detail-image">
-            <h3>About</h3>
-            <p>${model.description}</p>
-            
-            <h3>Technical Details</h3>
-            <table class="ai-detail-table">
-                <tr><th>Type:</th><td>${model.type}</td></tr>
-                <tr><th>Framework:</th><td>${model.framework}</td></tr>
-                <tr><th>Performance:</th><td>${model.metrics}</td></tr>
-            </table>
-            
-            <h3>Key Features</h3>
-            <ul class="ai-detail-features">
-                ${model.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
-            </ul>
-            
-            <div class="ai-detail-links">
-                <a href="${model.github}" target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> View on GitHub</a>
-                ${model.demo ? `<a href="${model.demo}" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+    if (modalTitle) modalTitle.textContent = model.name;
+    if (modalBody) {
+        modalBody.innerHTML = `
+            <div class="ai-details">
+                <img src="${model.image}" alt="${model.name}" style="width:100%; max-height:300px; object-fit:cover; border-radius:12px; margin-bottom:1.5rem;">
+                <h3>About</h3>
+                <p>${model.description}</p>
+                
+                <h3>Technical Details</h3>
+                <table style="width:100%; border-collapse:collapse; margin:1rem 0;">
+                    <tr><th style="text-align:left; padding:0.5rem; background:rgba(76,175,122,0.1);">Type:</th><td style="padding:0.5rem;">${model.type}</td></tr>
+                    <tr><th style="text-align:left; padding:0.5rem; background:rgba(76,175,122,0.1);">Framework:</th><td style="padding:0.5rem;">${model.framework}</td></tr>
+                    <tr><th style="text-align:left; padding:0.5rem; background:rgba(76,175,122,0.1);">Performance:</th><td style="padding:0.5rem;">${model.metrics}</td></tr>
+                </table>
+                
+                <h3>Key Features</h3>
+                <ul style="list-style:none; padding:0;">
+                    ${model.features.map(f => `<li style="margin:0.5rem 0;"><i class="fas fa-check-circle" style="color:var(--primary); margin-right:0.5rem;"></i> ${f}</li>`).join('')}
+                </ul>
+                
+                <div style="display:flex; gap:1rem; margin-top:2rem;">
+                    <a href="${model.github}" target="_blank" class="btn btn-primary"><i class="fab fa-github"></i> View on GitHub</a>
+                    ${model.demo ? `<a href="${model.demo}" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -588,26 +577,27 @@ function openAIModal(modelId) {
 // ========== CREATE AI MODAL ==========
 function createAIModal() {
     const modalHTML = `
-        <div class="ai-modal" id="aiModal">
-            <div class="ai-modal-content">
-                <div class="ai-modal-header">
+        <div class="modal" id="aiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; align-items:center; justify-content:center;">
+            <div style="background:var(--bg-primary); border-radius:24px; max-width:800px; width:90%; max-height:90vh; overflow:hidden;">
+                <div style="background:var(--gradient); color:white; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between;">
                     <h2 id="aiModalTitle">AI Model Details</h2>
-                    <button class="ai-modal-close" id="aiModalClose">&times;</button>
+                    <button id="aiModalClose" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
                 </div>
-                <div class="ai-modal-body" id="aiModalBody"></div>
+                <div id="aiModalBody" style="padding:1.5rem; overflow-y:auto; max-height:calc(90vh - 80px);"></div>
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     
     document.getElementById('aiModalClose').addEventListener('click', () => {
-        document.getElementById('aiModal').classList.remove('active');
+        document.getElementById('aiModal').style.display = 'none';
         document.body.style.overflow = 'auto';
     });
     
     window.addEventListener('click', (e) => {
-        if (e.target === document.getElementById('aiModal')) {
-            document.getElementById('aiModal').classList.remove('active');
+        const modal = document.getElementById('aiModal');
+        if (e.target === modal) {
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     });
@@ -631,18 +621,32 @@ function initPortfolio() {
 
 function renderPortfolio(filter = 'all') {
     const grid = document.getElementById('portfolioGrid');
+    if (!grid) return;
+    
     const filtered = filter === 'all' ? siteData.portfolio : siteData.portfolio.filter(item => item.category === filter);
     
     grid.innerHTML = filtered.map(item => `
-        <div class="portfolio-item" data-aos="zoom-in">
-            <img src="${item.image}" alt="${item.title}" class="portfolio-image">
-            <div class="portfolio-overlay">
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-                <span class="portfolio-category">${item.category}</span>
+        <div class="portfolio-item" data-aos="zoom-in" style="position:relative; border-radius:16px; overflow:hidden; cursor:pointer;">
+            <img src="${item.image}" alt="${item.title}" style="width:100%; height:250px; object-fit:cover; transition:transform 0.5s;">
+            <div class="portfolio-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:linear-gradient(to top, rgba(0,0,0,0.8), transparent); display:flex; flex-direction:column; justify-content:flex-end; padding:1.5rem; opacity:0; transition:opacity 0.3s;">
+                <h3 style="color:white; margin-bottom:0.5rem;">${item.title}</h3>
+                <p style="color:rgba(255,255,255,0.8); margin-bottom:0.5rem;">${item.description}</p>
+                <span style="display:inline-block; padding:0.2rem 1rem; background:var(--primary); color:white; border-radius:20px; font-size:0.8rem; width:fit-content;">${item.category}</span>
             </div>
         </div>
     `).join('');
+    
+    // Add hover effects
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.querySelector('.portfolio-overlay').style.opacity = '1';
+            this.querySelector('img').style.transform = 'scale(1.1)';
+        });
+        item.addEventListener('mouseleave', function() {
+            this.querySelector('.portfolio-overlay').style.opacity = '0';
+            this.querySelector('img').style.transform = 'scale(1)';
+        });
+    });
 }
 
 // ========== RENDER CERTIFICATES ==========
@@ -655,13 +659,16 @@ function initCertificates() {
 
 function renderCertificates() {
     const grid = document.getElementById('certificatesGrid');
+    if (!grid) return;
     
     grid.innerHTML = siteData.certificates.slice(0, 6).map(cert => `
-        <div class="certificate-card" data-aos="fade-up">
-            <div class="certificate-icon"><i class="fas fa-leaf"></i></div>
-            <h3 class="certificate-title">${cert.title}</h3>
-            <p class="certificate-issuer">${cert.issuer}</p>
-            <p class="certificate-date">${cert.date}</p>
+        <div class="certificate-card" data-aos="fade-up" style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:1.5rem; text-align:center; transition:all 0.3s;">
+            <div class="certificate-icon" style="width:60px; height:60px; background:rgba(76,175,122,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+                <i class="fas fa-leaf" style="font-size:1.5rem; color:var(--primary);"></i>
+            </div>
+            <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">${cert.title}</h3>
+            <p style="color:var(--text-tertiary); margin-bottom:0.25rem;">${cert.issuer}</p>
+            <p style="color:var(--text-muted); font-size:0.9rem;">${cert.date}</p>
         </div>
     `).join('');
 }
@@ -692,31 +699,33 @@ function initBlog() {
 
 function renderBlog(category, showAll = false) {
     const grid = document.getElementById('blogGrid');
+    if (!grid) return;
+    
     const filtered = category === 'all' ? siteData.blog : siteData.blog.filter(post => post.category === category);
     const posts = showAll ? filtered : filtered.slice(0, 3);
     
     if (posts.length === 0) {
-        grid.innerHTML = '<div class="no-posts">No blog posts found in this category.</div>';
+        grid.innerHTML = '<div style="text-align:center; padding:3rem; color:var(--text-tertiary);">No blog posts found in this category.</div>';
         return;
     }
     
     grid.innerHTML = posts.map(post => `
-        <div class="blog-card" data-aos="fade-up" data-post-id="${post.id}">
-            <div class="blog-image">
-                <img src="${post.image}" alt="${post.title}">
+        <div class="blog-card" data-aos="fade-up" data-post-id="${post.id}" style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; overflow:hidden; transition:all 0.3s;">
+            <div class="blog-image" style="height:200px; overflow:hidden;">
+                <img src="${post.image}" alt="${post.title}" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s;">
             </div>
-            <div class="blog-content">
-                <div class="blog-meta">
+            <div class="blog-content" style="padding:1.5rem;">
+                <div style="display:flex; gap:1rem; margin-bottom:0.5rem; color:var(--text-tertiary); font-size:0.85rem;">
                     <span><i class="far fa-calendar"></i> ${post.date}</span>
                     <span><i class="far fa-folder"></i> ${post.category}</span>
                     <span><i class="far fa-clock"></i> ${post.readTime} min</span>
                 </div>
-                <h3 class="blog-title">${post.title}</h3>
-                <p class="blog-excerpt">${post.excerpt}</p>
-                <div class="blog-tags">
-                    ${post.tags ? post.tags.map(tag => `<span class="blog-tag">#${tag}</span>`).join('') : ''}
+                <h3 style="font-size:1.2rem; margin-bottom:0.5rem;">${post.title}</h3>
+                <p style="color:var(--text-tertiary); margin-bottom:1rem;">${post.excerpt}</p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
+                    ${post.tags ? post.tags.map(tag => `<span style="padding:0.2rem 0.8rem; background:var(--bg-tertiary); border-radius:20px; font-size:0.8rem; color:var(--text-tertiary);">#${tag}</span>`).join('') : ''}
                 </div>
-                <button class="blog-link read-more-btn" data-post-id="${post.id}">Read More <i class="fas fa-arrow-right"></i></button>
+                <button class="blog-link read-more-btn" data-post-id="${post.id}" style="background:none; border:none; color:var(--primary); cursor:pointer; display:inline-flex; align-items:center; gap:0.3rem; font-weight:500;">Read More <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
     `).join('');
@@ -739,35 +748,46 @@ function openBlogPost(postId) {
     const modalTitle = document.getElementById('blogModalTitle');
     const modalBody = document.getElementById('blogModalBody');
     
-    modalTitle.textContent = post.title;
-    modalBody.innerHTML = `
-        <div class="blog-post-full">
-            <img src="${post.image}" alt="${post.title}" class="blog-post-image">
-            <div class="blog-post-meta">
-                <span><i class="far fa-calendar"></i> ${post.date}</span>
-                <span><i class="far fa-folder"></i> ${post.category}</span>
-                <span><i class="far fa-clock"></i> ${post.readTime} min read</span>
-                ${post.tags ? `<span><i class="fas fa-tags"></i> ${post.tags.join(', ')}</span>` : ''}
+    if (!modal) return;
+    
+    if (modalTitle) modalTitle.textContent = post.title;
+    if (modalBody) {
+        modalBody.innerHTML = `
+            <div>
+                <img src="${post.image}" alt="${post.title}" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:1.5rem;">
+                <div style="display:flex; gap:1.5rem; margin-bottom:1.5rem; color:var(--text-tertiary); flex-wrap:wrap;">
+                    <span><i class="far fa-calendar"></i> ${post.date}</span>
+                    <span><i class="far fa-folder"></i> ${post.category}</span>
+                    <span><i class="far fa-clock"></i> ${post.readTime} min read</span>
+                    ${post.tags ? `<span><i class="fas fa-tags"></i> ${post.tags.join(', ')}</span>` : ''}
+                </div>
+                <div style="line-height:1.8;">
+                    ${post.content || post.excerpt}
+                </div>
             </div>
-            <div class="blog-post-content">
-                ${post.content || post.excerpt}
-            </div>
-        </div>
-    `;
+        `;
+    }
     
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
 // ========== BLOG MODAL CLOSE ==========
-document.getElementById('blogModalClose')?.addEventListener('click', () => {
-    document.getElementById('blogModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-});
+const blogModalClose = document.getElementById('blogModalClose');
+if (blogModalClose) {
+    blogModalClose.addEventListener('click', () => {
+        const modal = document.getElementById('blogModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
 
 window.addEventListener('click', (e) => {
-    if (e.target === document.getElementById('blogModal')) {
-        document.getElementById('blogModal').classList.remove('active');
+    const modal = document.getElementById('blogModal');
+    if (e.target === modal) {
+        modal.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
 });
@@ -779,14 +799,6 @@ function initContactForm() {
     
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-        
-        // Here you would send to API
-        console.log('Contact form:', { name, email, subject, message });
         
         showToast('Thank you for your message! I will get back to you soon.', 'success');
         form.reset();
@@ -800,9 +812,10 @@ function initNewsletter() {
     
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('newsletterEmail').value;
+        const email = document.getElementById('newsletterEmail');
+        if (!email) return;
         
-        if (!email || !email.includes('@')) {
+        if (!email.value || !email.value.includes('@')) {
             showToast('Please enter a valid email', 'error');
             return;
         }
@@ -815,6 +828,7 @@ function initNewsletter() {
 // ========== BACK TO TOP ==========
 function initBackToTop() {
     const button = document.getElementById('backToTop');
+    if (!button) return;
     
     window.addEventListener('scroll', () => {
         if (window.scrollY > 500) {
@@ -851,29 +865,28 @@ function initResumeLink() {
 
 // ========== OPEN RESUME MODAL ==========
 function openResumeModal() {
-    const modal = document.getElementById('resumeModal');
+    let modal = document.getElementById('resumeModal');
     if (!modal) {
         createResumeModal();
+        modal = document.getElementById('resumeModal');
     }
     
-    const frame = document.getElementById('resumeFrame');
-    frame.src = 'assets/docs/Sanjai_Resume_2026.pdf';
-    
-    document.getElementById('resumeModal').classList.add('active');
+    modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
 // ========== CREATE RESUME MODAL ==========
 function createResumeModal() {
     const modalHTML = `
-        <div class="resume-modal" id="resumeModal">
-            <div class="resume-modal-content">
-                <div class="resume-modal-header">
+        <div class="modal" id="resumeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(10px); z-index:10000; align-items:center; justify-content:center;">
+            <div style="background:var(--bg-primary); border-radius:24px; width:90%; max-width:900px; height:90vh; overflow:hidden;">
+                <div style="background:var(--gradient); color:white; padding:1rem 1.5rem; display:flex; align-items:center; justify-content:space-between;">
                     <h2>Resume Preview</h2>
-                    <button class="resume-modal-close" id="resumeModalClose">&times;</button>
+                    <button id="resumeModalClose" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
                 </div>
-                <div class="resume-modal-body">
-                    <iframe id="resumeFrame" style="width:100%; height:100%; border:none;"></iframe>
+                <div style="height:calc(90vh - 80px); padding:1rem;">
+                    <iframe style="width:100%; height:100%; border:none;"></iframe>
+                    <p style="text-align:center; color:var(--text-tertiary); margin-top:2rem;">Resume PDF will be displayed here</p>
                 </div>
             </div>
         </div>
@@ -881,13 +894,14 @@ function createResumeModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     
     document.getElementById('resumeModalClose').addEventListener('click', () => {
-        document.getElementById('resumeModal').classList.remove('active');
+        document.getElementById('resumeModal').style.display = 'none';
         document.body.style.overflow = 'auto';
     });
     
     window.addEventListener('click', (e) => {
-        if (e.target === document.getElementById('resumeModal')) {
-            document.getElementById('resumeModal').classList.remove('active');
+        const modal = document.getElementById('resumeModal');
+        if (e.target === modal) {
+            modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     });
@@ -911,13 +925,17 @@ function initCloudLink() {
 // ========== TOAST NOTIFICATION ==========
 function showToast(message, type = 'success') {
     const toast = document.getElementById('toastNotification');
+    if (!toast) return;
+    
     const icon = toast.querySelector('.toast-icon i');
     const messageEl = toast.querySelector('.toast-message');
     
-    icon.className = type === 'success' ? 'fas fa-check-circle' : 
-                     type === 'error' ? 'fas fa-exclamation-circle' : 
-                     'fas fa-info-circle';
-    messageEl.textContent = message;
+    if (icon) {
+        icon.className = type === 'success' ? 'fas fa-check-circle' : 
+                         type === 'error' ? 'fas fa-exclamation-circle' : 
+                         'fas fa-info-circle';
+    }
+    if (messageEl) messageEl.textContent = message;
     
     toast.classList.add('show');
     
@@ -985,6 +1003,7 @@ function initAdminLogin() {
     
     if (toggleBtn) {
         toggleBtn.addEventListener('click', () => {
+            if (!passwordInput) return;
             const type = passwordInput.type === 'password' ? 'text' : 'password';
             passwordInput.type = type;
             toggleBtn.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
@@ -993,33 +1012,39 @@ function initAdminLogin() {
     
     if (submitBtn) {
         submitBtn.addEventListener('click', () => {
+            if (!passwordInput) return;
             const password = passwordInput.value.trim();
             
             if (!password) {
-                errorDiv.textContent = 'Please enter password';
+                if (errorDiv) errorDiv.textContent = 'Please enter password';
                 return;
             }
             
-            loadingDiv.style.display = 'block';
+            if (loadingDiv) loadingDiv.style.display = 'block';
             submitBtn.disabled = true;
             
             setTimeout(() => {
-                loadingDiv.style.display = 'none';
+                if (loadingDiv) loadingDiv.style.display = 'none';
                 submitBtn.disabled = false;
                 
                 if (password === 'Sanjai@2008') {
-                    loginModal.classList.remove('active');
-                    document.getElementById('adminDashboardModal').classList.add('active');
-                    document.getElementById('adminSecret').style.display = 'block';
+                    if (loginModal) loginModal.classList.remove('active');
+                    const dashboardModal = document.getElementById('adminDashboardModal');
+                    if (dashboardModal) dashboardModal.classList.add('active');
+                    
+                    const adminSecret = document.getElementById('adminSecret');
+                    if (adminSecret) adminSecret.style.display = 'block';
+                    
                     isAdminLoggedIn = true;
                     sessionStorage.setItem('adminLoggedIn', 'true');
-                    passwordInput.value = '';
-                    errorDiv.textContent = '';
+                    
+                    if (passwordInput) passwordInput.value = '';
+                    if (errorDiv) errorDiv.textContent = '';
                     
                     loadAdminData();
                     showToast('Welcome, Admin!', 'success');
                 } else {
-                    errorDiv.textContent = 'Invalid password';
+                    if (errorDiv) errorDiv.textContent = 'Invalid password';
                 }
             }, 1000);
         });
@@ -1041,7 +1066,7 @@ function initAdminDashboard() {
     
     if (dashboardClose) {
         dashboardClose.addEventListener('click', () => {
-            dashboardModal.classList.remove('active');
+            if (dashboardModal) dashboardModal.classList.remove('active');
         });
     }
 }
@@ -1065,15 +1090,26 @@ function initAdminTabs() {
 
 // ========== LOAD ADMIN DATA ==========
 function loadAdminData() {
-    document.getElementById('adminProjectCount').textContent = siteData.projects.length;
-    document.getElementById('adminCertCount').textContent = siteData.certificates.length;
-    document.getElementById('adminBlogCount').textContent = siteData.blog.length;
-    document.getElementById('adminAICount').textContent = siteData.aiModels.length;
+    // Safely update stats with null checks
+    const projectCount = document.getElementById('adminProjectCount');
+    if (projectCount) projectCount.textContent = siteData.projects.length;
+    
+    const certCount = document.getElementById('adminCertCount');
+    if (certCount) certCount.textContent = siteData.certificates.length;
+    
+    const blogCount = document.getElementById('adminBlogCount');
+    if (blogCount) blogCount.textContent = siteData.blog.length;
+    
+    const aiCount = document.getElementById('adminAICount');
+    if (aiCount) aiCount.textContent = siteData.aiModels.length;
     
     let totalSkills = 0;
     siteData.skills.forEach(cat => totalSkills += cat.skills.length);
-    document.getElementById('adminSkillCount').textContent = totalSkills;
     
+    const skillCount = document.getElementById('adminSkillCount');
+    if (skillCount) skillCount.textContent = totalSkills;
+    
+    // Load lists
     loadProjectsList();
     loadCertificatesList();
     loadBlogList();
@@ -1081,24 +1117,52 @@ function loadAdminData() {
     loadAIList();
     loadPortfolioList();
     
-    // Load profile data
-    document.getElementById('adminName').value = siteData.profile.name;
-    document.getElementById('adminDisplayName').value = siteData.profile.displayName;
-    document.getElementById('adminTitle').value = siteData.profile.title;
-    document.getElementById('adminBio').value = siteData.profile.bio;
-    document.getElementById('adminLocation').value = siteData.profile.location;
-    document.getElementById('adminEmail').value = siteData.profile.email;
-    document.getElementById('adminPhone').value = siteData.profile.phone;
-    document.getElementById('adminLinkedin').value = siteData.profile.linkedin;
-    document.getElementById('adminGithub').value = siteData.profile.github;
-    document.getElementById('adminInstagram').value = siteData.profile.instagram;
+    // Load profile data with null checks
+    const nameInput = document.getElementById('adminName');
+    if (nameInput) nameInput.value = siteData.profile.name;
     
-    // Load theme data
-    document.getElementById('themePrimary').value = siteData.theme.primary;
-    document.getElementById('themeSecondary').value = siteData.theme.secondary;
-    document.getElementById('themeBg').value = siteData.theme.bg;
-    document.getElementById('themeText').value = siteData.theme.text;
-    document.getElementById('themeAccent').value = siteData.theme.accent;
+    const displayNameInput = document.getElementById('adminDisplayName');
+    if (displayNameInput) displayNameInput.value = siteData.profile.displayName;
+    
+    const titleInput = document.getElementById('adminTitle');
+    if (titleInput) titleInput.value = siteData.profile.title;
+    
+    const bioInput = document.getElementById('adminBio');
+    if (bioInput) bioInput.value = siteData.profile.bio;
+    
+    const locationInput = document.getElementById('adminLocation');
+    if (locationInput) locationInput.value = siteData.profile.location;
+    
+    const emailInput = document.getElementById('adminEmail');
+    if (emailInput) emailInput.value = siteData.profile.email;
+    
+    const phoneInput = document.getElementById('adminPhone');
+    if (phoneInput) phoneInput.value = siteData.profile.phone;
+    
+    const linkedinInput = document.getElementById('adminLinkedin');
+    if (linkedinInput) linkedinInput.value = siteData.profile.linkedin;
+    
+    const githubInput = document.getElementById('adminGithub');
+    if (githubInput) githubInput.value = siteData.profile.github;
+    
+    const instagramInput = document.getElementById('adminInstagram');
+    if (instagramInput) instagramInput.value = siteData.profile.instagram;
+    
+    // Load theme data with null checks
+    const themePrimary = document.getElementById('themePrimary');
+    if (themePrimary) themePrimary.value = siteData.theme.primary;
+    
+    const themeSecondary = document.getElementById('themeSecondary');
+    if (themeSecondary) themeSecondary.value = siteData.theme.secondary;
+    
+    const themeBg = document.getElementById('themeBg');
+    if (themeBg) themeBg.value = siteData.theme.bg;
+    
+    const themeText = document.getElementById('themeText');
+    if (themeText) themeText.value = siteData.theme.text;
+    
+    const themeAccent = document.getElementById('themeAccent');
+    if (themeAccent) themeAccent.value = siteData.theme.accent;
 }
 
 // ========== LOAD PROJECTS LIST ==========
@@ -1229,22 +1293,42 @@ function initProfilePanel() {
     saveBtn.addEventListener('click', () => {
         const loading = document.getElementById('profileLoading');
         
-        siteData.profile.name = document.getElementById('adminName').value;
-        siteData.profile.displayName = document.getElementById('adminDisplayName').value;
-        siteData.profile.title = document.getElementById('adminTitle').value;
-        siteData.profile.bio = document.getElementById('adminBio').value;
-        siteData.profile.location = document.getElementById('adminLocation').value;
-        siteData.profile.email = document.getElementById('adminEmail').value;
-        siteData.profile.phone = document.getElementById('adminPhone').value;
-        siteData.profile.linkedin = document.getElementById('adminLinkedin').value;
-        siteData.profile.github = document.getElementById('adminGithub').value;
-        siteData.profile.instagram = document.getElementById('adminInstagram').value;
+        // Safely get values with null checks
+        const nameInput = document.getElementById('adminName');
+        if (nameInput) siteData.profile.name = nameInput.value;
         
-        loading.style.display = 'block';
+        const displayNameInput = document.getElementById('adminDisplayName');
+        if (displayNameInput) siteData.profile.displayName = displayNameInput.value;
+        
+        const titleInput = document.getElementById('adminTitle');
+        if (titleInput) siteData.profile.title = titleInput.value;
+        
+        const bioInput = document.getElementById('adminBio');
+        if (bioInput) siteData.profile.bio = bioInput.value;
+        
+        const locationInput = document.getElementById('adminLocation');
+        if (locationInput) siteData.profile.location = locationInput.value;
+        
+        const emailInput = document.getElementById('adminEmail');
+        if (emailInput) siteData.profile.email = emailInput.value;
+        
+        const phoneInput = document.getElementById('adminPhone');
+        if (phoneInput) siteData.profile.phone = phoneInput.value;
+        
+        const linkedinInput = document.getElementById('adminLinkedin');
+        if (linkedinInput) siteData.profile.linkedin = linkedinInput.value;
+        
+        const githubInput = document.getElementById('adminGithub');
+        if (githubInput) siteData.profile.github = githubInput.value;
+        
+        const instagramInput = document.getElementById('adminInstagram');
+        if (instagramInput) siteData.profile.instagram = instagramInput.value;
+        
+        if (loading) loading.style.display = 'block';
         saveBtn.disabled = true;
         
         setTimeout(() => {
-            loading.style.display = 'none';
+            if (loading) loading.style.display = 'none';
             saveBtn.disabled = false;
             showToast('Profile updated successfully!', 'success');
             updateProfile();
@@ -1254,12 +1338,23 @@ function initProfilePanel() {
 
 // ========== UPDATE PROFILE ==========
 function updateProfile() {
-    document.getElementById('aboutTitle').textContent = siteData.profile.title;
-    document.getElementById('aboutBio').textContent = siteData.profile.bio;
-    document.getElementById('infoLocation').textContent = siteData.profile.location;
-    document.getElementById('contactLocation').textContent = siteData.profile.location;
-    document.getElementById('contactEmail').textContent = siteData.profile.email;
-    document.getElementById('contactPhone').textContent = siteData.profile.phone;
+    const aboutTitle = document.getElementById('aboutTitle');
+    if (aboutTitle) aboutTitle.textContent = siteData.profile.title;
+    
+    const aboutBio = document.getElementById('aboutBio');
+    if (aboutBio) aboutBio.textContent = siteData.profile.bio;
+    
+    const infoLocation = document.getElementById('infoLocation');
+    if (infoLocation) infoLocation.textContent = siteData.profile.location;
+    
+    const contactLocation = document.getElementById('contactLocation');
+    if (contactLocation) contactLocation.textContent = siteData.profile.location;
+    
+    const contactEmail = document.getElementById('contactEmail');
+    if (contactEmail) contactEmail.textContent = siteData.profile.email;
+    
+    const contactPhone = document.getElementById('contactPhone');
+    if (contactPhone) contactPhone.textContent = siteData.profile.phone;
 }
 
 // ========== PROJECTS PANEL ==========
@@ -1268,12 +1363,21 @@ function initProjectsPanel() {
     if (!addBtn) return;
     
     addBtn.addEventListener('click', () => {
-        const name = document.getElementById('newProjectName').value;
-        const desc = document.getElementById('newProjectDesc').value;
-        const tech = document.getElementById('newProjectTech').value.split(',').map(t => t.trim());
-        const category = document.getElementById('newProjectCategory').value;
-        const github = document.getElementById('newProjectGithub').value;
-        const live = document.getElementById('newProjectLive').value;
+        const nameInput = document.getElementById('newProjectName');
+        const descInput = document.getElementById('newProjectDesc');
+        const techInput = document.getElementById('newProjectTech');
+        const categoryInput = document.getElementById('newProjectCategory');
+        const githubInput = document.getElementById('newProjectGithub');
+        const liveInput = document.getElementById('newProjectLive');
+        
+        if (!nameInput || !descInput || !techInput || !categoryInput || !githubInput) return;
+        
+        const name = nameInput.value;
+        const desc = descInput.value;
+        const tech = techInput.value.split(',').map(t => t.trim());
+        const category = categoryInput.value;
+        const github = githubInput.value;
+        const live = liveInput ? liveInput.value : '';
         
         if (!name || !desc || tech.length === 0 || !category || !github) {
             showToast('Please fill all required fields', 'error');
@@ -1293,23 +1397,25 @@ function initProjectsPanel() {
             image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + name.substring(0, 10) + '%3C/text%3E%3C/svg%3E'
         };
         
-        loading.style.display = 'block';
+        if (loading) loading.style.display = 'block';
         addBtn.disabled = true;
         
         setTimeout(() => {
             siteData.projects.push(newProject);
             
-            document.getElementById('newProjectName').value = '';
-            document.getElementById('newProjectDesc').value = '';
-            document.getElementById('newProjectTech').value = '';
-            document.getElementById('newProjectGithub').value = '';
-            document.getElementById('newProjectLive').value = '';
+            nameInput.value = '';
+            descInput.value = '';
+            techInput.value = '';
+            githubInput.value = '';
+            if (liveInput) liveInput.value = '';
             
             loadProjectsList();
             renderProjects('all');
-            document.getElementById('adminProjectCount').textContent = siteData.projects.length;
             
-            loading.style.display = 'none';
+            const projectCount = document.getElementById('adminProjectCount');
+            if (projectCount) projectCount.textContent = siteData.projects.length;
+            
+            if (loading) loading.style.display = 'none';
             addBtn.disabled = false;
             showToast('Project added successfully!', 'success');
         }, 500);
@@ -1323,7 +1429,10 @@ window.deleteProject = function(id) {
     siteData.projects = siteData.projects.filter(p => p.id !== id);
     loadProjectsList();
     renderProjects('all');
-    document.getElementById('adminProjectCount').textContent = siteData.projects.length;
+    
+    const projectCount = document.getElementById('adminProjectCount');
+    if (projectCount) projectCount.textContent = siteData.projects.length;
+    
     showToast('Project deleted!', 'success');
 };
 
@@ -1332,14 +1441,22 @@ window.editProject = function(id) {
     const project = siteData.projects.find(p => p.id === id);
     if (!project) return;
     
-    document.getElementById('newProjectName').value = project.title;
-    document.getElementById('newProjectDesc').value = project.description;
-    document.getElementById('newProjectTech').value = project.tech.join(', ');
-    document.getElementById('newProjectCategory').value = project.category;
-    document.getElementById('newProjectGithub').value = project.github || '';
-    document.getElementById('newProjectLive').value = project.live || '';
+    const nameInput = document.getElementById('newProjectName');
+    const descInput = document.getElementById('newProjectDesc');
+    const techInput = document.getElementById('newProjectTech');
+    const categoryInput = document.getElementById('newProjectCategory');
+    const githubInput = document.getElementById('newProjectGithub');
+    const liveInput = document.getElementById('newProjectLive');
     
-    document.querySelector('[data-tab="projects"]').click();
+    if (nameInput) nameInput.value = project.title;
+    if (descInput) descInput.value = project.description;
+    if (techInput) techInput.value = project.tech.join(', ');
+    if (categoryInput) categoryInput.value = project.category;
+    if (githubInput) githubInput.value = project.github || '';
+    if (liveInput) liveInput.value = project.live || '';
+    
+    const projectsTab = document.querySelector('[data-tab="projects"]');
+    if (projectsTab) projectsTab.click();
     
     if (confirm('Edit this project. Click OK to delete old version and add edited version.')) {
         siteData.projects = siteData.projects.filter(p => p.id !== id);
@@ -1353,7 +1470,10 @@ window.deleteCertificate = function(id) {
     siteData.certificates = siteData.certificates.filter(c => c.id !== id);
     loadCertificatesList();
     renderCertificates();
-    document.getElementById('adminCertCount').textContent = siteData.certificates.length;
+    
+    const certCount = document.getElementById('adminCertCount');
+    if (certCount) certCount.textContent = siteData.certificates.length;
+    
     showToast('Certificate deleted!', 'success');
 };
 
@@ -1364,7 +1484,10 @@ window.deletePost = function(id) {
     siteData.blog = siteData.blog.filter(p => p.id !== id);
     loadBlogList();
     renderBlog('all');
-    document.getElementById('adminBlogCount').textContent = siteData.blog.length;
+    
+    const blogCount = document.getElementById('adminBlogCount');
+    if (blogCount) blogCount.textContent = siteData.blog.length;
+    
     showToast('Blog post deleted!', 'success');
 };
 
@@ -1404,13 +1527,23 @@ function initAIPanel() {
     if (!addBtn) return;
     
     addBtn.addEventListener('click', () => {
-        const name = document.getElementById('newAIName').value;
-        const desc = document.getElementById('newAIDesc').value;
-        const type = document.getElementById('newAIType').value;
-        const framework = document.getElementById('newAIFramework').value;
-        const metrics = document.getElementById('newAIMetrics').value;
-        const github = document.getElementById('newAIGithub').value;
-        const demo = document.getElementById('newAIDemo').value;
+        const nameInput = document.getElementById('newAIName');
+        const descInput = document.getElementById('newAIDesc');
+        const typeInput = document.getElementById('newAIType');
+        const frameworkInput = document.getElementById('newAIFramework');
+        const metricsInput = document.getElementById('newAIMetrics');
+        const githubInput = document.getElementById('newAIGithub');
+        const demoInput = document.getElementById('newAIDemo');
+        
+        if (!nameInput || !descInput || !typeInput || !frameworkInput || !metricsInput || !githubInput) return;
+        
+        const name = nameInput.value;
+        const desc = descInput.value;
+        const type = typeInput.value;
+        const framework = frameworkInput.value;
+        const metrics = metricsInput.value;
+        const github = githubInput.value;
+        const demo = demoInput ? demoInput.value : '';
         
         if (!name || !desc || !type || !framework || !metrics || !github) {
             showToast('Please fill required fields', 'error');
@@ -1418,36 +1551,38 @@ function initAIPanel() {
         }
         
         const loading = document.getElementById('aiLoading');
-        loading.style.display = 'block';
+        
+        const newModel = {
+            id: Date.now().toString(),
+            name: name,
+            description: desc,
+            type: type,
+            framework: framework,
+            metrics: metrics,
+            github: github,
+            demo: demo || null,
+            image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + name.substring(0, 10) + '%3C/text%3E%3C/svg%3E',
+            features: []
+        };
+        
+        if (loading) loading.style.display = 'block';
         addBtn.disabled = true;
         
         setTimeout(() => {
-            const newModel = {
-                id: Date.now().toString(),
-                name: name,
-                description: desc,
-                type: type,
-                framework: framework,
-                metrics: metrics,
-                github: github,
-                demo: demo || null,
-                image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + name.substring(0, 10) + '%3C/text%3E%3C/svg%3E',
-                features: []
-            };
-            
             siteData.aiModels.push(newModel);
+            
+            nameInput.value = '';
+            descInput.value = '';
+            typeInput.value = '';
+            frameworkInput.value = '';
+            metricsInput.value = '';
+            githubInput.value = '';
+            if (demoInput) demoInput.value = '';
+            
             loadAIList();
             renderAIModels('all');
             
-            document.getElementById('newAIName').value = '';
-            document.getElementById('newAIDesc').value = '';
-            document.getElementById('newAIType').value = '';
-            document.getElementById('newAIFramework').value = '';
-            document.getElementById('newAIMetrics').value = '';
-            document.getElementById('newAIGithub').value = '';
-            document.getElementById('newAIDemo').value = '';
-            
-            loading.style.display = 'none';
+            if (loading) loading.style.display = 'none';
             addBtn.disabled = false;
             showToast('AI model added!', 'success');
         }, 500);
@@ -1460,9 +1595,15 @@ function initPortfolioPanel() {
     if (!addBtn) return;
     
     addBtn.addEventListener('click', () => {
-        const title = document.getElementById('newGalleryTitle').value;
-        const desc = document.getElementById('newGalleryDesc').value;
-        const category = document.getElementById('newGalleryCategory').value;
+        const titleInput = document.getElementById('newGalleryTitle');
+        const descInput = document.getElementById('newGalleryDesc');
+        const categoryInput = document.getElementById('newGalleryCategory');
+        
+        if (!titleInput || !descInput || !categoryInput) return;
+        
+        const title = titleInput.value;
+        const desc = descInput.value;
+        const category = categoryInput.value;
         
         if (!title || !desc || !category) {
             showToast('Please fill required fields', 'error');
@@ -1470,26 +1611,28 @@ function initPortfolioPanel() {
         }
         
         const loading = document.getElementById('galleryLoading');
-        loading.style.display = 'block';
+        
+        const newItem = {
+            id: Date.now().toString(),
+            title: title,
+            description: desc,
+            category: category,
+            image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'
+        };
+        
+        if (loading) loading.style.display = 'block';
         addBtn.disabled = true;
         
         setTimeout(() => {
-            const newItem = {
-                id: Date.now().toString(),
-                title: title,
-                description: desc,
-                category: category,
-                image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'%3E%3Crect width=\'600\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'300\' y=\'200\' font-family=\'Arial\' font-size=\'40\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'
-            };
-            
             siteData.portfolio.push(newItem);
+            
+            titleInput.value = '';
+            descInput.value = '';
+            
             loadPortfolioList();
             renderPortfolio('all');
             
-            document.getElementById('newGalleryTitle').value = '';
-            document.getElementById('newGalleryDesc').value = '';
-            
-            loading.style.display = 'none';
+            if (loading) loading.style.display = 'none';
             addBtn.disabled = false;
             showToast('Portfolio item added!', 'success');
         }, 500);
@@ -1502,11 +1645,19 @@ function initCertificatesPanel() {
     if (!addBtn) return;
     
     addBtn.addEventListener('click', () => {
-        const name = document.getElementById('newCertName').value;
-        const issuer = document.getElementById('newCertIssuer').value;
-        const date = document.getElementById('newCertDate').value;
-        const credential = document.getElementById('newCertCredential').value;
-        const link = document.getElementById('newCertLink').value;
+        const nameInput = document.getElementById('newCertName');
+        const issuerInput = document.getElementById('newCertIssuer');
+        const dateInput = document.getElementById('newCertDate');
+        const credentialInput = document.getElementById('newCertCredential');
+        const linkInput = document.getElementById('newCertLink');
+        
+        if (!nameInput || !issuerInput || !dateInput) return;
+        
+        const name = nameInput.value;
+        const issuer = issuerInput.value;
+        const date = dateInput.value;
+        const credential = credentialInput ? credentialInput.value : '';
+        const link = linkInput ? linkInput.value : '';
         
         if (!name || !issuer || !date) {
             showToast('Please fill required fields', 'error');
@@ -1524,23 +1675,25 @@ function initCertificatesPanel() {
             link: link || ''
         };
         
-        loading.style.display = 'block';
+        if (loading) loading.style.display = 'block';
         addBtn.disabled = true;
         
         setTimeout(() => {
             siteData.certificates.push(newCert);
             
-            document.getElementById('newCertName').value = '';
-            document.getElementById('newCertIssuer').value = '';
-            document.getElementById('newCertDate').value = '';
-            document.getElementById('newCertCredential').value = '';
-            document.getElementById('newCertLink').value = '';
+            nameInput.value = '';
+            issuerInput.value = '';
+            dateInput.value = '';
+            if (credentialInput) credentialInput.value = '';
+            if (linkInput) linkInput.value = '';
             
             loadCertificatesList();
             renderCertificates();
-            document.getElementById('adminCertCount').textContent = siteData.certificates.length;
             
-            loading.style.display = 'none';
+            const certCount = document.getElementById('adminCertCount');
+            if (certCount) certCount.textContent = siteData.certificates.length;
+            
+            if (loading) loading.style.display = 'none';
             addBtn.disabled = false;
             showToast('Certificate added successfully!', 'success');
         }, 500);
@@ -1553,12 +1706,21 @@ function initBlogPanel() {
     if (!addBtn) return;
     
     addBtn.addEventListener('click', () => {
-        const title = document.getElementById('newPostTitle').value;
-        const excerpt = document.getElementById('newPostExcerpt').value;
-        const content = document.getElementById('newPostContent').value;
-        const category = document.getElementById('newPostCategory').value;
-        const tags = document.getElementById('newPostTags').value.split(',').map(t => t.trim());
-        const readTime = document.getElementById('newPostReadTime').value;
+        const titleInput = document.getElementById('newPostTitle');
+        const excerptInput = document.getElementById('newPostExcerpt');
+        const contentInput = document.getElementById('newPostContent');
+        const categoryInput = document.getElementById('newPostCategory');
+        const tagsInput = document.getElementById('newPostTags');
+        const readTimeInput = document.getElementById('newPostReadTime');
+        
+        if (!titleInput || !excerptInput || !categoryInput) return;
+        
+        const title = titleInput.value;
+        const excerpt = excerptInput.value;
+        const content = contentInput ? contentInput.value : '';
+        const category = categoryInput.value;
+        const tags = tagsInput ? tagsInput.value.split(',').map(t => t.trim()) : [];
+        const readTime = readTimeInput ? readTimeInput.value : 5;
         
         if (!title || !excerpt || !category) {
             showToast('Please fill required fields', 'error');
@@ -1579,23 +1741,25 @@ function initBlogPanel() {
             image: 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'400\' viewBox=\'0 0 800 400\'%3E%3Crect width=\'800\' height=\'400\' fill=\'%23e2f0d9\'/%3E%3Ctext x=\'400\' y=\'200\' font-family=\'Arial\' font-size=\'48\' fill=\'%234caf7a\' text-anchor=\'middle\'%3E' + title.substring(0, 10) + '%3C/text%3E%3C/svg%3E'
         };
         
-        loading.style.display = 'block';
+        if (loading) loading.style.display = 'block';
         addBtn.disabled = true;
         
         setTimeout(() => {
             siteData.blog.push(newPost);
             
-            document.getElementById('newPostTitle').value = '';
-            document.getElementById('newPostExcerpt').value = '';
-            document.getElementById('newPostContent').value = '';
-            document.getElementById('newPostCategory').value = '';
-            document.getElementById('newPostTags').value = '';
+            titleInput.value = '';
+            excerptInput.value = '';
+            if (contentInput) contentInput.value = '';
+            categoryInput.value = '';
+            if (tagsInput) tagsInput.value = '';
             
             loadBlogList();
             renderBlog('all');
-            document.getElementById('adminBlogCount').textContent = siteData.blog.length;
             
-            loading.style.display = 'none';
+            const blogCount = document.getElementById('adminBlogCount');
+            if (blogCount) blogCount.textContent = siteData.blog.length;
+            
+            if (loading) loading.style.display = 'none';
             addBtn.disabled = false;
             showToast('Blog post added successfully!', 'success');
         }, 500);
@@ -1608,10 +1772,17 @@ function initSkillsPanel() {
     if (!addBtn) return;
     
     addBtn.addEventListener('click', () => {
-        const name = document.getElementById('newSkillName').value;
-        const level = document.getElementById('newSkillLevel').value;
-        const tags = document.getElementById('newSkillTags').value.split(',').map(t => t.trim());
-        const category = document.getElementById('newSkillCategory').value;
+        const nameInput = document.getElementById('newSkillName');
+        const levelInput = document.getElementById('newSkillLevel');
+        const tagsInput = document.getElementById('newSkillTags');
+        const categoryInput = document.getElementById('newSkillCategory');
+        
+        if (!nameInput || !levelInput || !tagsInput || !categoryInput) return;
+        
+        const name = nameInput.value;
+        const level = levelInput.value;
+        const tags = tagsInput.value.split(',').map(t => t.trim());
+        const category = categoryInput.value;
         
         if (!name || !level || tags.length === 0) {
             showToast('Please fill all fields', 'error');
@@ -1625,7 +1796,7 @@ function initSkillsPanel() {
         else if (category === 'ai') categoryIndex = 1;
         else if (category === 'tools') categoryIndex = 2;
         
-        loading.style.display = 'block';
+        if (loading) loading.style.display = 'block';
         addBtn.disabled = true;
         
         setTimeout(() => {
@@ -1635,14 +1806,14 @@ function initSkillsPanel() {
                 tags: tags
             });
             
-            document.getElementById('newSkillName').value = '';
-            document.getElementById('newSkillLevel').value = '';
-            document.getElementById('newSkillTags').value = '';
+            nameInput.value = '';
+            levelInput.value = '';
+            tagsInput.value = '';
             
             loadSkillsList();
             renderSkills();
             
-            loading.style.display = 'none';
+            if (loading) loading.style.display = 'none';
             addBtn.disabled = false;
             showToast('Skill added successfully!', 'success');
         }, 500);
@@ -1656,7 +1827,10 @@ function initResumePanel() {
     
     if (uploadBtn) {
         uploadBtn.addEventListener('click', () => {
-            const file = document.getElementById('resumeFile').files[0];
+            const fileInput = document.getElementById('resumeFile');
+            if (!fileInput) return;
+            
+            const file = fileInput.files[0];
             if (!file) {
                 showToast('Please select a PDF file', 'error');
                 return;
@@ -1668,11 +1842,11 @@ function initResumePanel() {
             }
             
             const loading = document.getElementById('resumeLoading');
-            loading.style.display = 'block';
+            if (loading) loading.style.display = 'block';
             uploadBtn.disabled = true;
             
             setTimeout(() => {
-                loading.style.display = 'none';
+                if (loading) loading.style.display = 'none';
                 uploadBtn.disabled = false;
                 showToast('Resume uploaded successfully!', 'success');
             }, 1000);
@@ -1693,13 +1867,21 @@ function initThemePanel() {
     
     if (saveBtn) {
         saveBtn.addEventListener('click', () => {
-            const primary = document.getElementById('themePrimary').value;
-            const secondary = document.getElementById('themeSecondary').value;
-            const bg = document.getElementById('themeBg').value;
-            const text = document.getElementById('themeText').value;
-            const accent = document.getElementById('themeAccent').value;
+            const primaryInput = document.getElementById('themePrimary');
+            const secondaryInput = document.getElementById('themeSecondary');
+            const bgInput = document.getElementById('themeBg');
+            const textInput = document.getElementById('themeText');
+            const accentInput = document.getElementById('themeAccent');
             
-            siteData.theme = { primary, secondary, bg, text, accent };
+            if (!primaryInput || !secondaryInput || !bgInput || !textInput || !accentInput) return;
+            
+            siteData.theme = {
+                primary: primaryInput.value,
+                secondary: secondaryInput.value,
+                bg: bgInput.value,
+                text: textInput.value,
+                accent: accentInput.value
+            };
             
             applyTheme(siteData.theme);
             showToast('Theme updated!', 'success');
@@ -1708,11 +1890,17 @@ function initThemePanel() {
     
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
-            document.getElementById('themePrimary').value = '#4caf7a';
-            document.getElementById('themeSecondary').value = '#3d7a4f';
-            document.getElementById('themeBg').value = '#f5efe6';
-            document.getElementById('themeText').value = '#2c3e2f';
-            document.getElementById('themeAccent').value = '#d9b382';
+            const primaryInput = document.getElementById('themePrimary');
+            const secondaryInput = document.getElementById('themeSecondary');
+            const bgInput = document.getElementById('themeBg');
+            const textInput = document.getElementById('themeText');
+            const accentInput = document.getElementById('themeAccent');
+            
+            if (primaryInput) primaryInput.value = '#4caf7a';
+            if (secondaryInput) secondaryInput.value = '#3d7a4f';
+            if (bgInput) bgInput.value = '#f5efe6';
+            if (textInput) textInput.value = '#2c3e2f';
+            if (accentInput) accentInput.value = '#d9b382';
             
             applyTheme({
                 primary: '#4caf7a',
@@ -1742,9 +1930,15 @@ function initPasswordPanel() {
     
     if (changeBtn) {
         changeBtn.addEventListener('click', () => {
-            const oldPass = document.getElementById('currentPassword').value;
-            const newPass = document.getElementById('newPassword').value;
-            const confirmPass = document.getElementById('confirmPassword').value;
+            const oldPassInput = document.getElementById('currentPassword');
+            const newPassInput = document.getElementById('newPassword');
+            const confirmPassInput = document.getElementById('confirmPassword');
+            
+            if (!oldPassInput || !newPassInput || !confirmPassInput) return;
+            
+            const oldPass = oldPassInput.value;
+            const newPass = newPassInput.value;
+            const confirmPass = confirmPassInput.value;
             
             if (!oldPass || !newPass || !confirmPass) {
                 showToast('Please fill all fields', 'error');
@@ -1763,17 +1957,17 @@ function initPasswordPanel() {
             
             const loading = document.getElementById('passwordLoading');
             
-            loading.style.display = 'block';
+            if (loading) loading.style.display = 'block';
             changeBtn.disabled = true;
             
             setTimeout(() => {
-                loading.style.display = 'none';
+                if (loading) loading.style.display = 'none';
                 changeBtn.disabled = false;
                 showToast('Password changed successfully!', 'success');
                 
-                document.getElementById('currentPassword').value = '';
-                document.getElementById('newPassword').value = '';
-                document.getElementById('confirmPassword').value = '';
+                oldPassInput.value = '';
+                newPassInput.value = '';
+                confirmPassInput.value = '';
             }, 500);
         });
     }
@@ -1793,10 +1987,155 @@ function initLogout() {
     if (!logoutBtn) return;
     
     logoutBtn.addEventListener('click', () => {
-        document.getElementById('adminDashboardModal').classList.remove('active');
-        document.getElementById('adminSecret').style.display = 'none';
+        const dashboardModal = document.getElementById('adminDashboardModal');
+        if (dashboardModal) dashboardModal.classList.remove('active');
+        
+        const adminSecret = document.getElementById('adminSecret');
+        if (adminSecret) adminSecret.style.display = 'none';
+        
         isAdminLoggedIn = false;
         sessionStorage.removeItem('adminLoggedIn');
         showToast('Logged out successfully', 'info');
     });
+}
+
+// Make functions globally available for onclick handlers
+window.editProject = editProject;
+window.deleteProject = deleteProject;
+window.editCertificate = editCertificate;
+window.deleteCertificate = deleteCertificate;
+window.editPost = editPost;
+window.deletePost = deletePost;
+window.editSkill = editSkill;
+window.deleteSkill = deleteSkill;
+window.editAIModel = editAIModel;
+window.deleteAIModel = deleteAIModel;
+window.editPortfolioItem = editPortfolioItem;
+window.deletePortfolioItem = deletePortfolioItem;
+
+// Placeholder functions for edit handlers
+function editCertificate(id) {
+    const cert = siteData.certificates.find(c => c.id === id);
+    if (!cert) return;
+    
+    const nameInput = document.getElementById('newCertName');
+    const issuerInput = document.getElementById('newCertIssuer');
+    const dateInput = document.getElementById('newCertDate');
+    const credentialInput = document.getElementById('newCertCredential');
+    const linkInput = document.getElementById('newCertLink');
+    
+    if (nameInput) nameInput.value = cert.title;
+    if (issuerInput) issuerInput.value = cert.issuer;
+    if (dateInput) dateInput.value = cert.date;
+    if (credentialInput) credentialInput.value = cert.credential || '';
+    if (linkInput) linkInput.value = cert.link || '';
+    
+    const certsTab = document.querySelector('[data-tab="certificates"]');
+    if (certsTab) certsTab.click();
+    
+    if (confirm('Edit this certificate. Click OK to delete old version and add edited version.')) {
+        siteData.certificates = siteData.certificates.filter(c => c.id !== id);
+    }
+}
+
+function editPost(id) {
+    const post = siteData.blog.find(p => p.id === id);
+    if (!post) return;
+    
+    const titleInput = document.getElementById('newPostTitle');
+    const excerptInput = document.getElementById('newPostExcerpt');
+    const contentInput = document.getElementById('newPostContent');
+    const categoryInput = document.getElementById('newPostCategory');
+    const tagsInput = document.getElementById('newPostTags');
+    const readTimeInput = document.getElementById('newPostReadTime');
+    
+    if (titleInput) titleInput.value = post.title;
+    if (excerptInput) excerptInput.value = post.excerpt;
+    if (contentInput) contentInput.value = post.content || '';
+    if (categoryInput) categoryInput.value = post.category;
+    if (tagsInput) tagsInput.value = post.tags ? post.tags.join(', ') : '';
+    if (readTimeInput) readTimeInput.value = post.readTime || 5;
+    
+    const blogTab = document.querySelector('[data-tab="blog"]');
+    if (blogTab) blogTab.click();
+    
+    if (confirm('Edit this blog post. Click OK to delete old version and add edited version.')) {
+        siteData.blog = siteData.blog.filter(p => p.id !== id);
+    }
+}
+
+function editSkill(catIndex, skillIndex) {
+    const skill = siteData.skills[catIndex].skills[skillIndex];
+    if (!skill) return;
+    
+    const nameInput = document.getElementById('newSkillName');
+    const levelInput = document.getElementById('newSkillLevel');
+    const tagsInput = document.getElementById('newSkillTags');
+    const categoryInput = document.getElementById('newSkillCategory');
+    
+    if (nameInput) nameInput.value = skill.name;
+    if (levelInput) levelInput.value = skill.level;
+    if (tagsInput) tagsInput.value = skill.tags.join(', ');
+    
+    let category = '';
+    if (catIndex === 0) category = 'languages';
+    else if (catIndex === 1) category = 'ai';
+    else if (catIndex === 2) category = 'tools';
+    
+    if (categoryInput) categoryInput.value = category;
+    
+    const skillsTab = document.querySelector('[data-tab="skills"]');
+    if (skillsTab) skillsTab.click();
+    
+    if (confirm('Edit this skill. Click OK to delete old version and add edited version.')) {
+        siteData.skills[catIndex].skills.splice(skillIndex, 1);
+    }
+}
+
+function editAIModel(id) {
+    const model = siteData.aiModels.find(m => m.id === id);
+    if (!model) return;
+    
+    const nameInput = document.getElementById('newAIName');
+    const descInput = document.getElementById('newAIDesc');
+    const typeInput = document.getElementById('newAIType');
+    const frameworkInput = document.getElementById('newAIFramework');
+    const metricsInput = document.getElementById('newAIMetrics');
+    const githubInput = document.getElementById('newAIGithub');
+    const demoInput = document.getElementById('newAIDemo');
+    
+    if (nameInput) nameInput.value = model.name;
+    if (descInput) descInput.value = model.description;
+    if (typeInput) typeInput.value = model.type;
+    if (frameworkInput) frameworkInput.value = model.framework;
+    if (metricsInput) metricsInput.value = model.metrics;
+    if (githubInput) githubInput.value = model.github || '';
+    if (demoInput) demoInput.value = model.demo || '';
+    
+    const aiTab = document.querySelector('[data-tab="ai"]');
+    if (aiTab) aiTab.click();
+    
+    if (confirm('Edit this AI model. Click OK to delete old version and add edited version.')) {
+        siteData.aiModels = siteData.aiModels.filter(m => m.id !== id);
+    }
+}
+
+function editPortfolioItem(id) {
+    const item = siteData.portfolio.find(i => i.id === id);
+    if (!item) return;
+    
+    const titleInput = document.getElementById('newGalleryTitle');
+    const descInput = document.getElementById('newGalleryDesc');
+    const categoryInput = document.getElementById('newGalleryCategory');
+    
+    if (titleInput) titleInput.value = item.title;
+    if (descInput) descInput.value = item.description;
+    if (categoryInput) categoryInput.value = item.category;
+    
+    const portfolioTab = document.querySelector('[data-tab="portfolio"]');
+    if (portfolioTab) portfolioTab.click();
+    
+    if (confirm('Edit this portfolio item. Click OK to delete old version and add edited version.')) {
+        siteData.portfolio = siteData.portfolio.filter(i => i.id !== id);
+    }
 }
