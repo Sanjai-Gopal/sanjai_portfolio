@@ -4,21 +4,26 @@ require_once 'config.php';
 // Handle different authentication actions
 $action = $_GET['action'] ?? '';
 
-switch ($action) {
-    case 'login':
-        handleLogin();
-        break;
-    case 'logout':
-        handleLogout();
-        break;
-    case 'check':
-        checkSession();
-        break;
-    case 'change-password':
-        handleChangePassword();
-        break;
-    default:
-        sendResponse(false, 'Invalid action', null, 400);
+try {
+    switch ($action) {
+        case 'login':
+            handleLogin();
+            break;
+        case 'logout':
+            handleLogout();
+            break;
+        case 'check':
+            checkSession();
+            break;
+        case 'change-password':
+            handleChangePassword();
+            break;
+        default:
+            sendResponse(false, 'Invalid action', null, 400);
+    }
+} catch (Exception $e) {
+    logAPI('auth_error', ['error' => $e->getMessage()]);
+    sendResponse(false, 'Server error occurred', null, 500);
 }
 
 function handleLogin() {
@@ -32,7 +37,11 @@ function handleLogin() {
     usleep(500000);
     
     if (verifyPassword($input['password'])) {
-        session_start();
+        // Start session safely
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         $_SESSION['admin'] = true;
         $_SESSION['login_time'] = time();
         $_SESSION['ip'] = getClientIP();
@@ -47,7 +56,10 @@ function handleLogin() {
 }
 
 function handleLogout() {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     $_SESSION = array();
     
     if (ini_get("session.use_cookies")) {
@@ -63,7 +75,10 @@ function handleLogout() {
 }
 
 function checkSession() {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
         sendResponse(true, 'Session valid');
     } else {
@@ -72,7 +87,10 @@ function checkSession() {
 }
 
 function handleChangePassword() {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
         sendResponse(false, 'Unauthorized', null, 401);
     }
