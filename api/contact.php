@@ -58,7 +58,7 @@ if (function_exists('mail')) {
     $emailBody .= "Subject: $subject\n";
     $emailBody .= "Message:\n$message\n";
     
-    mail($to, "Portfolio Contact: $subject", $emailBody, $headers);
+    @mail($to, "Portfolio Contact: $subject", $emailBody, $headers);
 }
 
 logAPI('contact_form', ['name' => $name, 'email' => $email]);
