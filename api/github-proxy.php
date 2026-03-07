@@ -40,7 +40,9 @@ if ($httpCode !== 200) {
 $data = json_decode($response, true);
 
 // Save to cache
-file_put_contents($cacheFile, json_encode($data));
+if ($data) {
+    file_put_contents($cacheFile, json_encode($data));
+}
 
 sendResponse(true, 'Data retrieved from GitHub', $data);
 ?>
