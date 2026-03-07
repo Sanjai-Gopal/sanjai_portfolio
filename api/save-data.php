@@ -2,7 +2,10 @@
 require_once 'config.php';
 
 // Check authentication
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     sendResponse(false, 'Unauthorized', null, 401);
 }
@@ -14,45 +17,50 @@ if (!$input && empty($_FILES)) {
     $input = $_POST;
 }
 
-switch ($type) {
-    case 'profile':
-        saveProfile($input);
-        break;
-        
-    case 'project':
-        saveProject($input);
-        break;
-        
-    case 'certificate':
-        saveCertificate($input);
-        break;
-        
-    case 'blog':
-        saveBlog($input);
-        break;
-        
-    case 'skills':
-        saveSkills($input);
-        break;
-        
-    case 'theme':
-        saveTheme($input);
-        break;
-        
-    case 'ai':
-        saveAIModel($input);
-        break;
-        
-    case 'portfolio':
-        savePortfolioItem($input);
-        break;
-        
-    case 'upload':
-        handleUpload();
-        break;
-        
-    default:
-        sendResponse(false, 'Invalid type', null, 400);
+try {
+    switch ($type) {
+        case 'profile':
+            saveProfile($input);
+            break;
+            
+        case 'project':
+            saveProject($input);
+            break;
+            
+        case 'certificate':
+            saveCertificate($input);
+            break;
+            
+        case 'blog':
+            saveBlog($input);
+            break;
+            
+        case 'skills':
+            saveSkills($input);
+            break;
+            
+        case 'theme':
+            saveTheme($input);
+            break;
+            
+        case 'ai':
+            saveAIModel($input);
+            break;
+            
+        case 'portfolio':
+            savePortfolioItem($input);
+            break;
+            
+        case 'upload':
+            handleUpload();
+            break;
+            
+        default:
+            sendResponse(false, 'Invalid type', null, 400);
+    }
+} catch (Exception $e) {
+    logAPI('save_data_error', ['type' => $type, 'error' => $e->getMessage()]);
+    sendResponse(false, 'Error saving data: ' . $e->getMessage(), null, 500);
 }
 
 function saveProfile($data) {
@@ -60,24 +68,26 @@ function saveProfile($data) {
         sendResponse(false, 'No data provided', null, 400);
     }
     
+    $currentProfile = readJSON(PROFILE_FILE, []);
+    
     $profile = [
-        'name' => $data['name'] ?? 'Sanjai Gopal',
-        'displayName' => $data['displayName'] ?? 'Sanjai',
-        'title' => $data['title'] ?? 'AI Engineer & Nature Enthusiast',
-        'bio' => $data['bio'] ?? '',
-        'location' => $data['location'] ?? 'Coimbatore, India',
-        'email' => $data['email'] ?? '',
-        'phone' => $data['phone'] ?? '',
-        'linkedin' => $data['linkedin'] ?? '',
-        'github' => $data['github'] ?? '',
-        'instagram' => $data['instagram'] ?? '',
-        'photo' => $data['photo'] ?? null,
+        'name' => $data['name'] ?? $currentProfile['name'] ?? 'Sanjai Gopal',
+        'displayName' => $data['displayName'] ?? $currentProfile['displayName'] ?? 'Sanjai',
+        'title' => $data['title'] ?? $currentProfile['title'] ?? 'AI Engineer & Nature Enthusiast',
+        'bio' => $data['bio'] ?? $currentProfile['bio'] ?? '',
+        'location' => $data['location'] ?? $currentProfile['location'] ?? 'Coimbatore, India',
+        'email' => $data['email'] ?? $currentProfile['email'] ?? '',
+        'phone' => $data['phone'] ?? $currentProfile['phone'] ?? '',
+        'linkedin' => $data['linkedin'] ?? $currentProfile['linkedin'] ?? '',
+        'github' => $data['github'] ?? $currentProfile['github'] ?? '',
+        'instagram' => $data['instagram'] ?? $currentProfile['instagram'] ?? '',
+        'photo' => $data['photo'] ?? $currentProfile['photo'] ?? null,
         'updated' => time()
     ];
     
     if (writeJSON(PROFILE_FILE, $profile)) {
         logAPI('profile_updated', ['by' => getClientIP()]);
-        sendResponse(true, 'Profile saved successfully');
+        sendResponse(true, 'Profile saved successfully', $profile);
     } else {
         sendResponse(false, 'Failed to save profile', null, 500);
     }
