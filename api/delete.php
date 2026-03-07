@@ -32,6 +32,14 @@ switch ($type) {
         deleteContact($id);
         break;
         
+    case 'ai':
+        deleteAIModel($id);
+        break;
+        
+    case 'portfolio':
+        deletePortfolioItem($id);
+        break;
+        
     default:
         sendResponse(false, 'Invalid type', null, 400);
 }
@@ -113,6 +121,46 @@ function deleteContact($id) {
         }
     } else {
         sendResponse(false, 'Contact not found', null, 404);
+    }
+}
+
+function deleteAIModel($id) {
+    $models = readJSON(AI_MODELS_FILE, []);
+    $originalCount = count($models);
+    $models = array_filter($models, function($m) use ($id) {
+        return ($m['id'] ?? '') !== $id;
+    });
+    $models = array_values($models);
+    
+    if (count($models) < $originalCount) {
+        if (writeJSON(AI_MODELS_FILE, $models)) {
+            logAPI('ai_model_deleted', ['id' => $id]);
+            sendResponse(true, 'AI model deleted successfully');
+        } else {
+            sendResponse(false, 'Failed to delete AI model', null, 500);
+        }
+    } else {
+        sendResponse(false, 'AI model not found', null, 404);
+    }
+}
+
+function deletePortfolioItem($id) {
+    $items = readJSON(PORTFOLIO_FILE, []);
+    $originalCount = count($items);
+    $items = array_filter($items, function($i) use ($id) {
+        return ($i['id'] ?? '') !== $id;
+    });
+    $items = array_values($items);
+    
+    if (count($items) < $originalCount) {
+        if (writeJSON(PORTFOLIO_FILE, $items)) {
+            logAPI('portfolio_deleted', ['id' => $id]);
+            sendResponse(true, 'Portfolio item deleted successfully');
+        } else {
+            sendResponse(false, 'Failed to delete portfolio item', null, 500);
+        }
+    } else {
+        sendResponse(false, 'Portfolio item not found', null, 404);
     }
 }
 ?>
