@@ -39,6 +39,14 @@ switch ($type) {
         saveTheme($input);
         break;
         
+    case 'ai':
+        saveAIModel($input);
+        break;
+        
+    case 'portfolio':
+        savePortfolioItem($input);
+        break;
+        
     case 'upload':
         handleUpload();
         break;
@@ -54,11 +62,15 @@ function saveProfile($data) {
     
     $profile = [
         'name' => $data['name'] ?? 'Sanjai Gopal',
+        'displayName' => $data['displayName'] ?? 'Sanjai',
         'title' => $data['title'] ?? 'AI Engineer & Nature Enthusiast',
         'bio' => $data['bio'] ?? '',
         'location' => $data['location'] ?? 'Coimbatore, India',
         'email' => $data['email'] ?? '',
         'phone' => $data['phone'] ?? '',
+        'linkedin' => $data['linkedin'] ?? '',
+        'github' => $data['github'] ?? '',
+        'instagram' => $data['instagram'] ?? '',
         'photo' => $data['photo'] ?? null,
         'updated' => time()
     ];
@@ -79,7 +91,6 @@ function saveProject($data) {
     $projects = readJSON(PROJECTS_FILE, []);
     
     if (isset($data['id']) && !empty($data['id'])) {
-        // Update existing
         $found = false;
         foreach ($projects as &$project) {
             if ($project['id'] === $data['id']) {
@@ -96,7 +107,6 @@ function saveProject($data) {
             $projects[] = $data;
         }
     } else {
-        // Add new
         $data['id'] = uniqid();
         $data['created'] = time();
         $data['updated'] = time();
@@ -208,6 +218,7 @@ function saveTheme($data) {
         'secondary' => $data['secondary'] ?? '#3d7a4f',
         'bg' => $data['bg'] ?? '#f5efe6',
         'text' => $data['text'] ?? '#2c3e2f',
+        'accent' => $data['accent'] ?? '#d9b382',
         'updated' => time()
     ];
     
@@ -216,6 +227,78 @@ function saveTheme($data) {
         sendResponse(true, 'Theme saved successfully');
     } else {
         sendResponse(false, 'Failed to save theme', null, 500);
+    }
+}
+
+function saveAIModel($data) {
+    if (!$data) {
+        sendResponse(false, 'No data provided', null, 400);
+    }
+    
+    $models = readJSON(AI_MODELS_FILE, []);
+    
+    if (isset($data['id']) && !empty($data['id'])) {
+        $found = false;
+        foreach ($models as &$model) {
+            if ($model['id'] === $data['id']) {
+                $model = array_merge($model, $data);
+                $model['updated'] = time();
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            $data['id'] = uniqid();
+            $data['created'] = time();
+            $models[] = $data;
+        }
+    } else {
+        $data['id'] = uniqid();
+        $data['created'] = time();
+        $models[] = $data;
+    }
+    
+    if (writeJSON(AI_MODELS_FILE, $models)) {
+        logAPI('ai_model_saved', ['id' => $data['id']]);
+        sendResponse(true, 'AI model saved successfully', ['id' => $data['id']]);
+    } else {
+        sendResponse(false, 'Failed to save AI model', null, 500);
+    }
+}
+
+function savePortfolioItem($data) {
+    if (!$data) {
+        sendResponse(false, 'No data provided', null, 400);
+    }
+    
+    $items = readJSON(PORTFOLIO_FILE, []);
+    
+    if (isset($data['id']) && !empty($data['id'])) {
+        $found = false;
+        foreach ($items as &$item) {
+            if ($item['id'] === $data['id']) {
+                $item = array_merge($item, $data);
+                $item['updated'] = time();
+                $found = true;
+                break;
+            }
+        }
+        if (!$found) {
+            $data['id'] = uniqid();
+            $data['created'] = time();
+            $items[] = $data;
+        }
+    } else {
+        $data['id'] = uniqid();
+        $data['created'] = time();
+        $items[] = $data;
+    }
+    
+    if (writeJSON(PORTFOLIO_FILE, $items)) {
+        logAPI('portfolio_saved', ['id' => $data['id']]);
+        sendResponse(true, 'Portfolio item saved successfully', ['id' => $data['id']]);
+    } else {
+        sendResponse(false, 'Failed to save portfolio item', null, 500);
     }
 }
 
