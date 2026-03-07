@@ -9,11 +9,15 @@ switch ($type) {
     case 'profile':
         $data = readJSON(PROFILE_FILE, [
             'name' => 'Sanjai Gopal',
+            'displayName' => 'Sanjai',
             'title' => 'AI Engineer & Nature Enthusiast',
             'bio' => 'I\'m a first-year Artificial Intelligence and Data Science student at SKCET, Coimbatore. I believe in building technology that\'s not just intelligent, but also sustainable and accessible to all.',
             'location' => 'Coimbatore, India',
             'email' => 'sanjai.sparkmail@gmail.com',
             'phone' => '+91 9363265552',
+            'linkedin' => 'https://linkedin.com/in/sanjai2306',
+            'github' => 'https://github.com/Sanjai-Gopal',
+            'instagram' => 'https://instagram.com/hey.sanjai_',
             'photo' => null
         ]);
         break;
@@ -67,7 +71,8 @@ switch ($type) {
             'primary' => '#4caf7a',
             'secondary' => '#3d7a4f',
             'bg' => '#f5efe6',
-            'text' => '#2c3e2f'
+            'text' => '#2c3e2f',
+            'accent' => '#d9b382'
         ]);
         break;
         
@@ -79,6 +84,14 @@ switch ($type) {
         $data = readJSON(SUBSCRIBERS_FILE, []);
         break;
         
+    case 'ai':
+        $data = readJSON(AI_MODELS_FILE, []);
+        break;
+        
+    case 'portfolio':
+        $data = readJSON(PORTFOLIO_FILE, []);
+        break;
+        
     case 'all':
         $data = [
             'profile' => readJSON(PROFILE_FILE, []),
@@ -88,7 +101,9 @@ switch ($type) {
             'skills' => readJSON(SKILLS_FILE, []),
             'theme' => readJSON(THEME_FILE, []),
             'contacts' => readJSON(CONTACTS_FILE, []),
-            'subscribers' => readJSON(SUBSCRIBERS_FILE, [])
+            'subscribers' => readJSON(SUBSCRIBERS_FILE, []),
+            'ai' => readJSON(AI_MODELS_FILE, []),
+            'portfolio' => readJSON(PORTFOLIO_FILE, [])
         ];
         break;
         
