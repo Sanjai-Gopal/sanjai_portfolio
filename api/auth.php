@@ -28,24 +28,20 @@ function handleLogin() {
         sendResponse(false, 'Password required', null, 400);
     }
     
+    // Add small delay to prevent brute force
+    usleep(500000);
+    
     if (verifyPassword($input['password'])) {
         session_start();
         $_SESSION['admin'] = true;
         $_SESSION['login_time'] = time();
+        $_SESSION['ip'] = getClientIP();
+        $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'] ?? '';
         
-        // Set secure session cookie
-        setcookie(session_name(), session_id(), [
-            'expires' => time() + 3600,
-            'path' => '/',
-            'secure' => true,
-            'httponly' => true,
-            'samesite' => 'Strict'
-        ]);
-        
+        logAPI('login_success', ['ip' => getClientIP()]);
         sendResponse(true, 'Login successful');
     } else {
-        // Add small delay to prevent brute force
-        usleep(500000);
+        logAPI('login_failed', ['ip' => getClientIP()]);
         sendResponse(false, 'Invalid password', null, 401);
     }
 }
@@ -92,6 +88,7 @@ function handleChangePassword() {
     }
     
     if (changePassword($input['oldPassword'], $input['newPassword'])) {
+        logAPI('password_changed', ['ip' => getClientIP()]);
         sendResponse(true, 'Password changed successfully');
     } else {
         sendResponse(false, 'Current password is incorrect', null, 401);
