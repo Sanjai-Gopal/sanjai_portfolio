@@ -3,6 +3,10 @@
 // API CONFIGURATION
 // ========================================
 
+// Enable error reporting for debugging (disable in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
@@ -27,15 +31,22 @@ define('SKILLS_FILE', DATA_DIR . 'skills.json');
 define('THEME_FILE', DATA_DIR . 'theme.json');
 define('CONTACTS_FILE', DATA_DIR . 'contacts.json');
 define('SUBSCRIBERS_FILE', DATA_DIR . 'subscribers.json');
+define('AI_MODELS_FILE', DATA_DIR . 'ai_models.json');
+define('PORTFOLIO_FILE', DATA_DIR . 'portfolio.json');
+define('LOG_FILE', DATA_DIR . 'api_log.txt');
 
 // Create data directory if it doesn't exist
 if (!file_exists(DATA_DIR)) {
-    mkdir(DATA_DIR, 0755, true);
+    if (!mkdir(DATA_DIR, 0755, true)) {
+        sendResponse(false, 'Failed to create data directory', null, 500);
+    }
 }
 
 // Create uploads directory if it doesn't exist
 if (!file_exists(UPLOAD_DIR)) {
-    mkdir(UPLOAD_DIR, 0755, true);
+    if (!mkdir(UPLOAD_DIR, 0755, true)) {
+        sendResponse(false, 'Failed to create uploads directory', null, 500);
+    }
 }
 
 // Create .htaccess to protect uploads
@@ -47,7 +58,10 @@ if (!file_exists($htaccess)) {
 // Create default password if not exists
 if (!file_exists(PASSWORD_FILE)) {
     // Default password: Sanjai@2008 (hashed)
-    file_put_contents(PASSWORD_FILE, password_hash('Sanjai@2008', PASSWORD_DEFAULT));
+    $hashed = password_hash('Sanjai@2008', PASSWORD_DEFAULT);
+    if (file_put_contents(PASSWORD_FILE, $hashed) === false) {
+        sendResponse(false, 'Failed to create password file', null, 500);
+    }
 }
 
 // Helper function to read JSON file
@@ -56,12 +70,20 @@ function readJSON($file, $default = []) {
         return $default;
     }
     $content = file_get_contents($file);
-    return json_decode($content, true) ?: $default;
+    if ($content === false) {
+        return $default;
+    }
+    $data = json_decode($content, true);
+    return ($data !== null) ? $data : $default;
 }
 
 // Helper function to write JSON file
 function writeJSON($file, $data) {
-    return file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    if ($json === false) {
+        return false;
+    }
+    return file_put_contents($file, $json) !== false;
 }
 
 // Helper function to send JSON response
@@ -82,6 +104,9 @@ function verifyPassword($password) {
         return false;
     }
     $hash = file_get_contents(PASSWORD_FILE);
+    if ($hash === false) {
+        return false;
+    }
     return password_verify($password, $hash);
 }
 
@@ -91,6 +116,9 @@ function changePassword($oldPassword, $newPassword) {
         return false;
     }
     $newHash = password_hash($newPassword, PASSWORD_DEFAULT);
+    if ($newHash === false) {
+        return false;
+    }
     return file_put_contents(PASSWORD_FILE, $newHash) !== false;
 }
 
@@ -121,17 +149,16 @@ function handleFileUpload($file, $type = 'image') {
     return null;
 }
 
-// Helper function to log API calls (for debugging)
+// Helper function to log API calls
 function logAPI($action, $data = []) {
-    $logFile = DATA_DIR . 'api_log.txt';
     $logEntry = date('Y-m-d H:i:s') . " | $action | " . json_encode($data) . "\n";
-    file_put_contents($logFile, $logEntry, FILE_APPEND);
+    file_put_contents(LOG_FILE, $logEntry, FILE_APPEND);
 }
 
 // Check if running on localhost
 function isLocalhost() {
     $whitelist = ['127.0.0.1', '::1'];
-    return in_array($_SERVER['REMOTE_ADDR'], $whitelist);
+    return in_array($_SERVER['REMOTE_ADDR'] ?? '', $whitelist);
 }
 
 // Get client IP
